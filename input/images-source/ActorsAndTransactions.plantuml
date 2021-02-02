@@ -1,0 +1,11 @@
+@startuml
+agent "Data using Client" as Client
+agent "Data Server" as Server
+agent "Audit Repository" as AuditRepository
+agent "Audit using Client" as AuditClient
+Client -right-> Server : RESTful request
+Server -down-> AuditRepository: Record AuditEvent
+Client --> AuditRepository: Record AuditEvent
+AuditClient -up-> AuditRepository: Read AuditEvents
+@enduml
+

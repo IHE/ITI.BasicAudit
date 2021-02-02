@@ -1,2 +1,1 @@
-# BasicAudit
-Implementation Guide for Basic Audit
+attempt at defining structureDefinition profiles and examples for how MyHealtheVet publishes to PGHD (which is DSTU2)

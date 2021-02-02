@@ -1,0 +1,6 @@
+id: va.mhv.example
+canonical: https://johnmoehrke.github.io/BasicAudit
+name: BasicAudit
+status: draft
+fhirVersion: 4.0.1
+FSHOnly: true

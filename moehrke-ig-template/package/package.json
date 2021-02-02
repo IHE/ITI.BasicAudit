@@ -1,0 +1,12 @@
+{
+    "name": "moehrke.ig.template",
+    "version": "0.1",
+    "type": "fhir.template",
+    "license": "CC0-1.0",
+    "description": "Moehrke Research Implementation Guide Template",
+    "base": "fhir.base.template",
+    "dependencies": {
+    "fhir.base.template" : "current"
+    }
+   }
+   

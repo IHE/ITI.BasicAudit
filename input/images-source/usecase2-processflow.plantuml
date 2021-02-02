@@ -1,0 +1,14 @@
+@startuml
+hide footbox
+participant "Audit using Client" as AuditClient
+participant "Audit Repository" as AuditRepository
+AuditClient -> AuditRepository : 1. Client requests AuditEvent records for Patient X
+activate AuditRepository
+activate AuditClient
+AuditRepository -> AuditRepository : 2. Server finds AuditEvents requested for Patient X
+AuditRepository -> AuditRepository : 3. Server records audit event of the audit Event request
+AuditRepository -> AuditClient : 4. Server returns AuditEvent records for Patient X
+deactivate AuditRepository
+AuditClient --> AuditRepository : 5. Audit Client records audit event
+deactivate AuditClient
+@enduml

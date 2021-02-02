@@ -1,0 +1,16 @@
+@startuml
+hide footbox
+
+participant "Data using Client" as Client
+participant "Data Server" as Server
+participant "Audit Repository" as AuditRepository
+Client -> Server : 1. Client requests some data from the Server
+activate Server
+activate Client
+Server -> Server : 2. Server finds data requested
+Server -> AuditRepository : 3. Server records audit event
+Server -> Client : 4. Server returns read data requested
+deactivate Server
+Client --> AuditRepository : 5. Client records audit event
+deactivate Client
+@enduml

@@ -1,0 +1,29 @@
+/* #segment-footer > .container {background-color: #0093d5;}
+.navbar-inverse {background-color: #0093d5;}
+*/
+:root {
+    --ig-status-text-color: #0093d5; /* 1. IG Title and status text color */
+    --navbar-bg-color: #0093d5; /* 2. Header container color */
+    --footer-bg-color: #23313a; /* 3. Footer background color*/
+    --footer-container-color: #23313a; /* 4. Footer container color */
+    --stripe-bg-color: #0093d5; /* 5. Header strip color */
+    --btn-hover-color: #d86422;  /* 6. Menu button hover color */
+    --btn-active-color: #2a6496; /* 7. Menu button active color */
+    --btn-text-color: white; /* 8. Menu button text color */
+    --link-color: #2a6496; /* 13. Hyperlink text color */
+    --link-hover-color: #0093d5; /* 14. Hyperlink text hover color */
+    --publish-box-bg-color: #d82138; /* 15. Publish box background color */
+    --publish-box-border: 1px solid #23313a; /* 16.  Publish box border definition */
+    --toc-box-bg-color: #ebebeb; /* 17.  TOC box background color */
+    --toc-box-border: 1px solid #23313a; /* 18. TOC box border definition */
+    --ig-header-color: white; /* 21. Header color (sides) -- main bg color */
+    --ig-header-container-color: white; /* 22. Header container color (center) */
+
+    --btn-gradient-start-color: #428bca; /* 9. Menu item gradient start color */
+    --btn-gradient-end-color: #357ebd; /* 10. Menu item gradient end  color */
+    --btn-gradient-start-color-alpha: #ff428bca; /* 11. Menu item gradient start color (with alpha) */
+    --btn-gradient-end-color-alpha: #ff357ebd; /* 12. Menu item gradient end color (with alpha) */
+    --stu-note-background-color: #fff2ff; /* 19. (STU) Note box background color */
+    --stu-note-border-left-color: #ffa0ff; /* 20. (STU) Note box border color */
+  }
+  

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- note that the ImplementationGuide needs to be R4, even though the profiles it is creating are DSTU2 -->
+<ImplementationGuide xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://hl7.org/fhir ../input-cache/schemas-r5/fhir-single.xsd">
+	<id value="moehrke.basicaudit"/>
+	<url value="https://johnmoehrke.github.io/BasicAudit/ImplementationGuide/moehrke.basicaudit"/>
+	<version value="0.1.0-beta" />
+	<name value="BasicAudit"/>
+	<status value="draft"/>
+	<experimental value="false"/>
+	<date value="2021-02-01"/>
+	<contact>
+		<name value="John Moehrke" />
+	</contact>	
+	<description value="Basic Audit for FHIR REST and operations where the activity includes a subject." />
+  <jurisdiction>
+    <coding>
+      <!-- This is the code for universal -->
+      <system value="http://unstats.un.org/unsd/methods/m49/m49.htm"/>
+      <code value="001"/>
+    </coding>
+  </jurisdiction>
+	<packageId value="moehrke.basicaudit"/>
+	<fhirVersion value="4.0.1"/>
+	<definition>
+		<page>
+			<!-- The root will always be toc.html - the template will force it if you don't do it -->
+			<nameUrl value="toc.html"/>
+			<title value="Table of Contents"/>
+			<generation value="html"/>
+			<page>
+				<nameUrl value="index.html"/>
+				<title value="MyIG Home Page"/>
+				<generation value="html"/>
+			</page>
+			<page>
+				<nameUrl value="background.html"/>
+				<title value="Background"/>
+				<generation value="markdown"/>
+			</page>
+			<page>
+				<nameUrl value="downloads.html"/>
+				<title value="Useful Downloads"/>
+				<generation value="html"/>
+			</page>
+			<page>
+				<nameUrl value="changes.html"/>
+				<title value="IG Change History"/>
+				<generation value="html"/>
+			</page>
+		</page>
+
+		<parameter>
+			<code value="releaselabel"/>
+			<value value="CI Build"/>
+		</parameter>
+		<parameter>
+			<code value="copyrightyear"/>
+			<value value="2019+"/>
+		</parameter>	
+	</definition>
+</ImplementationGuide>

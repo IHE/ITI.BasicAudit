@@ -27,4 +27,16 @@ For any FHIR REST operation there is a well-defined AuditEvent specified in this
       <a href="downloads.html">Downloads</a> - Allows downloading a copy of this implementation guide and other useful information
     </li>
   </ul>
+
+	<a name="questions"> </a>
+	<h3>Open Questions</h3>
+	<p>
+       <p>Is there an established way to record an OAuth token that I could define? I am expecting that mostly a unique identifier of the token is minimally needed. With a username and purposeOfUse being useful. I need some guidance and samples.</p>
+	   <p>Is there any alternatives to the patterns I have defined? I did note some alternatives with recommendations in narrative?</p>
+	   <p>Is there some other improvements one could recommend?</p>
+	   <p>note in my pattern for Query, I allow the non-base64Binary query string to be put into entity.name. Is this useful?</p>
+	   <p>I need some examples of how Query is recorded for variations on search. Such as a POST with a Parameters?</p>
+	   <p>I wish there was a flag similar but opposite to MustSupport, something like ShouldNotUse to discourage use while not making it invalid to use.</p>
+     </p>
+
 </div>

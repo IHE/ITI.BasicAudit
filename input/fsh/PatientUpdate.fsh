@@ -12,7 +12,7 @@ Description:    "A basic AuditEvent profile for when a RESTful Update action hap
 "
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype from Updates (required)
 * action = #U
 * recorded 1..1
 // failures are recorded differently
@@ -81,4 +81,10 @@ Description:    "A basic AuditEvent profile for when a RESTful Update action hap
 * entity[data].name 0..0
 * entity[data].query 0..0
 * entity[data].detail 0..0
+
+ValueSet: Updates
+Title: "subtypes for RESTful updates"
+Description: "update operators that are in REST"
+* http://hl7.org/fhir/restful-interaction#update "update"
+* http://hl7.org/fhir/restful-interaction#patch "patch"
 

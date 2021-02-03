@@ -33,12 +33,18 @@ A Client that retrieves AuditEvents for some functionality. Where the functional
 
 ### Activities to be recorded
 
-* REST
-  * Create (create)
-  * Read (read and vread)
-  * Update (update, patch)
-  * Delete (delete)
-  * Execute (search and query)
+REST Activities
+
+* [Create (create)](StructureDefinition-Moehrke.PatientCreate.html)
+  * [examples](StructureDefinition-Moehrke.PatientCreate-examples.html)
+* [Read (read and vread)](StructureDefinition-Moehrke.PatientRead.html)
+  * [examples](StructureDefinition-Moehrke.PatientRead-examples.html)
+* [Update (update, patch)](StructureDefinition-Moehrke.PatientUpdate.html)
+  * [examples](StructureDefinition-Moehrke.PatientUpdate-examples.html)
+* [Delete (delete)](StructureDefinition-Moehrke.PatientDelete.html)
+  * [examples](StructureDefinition-Moehrke.PatientDelete-examples.html)
+* [Execute (search and query)](StructureDefinition-Moehrke.PatientQuery.html)
+  * [examples](StructureDefinition-Moehrke.PatientQuery-examples.html)
 
 ### Use-Case
 

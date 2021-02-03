@@ -1,13 +1,13 @@
 
 
-Instance: ex-auditBasicUpdate
+Instance: ex-auditBasicPatch
 InstanceOf: PatientUpdate
-Title: "Audit Example of a basic patient identifiable Update"
-Description: "Audit Example for a RESTful Update of a resource with a patient subject"
+Title: "Audit Example of a basic patient identifiable Update using Patch"
+Description: "Audit Example for a RESTful Update using Patch of a resource with a patient subject"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype = http://hl7.org/fhir/restful-interaction#patch "patch"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

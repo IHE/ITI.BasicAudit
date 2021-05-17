@@ -170,5 +170,5 @@ Description: "Audit Example for a RESTful Query of a resource with a patient sub
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[query].name = "GET test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
-* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvQXVkaXRFdmVudD9fbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA=
+* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvQXVkaXRFdmVudD9fbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
 

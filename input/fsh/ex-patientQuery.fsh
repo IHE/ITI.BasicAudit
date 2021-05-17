@@ -3,14 +3,7 @@
 Instance: ex-auditBasicQueryGet
 InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (GET)"
-Description: "Audit Example for a RESTful Query (GET) of a resource with a patient subject.
-- as recorded by the server
-- a FHIR GET query of  
-  - `test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10`
-- by client on an IPv6 network
-- patient is specified
-- user is specified
-"
+// don't bother with Description, using -intro page
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -39,19 +32,19 @@ Description: "Audit Example for a RESTful Query (GET) of a resource with a patie
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = "GET test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
-* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvQXVkaXRFdmVudD9fbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
+* entity[query].name = "GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
+* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvT2JzZXJ2YXRpb24/cGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2Zvcm1hdD1qc29uJl9jb3VudD0xMAo="
+
+
+
+
+
+
 
 Instance: ex-auditBasicQueryPost
 InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
-Description: "Audit Example for a RESTful Query (POST) of a resource with a patient subject.
-- as recorded by the server
-- a FHIR POST query 
-- by client on an IPv6 network
-- patient is specified
-- user is specified
-"
+// don't bother with Description, using -intro page
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -81,27 +74,25 @@ Description: "Audit Example for a RESTful Query (POST) of a resource with a pati
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[query].name = """
-POST /r4/AuditEvent HTTP/1.1
+POST /r4/Observation HTTP/1.1
 Host: test.fhir.org
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0
 Content-Length: 81
 
-_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10
+patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10
 """
-* entity[query].query = "UE9TVCAvcjQvQXVkaXRFdmVudCBIVFRQLzEuMQpIb3N0OiB0ZXN0LmZoaXIub3JnCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKQ29udGVudC1MZW5ndGg6IDgxCgpfbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTAK"
+* entity[query].query = "UE9TVCAvcjQvT2JzZXJ2YXRpb24gSFRUUC8xLjEKSG9zdDogdGVzdC5maGlyLm9yZwpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL3gtd3d3LWZvcm0tdXJsZW5jb2RlZApBY2NlcHQ6IGFwcGxpY2F0aW9uL2ZoaXIranNvbjsgZmhpclZlcnNpb249NC4wCkNvbnRlbnQtTGVuZ3RoOiA4MQoKcGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2Zvcm1hdD1qc29uJl9jb3VudD0xMAo="
+
+
+
+
+
 
 Instance: ex-auditBasicQueryGetClient
 InstanceOf: PatientQuery
 Title: "Client - Audit Example of a basic patient identifiable Query"
-Description: "Audit Example for a RESTful Query of a resource with a patient subject
-- as recorded by the client
-- a FHIR GET query of  
-  - `test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10`
-- by client on an IPv6 network
-- patient is specified
-- user is specified
-"
+// don't bother with Description, using -intro page
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -130,23 +121,18 @@ Description: "Audit Example for a RESTful Query of a resource with a patient sub
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = "GET test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
-* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvQXVkaXRFdmVudD9fbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
+* entity[query].name = "GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
+* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvT2JzZXJ2YXRpb24/cGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2Zvcm1hdD1qc29uJl9jb3VudD0xMAo="
+
+
+
 
 
 
 Instance: ex-auditBasicQueryNoUser
 InstanceOf: PatientQuery
 Title: "Audit Example of a basic patient identifiable Query with no user"
-Description: "Audit Example for a RESTful Query of a resource with a patient subject with no user. 
-- This might be a B2B exchange where the OAuth token just identifies the requesting organization.
-- as recorded by the server
-- a FHIR GET query of  
-  - `test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10`
-- by client on an IPv6 network
-- patient is NOT specified
-- user is specified
-"
+// don't bother with Description, using -intro page
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -172,6 +158,6 @@ Description: "Audit Example for a RESTful Query of a resource with a patient sub
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = "GET test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
-* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvQXVkaXRFdmVudD9fbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
+* entity[query].name = "GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10"
+* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvT2JzZXJ2YXRpb24/cGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2Zvcm1hdD1qc29uJl9jb3VudD0xMAo="
 

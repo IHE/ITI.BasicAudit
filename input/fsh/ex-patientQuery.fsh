@@ -47,8 +47,7 @@ InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
 Description: "Audit Example for a RESTful Query (POST) of a resource with a patient subject.
 - as recorded by the server
-- a FHIR POST query of  
-  - `POST test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z\n\n_sort=_lastUpdated&_format=json&_count=10`
+- a FHIR POST query 
 - by client on an IPv6 network
 - patient is specified
 - user is specified
@@ -82,11 +81,15 @@ Description: "Audit Example for a RESTful Query (POST) of a resource with a pati
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[query].name = """
-POST test.fhir.org/r4/AuditEvent?_lastUpdated=gt2020-11-06T21:52:30.300Z
+POST /r4/AuditEvent
+Host: test.fhir.org
+Content-Type: application/x-www-form-urlencoded
+Accept: application/fhir+json; fhirVersion=4.0
+Content-Length: 81
 
-_sort=_lastUpdated&_format=json&_count=10
+_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10
 """
-* entity[query].query = "UE9TVCB0ZXN0LmZoaXIub3JnL3I0L0F1ZGl0RXZlbnQ/X2xhc3RVcGRhdGVkPWd0MjAyMC0xMS0wNlQyMTo1MjozMC4zMDBaCgpfc29ydD1fbGFzdFVwZGF0ZWQmX2Zvcm1hdD1qc29uJl9jb3VudD0xMA=="
+* entity[query].query = "UE9TVCAvcjQvQXVkaXRFdmVudApIb3N0OiB0ZXN0LmZoaXIub3JnCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKQ29udGVudC1MZW5ndGg6IDgxCgpfbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
 
 Instance: ex-auditBasicQueryGetClient
 InstanceOf: PatientQuery

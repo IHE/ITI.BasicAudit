@@ -12,7 +12,7 @@ results for one patient returned
 * Then an AuditEvent following this profile is recorded for the Patient identified in the search set returned
 
 no results returned
-* Gievn no Resource(s) are available for a given Patient identity
+* Given no Resource(s) are available for a given Patient identity
 * And OAuth is used to authorize both app and user
 * When an App requests a RESTful Query to retrieve Resources(s) for a given single Patient
 * When policy indicates success with an empty bundle should be returned

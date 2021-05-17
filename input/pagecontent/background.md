@@ -1,6 +1,10 @@
 
 Basic Auditing where there is a known subject of the data involved. This profile is a formal specification of the guidance given in the FHIR Core AuditEvent under [Common Scenarios](http://build.fhir.org/auditevent.html#6.4.4.4)
 
+This guide does not cover all AuditEvents. It does not cover 
+* how accesses to data where their is no subject, such as a Provider Directory. Although this is likely similar, just without the mandated Patient entity.
+* how failures are recorded. Failures are recorded with the .outcome that is not success, and is thus a very large body of possibilities. Failures are logged with best-effort and with verbose content. This makes the AuditEvent of a failure very hard to characterize, vary hard to automatically process, and possibly exposing of privacy or business secrets. These might be access control denials, which the patient would be interested in but for which it is not clear they would be due these kinds of notices. These might be infrastructural failures, which are too hard to characterize. 
+
 ### Actors
 
 
@@ -15,7 +19,7 @@ Basic Auditing where there is a known subject of the data involved. This profile
 
 Requesting application in a REST relationship with the Server.
 
-Note that the Client may also record the appropriate AuditEvent into the Audit-Repository.
+Note that the Client may also record the appropriate AuditEvent into the Audit-Repository. For security use-cases it is very helpful for the client to record the AuditEvent too, as this sets up a pattern of normal operation that can be watched for deviations. Deviations such as the client stopping audit logging should be investigated, a possible cause is that the client credentials have been stolen and are being used by another application than the one authorized.
 
 #### Server
 

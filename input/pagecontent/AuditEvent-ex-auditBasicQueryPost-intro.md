@@ -9,7 +9,7 @@ Audit Example for a RESTful Query (POST) of a resource with a patient subject.
 
 The search received, and thus recorded:
 ```
-POST /r4/AuditEvent
+POST /r4/AuditEvent HTTP/1.1
 Host: test.fhir.org
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0

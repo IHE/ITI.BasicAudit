@@ -81,7 +81,7 @@ Description: "Audit Example for a RESTful Query (POST) of a resource with a pati
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[query].name = """
-POST /r4/AuditEvent
+POST /r4/AuditEvent HTTP/1.1
 Host: test.fhir.org
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0
@@ -89,7 +89,7 @@ Content-Length: 81
 
 _lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_format=json&_count=10
 """
-* entity[query].query = "UE9TVCAvcjQvQXVkaXRFdmVudApIb3N0OiB0ZXN0LmZoaXIub3JnCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKQ29udGVudC1MZW5ndGg6IDgxCgpfbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTA="
+* entity[query].query = "UE9TVCAvcjQvQXVkaXRFdmVudCBIVFRQLzEuMQpIb3N0OiB0ZXN0LmZoaXIub3JnCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKQ29udGVudC1MZW5ndGg6IDgxCgpfbGFzdFVwZGF0ZWQ9Z3QyMDIwLTExLTA2VDIxOjUyOjMwLjMwMFomX3NvcnQ9X2xhc3RVcGRhdGVkJl9mb3JtYXQ9anNvbiZfY291bnQ9MTAK"
 
 Instance: ex-auditBasicQueryGetClient
 InstanceOf: PatientQuery

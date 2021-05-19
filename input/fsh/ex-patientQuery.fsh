@@ -32,7 +32,7 @@ Title: "Server - Audit Example of a basic patient identifiable Query (GET)"
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = """
+* entity[query].description = """
 GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_count=10
 Accept: application/fhir+json; fhirVersion=4.0
 """
@@ -77,7 +77,7 @@ Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = """
+* entity[query].description = """
 POST /r4/Observation HTTP/1.1
 Host: test.fhir.org
 Content-Type: application/x-www-form-urlencoded
@@ -125,7 +125,7 @@ Title: "Client - Audit Example of a basic patient identifiable Query"
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = """
+* entity[query].description = """
 GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_count=10
 Accept: application/fhir+json; fhirVersion=4.0
 """
@@ -166,7 +166,7 @@ Title: "Audit Example of a basic patient identifiable Query with no user"
 * entity[patient].what = Reference(Patient/ex-patient)
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
-* entity[query].name = """
+* entity[query].description = """
 GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_count=10
 Accept: application/fhir+json; fhirVersion=4.0
 """

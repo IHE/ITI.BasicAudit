@@ -96,7 +96,7 @@ Note: the pattern defined in DICOM and IHE have that the client is identified as
 * entity[query].what 0..0
 * entity[query].lifecycle 0..0 
 * entity[query].securityLabel 0..* // may contain the securityLabels on the Bundle search set returned
-* entity[query].name 0..1 // allow the query string to exist in name in non base64Binary format
+* entity[query].description 0..1 // allow the query string to exist in description in non base64Binary format
 * entity[query].query 1..1
 * entity[query].detail 0..0
 

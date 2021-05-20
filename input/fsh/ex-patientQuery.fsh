@@ -78,7 +78,7 @@ Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[query].description = """
-POST /r4/Observation HTTP/1.1
+POST /r4/Observation/_search HTTP/1.1
 Host: test.fhir.org
 Content-Type: application/x-www-form-urlencoded
 Accept: application/fhir+json; fhirVersion=4.0
@@ -86,7 +86,7 @@ Content-Length: 87
 
 patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_count=10
 """
-* entity[query].query = "UE9TVCAvcjQvT2JzZXJ2YXRpb24gSFRUUC8xLjEKSG9zdDogdGVzdC5maGlyLm9yZwpDb250ZW50LVR5cGU6IGFwcGxpY2F0aW9uL3gtd3d3LWZvcm0tdXJsZW5jb2RlZApBY2NlcHQ6IGFwcGxpY2F0aW9uL2ZoaXIranNvbjsgZmhpclZlcnNpb249NC4wCkNvbnRlbnQtTGVuZ3RoOiA4NwoKcGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2NvdW50PTEwCgoK"
+* entity[query].query = "UE9TVCAvcjQvT2JzZXJ2YXRpb24vX3NlYXJjaCBIVFRQLzEuMQpIb3N0OiB0ZXN0LmZoaXIub3JnCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVkCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKQ29udGVudC1MZW5ndGg6IDg3CgpwYXRpZW50PWV4LXBhdGllbnQmX2xhc3RVcGRhdGVkPWd0MjAyMC0xMS0wNlQyMTo1MjozMC4zMDBaJl9zb3J0PV9sYXN0VXBkYXRlZCZfY291bnQ9MTAKCgoK"
 
 
 

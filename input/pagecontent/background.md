@@ -104,3 +104,17 @@ ACTION:
 1. update the effectiveDateTime to **now**
 1. POST the resource into the Server
 1. continue if successful, if error then break out of test plan
+
+## AuditEvent use documentation in products
+
+
+### Fire.Ly
+
+https://docs.fire.ly/firelyserver/features/auditing.html
+
+[Fire.Ly Sandbox with audit logging on](https://server.fire.ly/r4/AuditEvent)
+
+### Grahame's Server
+
+http://test.fhir.org/r4/AuditEvent
+

@@ -62,6 +62,7 @@ Description: "Dummy DocumentReference 2 example for completeness sake. No actual
 Instance: ex-b-binary
 InstanceOf: Binary
 Title: "Example document that says: Hello World"
+Description: "Dummy Binary that just says Hello World"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * contentType = #text/plain
 * data = "SGVsbG8gV29ybGQ="

@@ -3,7 +3,7 @@
 Instance: ex-auditBasicQueryGet
 InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (GET)"
-// don't bother with Description, using -intro page
+Description: "Audit Example for a RESTful Query using GET with a patient subject, recorded by the Server"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -48,7 +48,7 @@ Accept: application/fhir+json; fhirVersion=4.0
 Instance: ex-auditBasicQueryPost
 InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
-// don't bother with Description, using -intro page
+Description: "Audit Example for a RESTful Query using POST with a patient subject, recorded by the server"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -96,7 +96,7 @@ patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_c
 Instance: ex-auditBasicQueryGetClient
 InstanceOf: PatientQuery
 Title: "Client - Audit Example of a basic patient identifiable Query"
-// don't bother with Description, using -intro page
+Description: "Audit Example for a RESTful Query using GET with a patient subject, recorded by the Client"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -140,7 +140,7 @@ Accept: application/fhir+json; fhirVersion=4.0
 Instance: ex-auditBasicQueryNoUser
 InstanceOf: PatientQuery
 Title: "Audit Example of a basic patient identifiable Query with no user"
-// don't bother with Description, using -intro page
+Description: "Audit Example for a RESTful Query using GET without a patient subject, recorded by server"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E

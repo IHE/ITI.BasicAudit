@@ -1,6 +1,50 @@
-id: va.mhv.example
+# ╭──────────────────────────────────────ImplementationGuide───────────────────────────────────────╮
+# │  The properties below are used to create the ImplementationGuide resource. For a list of       │
+# │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+id: moehrke.basicaudit
 canonical: https://johnmoehrke.github.io/BasicAudit
 name: BasicAudit
+title: "Basic AuditEvent Implementation Guide by John Moehrke"
 status: draft
+publisher:
+  name: John Moehrke
+  url: https://healthcaresecprivacy.blogspot.com/
+  email: JohnMoehrke@gmail.com
+jurisdiction: 'urn:iso:std:iso:3166#US'
+copyright: >-
+  Attribution-ShareAlike 4.0 International
+description: >-
+  Basic Audit for FHIR REST and operations where the activity includes a subject.
+license: CC-BY-SA-4.0
+date: 2021-05-24
+version: 0.2.0
 fhirVersion: 4.0.1
-FSHOnly: true
+parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
+  path-resource:
+    - input/resources
+    - fsh-generated/resources
+#    - input/examples
+  path-pages:
+    - input/pagecontent
+    - fsh-generated/includes
+  active-tables: 'false'
+  apply-contact: 'true'
+  apply-jurisdiction: 'true'
+  apply-publisher: 'true'
+  apply-version: 'true'
+  show-inherited-invariants: 'false'
+  usage-stats-opt-out: 'true'
+  autoload-resources: 'true'
+  shownav: 'true'
+copyrightyear: '2020+'
+releaselabel: ci-build
+
+# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
+# │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
+# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+menu:
+  Home: index.html
+  Background: background.html
+  Artifacts: artifacts.html
+  Downloads: downloads.html

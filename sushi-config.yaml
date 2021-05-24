@@ -11,7 +11,7 @@ publisher:
   name: John Moehrke
   url: https://healthcaresecprivacy.blogspot.com/
   email: JohnMoehrke@gmail.com
-jurisdiction: 'urn:iso:std:iso:3166#US'
+jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 copyright: >-
   Attribution-ShareAlike 4.0 International
 description: >-

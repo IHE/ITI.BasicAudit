@@ -3,13 +3,14 @@ Profile:        PatientRead
 Parent:         AuditEvent
 Id:             Moehrke.PatientRead
 Title:          "Basic AuditEvent for a successful Read"
-Description:    "A basic AuditEvent profile for when a RESTful Read action happens successfully, and where there is an identifiable Patient subject associated with the read Resource.
+Description:    """
+A basic AuditEvent profile for when a RESTful Read action happens successfully, and where there is an identifiable Patient subject associated with the read Resource.
 
 * Given a Resource has a subject 
 * And OAuth is used to authorize both app and user
 * When an App requests a RESTful Read to retrieve that Resource
-* Then an AuditEvent following this profile is recorded 
-"
+* Then an AuditEvent following this profile is recorded
+"""
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
 * subtype from Reads (required)

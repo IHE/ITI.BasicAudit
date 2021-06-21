@@ -3,7 +3,8 @@ Profile:        PatientQuery
 Parent:         AuditEvent
 Id:             Moehrke.PatientQuery
 Title:          "Basic AuditEvent for a successful Query"
-Description:    "A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).
+Description:    """
+A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).
 
 results for one patient returned
 * Given Resource(s) has a subject 
@@ -26,8 +27,7 @@ multiple patient results are returned. Note that one AuditEvent is created for e
 * Then an AuditEvent following this profile is recorded for the Patient identified in the search set returned
 
 Note: the pattern defined in DICOM and IHE have that the client is identified as the Source Role ID, and the server is identified as the Destination Role ID. This may not be so obvious, as the data actually flows the opposite direction. This pattern is established and thus followed here.
-
-"
+"""
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
 * subtype from Querys (required)

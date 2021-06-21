@@ -24,7 +24,7 @@ Description: "Audit Example for a RESTful Delete of a resource with a patient su
 * agent[client].requestor = false
 * agent[client].network.address = "http://server.example.com/fhir"
 * agent[client].network.type = http://hl7.org/fhir/network-type#5 "URI"
-* agent[human].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "Author"
+* agent[human].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "author (originator)"
 * agent[human].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[human].requestor = true
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"

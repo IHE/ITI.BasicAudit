@@ -2,14 +2,15 @@ Profile:        PatientUpdate
 Parent:         AuditEvent
 Id:             Moehrke.PatientUpdate
 Title:          "Basic AuditEvent for a successful Update"
-Description:    "A basic AuditEvent profile for when a RESTful Update action happens successfully, and where there is an identifiable Patient subject associated with the Update of the Resource.
+Description:    """
+A basic AuditEvent profile for when a RESTful Update action happens successfully, and where there is an identifiable Patient subject associated with the Update of the Resource.
 
 * Given a Resource has a subject 
 * And OAuth is used to authorize both app and user
 * When an App requests a RESTful Update of an existing Resource
 * And the Resource is successfully Updated thus where the server supports FHIR Versioning the updated Resource has a new id version assigned
 * Then an AuditEvent following this profile is recorded where the Resource is identified by the updated version specific id where versioning is available
-"
+"""
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
 * subtype from Updates (required)

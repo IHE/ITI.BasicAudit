@@ -3,7 +3,8 @@ Profile:        PatientCreate
 Parent:         AuditEvent
 Id:             Moehrke.PatientCreate
 Title:          "Basic AuditEvent for a successful Create"
-Description:    "A basic AuditEvent profile for when a RESTful Create action happens successfully, and where there is an identifiable Patient subject associated with the create of the Resource.
+Description:    """
+A basic AuditEvent profile for when a RESTful Create action happens successfully, and where there is an identifiable Patient subject associated with the create of the Resource.
 
 * Given a Resource has a subject 
 * And OAuth is used to authorize both app and user
@@ -11,7 +12,7 @@ Description:    "A basic AuditEvent profile for when a RESTful Create action hap
 * And the new Resource is successfully created thus having an id assigned
 * Then an AuditEvent following this profile is recorded 
 * And when a user is known they are the Author, Informant, or Custodian
-"
+"""
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
 * subtype = http://hl7.org/fhir/restful-interaction#create "create"

@@ -2,14 +2,15 @@ Profile:        PatientDelete
 Parent:         AuditEvent
 Id:             Moehrke.PatientDelete
 Title:          "Basic AuditEvent for a successful Delete"
-Description:    "A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable Patient subject associated with the Resource being deleted.
+Description:    """
+A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable Patient subject associated with the Resource being deleted.
 
 * Given a Resource has a subject 
 * And OAuth is used to authorize both app and user
 * When an App requests a RESTful Delete of a target Resource
 * And the target Resource is successfully Deleted thus having an id that is no longer valid
 * Then an AuditEvent following this profile is recorded using the id that is no longer valid
-"
+"""
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype 1..1
 * subtype = http://hl7.org/fhir/restful-interaction#delete "delete"

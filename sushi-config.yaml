@@ -20,25 +20,27 @@ license: CC-BY-SA-4.0
 date: 2021-05-24
 version: 0.2.0
 fhirVersion: 4.0.1
+copyrightyear: '2020+'
+releaselabel: ci-build
+
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   path-resource:
-    - input/resources
     - fsh-generated/resources
 #    - input/examples
 #  path-pages:
 #    - input/pagecontent
 #    - fsh-generated/includes
+  show-inherited-invariants: 'false'
+  usage-stats-opt-out: 'false'
+  logging: progress
+  shownav: 'true'
   active-tables: 'false'
   apply-contact: 'true'
   apply-jurisdiction: 'true'
   apply-publisher: 'true'
   apply-version: 'true'
-  show-inherited-invariants: 'false'
-  usage-stats-opt-out: 'true'
-#  autoload-resources: 'true'
-  shownav: 'true'
-copyrightyear: '2020+'
-releaselabel: ci-build
+  autoload-resources: 'true'
+
 
 # ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
 # │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │

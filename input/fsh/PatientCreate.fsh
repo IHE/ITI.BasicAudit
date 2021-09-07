@@ -28,7 +28,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
     client 1..1 and 
     server 1..1 and 
     human 0..1
-* agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110153 "Source Role ID"
+* agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
 * agent[client].role 0..0 
@@ -38,7 +38,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
 * agent[client].policy 0..0 
 * agent[client].media 0..0 
 * agent[client].purposeOfUse 0..0 
-* agent[server].type = http://dicom.nema.org/resources/ontology/DCM#110152 "Destination Role ID"
+* agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
 * agent[server].network 1..1 // as known by TCP connection information
 * agent[server].role 0..0 

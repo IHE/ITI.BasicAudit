@@ -5,33 +5,34 @@ This guide does not cover all AuditEvents. It does not cover
 * how accesses to data where their is no subject, such as a Provider Directory. Although this is likely similar, just without the mandated Patient entity.
 * how failures are recorded. Failures are recorded with the .outcome that is not success, and is thus a very large body of possibilities. Failures are logged with best-effort and with verbose content. This makes the AuditEvent of a failure very hard to characterize, vary hard to automatically process, and possibly exposing of privacy or business secrets. These might be access control denials, which the patient would be interested in but for which it is not clear they would be due these kinds of notices. These might be infrastructural failures, which are too hard to characterize. 
 
+The AuditEvent profiles here could be used as a prototype for a more specific AuditEvent profile in a use-case specific Implementation Guide. Where a use-case specific Implementation Guide defines an AuditEvent profile, those profiles should be used rather than the Basic AuditEvent profiles found here. Both could be recorded without harm.
+
 ### Actors
 
-
-![Figure: Actor Diagram](ActorsAndTransactions.svg "Figure: Actor Diagram")
-
-<div style="clear: left"/>
+<div>
+{%include ActorsAndTransactions.svg%}
+</div>
 
 **Figure: Actor Diagram**
 
 
-#### Client
+#### Data using Client
 
 Requesting application in a REST relationship with the Server.
 
 Note that the Client may also record the appropriate AuditEvent into the Audit-Repository. For security use-cases it is very helpful for the client to record the AuditEvent too, as this sets up a pattern of normal operation that can be watched for deviations. Deviations such as the client stopping audit logging should be investigated, a possible cause is that the client credentials have been stolen and are being used by another application than the one authorized.
 
-#### Server
+#### Data Server
 
 Responding server that holds the data the Client is requesting thru REST. Server records the appropriate AuditEvent into the Audit-Repository.
 
-#### Audit-Repository
+#### Audit Repository
 
 FHIR repository holding the AuditEvents created, and provides access to the AuditEvents to Audit-Clients. The Audit-Repository would typically not allow Update or Delete of any AuditEvent previously recorded. Thus only allowing Create, and Read of AuditEvents.
 
 Note that the Audit-Repository may be the same system as the Server.
 
-#### Audit-Client
+#### Audit using Client
 
 A Client that retrieves AuditEvents for some functionality. Where the functionality is not constrained or defined here. The Audit-Client queries AuditEvents for a given Patient.
 

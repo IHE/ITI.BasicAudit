@@ -12,6 +12,7 @@ The AuditEvent profiles here could be used as a prototype for a more specific Au
 <div>
 {%include ActorsAndTransactions.svg%}
 </div>
+<br clear="all">
 
 **Figure: Actor Diagram**
 
@@ -58,6 +59,7 @@ REST Activities
 <div>
 {%include usecase1-processflow.svg%}
 </div>
+<br clear="all">
 
 **Figure: Audit log event creation**
 
@@ -66,6 +68,7 @@ REST Activities
 <div>
 {%include usecase2-processflow.svg%}
 </div>
+<br clear="all">
 
 **Figure: Audit Use**
 

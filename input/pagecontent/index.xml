@@ -4,9 +4,12 @@
   <h3>Introduction</h3>
 	<p>
 	<div class="dragon">
-This is a prototype Implementation Guide that is not endorsed by any organization other than the author - JohnMoehrke@gmail.com. 
+<p>This is a prototype Implementation Guide that is not endorsed by any organization other than the author - JohnMoehrke@gmail.com. </p>
+<p>This project is proposed as a New-Work-Item in IHE IT-Infrastructure.</p>
      </div>
-This includes the profile for basic audit of REST operations that include a patient as the subject of the data and application that would use these audit log resources. 
+	 </p>
+	 <p>
+This IG includes the profile for basic audit of REST operations that include a patient as the subject of the data and application that would use these audit log resources. 
   </p>
 	<a name="technical"> </a>
 	<h3>Technical Overview</h3>

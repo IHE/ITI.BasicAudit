@@ -1,7 +1,7 @@
 
 Profile:        PatientQuery
 Parent:         AuditEvent
-Id:             Moehrke.PatientQuery
+Id:             ITI.BasicAudit.PatientQuery
 Title:          "Basic AuditEvent for a successful Query"
 Description:    """
 A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).

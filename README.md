@@ -1,8 +1,13 @@
-Implementation Guide for basic AuditEvent logging of RESTful interactions. 
+Implementation Guide for basic AuditEvent 
 
-This does not include Transactions, Messages, or other more complex. These more complex items might be seen as many RESTful interactions, resulting in many AuditEvents for one Transaction. That would work, but is not very efficient or clear.
+This Implementation Guide provides AuditEvent profiles and examples for some common and reusable patterns. This Implementation Guide depends on IHE-ATNA infrastructure for logging and providing access to the Audit Record Repository. 
+* logging of RESTful interactions. 
+  * Create / Read / Update / Delete / Search
+* logging of A known Disclosure (e.g. USA Accounting of Disclosures)
+* Additional details to be recorded when grouped with IUA or XUA
 
-continuous build http://build.fhir.org/ig/JohnMoehrke/BasicAudit/branches/main/index.html
+
+continuous build http://build.fhir.org/ig/IHE/ITI.BasicAudit/branches/main/index.html
 
 
 

@@ -1,7 +1,7 @@
 
 Profile:        PatientRead
 Parent:         AuditEvent
-Id:             Moehrke.PatientRead
+Id:             ITI.BasicAudit.PatientRead
 Title:          "Basic AuditEvent for a successful Read"
 Description:    """
 A basic AuditEvent profile for when a RESTful Read action happens successfully, and where there is an identifiable Patient subject associated with the read Resource.

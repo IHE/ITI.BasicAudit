@@ -5,7 +5,7 @@
 id: IHE.ITI.BasicAudit
 canonical: http://profiles.ihe.net/ITI/BasicAudit
 name: BasicAudit
-title: "IBasic AuditEvent Implementation Guide"
+title: "IHE Basic AuditEvent Implementation Guide"
 status: draft
 publisher:
   - name: IHE IT Infrastructure Technical Committee
@@ -46,11 +46,40 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   autoload-resources: 'true'
 
 
-# ╭────────────────────────────────────────────menu.xml────────────────────────────────────────────╮
-# │  To use a provided ig-data/input/includes/menu.xml file, delete the "menu" property below.     │
-# ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+
+pages:
+  index.md:
+    title: Patient Demographics Query for Mobile
+    generation: markdown
+  volume-1.md:
+    title: 1:52 Patient Demographics Query for Mobile (BasicAudit)
+    generation: markdown
+  content.md:
+    title: 3:5.7 Basic Audit Log Patterns
+    generation: markdown
+  testplan.md:
+    title: BasicAudit Test Plan
+    generation: markdown
+  issues.md:
+    title: BasicAudit Open and Closed issues
+    generation: markdown
+  other.md:
+    title: Changes to other Profiles
+    generation: markdown
+
 menu:
-  Home: index.html
-  Background: background.html
+  BasicAudit Home: index.html
+  Volume 1:
+    Introduction: volume-1.html
+    Actors and Content: volume-1.html#1521-basicaudit-actors-and-content
+    Actor Options: volume-1.html#1522-basicaudit-actor-options
+    Required Groupings: volume-1.html#1523-basicaudit-required-actor-grouping
+    Overview: volume-1.html#1524-basicaudit-overview
+    Security Considerations: volume-1.html#1525-basicaudit-security-considerations
+    Cross-Profile Considerations: volume-1.html#1526-basicaudit-cross-profile-considerations    
+  Volume 3:
+    "Basic Audit Log Patterns": content.html
+  Test Plan: testplan.html
   Artifacts: artifacts.html
-  Downloads: downloads.html
+  Other: other.html

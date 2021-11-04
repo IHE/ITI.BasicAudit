@@ -1,20 +1,38 @@
-
-Basic Auditing where there is a known subject of the data involved. This profile is a formal specification of the guidance given in the FHIR Core AuditEvent under [Common Scenarios](http://build.fhir.org/auditevent.html#6.4.4.4)
-
-This guide does not cover all AuditEvents. It does not cover 
-* how accesses to data where their is no subject, such as a Provider Directory. Although this is likely similar, just without the mandated Patient entity.
-* how failures are recorded. Failures are recorded with the .outcome that is not success, and is thus a very large body of possibilities. Failures are logged with best-effort and with verbose content. This makes the AuditEvent of a failure very hard to characterize, vary hard to automatically process, and possibly exposing of privacy or business secrets. These might be access control denials, which the patient would be interested in but for which it is not clear they would be due these kinds of notices. These might be infrastructural failures, which are too hard to characterize. 
-
-The AuditEvent profiles here could be used as a prototype for a more specific AuditEvent profile in a use-case specific Implementation Guide. Where a use-case specific Implementation Guide defines an AuditEvent profile, those profiles should be used rather than the Basic AuditEvent profiles found here. Both could be recorded without harm.
-
-### Actors
-
-<div>
-{%include ActorsAndTransactions.svg%}
+<div markdown="1" class="stu-note">
+This section modifies other IHE profiles, and is not a part of the BasicAudit profile. The content here will be incorporated into the target narrative at a future time, usually when BasicAudit goes normative.
 </div>
-<br clear="all">
 
-**Figure: Actor Diagram**
+## IHE Technical Frameworks General Introduction Appendix A – Actor Summary Definitions
+
+|------------------------------------------------|
+| Editor, Add the following new or modified Actors definition in the [IHE Technical Frameworks General Introduction Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html): |
+{:.grid .bg-info}
+
+| Actor                         | Definition                                                                                |
+| ----------------------------- | ------------------------------------------------------------------------------------------|
+| none | . |
+{:.grid .table-striped}
+
+TODO: Not likely there are new Actors as this depends on ATNA for the actors and transactions
+
+## IHE Technical Frameworks General Introduction Appendix B – Transaction Summary Definitions
+
+|------------------------------------------------|
+| Editor, Add the following new or modified transactions to the [IHE Technical Frameworks General Introduction Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html): |
+{:.grid .bg-info}
+
+
+| Transaction                              | Definition                                                                              |
+| ---------------------------------------- | --------------------------------------------------------------------------------------- |
+| none | . |
+{:.grid .table-striped}
+
+TODO: Not likely there are new Transactions as this depends on ATNA for actors and transactions
+
+
+
+
+# background
 
 
 #### Data using Client
@@ -41,16 +59,16 @@ A Client that retrieves AuditEvents for some functionality. Where the functional
 
 REST Activities
 
-* [Create (create)](StructureDefinition-Moehrke.PatientCreate.html)
-  * [examples](StructureDefinition-Moehrke.PatientCreate-examples.html)
-* [Read (read and vread)](StructureDefinition-Moehrke.PatientRead.html)
-  * [examples](StructureDefinition-Moehrke.PatientRead-examples.html)
-* [Update (update, patch)](StructureDefinition-Moehrke.PatientUpdate.html)
-  * [examples](StructureDefinition-Moehrke.PatientUpdate-examples.html)
-* [Delete (delete)](StructureDefinition-Moehrke.PatientDelete.html)
-  * [examples](StructureDefinition-Moehrke.PatientDelete-examples.html)
-* [Execute (search and query)](StructureDefinition-Moehrke.PatientQuery.html)
-  * [examples](StructureDefinition-Moehrke.PatientQuery-examples.html)
+* [Create (create)](StructureDefinition-ITI.BasicAudit.PatientCreate.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.PatientCreate-examples.html)
+* [Read (read and vread)](StructureDefinition-ITI.BasicAudit.PatientRead.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.PatientRead-examples.html)
+* [Update (update, patch)](StructureDefinition-ITI.BasicAudit.PatientUpdate.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.PatientUpdate-examples.html)
+* [Delete (delete)](StructureDefinition-ITI.BasicAudit.PatientDelete.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.PatientDelete-examples.html)
+* [Execute (search and query)](StructureDefinition-ITI.BasicAudit.PatientQuery.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.PatientQuery-examples.html)
 
 ### Use-Case
 

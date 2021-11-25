@@ -22,7 +22,7 @@ TODO: Question. Given IUA. Why would the ITI-71 not record the token issued, and
 IUA ITI-71 Authorization Request
 
 | IUA attribute | AuditEvent element |
-+---------------+--------------------+
+|---------------|--------------------|
 | clint_id | agent[client].who.identifier.value |
 | state | N/A |
 | resource | ? |
@@ -34,7 +34,7 @@ IUA ITI-71 Authorization Request
 IUA ITI-71 Access Token Response
 
 | IUA attribute | AuditEvent element |
-+---------------+--------------------+
+|---------------|--------------------|
 | token_type | ? |
 | access_token | ? |
 | scope | ? |
@@ -44,8 +44,9 @@ IUA ITI-71 Access Token Response
 | code | ? |
 
 IUA ITI-71 JSON Web Token
+
 | IUA attribute | Description | AuditEvent element |
-+---------------+-------------+--------------------+
+|---------------|-------------|--------------------|
 | iss | JWT Issuer | ? |
 | sub | JWT Subject | ? |
 | aud | JWT Audience | ? |
@@ -66,9 +67,6 @@ IUA ITI-71 JSON Web Token
 | ihe_bppc:patient_id
 | ihe_bppc:doc_id
 | ihe_bppc:acp
-
-
-
 """
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"

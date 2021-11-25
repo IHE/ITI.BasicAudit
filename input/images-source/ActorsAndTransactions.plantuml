@@ -1,11 +1,11 @@
 @startuml
-agent "Data using Client" as Client
-agent "Data Server" as Server
-agent "Audit Repository" as AuditRepository
-agent "Audit using Client" as AuditClient
-Client -right-> Server : RESTful request
-Server -down-> AuditRepository: Record AuditEvent
-Client --> AuditRepository: Record AuditEvent
-AuditClient -up-> AuditRepository: Read AuditEvents
+agent "ANY Secure Client" as Client
+agent "ANY Secure Server" as Server
+agent "Audit Record Repository" as AuditRepository
+agent "Audit Consumer" as AuditClient
+Client -right-> Server : ANY request/response
+Server -down-> AuditRepository: Record Audit Event
+Client --> AuditRepository: Record Audit Event
+AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event
 @enduml
 

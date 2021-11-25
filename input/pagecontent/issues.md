@@ -16,7 +16,6 @@ I need some examples of how Query is recorded for variations on search. Such as 
 
 I wish there was a flag similar but opposite to MustSupport, something like ShouldNotUse to discourage use while not making it invalid to use. given that this flag does not exist, I have marked everything that would be discouraged as 0..0. This is not necessarily wrong, as one can always be compliant with AuditEvent core, and not follow my IG guidance. It just seems very heavy handed.
 
-All but Delete are following a similar pattern of the initiator (client) of the RESTful interaction is identified as the Source Role ID, where the responder (server) is the Destination Role ID. This pattern is found in DICOM and XDS. This may not be as clear as would be favored. It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
 
 There is a start at a test plan using Gherkin/Cucumber.
 

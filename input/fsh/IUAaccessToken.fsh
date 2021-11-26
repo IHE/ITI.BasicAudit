@@ -1,7 +1,7 @@
 
-Profile:        IUAaccessToken
+Profile:        IUAaccessTokenUse
 Parent:         AuditEvent
-Id:             ITI.BasicAudit.IUAaccessToken
+Id:             ITI.BasicAudit.IUAaccessTokenUse
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an IUA access token"
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an IUA access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the IUA access token.
@@ -15,58 +15,6 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 * When an AuditEvent is recorded for the activity
 * Then that AuditEvent would follow this profile regarding recording the IUA access token details
 * note: this profile records minimal information from the IUA access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information. 
-
-TODO: Question. Given IUA. Why would the ITI-71 not record the token issued, and ITI-72 simply indicate to record the token (as appeared in the bearer header) in the activity audit event as the agent[source/client].who.identifier.value? Note that this is effectively what WILL happen at a web-server. Given that the access_token is a given X.Y.Z; recording just the Y is sufficient, as X and Z are the signature stuff. if you don't save the signature stuff then you are not enabling a replay.
-
-
-IUA ITI-71 Authorization Request
-
-| IUA attribute | AuditEvent element |
-|---------------|--------------------|
-| clint_id | agent[client].who.identifier.value |
-| state | N/A |
-| resource | ? |
-| code_challenge | N/A |
-| code_challenge_method | N/A |
-| redirect_uri | N/A |
-| scope | ? |
-
-IUA ITI-71 Access Token Response
-
-| IUA attribute | AuditEvent element |
-|---------------|--------------------|
-| token_type | ? |
-| access_token | ? |
-| scope | ? |
-| expires_in | ? |
-| refresh_token | ? |
-| scope | ? |
-| code | ? |
-
-IUA ITI-71 JSON Web Token
-
-| IUA attribute | Description | AuditEvent element |
-|---------------|-------------|--------------------|
-| iss | JWT Issuer | ? |
-| sub | JWT Subject | ? |
-| aud | JWT Audience | ? |
-| jti | JWT ID | ? |
-| exp | JWT Expiration Time | ? |
-| nbf | JWT Not before | ? |
-| iat | JWT Issued at | ? |
-| client_id | OA2 client id | app id | ? |
-| scope | OA2 token scope | ? |
-| ihe_iua:subject_name 
-| ihe_iua:subject_organization
-| ihe_iua:subject_organization_id
-| ihe_iua:subject_role 
-| ihe_iua:purpose_of_use 
-| ihe_iua:home_community_id
-| ihe_iua:national_provider_identifier
-| ihe_iua:person_id
-| ihe_bppc:patient_id
-| ihe_bppc:doc_id
-| ihe_bppc:acp
 """
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"

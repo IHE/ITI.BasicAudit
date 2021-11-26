@@ -67,6 +67,9 @@ pages:
   other.md:
     title: Changes to other Profiles
     generation: markdown
+  no.md:
+    title: 4:6 Norway National Extension
+    generation: markdown
 
 menu:
   BasicAudit Home: index.html
@@ -79,7 +82,9 @@ menu:
     Security Considerations: volume-1.html#1525-basicaudit-security-considerations
     Cross-Profile Considerations: volume-1.html#1526-basicaudit-cross-profile-considerations    
   Volume 3:
-    "Basic Audit Log Patterns": content.html
+    Basic Audit Log Patterns: content.html
+  Volume 4:
+    Norway: no.html
   Test Plan: testplan.html
   Artifacts: artifacts.html
   Other: other.html

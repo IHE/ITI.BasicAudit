@@ -57,12 +57,15 @@ The Audit Consumer shown is an ATNA Audit Consumer actor that understands and us
 
 Each AuditEvent pattern defined here can be declared by an ANY Secure Client, ANY Secure Server, or Audit Consumer.
 
+<div markdown="1" class="stu-note">
 TODO: likely need an Option named for each AuditEvent pattern (and combinations) defined.
-
+</div>
 
 ## 1:52.3 BasicAudit Required Actor Grouping
 
+<div markdown="1" class="stu-note">
 TODO: not clear what to say here or how to say it.
+</div>
 
 The actors shown in the Implementation Guide are already defined by ATNA. 
 
@@ -127,15 +130,15 @@ The AuditEvent patterns defined here cover the following Use Cases.
 
 #### 1:52.4.2.1 Use Case #1: Generic AuditEvent pattern for FHIR RESTful operations
 
-Given the http RESTful operations of Create, Read, Update, Delete, and Search; the patterns defined here will capture sufficient information for audit analysis by an Audit Consumer actor
+Given the http RESTful operations of Create, Read, Update, Delete, and Search; the patterns defined here will capture sufficient information for audit analysis by an Audit Consumer actor. See [3:5.7.3 RESTful activities]](content.html#3573-restful-activities) for the pattern definitions and examples.
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
-Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. 
+Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how a activity AuditEvent (e.g. see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 Security Token](content.html#3574-security-token) for the pattern definitions and examples.
 
-#### 1:52.4.2.3 Use Case #3: Privacy relevant event
+#### 1:52.4.2.3 Use Case #3: Privacy relevant disclosure event
 
-Given that a privacy relevant event is being recorded.
+Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.5 Privacy Disclosure Audit Message](content.html#3575-privacy-disclosure-audit-message)
 
 ## 1:52.5 BasicAudit Security Considerations
 
@@ -143,7 +146,9 @@ This profile does not define any transactions. This profile defines AuditEvent p
 
 In some cases this profile has defined a minimally-populated AuditEvent that is focused on recording identifiers with no descriptive or replication. The minimally-populated AuditEvent helps preserve privacy of the data, actors, and events recorded in the AuditEvent. The minimally-populated AuditEvent is expected to be used by an audit log using agent that has knowledge of the source material for these identifiers, and has access rights to use those source materials. For example, recording a Practitioner id, without recording the Practitioner name or other elements recorded in the Practitioner resource; where audit log analysis would use an organization directory where that identitifier can be looked up to find the full details of the Practitioner.
 
+<div markdown="1" class="stu-note">
 TODO: Should a minimally populated or maximum populated AuditEvent have a defiend .meta.security so as to be more able to be access controlled at the Audit Consumer API?
+</div>
 
 ## 1:52.6 BasicAudit Cross-Profile Considerations
 

@@ -77,3 +77,6 @@ hso:subject:application-session:id |
 hso:subject:organization:system |
 {:.grid}
 
+
+* [StructureDefinition profile for Basic AuditEvent pattern for Comprehensive Norway](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway-examples.html)

@@ -14,7 +14,7 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
   * SMART-app-launch - [7.1.5 Step 4: App accesses clinical data via FHIR API](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api)
 * When an AuditEvent is recorded for the activity
 * Then that AuditEvent would follow this profile regarding recording the IUA access token details
-* note: this profile records minimal information from the IUA access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information. 
+* note: this profile records minimal information from the IUA access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"

@@ -53,6 +53,9 @@ Follow [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) recommendation 
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in XUA, mostly due to the more expressive and coded nature of the FHIR AuditEvent.
 
+* [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Minimal.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
+
 #### 3:5.7.4.1.2 SAML Comprehensive
 
 This pattern preserves most SAML attributes in the AuditEvent. Not all are preserved as some attributes are proven during the SAML token validation and thus carry no further informtion useful in an AuditEvent (e.g. not before). 
@@ -61,37 +64,40 @@ Local policy may choose to record less than are defined here, or may choose to r
 
 For those using SAML beyond XUA, there is no specific guidance here.
 
+* [StructureDefinition profile of Basic AuditEvent pattern for Comprehensive](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
+  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive-examples.html)
+
 ##### 3:5.7.4.1.3 SAML mapping to AuditEvent
 
 The following table uses a short-hand to keep the table compact. It is presumed the reader can understand the SAML attribute describing and the FHIR AuditEvent describing. (TODO, check this theory)
 
 | SAML attribute               | FHIR AuditEvent Comprehensive     | FHIR AuditEvent Minimal           |
 |------------------------------|-----------------------------------|-----------------------------------|
-| ID                           | agent[user].policy                | agent[user].policy                |
+| ID                           | agent[user].policy | agent[user].policy |
 | Issuer                       | agent[user].who.identifier.system | agent[user].who.identifier.system |
-| SignedInfo                   |                                   |                                   |
-| KeyInfo                      |                                   |                                   |
-| KeyValue                     |                                   |                                   |
+| SignedInfo                   |   |
+| KeyInfo                      |   |
+| KeyValue                     |   |
 | Subject.NameID               | agent[user].who.identifier.value  | agent[user].who.identifier.value  |
-| SubjectConfirmation          |                                   |                                   |
-| NotBefore                    |                                   |                                   |
-| NotOnOrAfter                 |                                   |                                   |
-| AudienceRestrictions         |               ?                   |                                   |
-| ProxyRestrictions            |                                   |                                   |
-| OneTimeUser                  |                                   |                                   |
-| AuthnContextClassRef         |                                   |                                   |
-| AuthnContextDeclRef          |                                   |                                   |
-| ~subject:subject-id          |          ?                        |                                   |
-| ~subject:organization        |           ?                       |                                   |
-| ~subject:organization-id     |            ?                      |                                   |
-| ~subject:npi                 |             ?                     |                                   |
-| ~subject:provider-identifier |              ?                    |                                   |
-| ~subject:role                | agent[user].role                  | agent[user].role                  |
-| ~subject:purposeofuse        | agent[user].purposeOfUse          | agent[user].purposeOfUse          |
-| ~bppc:2007:docid             | entity[consent].what.identifier.value |                                   |
-| ~xua:2012:acp                | entity[consent].detail.valueString |                                   |
-| ~resource:resource-id        | entity[consent-patient].what.identifier.value |                                   |
-| ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value |                                  |
+| SubjectConfirmation          |   |
+| NotBefore                    |   |
+| NotOnOrAfter                 |   |
+| AudienceRestrictions         |   |
+| ProxyRestrictions            |   |
+| OneTimeUser                  |   |
+| AuthnContextClassRef         |   |
+| AuthnContextDeclRef          |   |
+| ~subject:subject-id          | somewhere ? |
+| ~subject:organization        | somewhere ? |
+| ~subject:organization-id     | somewhere ? |
+| ~subject:npi                 | somewhere ? |
+| ~subject:provider-identifier | somewhere ? |
+| ~subject:role                | agent[user].role | agent[user].role
+| ~subject:purposeofuse        | agent[user].purposeOfUse | agent[user].purposeOfUse
+| ~bppc:2007:docid             | entity[consent].what.identifier.value |
+| ~xua:2012:acp                | entity[consent].detail.valueString |
+| ~resource:resource-id        | entity[consent-patient].what.identifier.value |
+| ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value | 
 {:.grid}
 
 Other SAML attributes may be defined, but this specificaiton focuses on XUA attributes only.
@@ -102,6 +108,8 @@ blah blah
 
 <div markdown="1" class="stu-note">
 TODO: Question. Given IUA. Why would the ITI-71 not record the token issued, and ITI-72 simply indicate to record the token (as appeared in the bearer header) in the activity audit event as the agent[source/client].who.identifier.value? Note that this is effectively what WILL happen at a web-server. Given that the access_token is a given X.Y.Z; recording just the Y is sufficient, as X and Z are the signature stuff. if you don't save the signature stuff then you are not enabling a replay.
+
+TODO: When IUA SAML token option is used, should the results look just like the SAML AuditEvent?
 </div>
 
 ##### 3:5.7.4.2.1 OAuth Minimal

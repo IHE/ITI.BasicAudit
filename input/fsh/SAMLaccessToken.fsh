@@ -6,7 +6,7 @@ Title:          "Basic AuditEvent pattern for when an activity was authorized by
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
 
-* Given an activity has occured
+* Given an activity has occurred
 * And SAML is used to authorize a transaction
 * And the given activity is using the SAML
   * XUA 
@@ -77,11 +77,26 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value 
 {:.grid}
 """
-* agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+// Defined in minimal [user]
+// * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].extension contains OtherId named otherId 0..*
-* agent[user].extension[otherId].valueReference.identifier.value 1..1 MS
-* agent[user].extension[otherId].valueReference.identifier.value ^short = "SAML Attribute subject-id, npi, or provider-identifier"
-// TODO: likely need to define how (aka slice) one knows which type of id each of these are. 
+* agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
+* agent[user].extension[otherId] ^slicing.discriminator.path = "valueReference.identifier.type"
+* agent[user].extension[otherId] ^slicing.rules = #open
+* agent[user].extension[otherId] contains 
+	subject-id 0..1 and
+	npi 0..1 and
+	provider-id 0..1
+* agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][subject-id].valueReference.identifier.value 1..1 MS
+* agent[user].extension[otherId][subject-id].valueReference.identifier.value ^short = "SAML Attribute subject-id"
+* agent[user].extension[otherId][npi].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][npi].valueReference.identifier.value 1..1 MS
+* agent[user].extension[otherId][npi].valueReference.identifier.value ^short = "SAML Attribute npi"
+* agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][provider-id].valueReference.identifier.value 1..1 MS
+* agent[user].extension[otherId][provider-id].valueReference.identifier.value ^short = "SAML Attribute provider-identifier"
+
 
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
@@ -122,8 +137,25 @@ Description:    """
 A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
 
 * Builds upon the Comprehensive
-"""
 
+Norway SAML attributes | AuditEvent element 
+----|---- 
+**subject** | **user**
+subject:id | AuditEvent.agent[user].who.identifier.value
+Subject:name | AuditEvent.agent[user].who.display
+subject:system | AuditEvent.agent[user].who.identifier.system
+subject:assigner | AuditEvent.agent[user].who.identifier.assigner
+**qualifications** | 
+subject:qualification:id | AuditEvent.agent[user].alt-userid[qualification].identifier.value
+subject:qualification:name | AuditEvent.agent[user].alt-userid[qualification].name
+subject:qualification:system | AuditEvent.agent[user].alt-userid[qualification].identifier.system
+subject:qualification:assigner | AuditEvent.agent[user].alt-userid[qualification].identifier.assigner
+
+"""
+// Defined in minimal [user]
+// * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP 
+// Defined in comprehensive [org]
+// * agent[org].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 
 
 
@@ -133,3 +165,16 @@ Id: ihe-otherId
 Title: "AuditEvent.agent other identifiers"
 Description: "Carries other identifiers are known for an agent."
 * value[x] only Reference
+
+
+CodeSystem:  OtherIdentifierTypes 
+Title: "OtherId Identifier Types"
+Description:  "OtherId Types beyond those in the FHIR core"
+* #SAML-subject-id "SAML subject-id"
+
+ValueSet: OtherIdentifierTypesVS
+Title: "Other Id Types ValueSet"
+Description: "ValueSet of the Other Id Types allowed"
+* OtherIdentifierTypes#SAML-subject-id
+* http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* http://terminology.hl7.org/CodeSystem/v2-0203#PRN

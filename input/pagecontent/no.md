@@ -6,75 +6,119 @@ The following additional attributes are defiend in Norway SAML assertion.
 
 Norway SAML attributes | AuditEvent element 
 ----|---- 
-hso:subject:application-session:assigner |
-hso:subject:id |
-hso:subject:functional-role:name |
-hso:issuer:organization:name |
-hso:country:assigner |
-hso:subject:organization:name |
-hso:country:name |
-hso:purpose-local:id |
-hso:subject:role:assigner |
-hso:subject:qualification:role:name |
-hso:purpose-local:name |
-hso:country:system |
-hso:subject:child-organization:assigner |
-hso:subject:qualification:name |
-hso:resource:assigner |
-hso:subject:national-identifier:name |
-hso:subject:national-identifier:id |
-hso:issuer:organization:id |
-hso:subject:assigner |
-hso:purpose:description |
-hso:subject:qualification:system |
-hso:subject:name |
-hso:subject:facility:assigner |
-hso:subject:facility:system |
-hso:subject:assurance-level:system |
-hso:subject:child-organization:id |
-hso:subject:qualification:role:assigner |
-hso:issuer:organization:assigner |
-hso:subject:facility:id |
-hso:subject:organization:id |
-hso:resource:id |
-hso:subject:qualification:role:id |
-hso:subject:functional-role:id |
-hso:issuer:organization:system |
-hso:resource:system |
-hso:subject:functional-role:assigner |
-hso:subject:role:name |
-hso:subject:healthcareservice:system |
-hso:subject:assurance-level:assigner |
-hso:subject:qualification:assigner |
-hso:subject:healthcareservice:name |
-hso:subject:assurance-level:id |
-hso:purpose:assigner |
-hso:subject:role:id |
-hso:homecommunity:id |
-hso:subject:system |
-hso:purpose:id |
-hso:purpose:system |
-hso:subject:functional-role:system |
-hso:purpose-local:description |
-hso:country:id |
-hso:subject:national-identifier:system |
-hso:purpose-local:assigner |
-hso:subject:role:system |
-hso:scope |
-hso:subject:healthcareservice:id |
-hso:subject:national-identifier:assigner |
-hso:subject:qualification:id |
-hso:subject:qualification:role:system |
-hso:subject:application-session:system |
-hso:subject:child-organization:name |
-hso:purpose-local:system |
-hso:purpose-local:userSelected |
-hso:subject:healthcareservice:assigner |
-hso:subject:organization:assigner |
-hso:subject:child-organization:system |
-hso:subject:facility:name |
-hso:subject:application-session:id |
-hso:subject:organization:system |
+**subject** | **user**
+subject:id | AuditEvent.agent[user].who.identifier.value
+Subject:name | AuditEvent.agent[user].who.display
+subject:system | AuditEvent.agent[user].who.identifier.system
+subject:assigner | AuditEvent.agent[user].who.identifier.assigner
+**qualifications** | 
+subject:qualification:id | AuditEvent.agent[user].alt-userid[qualification].identifier.value
+subject:qualification:name | AuditEvent.agent[user].alt-userid[qualification].name
+subject:qualification:system | AuditEvent.agent[user].alt-userid[qualification].identifier.system
+subject:qualification:assigner | AuditEvent.agent[user].alt-userid[qualification].identifier.assigner
+**nationalidentifiers** | 
+subject: national-identifier:id | AuditEvent.agent[user].alt-userid[personal].identifier.value
+subject: national-identifier:name | AuditEvent.agent[user].alt-userid[personal].name
+subject: national-identifier:system | AuditEvent.agent[user].alt-userid[personal].identifier.system
+subject: national-identifier:assigner | AuditEvent.agent[user].alt-userid[personal].identifier.assigner
+**qualifications** | 
+subject:qualification-role:id | AuditEvent.agent[user].role[qualification].code
+subject:qualification-role:name | AuditEvent.agent[user].role[qualification].display
+subject:qualification-role:system | AuditEvent.agent[user].role[qualification].system
+subject:qualification-role:assigner | N/A eller ekstensjon
+**structural-roles** | 
+subject:role:id | AuditEvent.agent[user].role[formal].code
+subject:role:name | AuditEvent.agent[user].role[[formal].display
+subject:role:system | AuditEvent.agent[user].role[formal].system
+subject:role:assigner | N/A eller ekstensjon
+**functional-roles** | 
+subject:functional-role:id | AuditEvent.agent[user].role[functonal].code
+subject:functional-role:name | AuditEvent.agent[user].role[functonal.display
+subject:functional-role:system | AuditEvent.agent[user].role[functonal].system
+subject:functional-role:assigner | N/A eller ekstensjon
+**application-roles** | 
+subject: application-role-id | AuditEvent.agent[user].role[application].code
+subject: application-role-name | AuditEvent.agent.[user].role[application].display
+subject: application-role-system | AuditEvent.agent[user].role[application].system
+subject: application-role-assigner | N/A eller ekstensjon
+**organization** | 
+subject:organization-id":  | AuditEvent.agent[userorg].who.identifier.value
+subject:organization-name | AuditEvent.agent[userorg].who.display
+subject:organization-system | AuditEvent.agent[userorg].who.identifier.system
+subject:organization-assigner | AuditEvent.agent[userorg].who.identifier.assigner
+**child-organization** | 
+subject:child-organization-id | AuditEvent.agent[user-child-org].who.identifier.value
+subject:child-organization-name": , | AuditEvent.agent.[user-child-org]who.display
+subject:child-organization-system | AuditEvent.agent[user-child-org].who.identifier.system
+subject:child-organization-assigner | AuditEvent.agent[user-child-org].who.identifier.assigner
+**facility** | 
+subject: facility-id | AuditEvent.agent[detail-org].who.identifier.value
+subject: facility-name | AuditEvent.agent[detail-org].who.display
+subject: facility-system | AuditEvent.agent[detail-org].who.identifier.system
+subject: facility-assigner | AuditEvent.agent[detail-org].who.identifier.assigner
+**department** | 
+subject:department:id | AuditEvent.agent[local-org-dep].who.identifier.value
+subject:department:name | AuditEvent.agent[local-org-dep].who.display
+subject:department:requester-code | 
+subject:department:system | AuditEvent.agent[local-org-dep].identifier.system
+subject:department:assigner | AuditEvent.agent[local-org-dep].identifier.assigner
+**sub-department** | 
+subject:sub-department:id | AuditEvent.agent[local-org-sec].who.identifier.value
+subject:sub-department:name | AuditEvent.agent[local-org-sec].who.display
+subject:sub-department:system | AuditEvent.agent[local-org-sec].identifier.system
+subject:sub-department:assigner | AuditEvent.agent[local-org-sec].identifier.assigner
+**unit** | 
+subject:unit:id | AuditEvent.agent[local-org-unit].who.identifier.value
+subject:unit:name | AuditEvent.agent[local-org-unit].who.display
+subject:unit:system | AuditEvent.agent[local-org-unit].identifier.system
+subject:unit:assigner | AuditEvent.agent[local-org-unit].identifier.assigner
+**policy** | 
+subject:policy:id | AuditEvent.agent.policy.coding.code
+subject:policy:system | AuditEvent.agent.policy.coding.system
+subject:policy:assigner | N/A eller ekstensjon
+subject:policy:name | AuditEvent.agent.policy.coding.display
+**subject-assurance** | 
+subject: assurance-level:id | 
+subject: assurance-level:name | 
+subject: assurance-level:system | 
+subject: assurance-level:assigner | 
+**healthcareservice** | 
+subject: healthcareservice-id | AuditEvent.agent[healthcareservice].who.identifier.value
+subject: healthcareservice-name | AuditEvent.agent[healthcareservice].who.display
+subject: healthcareservice-system | AuditEvent.agent[healthcareservice].who.identifier.system
+subject: healthcareservice-assigner | AuditEvent.agent[healthcareservice].who.identifier.assigner
+**Patient** | 
+resource:id | AuditEvent.entity[patient].what.identifier.value
+resource:name | AuditEvent.entity[patient].what.display
+resource:system | AuditEvent.entity[patient].what.identifier.system
+**Patient-child-org** | 
+resource:child-organization:id  | AuditEvent.entity[patient-child-organization].what.identifier.value
+resource:child-organization:name | AuditEvent.entity[patient-child-organizatio].what.display
+resource:child-organization:system | AuditEvent.entity[patient-child-organizatio].what.identifier.system
+resource:child-organization:assigner | 
+**Patient-facility** | 
+resource:facility:id | AuditEvent.entity[patient-detail-org].what.identifier.value
+resource:facility:name | AuditEvent.entity[patient-detail-org].what.display
+resource:facility:system | AuditEvent.entity[patient-detail-org].what.identifier.system
+resource:facility:assigner  | 
+**Patient-consent** | 
+resource:patient-consent-directive  | AuditEvent.agent[user].policy
+resource:patient-consent-directive-type | 
+**PurposeOfEvent** | 
+purpose:id, | AuditEvent.agent.purposeOUse[global].coding.code
+purpose:name | AuditEvent.agent.purposeOfUse[global].coding.display
+purpose:system | AuditEvent.agent.purposeOfUse[global].coding.system
+purpose:assigner | N/A eller ekstensjon
+purpose:description | AuditEvent.agent.purposeOfUse[reason].text
+purpose:reason | AuditEvent.agent.puropseOfUse[reason].display
+**PurposeOfEvent-local** | 
+purpose-local:id, | AuditEvent.agent.purposeOUse.coding.code
+purpose-local:name | AuditEvent.agent.purposeOfUse.coding.display
+purpose-local:system | AuditEvent.agent.purposeOfUse.coding.system
+purpose-local:assigner | N/A eller ekstensjon
+purpose-local:description | ?
+purpose-local:reason | ?
+purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 {:.grid}
 
 

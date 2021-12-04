@@ -34,3 +34,4 @@ I intend to add many examples that are not compliant to the profiles, but should
 
 Should response time be recorded in the .period element?
      
+I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes?

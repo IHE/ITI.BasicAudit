@@ -1,4 +1,5 @@
 == Suppressed Messages ==
 
-# nothing yet
-
+# codesystems the build validation doesn't understand
+Code System URI 'urn:ihe:event-type-code' is unknown so the code cannot be validated
+Code System URI 'urn:ietf:rfc:1438' is unknown so the code cannot be validated

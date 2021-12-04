@@ -16,7 +16,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 - 1 entity  
   - the access token request
 """
-* type = http://dicom.nema.org/resources/ontology/DCM#110114 "User Authenticated"
+* type = http://dicom.nema.org/resources/ontology/DCM#110114 "User Authentication"
 * subtype 1..1
 * subtype = urn:ihe:event-type-code#ITI-71 "Get Access Token"
 * action = #E

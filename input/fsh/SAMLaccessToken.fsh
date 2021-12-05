@@ -98,8 +98,8 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value
 | ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value
-| ~subject:organization        | agent[org].who.display
-| ~subject:organization-id     | agent[org].who.identifier.value
+| ~subject:organization        | agent[userorg].who.display
+| ~subject:organization-id     | agent[userorg].who.identifier.value
 | ~bppc:2007:docid             | entity[consent].what.identifier.value 
 | ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value 
 | ~xua:2012:acp                | entity[consent].detail.valueString 
@@ -107,6 +107,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 """
 // Defined in minimal [user]
 // * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
 * agent[user].extension[otherId] ^slicing.discriminator.path = "valueReference.identifier.type"
@@ -128,22 +129,22 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
-	org 0..1
-* agent[org].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
+	userorg 0..1
+* agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 // note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
-* agent[org].who.display 1..1 MS
-* agent[org].who.display ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization"
-* agent[org].who.identifier.value 1..1 MS
-* agent[org].who.identifier.value ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization-id"
-* agent[org].requestor = false
-* agent[org].role 0..0
-* agent[org].altId 0..0 // discouraged
-* agent[org].name 0..0 
-* agent[org].location 0..0 // discouraged as unlikely to be known in this scenario
-* agent[org].policy 0..0
-* agent[org].media 0..0 // media is physical storage media identification
-* agent[org].network 0..0 // users are not network devices
-* agent[org].purposeOfUse 0..0
+* agent[userorg].who.display 1..1 MS
+* agent[userorg].who.display ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization"
+* agent[userorg].who.identifier.value 1..1 MS
+* agent[userorg].who.identifier.value ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization-id"
+* agent[userorg].requestor = false
+* agent[userorg].role 0..0
+* agent[userorg].altId 0..0 // discouraged
+* agent[userorg].name 0..0 
+* agent[userorg].location 0..0 // discouraged as unlikely to be known in this scenario
+* agent[userorg].policy 0..0
+* agent[userorg].media 0..0 // media is physical storage media identification
+* agent[userorg].network 0..0 // users are not network devices
+* agent[userorg].purposeOfUse 0..0
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
@@ -186,6 +187,7 @@ Subject.NameID  | "05086900124"
 Issuer | "https://sts.sykehuspartner.no" 
 ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
 purposeOfUse | "http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT"
+assurance | authenticated AAL 4
 ~subject:subject-id          | "JohnDoe"
 ~subject:npi                 | "1234567@myNPIregistry.example.org"
 ~subject:provider-identifier | "JohnD"
@@ -212,6 +214,7 @@ purposeOfUse | "http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
+* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
 * agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][subject-id].valueReference.identifier.value = "JohnDoe"
@@ -219,10 +222,10 @@ purposeOfUse | "http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT"
 * agent[user].extension[otherId][npi].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
-* agent[org].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
-* agent[org].who.display = "St. Mary of Examples"
-* agent[org].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
-* agent[org].requestor = false
+* agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
+* agent[userorg].who.display = "St. Mary of Examples"
+* agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
+* agent[userorg].requestor = false
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what.identifier.value = "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002"
 * entity[consent].what.identifier.assigner.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
@@ -238,6 +241,15 @@ purposeOfUse | "http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT"
 
 
 
+
+
+
+Extension: AssuranceLevel
+Id: ihe-assuranceLevel
+Title: "AuditEvent.agent Assurance Level"
+Description: "Carries various types of Assurance level. May be an Identity Assurance (IAL), an Authentication Assurance Level (AAL), a Federation Assurance Level (FAL), or other. The Vocabulary is not defined."
+* value[x] only CodeableConcept
+* valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
 
 
 

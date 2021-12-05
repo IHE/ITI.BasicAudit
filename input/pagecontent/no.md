@@ -11,51 +11,67 @@ subject:id | AuditEvent.agent[user].who.identifier.value
 Subject:name | AuditEvent.agent[user].who.display
 subject:system | AuditEvent.agent[user].who.identifier.system
 subject:assigner | AuditEvent.agent[user].who.identifier.assigner
+**PurposeOfEvent** | 
+purpose:id, | AuditEvent.purposeOfEvent.coding.code
+purpose:name | AuditEvent.purposeOfEvent.coding.display
+purpose:system | AuditEvent.purposeOfEvent.coding.system
+purpose:assigner | N/A eller ekstensjon
+purpose:description | AuditEvent.purposeOfEvent.text
+purpose:reason | ????
+**PurposeOfEvent-local** | 
+purpose-local:id, | AuditEvent.agent[user].purposeOUse.coding.code
+purpose-local:name | AuditEvent.agent[user].purposeOfUse.coding.display
+purpose-local:system | AuditEvent.agent[user].purposeOfUse.coding.system
+purpose-local:assigner | N/A eller ekstensjon
+purpose-local:description | ?
+purpose-local:reason | ?
+purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 **qualifications** | 
-subject:qualification:id | AuditEvent.agent[user].alt-userid[qualification].identifier.value
-subject:qualification:name | AuditEvent.agent[user].alt-userid[qualification].name
-subject:qualification:system | AuditEvent.agent[user].alt-userid[qualification].identifier.system
-subject:qualification:assigner | AuditEvent.agent[user].alt-userid[qualification].identifier.assigner
+subject:qualification:id | AuditEvent.agent[user].extension[otherId][qualification].identifier.value
+subject:qualification:name | AuditEvent.agent[user].extension[otherId][qualification].name
+subject:qualification:system | AuditEvent.agent[user].extension[otherId][qualification].identifier.system
+subject:qualification:assigner | AuditEvent.agent[user].extension[otherId][qualification].identifier.assigner
 **nationalidentifiers** | 
-subject: national-identifier:id | AuditEvent.agent[user].alt-userid[personal].identifier.value
-subject: national-identifier:name | AuditEvent.agent[user].alt-userid[personal].name
-subject: national-identifier:system | AuditEvent.agent[user].alt-userid[personal].identifier.system
-subject: national-identifier:assigner | AuditEvent.agent[user].alt-userid[personal].identifier.assigner
-**qualifications** | 
+subject:national-identifier:id | AuditEvent.agent[user].extension[otherId][personal].identifier.value
+subject:national-identifier:name | AuditEvent.agent[user].extension[otherId][personal].name
+subject:national-identifier:system | AuditEvent.agent[user].extension[otherId][personal].identifier.system
+subject:national-identifier:assigner | AuditEvent.agent[user].extension[otherId][personal].identifier.assigner
+**drafting model** | **====================**
+**qualifications** | TODO-role-slicing
 subject:qualification-role:id | AuditEvent.agent[user].role[qualification].code
 subject:qualification-role:name | AuditEvent.agent[user].role[qualification].display
 subject:qualification-role:system | AuditEvent.agent[user].role[qualification].system
 subject:qualification-role:assigner | N/A eller ekstensjon
-**structural-roles** | 
+**structural-roles** | TODO-role-slicing 
 subject:role:id | AuditEvent.agent[user].role[formal].code
-subject:role:name | AuditEvent.agent[user].role[[formal].display
+subject:role:name | AuditEvent.agent[user].role[formal].display
 subject:role:system | AuditEvent.agent[user].role[formal].system
 subject:role:assigner | N/A eller ekstensjon
-**functional-roles** | 
+**functional-roles** | TODO-role-slicing
 subject:functional-role:id | AuditEvent.agent[user].role[functonal].code
-subject:functional-role:name | AuditEvent.agent[user].role[functonal.display
+subject:functional-role:name | AuditEvent.agent[user].role[functonal].display
 subject:functional-role:system | AuditEvent.agent[user].role[functonal].system
 subject:functional-role:assigner | N/A eller ekstensjon
-**application-roles** | 
-subject: application-role-id | AuditEvent.agent[user].role[application].code
-subject: application-role-name | AuditEvent.agent.[user].role[application].display
-subject: application-role-system | AuditEvent.agent[user].role[application].system
-subject: application-role-assigner | N/A eller ekstensjon
+**application-roles** | TODO-application
+subject:application-role-id | AuditEvent.agent[user].role[application].code
+subject:application-role-name | AuditEvent.agent.[user].role[application].display
+subject:application-role-system | AuditEvent.agent[user].role[application].system
+subject:application-role-assigner | N/A eller ekstensjon
 **organization** | 
-subject:organization-id":  | AuditEvent.agent[userorg].who.identifier.value
+subject:organization-id:  | AuditEvent.agent[userorg].who.identifier.value
 subject:organization-name | AuditEvent.agent[userorg].who.display
 subject:organization-system | AuditEvent.agent[userorg].who.identifier.system
 subject:organization-assigner | AuditEvent.agent[userorg].who.identifier.assigner
 **child-organization** | 
 subject:child-organization-id | AuditEvent.agent[user-child-org].who.identifier.value
-subject:child-organization-name": , | AuditEvent.agent.[user-child-org]who.display
+subject:child-organization-name | AuditEvent.agent.[user-child-org]who.display
 subject:child-organization-system | AuditEvent.agent[user-child-org].who.identifier.system
 subject:child-organization-assigner | AuditEvent.agent[user-child-org].who.identifier.assigner
 **facility** | 
-subject: facility-id | AuditEvent.agent[detail-org].who.identifier.value
-subject: facility-name | AuditEvent.agent[detail-org].who.display
-subject: facility-system | AuditEvent.agent[detail-org].who.identifier.system
-subject: facility-assigner | AuditEvent.agent[detail-org].who.identifier.assigner
+subject:facility-id | AuditEvent.agent[detail-org].who.identifier.value
+subject:facility-name | AuditEvent.agent[detail-org].who.display
+subject:facility-system | AuditEvent.agent[detail-org].who.identifier.system
+subject:facility-assigner | AuditEvent.agent[detail-org].who.identifier.assigner
 **department** | 
 subject:department:id | AuditEvent.agent[local-org-dep].who.identifier.value
 subject:department:name | AuditEvent.agent[local-org-dep].who.display
@@ -78,15 +94,15 @@ subject:policy:system | AuditEvent.agent.policy.coding.system
 subject:policy:assigner | N/A eller ekstensjon
 subject:policy:name | AuditEvent.agent.policy.coding.display
 **subject-assurance** | 
-subject: assurance-level:id | 
-subject: assurance-level:name | 
-subject: assurance-level:system | 
-subject: assurance-level:assigner | 
+subject:assurance-level:id | 
+subject:assurance-level:name | 
+subject:assurance-level:system | 
+subject:assurance-level:assigner | 
 **healthcareservice** | 
-subject: healthcareservice-id | AuditEvent.agent[healthcareservice].who.identifier.value
-subject: healthcareservice-name | AuditEvent.agent[healthcareservice].who.display
-subject: healthcareservice-system | AuditEvent.agent[healthcareservice].who.identifier.system
-subject: healthcareservice-assigner | AuditEvent.agent[healthcareservice].who.identifier.assigner
+subject:healthcareservice-id | AuditEvent.agent[healthcareservice].who.identifier.value
+subject:healthcareservice-name | AuditEvent.agent[healthcareservice].who.display
+subject:healthcareservice-system | AuditEvent.agent[healthcareservice].who.identifier.system
+subject:healthcareservice-assigner | AuditEvent.agent[healthcareservice].who.identifier.assigner
 **Patient** | 
 resource:id | AuditEvent.entity[patient].what.identifier.value
 resource:name | AuditEvent.entity[patient].what.display
@@ -104,23 +120,13 @@ resource:facility:assigner  |
 **Patient-consent** | 
 resource:patient-consent-directive  | AuditEvent.agent[user].policy
 resource:patient-consent-directive-type | 
-**PurposeOfEvent** | 
-purpose:id, | AuditEvent.agent.purposeOUse[global].coding.code
-purpose:name | AuditEvent.agent.purposeOfUse[global].coding.display
-purpose:system | AuditEvent.agent.purposeOfUse[global].coding.system
-purpose:assigner | N/A eller ekstensjon
-purpose:description | AuditEvent.agent.purposeOfUse[reason].text
-purpose:reason | AuditEvent.agent.puropseOfUse[reason].display
-**PurposeOfEvent-local** | 
-purpose-local:id, | AuditEvent.agent.purposeOUse.coding.code
-purpose-local:name | AuditEvent.agent.purposeOfUse.coding.display
-purpose-local:system | AuditEvent.agent.purposeOfUse.coding.system
-purpose-local:assigner | N/A eller ekstensjon
-purpose-local:description | ?
-purpose-local:reason | ?
-purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 {:.grid}
 
+## TODO
+
+- TODO-role-slicing: the qualifications/functional/structural roles.
+  - can these roles be put into the [user].role bucket?
+  - not clear how we can slice the .role as initially described unless there is a defiend set of systems on these codes
 
 * [StructureDefinition profile for Basic AuditEvent pattern for Comprehensive Norway](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway.html)
   * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway-examples.html)

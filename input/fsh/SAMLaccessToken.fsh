@@ -84,7 +84,7 @@ ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 
 
 Profile:        SAMLaccessTokenUseComprehensive
-Parent:         SAMLaccessTokenUseMinimal
+Parent:         AuditEvent
 Id:             ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
@@ -95,6 +95,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | SAML attribute               | FHIR AuditEvent Comprehensive 
 |------------------------------|-----------------------------------|
 | ...  | ...
+| ???                          | agent[user].extension[assuranceLevel]
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value
 | ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value
@@ -105,12 +106,32 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | ~xua:2012:acp                | entity[consent].detail.valueString 
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value 
 """
-// Defined in minimal [user]
-// * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
+* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.path = "type"
+* agent ^slicing.rules = #open
+* agent contains 
+    user 1..
+* agent[user].type = UserAgentTypes#UserSamlAgent
+* agent[user].who 1..1 
+* agent[user].who.identifier.system 1..1 MS
+* agent[user].who.identifier.system ^short = "SAML Issuer"
+* agent[user].who.identifier.value 1..1 MS
+* agent[user].who.identifier.value ^short = "SAML Subject.NameID"
+* agent[user].requestor = true
+* agent[user].role MS 
+* agent[user].role ^short = "SAML subject:role(s)"
+* agent[user].altId 0..0 // discouraged
+* agent[user].name 0..1 // not sure where you would get it from
+* agent[user].policy MS
+* agent[user].policy ^short = "SAML token ID"
+* agent[user].media 0..0 // media is physical storage media identification
+* agent[user].network 0..0 // users are not network devices
+* agent[user].purposeOfUse MS 
+* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
-* agent[user].extension[otherId] ^slicing.discriminator.path = "valueReference.identifier.type"
+* agent[user].extension[otherId] ^slicing.discriminator.path = "(value as Reference).identifier.type"
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
 	subject-id 0..1 and
@@ -162,12 +183,12 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * entity[consent].detail contains 
 	acp 0..1 and
 	patient-id 0..1
-* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
-* entity[consent].detail[acp].valueString 1..1 MS
-* entity[consent].detail[acp].valueString ^short = "Home Community ID where the Consent is."
-* entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
-* entity[consent].detail[patient-id].valueString 1..1 MS
-* entity[consent].detail[patient-id].valueString ^short = "The Patient Identity where the Consent is."
+* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp" (exactly)
+* entity[consent].detail[acp] ^short = "Home Community ID where the Consent is."
+* entity[consent].detail[acp].value[x] only string
+* entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id" (exactly)
+* entity[consent].detail[patient-id] ^short = "The Patient Identity where the Consent is."
+* entity[consent].detail[patient-id].value[x] only string
 
 
 
@@ -216,12 +237,12 @@ assurance | authenticated AAL 4
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
-* agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][subject-id].valueReference.identifier.value = "JohnDoe"
-* agent[user].extension[otherId][npi].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][npi].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
-* agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
+* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnDoe"
+* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][=].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
+* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnD"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "St. Mary of Examples"
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
@@ -230,8 +251,8 @@ assurance | authenticated AAL 4
 * entity[consent].what.identifier.value = "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002"
 * entity[consent].what.identifier.assigner.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
-* entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
-* entity[consent].detail[=].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
+* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[acp].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
 * entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[=].valueString = "urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002"
 

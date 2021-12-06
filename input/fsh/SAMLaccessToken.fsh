@@ -26,6 +26,8 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
+* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
+* agent.extension contains OtherId named otherId 0..* MS
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
@@ -84,7 +86,7 @@ ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 
 
 Profile:        SAMLaccessTokenUseComprehensive
-Parent:         AuditEvent
+Parent:         ITI.BasicAudit.SAMLaccessTokenUse.Minimal
 Id:             ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
@@ -106,30 +108,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | ~xua:2012:acp                | entity[consent].detail.valueString 
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value 
 """
-* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
-* agent.extension contains OtherId named otherId 0..* MS
-* agent ^slicing.discriminator.type = #pattern
-* agent ^slicing.discriminator.path = "type"
-* agent ^slicing.rules = #open
-* agent contains 
-    user 1..
-* agent[user].type = UserAgentTypes#UserSamlAgent
-* agent[user].who 1..1 
-* agent[user].who.identifier.system 1..1 MS
-* agent[user].who.identifier.system ^short = "SAML Issuer"
-* agent[user].who.identifier.value 1..1 MS
-* agent[user].who.identifier.value ^short = "SAML Subject.NameID"
-* agent[user].requestor = true
-* agent[user].role MS 
-* agent[user].role ^short = "SAML subject:role(s)"
-* agent[user].altId 0..0 // discouraged
-* agent[user].name 0..1 // not sure where you would get it from
-* agent[user].policy MS
-* agent[user].policy ^short = "SAML token ID"
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS 
-* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
+
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
 * agent[user].extension[otherId] ^slicing.discriminator.path = "(value as Reference).identifier.type"
 * agent[user].extension[otherId] ^slicing.rules = #open

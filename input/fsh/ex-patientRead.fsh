@@ -33,6 +33,9 @@ Description: "Audit Example for a RESTful read of a resource with a patient subj
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
+* entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
 
 
 Instance: ex-auditBasicReadNoUser
@@ -65,3 +68,5 @@ Description: "Audit Example for a RESTful read of a resource with a patient subj
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
+* entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].what.identifier.value = "a22d5720-586d-11ec-bf63-0242ac130002"

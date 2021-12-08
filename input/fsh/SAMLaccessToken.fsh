@@ -1,7 +1,7 @@
 
 Profile:        SAMLaccessTokenUseMinimal
 Parent:         AuditEvent
-Id:             ITI.BasicAudit.SAMLaccessTokenUse.Minimal
+Id:             IHE.BasicAudit.SAMLaccessTokenUse.Minimal
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Minimal"
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
@@ -53,7 +53,7 @@ note: this profile records minimal information from the SAML access token, which
 
 
 Instance: ex-auditPoke-SAML-Min
-InstanceOf: ITI.BasicAudit.SAMLaccessTokenUse.Minimal
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
 Title: "Audit Example of a basic SAML access token of minimal"
 Description: """
 Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
@@ -86,8 +86,8 @@ ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 
 
 Profile:        SAMLaccessTokenUseComprehensive
-Parent:         ITI.BasicAudit.SAMLaccessTokenUse.Minimal
-Id:             ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive
+Parent:         IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+Id:             IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
@@ -172,7 +172,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 
 
 Instance: ex-auditPoke-SAML-Comp
-InstanceOf: ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title: "Audit Example of a basic SAML access token of comprehensive"
 Description: """
 Example AuditEvent showing just the comprehensive SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).

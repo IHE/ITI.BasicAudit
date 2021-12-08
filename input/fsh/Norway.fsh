@@ -1,7 +1,7 @@
 
 Profile:        SAMLaccessTokenUseComprehensiveNorway
 Parent:         SAMLaccessTokenUseComprehensive
-Id:             ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway
+Id:             IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive Norway"
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
@@ -289,7 +289,7 @@ Description: "These are additionl details about the Patient (Resoruce) mentioned
 
 
 Instance: ex-auditPoke-Norway
-InstanceOf: ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway
 Title: "Audit Example of a Norway SAML access token of comprehensive"
 Description: """
 Example AuditEvent showing just the Norway comprehensive SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).

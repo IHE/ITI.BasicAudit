@@ -1,7 +1,7 @@
 
 Profile:        AuditIUAgetAccessToken
 Parent:         AuditEvent
-Id:             ITI.IUA.71
+Id:             IHE.IUA.71
 Title:          "IHE IUA ITI-71 AuditEvent for a successful Get Access Token"
 Description:    """
 Defines constraints on the AuditEvent Resource to record when a ITI-71 - Get Access Token succeeds

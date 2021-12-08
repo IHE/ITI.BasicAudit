@@ -89,13 +89,14 @@ resource:patient-consent-directive-type |
 
 ### Profile
 
-* [StructureDefinition profile for Basic AuditEvent pattern for Comprehensive Norway](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway-examples.html)
+* [StructureDefinition profile for Basic AuditEvent pattern for Comprehensive Norway](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.Norway-examples.html)
   
 ### TODO
 
 - TODO-role-slicing: the qualifications/functional/structural roles.
   - can these roles be put into the [user].role bucket?
+  - My example just puts all the roles together in .role.
   - not clear how we can slice the .role as initially described unless there is a defiend set of systems on these codes
 - TODO-application: Unclear what the application roles are, given the application is not defined
   - should there be an application agent? 

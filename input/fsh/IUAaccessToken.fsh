@@ -1,7 +1,7 @@
 
 Profile:        IUAaccessTokenUse
 Parent:         AuditEvent
-Id:             ITI.BasicAudit.IUAaccessTokenUse
+Id:             IHE.BasicAudit.IUAaccessTokenUse
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an IUA access token"
 Description:    """
 A basic AuditEvent profile for when an activity was authorized by an IUA access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the IUA access token.

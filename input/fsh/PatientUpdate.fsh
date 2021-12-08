@@ -1,6 +1,6 @@
 Profile:        PatientUpdate
 Parent:         AuditEvent
-Id:             ITI.BasicAudit.PatientUpdate
+Id:             IHE.BasicAudit.PatientUpdate
 Title:          "Basic AuditEvent for a successful Update"
 Description:    """
 A basic AuditEvent profile for when a RESTful Update action happens successfully, and where there is an identifiable Patient subject associated with the Update of the Resource.
@@ -61,9 +61,10 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #closed
-* entity 2..2
+* entity 2..
 * entity contains 
     patient 1..1 and
+	transaction 0..1 and
     data 1..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
@@ -74,6 +75,14 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * entity[patient].name 0..0
 * entity[patient].query 0..0
 * entity[patient].detail 0..0
+* entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].what.identifier.value 1..1
+* entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
+* entity[transaction].lifecycle 0..0 
+* entity[transaction].securityLabel 0..0 
+* entity[transaction].name 0..0
+* entity[transaction].query 0..0
+* entity[transaction].detail 0..0
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
 * entity[data].role from RestObjectRoles (required)
 * entity[data].what 1..1

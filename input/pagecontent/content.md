@@ -12,16 +12,23 @@ The following AuditEvent patterns are defined.
 
 When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns will typically be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
 
-* [Create (create)](StructureDefinition-ITI.BasicAudit.PatientCreate.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.PatientCreate-examples.html)
-* [Read (read and vread)](StructureDefinition-ITI.BasicAudit.PatientRead.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.PatientRead-examples.html)
-* [Update (update, patch)](StructureDefinition-ITI.BasicAudit.PatientUpdate.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.PatientUpdate-examples.html)
-* [Delete (delete)](StructureDefinition-ITI.BasicAudit.PatientDelete.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.PatientDelete-examples.html)
-* [Execute (search and query)](StructureDefinition-ITI.BasicAudit.PatientQuery.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.PatientQuery-examples.html)
+* [Create (create)](StructureDefinition-IHE.BasicAudit.PatientCreate.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.PatientCreate-examples.html)
+* [Read (read and vread)](StructureDefinition-IHE.BasicAudit.PatientRead.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.PatientRead-examples.html)
+* [Update (update, patch)](StructureDefinition-IHE.BasicAudit.PatientUpdate.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.PatientUpdate-examples.html)
+* [Delete (delete)](StructureDefinition-IHE.BasicAudit.PatientDelete.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.PatientDelete-examples.html)
+* [Execute (search and query)](StructureDefinition-IHE.BasicAudit.PatientQuery.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.PatientQuery-examples.html)
+  
+TODO: Explain how user is replaced by Security Token
+TODO: explain the various slices and how they are used. 
+
+#### 3:5.7.3.1 X-Request-Id header 
+
+Where it is known that a http RESTful transaction included a X-Request-Id, that value should be recorded in an .entity dedicated to X-Request-Id. This ID can be used to coorelated AuditEvents from client and server, and may aid with coorelation on further activitites recorded caused by the transaction. This means that the .entity holding the X-Request-Id may appear in AuditEvents beyond those defined here.
 
 ### 3:5.7.4 Security Token
 
@@ -53,8 +60,8 @@ Follow [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) recommendation 
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in XUA, mostly due to the more expressive and coded nature of the FHIR AuditEvent.
 
-* [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Minimal.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
+* [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
 
 #### 3:5.7.4.1.2 SAML Comprehensive
 
@@ -64,8 +71,8 @@ Local policy may choose to record less than are defined here, or may choose to r
 
 For those using SAML beyond XUA, there is no specific guidance here.
 
-* [StructureDefinition profile of Basic AuditEvent pattern for Comprehensive](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
-  * [examples](StructureDefinition-ITI.BasicAudit.SAMLaccessTokenUse.Comprehensive-examples.html)
+* [StructureDefinition profile of Basic AuditEvent pattern for Comprehensive](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive-examples.html)
 
 ##### 3:5.7.4.1.3 SAML mapping to AuditEvent
 

@@ -12,17 +12,17 @@ The base64binary should still be used to record the query/search as it was recei
 
 It has been noted that [HAR](https://en.wikipedia.org/wiki/HAR_(file_format)) HTTP Archive format might be a useful generic format for the logging of Query/Search. Also see [har-12-spec](http://www.softwareishard.com/blog/har-12-spec/#request).
 
-I need some examples of how Query is recorded for variations on search. Such as a POST with a Parameters?
 
 I wish there was a flag similar but opposite to MustSupport, something like ShouldNotUse to discourage use while not making it invalid to use. given that this flag does not exist, I have marked everything that would be discouraged as 0..0. This is not necessarily wrong, as one can always be compliant with AuditEvent core, and not follow my IG guidance. It just seems very heavy handed.
 
 
 There is a start at a test plan using Gherkin/Cucumber.
 
-I did not include the traceID stuff, should it be part of basic?
+I did not include the traceID stuff, should it be part of basic? I am not famular with traceID. I did add X-Request-Id as I have seen that in FHIR discussions and technical support with some vendors.
+
 	
 	
-TODO - tasks I know need to be done, I just didn't get to them yet.
+# TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
 All examples are recorded ONLY by the server. There should be also examples recorded by the client and by an intermediary. The difference is that the .source element indicates who is recording. Otherwise the pattern is the same.
 

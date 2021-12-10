@@ -18,7 +18,8 @@ I wish there was a flag similar but opposite to MustSupport, something like Shou
 
 There is a start at a test plan using Gherkin/Cucumber.
 
-I did not include the traceID stuff, should it be part of basic? I am not famular with traceID. I did add X-Request-Id as I have seen that in FHIR discussions and technical support with some vendors.
+* X-Request-Id vs TraceId -- I added X-Request-Id profiling. I did not add TraceId, as I am not as aware of what this is. It seems very similar, unclear if it is different or the same thing. The modeling of TraceId that is in the FHIR Core is a bit different than I modeled X-Request-Id here. TraceId example in core is a .entity.type #21 "Job", with a .entity.what.identifier.type #TraceId. Where as for X-Request-Id I followed the example that Grahame indicted his server supports today for X-Request-Id. I welcome comment, as I am not an expert TraceId nor X-Reqeust-Id. 
+
 
 	
 	

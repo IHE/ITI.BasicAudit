@@ -16,5 +16,5 @@ Title: "Entity Types used by IHE BasicAudit"
 Description: """
 For use with AuditEvent.entity.type.  This includes codes defined in the BasicAudit.
 """
-* BasicAuditEntityType#XrequestId
+* codes from system BasicAuditEntityType
 

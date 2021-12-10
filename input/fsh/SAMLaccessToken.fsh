@@ -1,3 +1,61 @@
+// TODO: need encoding rules for ID values to URI encoding (policy), and X509 to URI encoding (system)
+
+
+Extension: AssuranceLevel
+Id: ihe-assuranceLevel
+Title: "AuditEvent.agent Assurance Level"
+Description: "Carries various types of Assurance level. May be an Identity Assurance (IAL), an Authentication Assurance Level (AAL), a Federation Assurance Level (FAL), or other. The Vocabulary is not defined."
+* value[x] only CodeableConcept
+* valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
+
+
+
+Extension: OtherId
+Id: ihe-otherId
+Title: "AuditEvent.agent other identifiers"
+Description: "Carries other identifiers are known for an agent."
+* value[x] only Reference
+
+
+CodeSystem:  OtherIdentifierTypes 
+Title: "OtherId Identifier Types"
+Description:  "OtherId Types beyond those in the FHIR core"
+* ^caseSensitive = true
+* #SAML-subject-id "SAML subject-id"
+
+ValueSet: OtherIdentifierTypesVS
+Title: "Other Id Types ValueSet"
+Description: "ValueSet of the Other Id Types allowed"
+* codes from system OtherIdentifierTypes
+* http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+
+CodeSystem: UserAgentTypes
+Title: "The code used to identifiy a User Agent"
+Description: """
+Code used to identify the User Agent.
+Defined codes for SAML vs OAuth to enable differentiation of .policy as the token ID
+"""
+* ^caseSensitive = false
+* #UserSamlAgent "User SAML Agent participant"
+* #UserOauthAgent "User OAuth Agent participant"
+
+ValueSet: UserAgentTypesVS
+Title: "Agent types holding User-Agent"
+Description: """
+AuditEvent.agent.type values holding OAuth/SAML identified user. Note that user is not just humans, but representes the higest agent responsible for triggering the activity being recorded in the AuditEvent.
+
+Often this agent also has a type coding that is more specific to the transaction and the direction of the transaction.
+- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // use for query/retrieve
+- http://terminology.hl7.org/CodeSystem/v3-RoleClass#AGNT // use for push/create/update
+- http://terminology.hl7.org/CodeSystem/v3-RoleClass#PAT  // use when the user is the patient
+- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "Author" // used with create/update
+- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#INF "Informant" // used with export
+- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian" // used with export
+"""
+* codes from system UserAgentTypes
+
+
 
 Profile:        SAMLaccessTokenUseMinimal
 Parent:         AuditEvent
@@ -35,7 +93,7 @@ note: this profile records minimal information from the SAML access token, which
     user 1..
 * agent[user].type = UserAgentTypes#UserSamlAgent
 * agent[user].who 1..1 
-* agent[user].who.identifier.system 1..1 MS
+* agent[user].who.identifier.system 0..1 MS
 * agent[user].who.identifier.system ^short = "SAML Issuer"
 * agent[user].who.identifier.value 1..1 MS
 * agent[user].who.identifier.value ^short = "SAML Subject.NameID"
@@ -44,44 +102,12 @@ note: this profile records minimal information from the SAML access token, which
 * agent[user].role ^short = "SAML subject:role(s)"
 * agent[user].altId 0..0 // discouraged
 * agent[user].name 0..1 // not sure where you would get it from
-* agent[user].policy MS
+* agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"
 * agent[user].media 0..0 // media is physical storage media identification
 * agent[user].network 0..0 // users are not network devices
 * agent[user].purposeOfUse MS 
 * agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
-
-
-Instance: ex-auditPoke-SAML-Min
-InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
-Title: "Audit Example of a basic SAML access token of minimal"
-Description: """
-Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
-
-Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
-
-SAML | example value |
------|-----|
-Subject.NameID  | "05086900124" 
-Issuer | "https://sts.sykehuspartner.no" 
-ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
-"""
-* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
-* action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
-//* severity = #Informational
-* recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
-* source.observer = Reference(Device/ex-device)
-* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
-* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
-* agent[user].who.identifier.value = "05086900124"
-* agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
-* agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
-
 
 
 
@@ -170,6 +196,39 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * entity[consent].detail[patient-id].value[x] only string
 
 
+////////////////////////////////////////////////////////EXAMPLES/////////////////////////////////////////////////
+
+Instance: ex-auditPoke-SAML-Min
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+Title: "Audit Example of a basic SAML access token of minimal"
+Description: """
+Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
+
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+
+SAML | example value |
+-----|-----|
+Subject.NameID  | "05086900124" 
+Issuer | "https://sts.sykehuspartner.no" 
+ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110100 "Application Activity"
+* action = #R
+* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+//* severity = #Informational
+* recorded = 2021-12-03T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].who.identifier.value = "05086900124"
+* agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
+* agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
+
+
 
 Instance: ex-auditPoke-SAML-Comp
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
@@ -240,61 +299,114 @@ assurance | authenticated AAL 4
 
 
 
-
-
-
-
-Extension: AssuranceLevel
-Id: ihe-assuranceLevel
-Title: "AuditEvent.agent Assurance Level"
-Description: "Carries various types of Assurance level. May be an Identity Assurance (IAL), an Authentication Assurance Level (AAL), a Federation Assurance Level (FAL), or other. The Vocabulary is not defined."
-* value[x] only CodeableConcept
-* valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
-
-
-
-Extension: OtherId
-Id: ihe-otherId
-Title: "AuditEvent.agent other identifiers"
-Description: "Carries other identifiers are known for an agent."
-* value[x] only Reference
-
-
-CodeSystem:  OtherIdentifierTypes 
-Title: "OtherId Identifier Types"
-Description:  "OtherId Types beyond those in the FHIR core"
-* ^caseSensitive = true
-* #SAML-subject-id "SAML subject-id"
-
-ValueSet: OtherIdentifierTypesVS
-Title: "Other Id Types ValueSet"
-Description: "ValueSet of the Other Id Types allowed"
-* OtherIdentifierTypes#SAML-subject-id
-* http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-
-CodeSystem: UserAgentTypes
-Title: "The code used to identifiy a User Agent"
+Instance: ex-auditPoke-SAML-QDI-Min
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+Title: "Audit Example of a basic SAML access token of minimal from QDI sample"
 Description: """
-Code used to identify the User Agent.
-Defined codes for SAML vs OAuth to enable differentiation of .policy as the token ID
-"""
-* ^caseSensitive = false
-* #UserSamlAgent "User SAML Agent participant"
-* #UserOauthAgent "User OAuth Agent participant"
+Example AuditEvent showing QDI sample with just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
 
-ValueSet: UserAgentTypesVS
-Title: "Agent types holding User-Agent"
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+
+SAML | example value |
+-----|-----|
+Subject.NameID  | "UID=kskagerb" 
+Issuer | "CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US" 
+ID | "_d87f8adf-711a-4545-bf77-ff8517b498e4" 
+subject-id | "Karl S Skagerberg"
+subject:organization | "connectred5.fedsconnect.org"
+subject:organization-id | "urn:oid:2.16.840.1.113883.3.333"
+homeCommunityId | "urn:oid:2.16.840.1.113883.3.333"
+subject:role | "2.16.840.1.113883.6.96#307969004"
+purposofuse | "2.16.840.1.113883.3.18.7.1#PUBLICHEALTH"
+resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+AuthzDecisionStatement | nesting
+.AccessConsentPolicy | "urn:oid:1.2.3.4"
+.InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110100 "Application Activity"
+* action = #R
+* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+//* severity = #Informational
+* recorded = 2021-12-03T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].who.identifier.value = "UID=kskagerb"
+// given that there is no known LDAP hostname, we use the ldap:/// form
+// the string must also be url escaped. 
+* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
+* agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
+* agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+
+Instance: ex-auditPoke-SAML-QDI-Comp
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
+Title: "Audit Example of a basic SAML access token of comprehensive from QDI sample"
 Description: """
-AuditEvent.agent.type values holding OAuth/SAML identified user. Note that user is not just humans, but representes the higest agent responsible for triggering the activity being recorded in the AuditEvent.
+Example AuditEvent showing QDI sample with just the comprehensive SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
 
-Often this agent also has a type coding that is more specific to the transaction and the direction of the transaction.
-- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // use for query/retrieve
-- http://terminology.hl7.org/CodeSystem/v3-RoleClass#AGNT // use for push/create/update
-- http://terminology.hl7.org/CodeSystem/v3-RoleClass#PAT  // use when the user is the patient
-- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "Author" // used with create/update
-- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#INF "Informant" // used with export
-- http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian" // used with export
+SAML | example value |
+-----|-----|
+Subject.NameID  | "UID=kskagerb" 
+Issuer | "CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US" 
+ID | "_d87f8adf-711a-4545-bf77-ff8517b498e4" 
+subject-id | "Karl S Skagerberg"
+subject:organization | "connectred5.fedsconnect.org"
+subject:organization-id | "urn:oid:2.16.840.1.113883.3.333"
+homeCommunityId | "urn:oid:2.16.840.1.113883.3.333"
+subject:role | "2.16.840.1.113883.6.96#307969004"
+purposofuse | "2.16.840.1.113883.3.18.7.1#PUBLICHEALTH"
+resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+AuthzDecisionStatement | nesting
+.AccessConsentPolicy | "urn:oid:1.2.3.4"
+.InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
 """
-* UserAgentTypes#UserSamlAgent
-* UserAgentTypes#UserOauthAgent
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110100 "Application Activity"
+* action = #R
+* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+//* severity = #Informational
+* recorded = 2021-12-03T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].who.identifier.value = "UID=kskagerb"
+// given that there is no known LDAP hostname, we use the ldap:/// form
+// the string must also be url escaped. 
+* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
+* agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
+* agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+
+* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][=].valueReference.identifier.value = "Karl S Skagerberg"
+
+* agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
+* agent[userorg].who.display = "connectred5.fedsconnect.org"
+* agent[userorg].who.identifier.value = "urn:oid:2.16.840.1.113883.3.333"
+* agent[userorg].requestor = false
+
+* entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
+* entity[consent].what.identifier.value = "urn:oid:1.2.3.4.123456789"
+//TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
+* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[acp].valueString = "urn:oid:1.2.3.4"
+* entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[=].valueString = "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+
+
+
+
+
+
+
+
+
+

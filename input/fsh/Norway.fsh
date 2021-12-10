@@ -466,3 +466,11 @@ resource:patient-consent-directive-type | ????
 * entity[patient].what.identifier.value = "12057900499"
 * entity[patient].what.identifier.system = "urn:oid:2.16.578.1.12.4.1.4.1"
 * entity[patient].what.identifier.assigner.identifier.value = "https://www.skatteetaten.no/person/folkeregister/"
+
+Instance: ex-norway-saml-example
+InstanceOf: DocumentReference
+Title: "Norway SAML example in DocumentReference"
+Description: "DocumentReference of Norway SAML example."
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* status = #current
+* content.attachment.id = "ig-loader-noSAML.txt"

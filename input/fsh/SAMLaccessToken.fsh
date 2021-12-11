@@ -151,7 +151,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value 1..1 MS
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value ^short = "SAML Attribute provider-identifier"
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -171,7 +171,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[userorg].media 0..0 // media is physical storage media identification
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse 0..0
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity contains 

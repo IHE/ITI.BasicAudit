@@ -407,14 +407,14 @@ resource:patient-consent-directive-type | ????
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
-* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding = UserAgentTypes#UserSamlAgent
+//TODO put this back later * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
-* agent[user].purposeOfUse.coding[+] = http://dips.com/beslutningsmal#KONSSERIE "Åpen konsultasjonsserie"
+* agent[user].purposeOfUse.coding = http://dips.com/beslutningsmal#KONSSERIE "Åpen konsultasjonsserie"
 * agent[user].purposeOfUse.text = "Åpen konsultasjonsserie til Barn og unges psykiske helse på sykehus, Barn og unges psykiske helse på sykehus, serie starttidspunkt 28.10.2014"
-* agent[user].purposeOfUse.coding[=].userSelected = false
+* agent[user].purposeOfUse.coding.userSelected = false
 * agent[user].requestor = true
 * agent[user].extension[assuranceLevel].valueCodeableConcept = https://begrep.difi.no/Felles/sikkerhetsnivaa#4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
@@ -425,9 +425,9 @@ resource:patient-consent-directive-type | ????
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
 
-* agent[user].role[+] = urn:oid:2.16.578.1.12.4.3.1.40.5.1#Overlege "Overlege"
-* agent[user].role[+] = urn:oid:2.16.578.1.12.4.3.1.40.5.3#1035
-* agent[user].role[+] = urn:oid:2.16.578.1.12.4.1.1.9060#LE "Lege"
+* agent[user].role[0] = urn:oid:2.16.578.1.12.4.3.1.40.5.1#Overlege "Overlege"
+* agent[user].role[1] = urn:oid:2.16.578.1.12.4.3.1.40.5.3#1035
+* agent[user].role[2] = urn:oid:2.16.578.1.12.4.1.1.9060#LE "Lege"
 
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "GLØSHAUGEN LEGESENTER DA"

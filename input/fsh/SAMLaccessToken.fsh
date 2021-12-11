@@ -136,7 +136,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 """
 
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
-* agent[user].extension[otherId] ^slicing.discriminator.path = "(value as Reference).identifier.type"
+* agent[user].extension[otherId] ^slicing.discriminator.path = "$this.value.ofType(Reference).identifier.type"
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
 	subject-id 0..1 and
@@ -151,7 +151,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value 1..1 MS
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value ^short = "SAML Attribute provider-identifier"
-* agent ^slicing.discriminator.type = #value
+* agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -171,7 +171,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[userorg].media 0..0 // media is physical storage media identification
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse 0..0
-* entity ^slicing.discriminator.type = #value
+* entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity contains 
@@ -182,7 +182,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * entity[consent].what.identifier.assigner.identifier.value 0..1 MS
 * entity[consent].what.identifier.assigner.identifier.value ^short = "homeCommunityId of the Consent"
 
-* entity[consent].detail ^slicing.discriminator.type = #value
+* entity[consent].detail ^slicing.discriminator.type = #pattern
 * entity[consent].detail ^slicing.discriminator.path = "type"
 * entity[consent].detail ^slicing.rules = #open
 * entity[consent].detail contains 

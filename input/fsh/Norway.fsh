@@ -107,7 +107,7 @@ resource:patient-consent-directive-type |
 * agent[user].purposeOfUse.coding.system ^short = "SAML hso:purpose-local:system"
 // setup slice for qualifications
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
-* agent[user].extension[otherId] ^slicing.discriminator.path = "(value as Reference).identifier.type"
+* agent[user].extension[otherId] ^slicing.discriminator.path = "$this.value.ofType(Reference).identifier.type"
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
 	qualifications 0..1 and

@@ -112,7 +112,8 @@ note: this profile records minimal information from the SAML access token, which
 
 
 Profile:        SAMLaccessTokenUseComprehensive
-Parent:         IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+//Parent:         IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+Parent:         AuditEvent
 Id:             IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
@@ -134,6 +135,31 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 | ~xua:2012:acp                | entity[consent].detail.valueString 
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value 
 """
+* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
+* agent.extension contains OtherId named otherId 0..* MS
+* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.path = "type"
+* agent ^slicing.rules = #open
+* agent contains 
+    user 1.. and
+	userorg 0..1
+* agent[user].type = UserAgentTypes#UserSamlAgent
+* agent[user].who 1..1 
+* agent[user].who.identifier.system 0..1 MS
+* agent[user].who.identifier.system ^short = "SAML Issuer"
+* agent[user].who.identifier.value 1..1 MS
+* agent[user].who.identifier.value ^short = "SAML Subject.NameID"
+* agent[user].requestor = true
+* agent[user].role MS 
+* agent[user].role ^short = "SAML subject:role(s)"
+* agent[user].altId 0..0 // discouraged
+* agent[user].name 0..1 // not sure where you would get it from
+* agent[user].policy 1..1 MS
+* agent[user].policy ^short = "SAML token ID"
+* agent[user].media 0..0 // media is physical storage media identification
+* agent[user].network 0..0 // users are not network devices
+* agent[user].purposeOfUse MS 
+* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
 
 * agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
 * agent[user].extension[otherId] ^slicing.discriminator.path = "$this.value.ofType(Reference).identifier.type"
@@ -151,11 +177,6 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value 1..1 MS
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value ^short = "SAML Attribute provider-identifier"
-* agent ^slicing.discriminator.type = #pattern
-* agent ^slicing.discriminator.path = "type"
-* agent ^slicing.rules = #open
-* agent contains 
-	userorg 0..1
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 // note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
 * agent[userorg].who.display 1..1 MS

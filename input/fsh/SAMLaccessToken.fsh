@@ -288,20 +288,20 @@ assurance | authenticated AAL 4
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[0] = UserAgentTypes#UserSamlAgent
-* agent[user].type.coding[1] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
-* agent[user].extension[otherId][0].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][0].valueReference.identifier.value = "JohnDoe"
-* agent[user].extension[otherId][1].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][1].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
-* agent[user].extension[otherId][2].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][2].valueReference.identifier.value = "JohnD"
+* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnDoe"
+* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][=].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
+* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnD"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "St. Mary of Examples"
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
@@ -310,10 +310,10 @@ assurance | authenticated AAL 4
 * entity[consent].what.identifier.value = "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002"
 * entity[consent].what.identifier.assigner.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
-* entity[consent].detail[0].type = "urn:ihe:iti:xua:2012:acp"
-* entity[consent].detail[0].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
-* entity[consent].detail[1].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
-* entity[consent].detail[1].valueString = "urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002"
+* entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[=].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
+* entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[=].valueString = "urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002"
 
 
 
@@ -354,8 +354,8 @@ AuthzDecisionStatement | nesting
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[0] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
-* agent[user].type.coding[1] = UserAgentTypes#UserSamlAgent
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
@@ -396,8 +396,8 @@ AuthzDecisionStatement | nesting
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[0] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
-* agent[user].type.coding[1] = UserAgentTypes#UserSamlAgent
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
@@ -406,8 +406,8 @@ AuthzDecisionStatement | nesting
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 
-* agent[user].extension[otherId][0].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][0].valueReference.identifier.value = "Karl S Skagerberg"
+* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][=].valueReference.identifier.value = "Karl S Skagerberg"
 
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "connectred5.fedsconnect.org"
@@ -417,10 +417,10 @@ AuthzDecisionStatement | nesting
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what.identifier.value = "urn:oid:1.2.3.4.123456789"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
-* entity[consent].detail[0].type = "urn:ihe:iti:xua:2012:acp"
-* entity[consent].detail[0].valueString = "urn:oid:1.2.3.4"
-* entity[consent].detail[1].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
-* entity[consent].detail[1].valueString = "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+* entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[=].valueString = "urn:oid:1.2.3.4"
+* entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[=].valueString = "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
 
 
 

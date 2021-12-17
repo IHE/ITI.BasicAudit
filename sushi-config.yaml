@@ -2,10 +2,10 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: IHE.ITI.BasicAudit
+id: ihe.iti.basicaudit
 canonical: http://profiles.ihe.net/ITI/BasicAudit
-name: BasicAudit
-title: "IHE Basic AuditEvent Implementation Guide"
+name: IHE_ITI_BasicAudit
+title: "IHE ITI Basic AuditEvent Implementation Guide"
 status: draft
 publisher:
   - name: IHE IT Infrastructure Technical Committee
@@ -44,7 +44,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-publisher: 'true'
   apply-version: 'true'
   autoload-resources: 'true'
-
+  path-binary: input/saml
 
 
 

@@ -3,3 +3,11 @@
 # codesystems the build validation doesn't understand
 Code System URI 'urn:ihe:event-type-code' is unknown so the code cannot be validated
 Code System URI 'urn:ietf:rfc:1438' is unknown so the code cannot be validated
+Code System URI 'urn:oid:1.0.14265.1' is unknown so the code cannot be validated
+Code System URI 'https://begrep.difi.no/Felles/sikkerhetsnivaa' is unknown so the code cannot be validated
+Code System URI 'urn:oid:2.16.578.1.12.4.3.1.40.5.1' is unknown so the code cannot be validated
+Code System URI 'urn:oid:2.16.578.1.12.4.3.1.40.5.3' is unknown so the code cannot be validated
+Code System URI 'urn:oid:2.16.578.1.12.4.1.1.9060' is unknown so the code cannot be validated
+Code System URI 'http://dips.com/beslutningsmal' is unknown so the code cannot be validated
+Code System URI 'urn:oid:2.16.840.1.113883.6.96' is unknown so the code cannot be validated
+Code System URI 'urn:oid:2.16.840.1.113883.3.18.7.1' is unknown so the code cannot be validated

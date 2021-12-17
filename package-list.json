@@ -1,5 +1,5 @@
 {
- "package-id" : "IHE.ITI.BasicAudit",
+ "package-id" : "ihe.iti.basicaudit",
  "title" : "IHE Basic AuditEvent Implementation Guide", 
  "canonical" : "https://profiles.ihe.net/ITI/BasicAudit", 
  "introduction" : "## Basic Audit for FHIR REST and operations where the activity includes a subject..",

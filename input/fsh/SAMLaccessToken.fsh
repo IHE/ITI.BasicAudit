@@ -1,4 +1,5 @@
 // TODO: need encoding rules for ID values to URI encoding (policy), and X509 to URI encoding (system)
+// IG builder does not like ldap: as a uri - https://github.com/HL7/fhir-ig-publisher/issues/356
 
 
 Extension: AssuranceLevel
@@ -74,7 +75,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 - Presumes that the consent and server have been identified in agent elements, best case with certificate identities
 - Then that AuditEvent would follow this profile regarding recording the SAML access token details
 
-| SAML attribute        | FHIR AuditEvent Minimal
+| SAML field            | FHIR AuditEvent Minimal
 |-----------------------|----------------------|
 | ID                    | agent[user].policy
 | Issuer                | agent[user].who.identifier.system
@@ -121,7 +122,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 
 **Builds upon the Minimal**
 
-| SAML attribute               | FHIR AuditEvent Comprehensive 
+| SAML field               | FHIR AuditEvent Comprehensive 
 |------------------------------|-----------------------------------|
 | ...  | ...
 | ???                          | agent[user].extension[assuranceLevel]
@@ -142,7 +143,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent ^slicing.rules = #open
 * agent contains 
     user 1.. and
-	userorg 0..1
+	userorg 0..*
 * agent[user].type = UserAgentTypes#UserSamlAgent
 * agent[user].who 1..1 
 * agent[user].who.identifier.system 0..1 MS
@@ -165,9 +166,9 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * agent[user].extension[otherId] ^slicing.discriminator.path = "$this.value.ofType(Reference).identifier.type"
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
-	subject-id 0..1 and
-	npi 0..1 and
-	provider-id 0..1
+	subject-id 0..* and
+	npi 0..* and
+	provider-id 0..*
 * agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][subject-id].valueReference.identifier.value 1..1 MS
 * agent[user].extension[otherId][subject-id].valueReference.identifier.value ^short = "SAML Attribute subject-id"
@@ -196,7 +197,7 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity contains 
-	consent 0..1
+	consent 0..*
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
@@ -243,8 +244,8 @@ ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[0] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
-* agent[user].type.coding[1] = UserAgentTypes#UserSamlAgent
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
@@ -317,8 +318,11 @@ assurance | authenticated AAL 4
 
 
 
-
-
+Instance: Dr-SAML-QDI
+InstanceOf: DocumentReference
+* status = #current
+* content.attachment.id = "ig-loader-QDI-SAML-20211210.txt"
+* context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
 
 Instance: ex-auditPoke-SAML-QDI-Min
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
@@ -359,7 +363,7 @@ AuthzDecisionStatement | nesting
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
-* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].who.identifier.system = "ldap://example.com/CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
@@ -401,7 +405,7 @@ AuthzDecisionStatement | nesting
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
-* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].who.identifier.system = "ldap://example.com/CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."

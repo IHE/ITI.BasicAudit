@@ -12,7 +12,7 @@ The Basic Audit Log Patterns (BasicAudit) **Content Profile** defines some basic
 ### Organization of This Guide
 This guide is organized into three main sections:
 
-1. Volume 1 [52 BasicAudit Introduction](volume-1.html)
+1. Volume 1: [52 BasicAudit Introduction](volume-1.html)
     1. [52.1 BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
     2. [52.2 BasicAudit Actor Options](volume-1.html#1522-basicaudit-actor-options)
     3. [52.3 BasicAudit Required Groupings](volume-1.html#1523-basicaudit-required-actor-grouping)

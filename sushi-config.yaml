@@ -50,10 +50,10 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 
 pages:
   index.md:
-    title: Patient Demographics Query for Mobile
+    title: Basic Audit
     generation: markdown
   volume-1.md:
-    title: 1:52 Patient Demographics Query for Mobile (BasicAudit)
+    title: 1:52 Basic Audit
     generation: markdown
   content.md:
     title: 3:5.7 Basic Audit Log Patterns
@@ -65,7 +65,7 @@ pages:
     title: BasicAudit Open and Closed issues
     generation: markdown
   other.md:
-    title: Changes to other Profiles
+    title: Changes to Other Profiles
     generation: markdown
   no.md:
     title: 4:6 Norway National Extension

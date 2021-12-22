@@ -1,8 +1,6 @@
-
-
 ### 3:5.7.1 Scope
 
-All but Delete are following a similar pattern of the initiator (client) of the RESTful interaction is identified as the Source Role ID, where the responder (server) is the Destination Role ID. This pattern is found in DICOM and XDS. This may not be as clear as would be favored. It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
+All but Delete follow a similar pattern of the initiator (client) of the RESTful interaction is identified as the Source Role ID, where the responder (server) is the Destination Role ID. This pattern is found in both DICOM and XDS.  It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
 
 ### 3:5.7.2 Content
 

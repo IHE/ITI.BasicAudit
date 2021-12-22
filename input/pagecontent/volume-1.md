@@ -134,7 +134,7 @@ Given the http RESTful operations of Create, Read, Update, Delete, and Search; t
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
-Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how a activity AuditEvent (e.g. see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 Security Token](content.html#3574-security-token) for the pattern definitions and examples.
+Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how an activity AuditEvent (see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 Security Token](content.html#3574-security-token) for the pattern definitions and examples.
 
 #### 1:52.4.2.3 Use Case #3: Privacy relevant disclosure event
 
@@ -147,7 +147,7 @@ This profile does not define any transactions. This profile defines AuditEvent p
 In some cases this profile has defined a minimally-populated AuditEvent that is focused on recording identifiers with no descriptive or replication. The minimally-populated AuditEvent helps preserve privacy of the data, actors, and events recorded in the AuditEvent. The minimally-populated AuditEvent is expected to be used by an audit log using agent that has knowledge of the source material for these identifiers, and has access rights to use those source materials. For example, recording a Practitioner id, without recording the Practitioner name or other elements recorded in the Practitioner resource; where audit log analysis would use an organization directory where that identitifier can be looked up to find the full details of the Practitioner.
 
 <div markdown="1" class="stu-note">
-TODO: Should a minimally populated or maximum populated AuditEvent have a defiend .meta.security so as to be more able to be access controlled at the Audit Consumer API?
+TODO: Should a minimally populated or maximum populated AuditEvent have a defined .meta.security so as to be more able to be access controlled at the Audit Consumer API?
 </div>
 
 ## 1:52.6 BasicAudit Cross-Profile Considerations
@@ -155,5 +155,3 @@ TODO: Should a minimally populated or maximum populated AuditEvent have a defien
 This profile defines some AuditEvent patterns for use when there is not a more specific AuditEvent pattern defined. Thus when grouped with an IHE Profile that has defined an AuditEvent (AuditMessage) pattern, that more specific pattern defined in the grouped IHE Profile shall be used.
 
 The patterns defined here might be used as profiling parent to a more specific defined AuditEvent.
-
-

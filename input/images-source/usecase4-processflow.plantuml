@@ -1,0 +1,23 @@
+@startuml
+hide footbox
+participant "User" as User
+participant "Client" as Client
+participant "Authorization Service" as AuthZ
+participant "Resource Server" as Resource
+participant "Audit Repository" as AuditRepository
+
+User -> Client: User uses a Client app
+activate Client
+group User and Client are used within Organization context
+group User has selected a specific Patient
+Client -> AuthZ: Client App requests Authorization Decision for a given Patient
+activate AuthZ
+AuthZ -> AuthZ: Check Consent
+AuthZ -> AuditRepository : Authorization Server records audit event
+AuthZ -> Client: Permit
+deactivate AuthZ
+Client -> Resource: Uses Permit token to access Resources
+end
+end
+deactivate Client
+@enduml

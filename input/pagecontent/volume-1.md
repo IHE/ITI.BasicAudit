@@ -140,6 +140,17 @@ Given that a security relevant event is being recorded, for example Generic FHIR
 
 Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.5 Privacy Disclosure Audit Message](content.html#3575-privacy-disclosure-audit-message)
 
+#### 1:52.4.2.4 Use Case #4: Authorization Decision event
+
+Given that an authorization service makes Authorization Decisions, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Authorization Decision Audit Message](content.html#3576-authorization-decision-audit-message)
+
+<div>
+{%include usecase4-processflow.svg%}
+</div>
+<br clear="all">
+
+**Figure: Authorization Decision process flow**
+
 ## 1:52.5 BasicAudit Security Considerations
 
 This profile does not define any transactions. This profile defines AuditEvent patterns to be used when a more specific AuditEvent pattern is defined. 

@@ -36,3 +36,5 @@ I intend to add many examples that are not compliant to the profiles, but should
 Should response time be recorded in the .period element?
      
 I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes?
+
+could create profiles here, that depend on MHD, PDQm, PIXm defined AuditEvent profiles and adds to them the IUA further refinement. Could have examples that declare conformance to original (MHD/PDQm/PIXm), and also the RESTful equivilant, and also the IUA refinement. These examples will show where deviations are, and then we can determine if those deviations are okay or should be fixed.

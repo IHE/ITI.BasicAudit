@@ -208,3 +208,9 @@ The following is the layout of the Disclosure audit event. This pattern will be 
 * [Disclosure reported by the Source](StructureDefinition-IHE.BasicAudit.PrivacyDisclosure.Source.html)
   * [examples](StructureDefinition-IHE.BasicAudit.PrivacyDisclosure.Source-examples.html)
   
+### 3:5.7.6 Authorization Decision Audit Message
+
+This set of auditEvent messages would be recorded by an Authorization Service when an authorization decision is rendered. Success would indicate that a Permit is allowed, Failure would indicate that Deny was returned as the authorization decision.
+
+* [Authorization Decision inclusive of Consent](StructureDefinition-IHE.BasicAudit.AuthZconsent.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.AuthZconsent-examples.html)

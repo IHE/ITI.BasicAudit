@@ -19,7 +19,7 @@ contact:
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 copyright: IHE http://www.ihe.net/Governance/#Intellectual_Property
 description: >-
-  Basic Audit for FHIR REST and operations where the activity includes a subject.
+  Basic AuditEvent patterns including FHIR REST and operations where the activity includes a subject.
 license: CC-BY-SA-4.0
 date: 2021-10-28
 version: 0.1.0

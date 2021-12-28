@@ -320,9 +320,12 @@ assurance | authenticated AAL 4
 
 Instance: Dr-SAML-QDI
 InstanceOf: DocumentReference
+Title: "SAML example from CareQuality"
+Description: "Example of a SAML assertion as seen in CareQuality."
 * status = #current
 * content.attachment.id = "ig-loader-QDI-SAML-20211210.txt"
 * context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
+
 
 Instance: ex-auditPoke-SAML-QDI-Min
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
@@ -367,6 +370,7 @@ AuthzDecisionStatement | nesting
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+
 
 Instance: ex-auditPoke-SAML-QDI-Comp
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive

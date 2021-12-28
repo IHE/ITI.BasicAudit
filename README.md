@@ -8,8 +8,7 @@ This Implementation Guide provides AuditEvent profiles and examples for some com
 * some communities would like more comprehensive data in the AuditEvent than the minimal (identifier centric)
 * some communities would like to record specific Query/Search types with full search results in the auditEvent
 * a major contribution will be a huge number of examples that align with these guidelines. 
+* an auditEvent pattern for an Authorization Service Decision
 
 continuous build http://build.fhir.org/ig/IHE/ITI.BasicAudit/branches/main/index.html
-
-
 

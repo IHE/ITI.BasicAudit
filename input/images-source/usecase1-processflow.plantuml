@@ -1,9 +1,9 @@
 @startuml
 hide footbox
 
-participant "Data using Client" as Client
-participant "Data Server" as Server
-participant "Audit Repository" as AuditRepository
+participant "ANY Secure Client" as Client
+participant "ANY Secure Server" as Server
+participant "Audit Record Repository" as AuditRepository
 Client -> Server : 1. Client requests some data from the Server
 activate Server
 activate Client

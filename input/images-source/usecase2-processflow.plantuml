@@ -1,7 +1,7 @@
 @startuml
 hide footbox
-participant "Audit using Client" as AuditClient
-participant "Audit Repository" as AuditRepository
+participant "Audit Consumer" as AuditClient
+participant "Audit Record Repository" as AuditRepository
 AuditClient -> AuditRepository : 1. Client requests AuditEvent records for Patient X
 activate AuditRepository
 activate AuditClient

@@ -88,7 +88,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * agent[user].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[user].policy MS // input user token id
 * agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // humans are not network devices
+* agent[user].network 0..0 // users are not network devices
 * agent[user].purposeOfUse MS // if the requested purposeOfUse is applied to just the user
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who 1..1 MS

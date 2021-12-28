@@ -44,7 +44,7 @@ Defined codes for SAML vs OAuth to enable differentiation of .policy as the toke
 ValueSet: UserAgentTypesVS
 Title: "Agent types holding User-Agent"
 Description: """
-AuditEvent.agent.type values holding OAuth/SAML identified user. Note that user is not just humans, but representes the higest agent responsible for triggering the activity being recorded in the AuditEvent.
+AuditEvent.agent.type values holding OAuth/SAML identified user. Note that user is not just users, but representes the higest agent responsible for triggering the activity being recorded in the AuditEvent.
 
 Often this agent also has a type coding that is more specific to the transaction and the direction of the transaction.
 - http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // use for query/retrieve

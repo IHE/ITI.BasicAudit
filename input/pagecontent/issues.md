@@ -12,7 +12,7 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - SAML profiling is focused on when a SAML token is used. There is no profiling of obtaining (access control decision). This is because [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) only profiled the use.
 - Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
 - Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
-	
+- add short descriptions to profiled elements when needed / useful.	
 	
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   

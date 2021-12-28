@@ -25,7 +25,7 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * agent contains 
     client 1..1 and 
     server 1..1 and 
-    human 0..1
+    user 0..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110153 "Source Role ID"
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
@@ -46,17 +46,17 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * agent[server].policy 0..0 
 * agent[server].media 0..0 
 * agent[server].purposeOfUse 0..0 
-* agent[human].type from DataSources (required)
-* agent[human].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
-* agent[human].requestor = true
-* agent[human].role MS // if the OAuth token includes any roles, they are recorded here
-* agent[human].altId 0..0 // discouraged
-* agent[human].name MS // might also be in .who.text but here is searchable
-* agent[human].location 0..0 // discouraged as unlikely to be known in this scenario
-* agent[human].policy 0..0 // discouraged as unlikely to be known in this scenario
-* agent[human].media 0..0 // media is physical storage media identification
-* agent[human].network 0..0 // humans are not network devices
-* agent[human].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
+* agent[user].type from DataSources (required)
+* agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
+* agent[user].requestor = true
+* agent[user].role MS // if the OAuth token includes any roles, they are recorded here
+* agent[user].altId 0..0 // discouraged
+* agent[user].name MS // might also be in .who.text but here is searchable
+* agent[user].location 0..0 // discouraged as unlikely to be known in this scenario
+* agent[user].policy 0..0 // discouraged as unlikely to be known in this scenario
+* agent[user].media 0..0 // media is physical storage media identification
+* agent[user].network 0..0 // users are not network devices
+* agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"

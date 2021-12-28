@@ -24,9 +24,9 @@ Description: "Audit Example for a RESTful read of a resource with a patient subj
 * agent[client].requestor = false
 * agent[client].network.address = "http://server.example.com/fhir"
 * agent[client].network.type = http://hl7.org/fhir/network-type#5 "URI"
-* agent[human].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
-* agent[human].who.display = "John Smith" // just a display name pulled from the OAuth token
-* agent[human].requestor = true
+* agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
+* agent[user].requestor = true
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)

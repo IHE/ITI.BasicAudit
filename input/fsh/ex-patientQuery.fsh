@@ -1,11 +1,10 @@
-
+////   REMEMBER to update the -intro.md files in pagecontent   ////
 /////////////////////////////////////////////////////////////////////////////////////////
 Instance: ex-auditBasicQueryGetNoPatient
 InstanceOf: Query
 Title: "Server - Audit Example of a basic Query (GET)"
 Description: """
 Audit Example for a RESTful Query using GET with NO patient subject, recorded by the Server.
-
 - recorded by the server
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
@@ -55,7 +54,6 @@ InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (GET)"
 Description: """
 Audit Example for a RESTful Query using GET with a patient subject, recorded by the Server
-
 - recorded by the server peer [client](AuditEvent-ex-auditBasicQueryGetClient.html)
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
@@ -110,7 +108,6 @@ InstanceOf: PatientQuery
 Title: "Client - Audit Example of a basic patient identifiable Query (GET)"
 Description: """
 Audit Example for a RESTful Query using GET with a patient subject, recorded by the Client
-
 - recorded by the client peer [server](AuditEvent-ex-auditBasicQueryGetServer.html)
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
@@ -167,7 +164,6 @@ InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (POST)"
 Description: """
 Audit Example for a RESTful Query using POST with a patient subject, recorded by the server
-
 - recorded by the server
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org

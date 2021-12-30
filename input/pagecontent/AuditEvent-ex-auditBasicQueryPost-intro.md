@@ -1,11 +1,12 @@
 Server - Audit Example of a basic patient identifiable Query (POST)
 
-Audit Example for a RESTful Query (POST) of a resource with a patient subject.
-- as recorded by the server
-- a FHIR POST query 
-- by client on an IPv6 network
+Audit Example for a RESTful Query using POST with a patient subject, recorded by the server
+- recorded by the server
+- server is FHIR application server defined by ex-device
+- client is a computer at myMachine.example.org
+- user is John Smith
+- query is for an Observation for given patient
 - patient is specified
-- user is specified
 
 The search received, and thus recorded:
 ```

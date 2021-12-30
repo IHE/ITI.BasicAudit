@@ -1,8 +1,7 @@
-Client - Audit Example of a basic patient identifiable Query (GET)
+Server - Audit Example of a basic patient identifiable Query (GET)
 
-Audit Example for a RESTful Query using GET with a patient subject, recorded by the Client
-
-- recorded by the client peer [server](AuditEvent-ex-auditBasicQueryGetServer.html)
+Audit Example for a RESTful Query using GET with a patient subject, recorded by the Server
+- recorded by the server peer [client](AuditEvent-ex-auditBasicQueryGetClient.html)
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
 - user is John Smith
@@ -17,3 +16,4 @@ GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21
 Accept: application/fhir+json; fhirVersion=4.0
 X-Request-Id: cc6d168e-5871-11ec-bf63-0242ac130002
 ```
+

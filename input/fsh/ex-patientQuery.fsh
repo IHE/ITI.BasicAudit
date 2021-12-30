@@ -54,7 +54,8 @@ InstanceOf: PatientQuery
 Title: "Server - Audit Example of a basic patient identifiable Query (GET)"
 Description: """
 Audit Example for a RESTful Query using GET with a patient subject, recorded by the Server
-- recorded by the server peer [client](AuditEvent-ex-auditBasicQueryGetClient.html)
+- recorded by the server 
+  - see same event as recorded by the [client](AuditEvent-ex-auditBasicQueryGetClient.html)
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
 - user is John Smith
@@ -108,7 +109,8 @@ InstanceOf: PatientQuery
 Title: "Client - Audit Example of a basic patient identifiable Query (GET)"
 Description: """
 Audit Example for a RESTful Query using GET with a patient subject, recorded by the Client
-- recorded by the client peer [server](AuditEvent-ex-auditBasicQueryGetServer.html)
+- recorded by the client
+  -  see same event as recorded by the [server](AuditEvent-ex-auditBasicQueryGetServer.html)
 - server is FHIR application server defined by ex-device
 - client is a computer at myMachine.example.org
 - user is John Smith

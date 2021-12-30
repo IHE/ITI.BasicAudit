@@ -65,19 +65,34 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 * agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
 * entity ^slicing.discriminator.type = #pattern
-* entity ^slicing.discriminator.path = "type"
+* entity ^slicing.discriminator.path = "role"
 * entity ^slicing.rules = #closed
 * entity 1..1
 * entity contains 
-    token-request 1..1 
+    token-request 1..1 and
+    token-response 0..1	
 * entity[token-request].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[token-request].role = http://terminology.hl7.org/CodeSystem/object-role#13 "Security Resource"
+* entity[token-request].role = http://terminology.hl7.org/CodeSystem/object-role#24 "Query"
 * entity[token-request].what 0..0
 * entity[token-request].lifecycle 0..0 
 * entity[token-request].securityLabel 0..0
 * entity[token-request].name 0..0
 * entity[token-request].query 1..1
-// query contains the http URL requested
+// query contains the http request in raw form
 * entity[token-request].detail 0..0
+// detail contains key parts of the request 
 
+* entity[token-response].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[token-response].role = http://terminology.hl7.org/CodeSystem/object-role#13 "Security Resource"
+* entity[token-response].what 1..1
+// what holds the token id issued
+* entity[token-response].lifecycle 0..0 
+* entity[token-response].securityLabel 0..0
+* entity[token-response].name 0..0
+* entity[token-response].query 0..0
+// query contains the http request, without the code_verifier value 
+* entity[token-response].detail 1..*
+// detail holds the key values from the response
 
+//TODO - use the 4 examples from IUA
+// Figure 3.71.4.1.2.2-2: Example Authorization Request

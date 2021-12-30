@@ -12,7 +12,7 @@ All but Delete follow a similar pattern of the initiator (client) of the RESTful
 
 When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns include a `user` slice that is minimally populated. These AuditEvent patterns can be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
 
-There are two sets of profiles distinguished by [Patient as a subject](volume-1.html#1524134-patient-as-a-subject) being mandated to be populated. 
+There are two sets of profiles distinguished by [Patient as a subject](volume-1.html#152416-patient-as-a-subject) being mandated to be populated. 
 
  REST event | basic profile | with patient | examples
 -----------|---------------|-----------------------------
@@ -20,7 +20,7 @@ Create (create) | [Create](StructureDefinition-IHE.BasicAudit.Create.html) | [Pa
 Read (read and vread) | [Read](StructureDefinition-IHE.BasicAudit.Read.html) | [PatientRead](StructureDefinition-IHE.BasicAudit.PatientRead.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientRead-examples.html)
 Update (update, patch) | [Update](StructureDefinition-IHE.BasicAudit.Update.html) | [PatientUpdate](StructureDefinition-IHE.BasicAudit.PatientUpdate.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientUpdate-examples.html)
 Delete (delete) | [Delete](StructureDefinition-IHE.BasicAudit.Delete.html) |  [PatientDelete](StructureDefinition-IHE.BasicAudit.PatientDelete.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientDelete-examples.html)
-Execute (search and query) | [Query](StructureDefinition-IHE.BasicAudit.Query.html) | [PatientQuery)](StructureDefinition-IHE.BasicAudit.PatientQuery.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientQuery-examples.html)
+Execute (search and query) | [Query](StructureDefinition-IHE.BasicAudit.Query.html) | [PatientQuery](StructureDefinition-IHE.BasicAudit.PatientQuery.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientQuery-examples.html)
 {:.grid}
 
 An example of an auditable event being recorded by the client and server is represented by the Create examples 
@@ -53,7 +53,7 @@ TODO: Should there be any difference to the server .agent when https is used vs 
 
 The [IHE-XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) profile defines a SAML Security Token that is used to secure transactions.
 
-##### 3:5.7.4.1.1 SAML Minimal
+##### 3:5.7.4.1.1 SAML - Minimal AuditEvent record
 
 Follow [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) recommendation to encode a [UserName string](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2), and place that the ATNA Audit message `UserName` element; and [preserve the PurposeOfUse](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.2.3.1). The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) specification in use at the writing of [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) was limited to the DICOM AuditMessage. Now that IHE ATNA includes a FHIR AuditEvent model these attributes can be preserved more fully in the .agent.who.identifier element. The XUA specification indicated that the [Subject-Role](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.3.1) may be used to populate the Audit Message. (Note also that XUA recommends alias be filled with SPProvidedID which is not defined in XUA andis found to be deprecated in many specifiations)
 
@@ -62,7 +62,7 @@ The Minimal AuditEvent pattern defined here is not the same as the one defined i
 * [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
 
-#### 3:5.7.4.1.2 SAML Comprehensive
+##### 3:5.7.4.1.2 SAML - Comprehensive AuditEvent record
 
 This pattern preserves most SAML attributes in the AuditEvent. Not all are preserved as some attributes are proven during the SAML token validation and thus carry no further informtion useful in an AuditEvent (e.g. not before). 
 
@@ -75,9 +75,9 @@ For those using SAML beyond XUA, there is no specific guidance here.
 
 ##### 3:5.7.4.1.3 SAML mapping to AuditEvent
 
-The following table uses a short-hand to keep the table compact. It is presumed the reader can understand the SAML attribute describing and the FHIR AuditEvent describing. (TODO, check this theory)
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. 
 
-| SAML attribute               | FHIR AuditEvent Comprehensive     | FHIR AuditEvent Minimal           |
+| SAML field                   | Comprehensive AuditEvent     | Minimal AuditEvent           |
 |------------------------------|-----------------------------------|-----------------------------------|
 | ID                           | agent[user].policy | agent[user].policy |
 | Issuer                       | agent[user].who.identifier.system | agent[user].who.identifier.system |
@@ -91,14 +91,14 @@ The following table uses a short-hand to keep the table compact. It is presumed 
 | AudienceRestrictions         |   |
 | ProxyRestrictions            |   |
 | OneTimeUser                  |   |
-| AuthnContextClassRef         |   |
+| AuthnContextClassRef         | agent[user].extension[assuranceLevel]  |
 | AuthnContextDeclRef          |   |
-| ~subject:subject-id          | somewhere ? |
-| ~subject:organization        | somewhere ? |
-| ~subject:organization-id     | somewhere ? |
-| ~subject:npi                 | somewhere ? |
-| ~subject:provider-identifier | somewhere ? |
-| ~subject:role                | agent[user].role | agent[user].role
+| ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value |
+| ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value |
+| ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value |
+| ~subject:organization        | agent[userorg].who.display |
+| ~subject:organization-id     | agent[userorg].who.identifier.value |
+| ~subject:role                | agent[user].role | agent[user].role |
 | ~subject:purposeofuse        | agent[user].purposeOfUse | agent[user].purposeOfUse
 | ~bppc:2007:docid             | entity[consent].what.identifier.value |
 | ~xua:2012:acp                | entity[consent].detail.valueString |

@@ -118,15 +118,21 @@ With Comprehensive AuditEvent, the search results might be preserved in the Audi
 
 In Cross-Community settings making full access to all of the needed directory and registry services may not be logictically possible. The counter argument is that when one party needs to perform AuditEvent log analysis and has suspiction based on that analysis, they could use out-of-band methods to request a lookup of an identifier. For example, when the AuditEvent log shows a strange behaviour by a user identifier, such as an unusually large number of search activities at strange times of day or searches against a VIP patient. These out-of-band requests should be supported by the Cross-Community policy agreements.
 
-##### 1:52.4.1.3.3 Best Effort
+#### 1:52.4.1.4 Query Parameter Handling
+
+The raw search request is base64 encoded and placed in the .entity[query].query element. The base64 encoding of the raw search request enables preserving exactly what was requested, including possibly malicious patterns. This enables detection of malicious or malformed requests.
+
+The cleaned search may be recorded (not base64) in the .entity[query].description. The cleaned search request would have removed parameters that were not understood/supported. The cleaned search request in the .description element enables more efficient processing.
+
+#### 1:52.4.1.5 Best Effort
 
 The AuditEvent should be populated with best-effort. This principle recognizes that there are times when an AuditEvent can't be fully populated due to the recording entity not having access to all of the information. The principle recognizes that recording some information is better than failing to record any AuditEvent due to this lack of elements to fit the pattern. These cases where lesser information is available to be recorded tend to be during failure-modes, which leads to the importance to record the elements that are known.
 
 This principle also recognizes that some detail could be obtained, but through extreme effort. This extreme effort is often not justified. So best-effort does not compel the use of extreme effort to obtain the missing information. For example, during a network transaction where the AuditEvent pattern is calling for the name of the user in addition to the user identifier, the name could be looked up in a directory, but this would be extreme effort that is not called for by best-effort. 
 
-#### 1:52.4.1.3.4 Patient as a Subject
+#### 1:52.4.1.6 Patient as a Subject
 
-It is a best practice to include a reference to the Patient/Subject affected by any auditable event, in order to enable Privacy Accounting of Disclosures and Access Logs, and to enable privacy office and security office audit log analysis. Reasonable efforts should be taken to assure the Patient/Subject is recorded, but it is recognized that there are times when this is [not reasonable](#1524133-best-effort).
+It is a best practice to include a reference to the Patient/Subject affected by any auditable event, in order to enable Privacy Accounting of Disclosures and Access Logs, and to enable privacy office and security office audit log analysis. Reasonable efforts should be taken to assure the Patient/Subject is recorded, but it is recognized that there are times when this is [not reasonable](#152415-best-effort).
 
 The Patient/Subject of an activity is indicated in an .entity element; with the .entity.who indicating the Patient reference, and the .entity.type indicating “1” Person, and the .entity.role indicating “1” patient. No other elements in this .entity need to be filled out. The indicator of the .entity.who, .entity.type, and .entity.role are enough to indicate that this AuditEvent activity has a subject as indicated.
 

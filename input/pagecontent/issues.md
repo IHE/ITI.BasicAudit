@@ -13,6 +13,7 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
 - Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
 - add short descriptions to profiled elements when needed / useful.	
+- is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
 	
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   

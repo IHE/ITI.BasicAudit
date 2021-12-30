@@ -75,12 +75,13 @@ A basic AuditEvent profile for when an activity was authorized by an SAML access
 - Presumes that the consent and server have been identified in agent elements, best case with certificate identities
 - Then that AuditEvent would follow this profile regarding recording the SAML access token details
 
-| SAML field            | FHIR AuditEvent Minimal
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. 
+
+| SAML field            | Minimal AuditEvent
 |-----------------------|----------------------|
 | ID                    | agent[user].policy
 | Issuer                | agent[user].who.identifier.system
 | Subject.NameID        | agent[user].who.identifier.value
-| ~subject:role         | agent[user].role
 | ~subject:purposeofuse | agent[user].purposeOfUse
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
@@ -99,9 +100,8 @@ note: this profile records minimal information from the SAML access token, which
 * agent[user].who.identifier.value 1..1 MS
 * agent[user].who.identifier.value ^short = "SAML Subject.NameID"
 * agent[user].requestor = true
-* agent[user].role MS 
-* agent[user].role ^short = "SAML subject:role(s)"
-* agent[user].altId 0..0 // discouraged
+* agent[user].role 0.. // discouraged
+* agent[user].altId 0.. // discouraged
 * agent[user].name 0..1 // not sure where you would get it from
 * agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"
@@ -118,14 +118,20 @@ Parent:         AuditEvent
 Id:             IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
-A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token.
+A basic AuditEvent profile for when an activity was authorized by an SAML access token. This profile is expected to be used with some other detail that explains the activity. This profile only covers the SAML access token. 
+
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. 
 
 **Builds upon the Minimal**
 
-| SAML field               | FHIR AuditEvent Comprehensive 
+| SAML field               | Comprehensive AuditEvent
 |------------------------------|-----------------------------------|
-| ...  | ...
-| ???                          | agent[user].extension[assuranceLevel]
+| ID                    | agent[user].policy
+| Issuer                | agent[user].who.identifier.system
+| Subject.NameID        | agent[user].who.identifier.value
+| ~subject:role         | agent[user].role
+| ~subject:purposeofuse | agent[user].purposeOfUse
+| AuthnContextClassRef         | agent[user].extension[assuranceLevel]
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value
 | ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value
@@ -228,7 +234,7 @@ Example AuditEvent showing just the minimal SAML access token. The event being r
 
 Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
 
-SAML | example value |
+SAML field | example value |
 -----|-----|
 Subject.NameID  | "05086900124" 
 Issuer | "https://sts.sykehuspartner.no" 
@@ -252,6 +258,46 @@ ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 
 
 
+Instance: ex-auditPoke-SAML-Min2
+InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+Title: "Audit Example of a basic SAML access token of minimal with multiple PurposeOfUse"
+Description: """
+Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
+
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+
+SAML field | example value |
+-----|-----|
+Subject.NameID  | "JoeL" 
+Issuer | "https://carequality.org" 
+ID | "_5a6b51b7-cd3e-4629-aac8-9846cbc3cf84" 
+~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, TREAT
+~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, ETREAT
+~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, HPAYMT
+~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, HOPERAT
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110100 "Application Activity"
+* action = #R
+* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+//* severity = #Informational
+* recorded = 2021-12-03T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].who.identifier.value = "JoeL"
+* agent[user].who.identifier.system = "https://carequality.org"
+* agent[user].policy = "_5a6b51b7-cd3e-4629-aac8-9846cbc3cf84"
+* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
+* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#ETREAT
+* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HPAYMT
+* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
+
+
+
 Instance: ex-auditPoke-SAML-Comp
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title: "Audit Example of a basic SAML access token of comprehensive"
@@ -262,7 +308,7 @@ Comprehensive is different than Minimal in that it presumes that when the AuditE
 
 **Builds upon the Minimal**
 
-SAML | example value |
+SAML field | example value |
 -----|-----|
 Subject.NameID  | "05086900124" 
 Issuer | "https://sts.sykehuspartner.no" 
@@ -335,7 +381,7 @@ Example AuditEvent showing QDI sample with just the minimal SAML access token. T
 
 Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
 
-SAML | example value |
+SAML field | example value |
 -----|-----|
 Subject.NameID  | "UID=kskagerb" 
 Issuer | "CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US" 
@@ -350,6 +396,7 @@ resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
 AuthzDecisionStatement | nesting
 .AccessConsentPolicy | "urn:oid:1.2.3.4"
 .InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
+AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -368,8 +415,12 @@ AuthzDecisionStatement | nesting
 // the string must also be url escaped. 
 * agent[user].who.identifier.system = "ldap://example.com/CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
-* agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+
+
+
+
+
 
 
 Instance: ex-auditPoke-SAML-QDI-Comp
@@ -393,6 +444,7 @@ resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
 AuthzDecisionStatement | nesting
 .AccessConsentPolicy | "urn:oid:1.2.3.4"
 .InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
+AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -413,7 +465,7 @@ AuthzDecisionStatement | nesting
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
-
+* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
 * agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][=].valueReference.identifier.value = "Karl S Skagerberg"
 

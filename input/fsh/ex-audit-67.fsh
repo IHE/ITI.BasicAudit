@@ -7,7 +7,7 @@ Title: "Audit Example of ITI-67 at Consumer"
 Description: "Audit Example for a Find Document References Transaction as recorded at the consumer"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-// BasicAudt - 1 - type and subtype
+// BasicAudit - 1 - type and subtype
 //* type = http://dicom.nema.org/resources/ontology/DCM#110112 "Query"
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
@@ -47,7 +47,7 @@ Title: "Audit Example of ITI-67 at responder"
 Description: "Audit Example for a Find Document References Transaction from responder perspective"
 Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-// BasicAudt - 1 - type and subtype
+// BasicAudit - 1 - type and subtype
 //* type = http://dicom.nema.org/resources/ontology/DCM#110112 "Query"
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E

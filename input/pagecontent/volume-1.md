@@ -124,6 +124,25 @@ The AuditEvent should be populated with best-effort. This principle recognizes t
 
 This principle also recognizes that some detail could be obtained, but through extreme effort. This extreme effort is often not justified. So best-effort does not compel the use of extreme effort to obtain the missing information. For example, during a network transaction where the AuditEvent pattern is calling for the name of the user in addition to the user identifier, the name could be looked up in a directory, but this would be extreme effort that is not called for by best-effort. 
 
+#### 1:52.4.1.3.4 Patient as a Subject
+
+It is a best practice to include a reference to the Patient/Subject affected by any auditable event, in order to enable Privacy Accounting of Disclosures and Access Logs, and to enable privacy office and security office audit log analysis. Reasonable efforts should be taken to assure the Patient/Subject is recorded, but it is recognized that there are times when this is [not reasonable](#1524133-best-effort).
+
+The Patient/Subject of an activity is indicated in an .entity element; with the .entity.who indicating the Patient reference, and the .entity.type indicating “1” Person, and the .entity.role indicating “1” patient. No other elements in this .entity need to be filled out. The indicator of the .entity.who, .entity.type, and .entity.role are enough to indicate that this AuditEvent activity has a subject as indicated.
+
+Where an activity impacts more than one Patient/Subject; multiple AuditEvent resources should be recorded, one for each Patient/Subject. This best enables segmentation of the AuditEvent details so as to limit the Privacy impact. The use of multiple AuditEvent is a best-practice and should be driven by a Policy. There will be cases where the use of multiple AuditEvent resources are not necessary, such as public health reporting.
+
+To record a REST interaction or $operation, it is often necessary to complete the transaction in order to determine the Patient/Subject. Inspection of the potential returned results may be necessary. Some REST Search/Query requests and $operations include parameters limiting the results to a specific Patient, in these cases this parameter informs the inclusion of the Patient reference.
+
+The Patient as a Subject is distinct from when the Patient is an Agent. When the Patient is the User, they would be indicated in an .agent and the .entity element would not be necessary. Some examples would be when the Patient is using a Patient-Portal, or when the Patient is authoring Patient Generated Health Data (PGHD).  
+
+Finding AuditEvents by Patient:
+* Finding AuditEvents where the Patient is an agent, one would use the `agent` search parameter.
+* Finding AuditEvents where the Patient is a subject, one would use the `entity` search parameter.
+* Finding AuditEvents where the Patient is either an agent or subject, one would use the `patient` search parameter.
+
+This Implementation Guide includes profiles that include the Patient as the subject.
+
 ### 1:52.4.2 Use Cases
 
 The AuditEvent patterns defined here cover the following Use Cases.

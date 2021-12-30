@@ -10,21 +10,20 @@ The following AuditEvent patterns are defined.
 
 All but Delete follow a similar pattern of the initiator (client) of the RESTful interaction is identified as the Source Role ID, where the responder (server) is the Destination Role ID. This pattern is found in both DICOM and XDS.  It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
 
-When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns will typically be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
+When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns include a `user` slice that is minimally populated. These AuditEvent patterns can be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
 
-* [Create (create)](StructureDefinition-IHE.BasicAudit.PatientCreate.html)
-  * [examples](StructureDefinition-IHE.BasicAudit.PatientCreate-examples.html)
-* [Read (read and vread)](StructureDefinition-IHE.BasicAudit.PatientRead.html)
-  * [examples](StructureDefinition-IHE.BasicAudit.PatientRead-examples.html)
-* [Update (update, patch)](StructureDefinition-IHE.BasicAudit.PatientUpdate.html)
-  * [examples](StructureDefinition-IHE.BasicAudit.PatientUpdate-examples.html)
-* [Delete (delete)](StructureDefinition-IHE.BasicAudit.PatientDelete.html)
-  * [examples](StructureDefinition-IHE.BasicAudit.PatientDelete-examples.html)
-* [Execute (search and query)](StructureDefinition-IHE.BasicAudit.PatientQuery.html)
-  * [examples](StructureDefinition-IHE.BasicAudit.PatientQuery-examples.html)
-  
-TODO: Explain how user is replaced by Security Token
-TODO: explain the various slices and how they are used. 
+There are two sets of profiles distinguished by [Patient as a subject](volume-1.html#1524134-patient-as-a-subject) being mandated to be populated. 
+
+ REST event | basic profile | with patient | examples
+-----------|---------------|-----------------------------
+Create (create) | [Create](StructureDefinition-IHE.BasicAudit.Create.html) | [PatientCreate](StructureDefinition-IHE.BasicAudit.PatientCreate.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientCreate-examples.html)
+Read (read and vread) | [Read](StructureDefinition-IHE.BasicAudit.Read.html) | [PatientRead](StructureDefinition-IHE.BasicAudit.PatientRead.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientRead-examples.html)
+Update (update, patch) | [Update](StructureDefinition-IHE.BasicAudit.Update.html) | [PatientUpdate](StructureDefinition-IHE.BasicAudit.PatientUpdate.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientUpdate-examples.html)
+Delete (delete) | [Delete](StructureDefinition-IHE.BasicAudit.Delete.html) |  [PatientDelete](StructureDefinition-IHE.BasicAudit.PatientDelete.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientDelete-examples.html)
+Execute (search and query) | [Query](StructureDefinition-IHE.BasicAudit.Query.html) | [PatientQuery)](StructureDefinition-IHE.BasicAudit.PatientQuery.html) | [examples](StructureDefinition-IHE.BasicAudit.PatientQuery-examples.html)
+{:.grid}
+
+An example of an auditable event being recorded by the client and server is represented by the Create examples 
 
 #### 3:5.7.3.1 X-Request-Id header 
 

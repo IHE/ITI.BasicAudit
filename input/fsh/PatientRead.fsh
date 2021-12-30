@@ -1,12 +1,12 @@
 
-Profile:        PatientRead
+Profile:        Read
 Parent:         AuditEvent
-Id:             IHE.BasicAudit.PatientRead
+Id:             IHE.BasicAudit.Read
 Title:          "Basic AuditEvent for a successful Read"
 Description:    """
-A basic AuditEvent profile for when a RESTful Read action happens successfully, and where there is an identifiable Patient subject associated with the read Resource.
+A basic AuditEvent profile for when a RESTful Read action happens successfully.
 
-* Given a Resource has a subject
+* Given a Resource has no Patient subject
 * And OAuth is used to authorize both app and user
 * When an App requests a RESTful Read to retrieve that Resource
 * Then an AuditEvent following this profile is recorded
@@ -20,8 +20,8 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully, 
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
-* agent ^slicing.rules = #closed
-* agent 2..3
+* agent ^slicing.rules = #open
+* agent 2..
 * agent contains 
     client 1..1 and 
     server 1..1 and 
@@ -60,21 +60,11 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully, 
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #closed
-* entity 2..
+* entity ^slicing.rules = #open
+* entity 1..
 * entity contains 
-    patient 1..1 and
 	transaction 0..1 and
     data 1..1
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
-* entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
-* entity[patient].what 1..1
-* entity[patient].what only Reference(Patient)
-* entity[patient].lifecycle 0..0 
-* entity[patient].securityLabel 0..0
-* entity[patient].name 0..0
-* entity[patient].query 0..0
-* entity[patient].detail 0..0
 * entity[transaction].type = BasicAuditEntityType#XrequestId
 * entity[transaction].what.identifier.value 1..1
 * entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
@@ -91,6 +81,42 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully, 
 * entity[data].name 0..0
 * entity[data].query 0..0
 * entity[data].detail 0..0
+
+
+
+
+Profile:        PatientRead
+Parent:         Read
+Id:             IHE.BasicAudit.PatientRead
+Title:          "Basic AuditEvent for a successful Read with a Patient"
+Description:    """
+A basic AuditEvent profile for when a RESTful Read action happens successfully, and where there is an identifiable Patient subject associated with the read Resource.
+
+* Given a Resource has a Patient subject
+* And OAuth is used to authorize both app and user
+* When an App requests a RESTful Read to retrieve that Resource
+* Then an AuditEvent following this profile is recorded
+"""
+* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.path = "type"
+* entity ^slicing.rules = #open
+* entity 2..
+* entity contains 
+    patient 1..1
+* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[patient].what 1..1
+* entity[patient].what only Reference(Patient)
+* entity[patient].lifecycle 0..0 
+* entity[patient].securityLabel 0..0
+* entity[patient].name 0..0
+* entity[patient].query 0..0
+* entity[patient].detail 0..0
+
+
+
+
+
 
 ValueSet: Reads
 Title: "subtypes for RESTful reads"

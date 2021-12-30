@@ -108,3 +108,13 @@ Description: "Dummy Consent example for completeness sake. No actual use of this
 * policy.uri = "urn:uuid:a7ff9fa3-fbb6-4c5e-a1cc-6128069bbd4b"
 
 
+Instance: ex-measurereport
+InstanceOf: MeasureReport
+Title: "Dummy MeasureReport example"
+Description: "Dummy MeasureReport example for completeness sake. No actual use of this resource other than an example target that is NOT patient specific."
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* status = #pending
+* type = #summary
+* measure = "http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Reporting"
+* period.start = "2020-04-05"
+* period.end = "2020-04-05"

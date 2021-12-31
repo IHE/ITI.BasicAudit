@@ -11,6 +11,7 @@ Code System URI 'urn:oid:2.16.578.1.12.4.1.1.9060' is unknown so the code cannot
 Code System URI 'http://dips.com/beslutningsmal' is unknown so the code cannot be validated
 Code System URI 'urn:oid:2.16.840.1.113883.6.96' is unknown so the code cannot be validated
 Code System URI 'urn:oid:2.16.840.1.113883.3.18.7.1' is unknown so the code cannot be validated
+Code System URI 'urn:oasis:names:tc:SAML:2.0:ac:classes' is unknown so the code cannot be validated
 
 # dummy example uses dummy data
 The Measure 'http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Reporting' could not be resolved, so no validation can be performed against the Measure

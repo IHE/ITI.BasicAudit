@@ -24,6 +24,8 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
 - could create profiles here, that depend on MHD, PDQm, PIXm defined AuditEvent profiles and adds to them the IUA further refinement. Could have examples that declare conformance to original (MHD/PDQm/PIXm), and also the RESTful equivilant, and also the IUA refinement. These examples will show where deviations are, and then we can determine if those deviations are okay or should be fixed.
 - OAuth profiling
+- example descriptions don't show up on the example page. For some examples I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
+
 
 # Open Issues
 

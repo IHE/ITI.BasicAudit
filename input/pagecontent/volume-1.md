@@ -108,7 +108,7 @@ With minimal AuditEvent the AuditEvent contains identifiers or References, and n
 
 With minimal AuditEvent, the AuditEvent contains only the search (aka, query) parameters, and never the results of the search. This too limits the size of the AuditEvent, and the exposure of sensitive results data into the AuditEvent log. The results can be determined by re-executing the search or query, adjusting the results based on the time of the search. 
 
-The minimal AuditEvent does not produce an audit log that is not sensitive, the resulting audit log is lower risk. 
+The minimal AuditEvent is lower risk, but would still contain sensitive data. 
 
 ##### 1:52.4.1.3.2 Comprehensive AuditEvent
 
@@ -123,6 +123,8 @@ In Cross-Community settings making full access to all of the needed directory an
 The raw search request is base64 encoded and placed in the .entity[query].query element. The base64 encoding of the raw search request enables preserving exactly what was requested, including possibly malicious patterns. This enables detection of malicious or malformed requests.
 
 The cleaned search may be recorded (not base64) in the .entity[query].description. The cleaned search request would have removed parameters that were not understood/supported. The cleaned search request in the .description element enables more efficient processing.
+
+The results of the search are not included in the minimal AuditEvent, and are recommended to not be included in the comprehensive AuditEvent. Recording the results of a seach in the AuditEvent will produce very large resources that are hard to process, and which replicate the database searched multiple times over. The AuditEvent record with search results contain highly sensitive data.
 
 #### 1:52.4.1.5 Best Effort
 
@@ -169,15 +171,15 @@ The generic interaction between a client and a server shown with interactions 1,
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
-Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how an activity AuditEvent (see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 Security Token](content.html#3574-security-token) for the pattern definitions and examples.
+Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how an activity AuditEvent (see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
 
 #### 1:52.4.2.3 Use Case #3: Privacy relevant disclosure event
 
-Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.5 Privacy Disclosure Audit Message](content.html#3575-privacy-disclosure-audit-message)
+Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.6 Privacy Disclosure Audit Message](content.html#3576-privacy-disclosure-audit-message)
 
 #### 1:52.4.2.4 Use Case #4: Authorization Decision event
 
-Given that an Authorization Service makes Authorization Decisions, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Authorization Decision Audit Message](content.html#3576-authorization-decision-audit-message)
+Given that an Authorization Service makes Authorization Decisions, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.7 Authorization Decision Audit Message](content.html#3577-authorization-decision-audit-message)
 
 <div>
 {%include usecase4-processflow.svg%}

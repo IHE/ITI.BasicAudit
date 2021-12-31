@@ -17,16 +17,13 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 	
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
-- All examples are recorded ONLY by the server. There should be also examples recorded by the client and by an intermediary. The difference is that the .source element indicates who is recording. Otherwise the pattern is the same.
-- Give an explaination of why Query is just saving the query parameters and NOT the query results.
 - Explain in narrative each profile 
 - I intend to add many examples that are not compliant to the profiles, but should be considered consumable by an Audit-Client and accepted at an Audit-Repository. These will include AuditEvent logs from various IHE profiles, and degenerate forms of the included RESTful. Note that audit logging is a best-effort concept, the profiles show the best-case but best-effort fills out the AuditEvent with everything available even if it is not fully compliant.
 - I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
-- could create profiles here, that depend on MHD, PDQm, PIXm defined AuditEvent profiles and adds to them the IUA further refinement. Could have examples that declare conformance to original (MHD/PDQm/PIXm), and also the RESTful equivilant, and also the IUA refinement. These examples will show where deviations are, and then we can determine if those deviations are okay or should be fixed.
 - OAuth profiling
-- example descriptions don't show up on the example page. For some examples I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
+- example descriptions don't show up on the page for that example. For some examples (the REST Query examples) I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
 - IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
-- Binary Adjunct files (used to hold examples of SAML assertions) are working, but throwing two errors. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
+- Not much of a problem, but tracking for a solution anyway -- Binary Adjunct files (used to hold examples of SAML assertions) are working in DocumentReference, but throw a file type error with Binary. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
 
 # Open Issues
 

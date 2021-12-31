@@ -29,31 +29,15 @@ An example of an auditable event being recorded by the client and server is repr
 
 Where it is known that a http RESTful transaction included a X-Request-Id, that value should be recorded in an .entity dedicated to X-Request-Id. This ID can be used to coorelated AuditEvents from client and server, and may aid with coorelation on further activitites recorded caused by the transaction. This means that the .entity holding the X-Request-Id may appear in AuditEvents beyond those defined here.
 
-### 3:5.7.4 Security Token
+### 3:5.7.4 SAML Security Token
 
-In this section we use the term "Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40), (b) an IUA OAuth Access Token being used in an [ITI-72](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72), or (c) any other SAML or OAuth Access Token used to secure an Interoperability transaction (e.g. [SMART Backend Services](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#presenting-an-access-token-to-fhir-api), or [SMART App Launch Framework](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api), or other)
-
-This specification presumes that the interactions to obtain the "Security Token" were themselves auditable events and properly recorded in the audit log. 
-
-<div markdown="1" class="stu-note">
-
-TODO: I notice that XUA and IUA did not define the audit event to be recorded when getting the token, just a minimal method to update an activity audit event with a username string. This model might be considered the miniest of minimal, where as here the minimal will be more reliant on ability to lookup token details.
-- Get Authenticated - See IUA ITI-71
-- Get Access Token - See IUA ITI-72
-- XUA does not profile the Get X-User Assertion transaction at all
-</div>
+In this section we use the term "SAML Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40), or (b) any other SAML token used to secure an Interoperability transaction. This specification presumes that the interactions to obtain the "SAML Security Token" were themselves auditable events and properly recorded in the audit log. 
 
 There are two patterns defined: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details taht could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
-<div markdown="1" class="stu-note">
-TODO: Should there be any difference to the server .agent when https is used vs http?
-</div>
-
-#### 3:5.7.4.1 SAML 
-
 The [IHE-XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) profile defines a SAML Security Token that is used to secure transactions.
 
-##### 3:5.7.4.1.1 SAML - Minimal AuditEvent record
+#### 3:5.7.4.1 SAML - Minimal AuditEvent record
 
 Follow [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) recommendation to encode a [UserName string](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2), and place that the ATNA Audit message `UserName` element; and [preserve the PurposeOfUse](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.2.3.1). The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) specification in use at the writing of [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) was limited to the DICOM AuditMessage. Now that IHE ATNA includes a FHIR AuditEvent model these attributes can be preserved more fully in the .agent.who.identifier element. The XUA specification indicated that the [Subject-Role](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.3.1) may be used to populate the Audit Message. (Note also that XUA recommends alias be filled with SPProvidedID which is not defined in XUA andis found to be deprecated in many specifiations)
 
@@ -62,7 +46,7 @@ The Minimal AuditEvent pattern defined here is not the same as the one defined i
 * [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
 
-##### 3:5.7.4.1.2 SAML - Comprehensive AuditEvent record
+#### 3:5.7.4.2 SAML - Comprehensive AuditEvent record
 
 This pattern preserves most SAML attributes in the AuditEvent. Not all are preserved as some attributes are proven during the SAML token validation and thus carry no further informtion useful in an AuditEvent (e.g. not before). 
 
@@ -73,7 +57,7 @@ For those using SAML beyond XUA, there is no specific guidance here.
 * [StructureDefinition profile of Basic AuditEvent pattern for Comprehensive](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive-examples.html)
 
-##### 3:5.7.4.1.3 SAML mapping to AuditEvent
+#### 3:5.7.4.3 SAML mapping to AuditEvent
 
 The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. 
 
@@ -108,27 +92,47 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 Other SAML attributes may be defined, but this specificaiton focuses on XUA attributes only.
 
-#### 3:5.7.4.2 OAuth 
+### 3:5.7.5 OAuth Security Token
 
-blah blah
+In this section we use the term "OAuth Security Token" in a general sense to refer to either (a) an [IUA](https://profiles.ihe.net/ITI/IUA/index.html) OAuth Access Token being used in an [ITI-72](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72), or (b) any other OAuth Access Token used to secure an Interoperability transaction (e.g. [SMART Backend Services](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#presenting-an-access-token-to-fhir-api), or [SMART App Launch Framework](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api), or other)
+
+This specification presumes that the interactions to obtain the "OAuth Security Token" were themselves auditable events and properly recorded in the audit log. 
 
 <div markdown="1" class="stu-note">
-TODO: Question. Given IUA. Why would the ITI-71 not record the token issued, and ITI-72 simply indicate to record the token (as appeared in the bearer header) in the activity audit event as the agent[source/client].who.identifier.value? Note that this is effectively what WILL happen at a web-server. Given that the access_token is a given X.Y.Z; recording just the Y is sufficient, as X and Z are the signature stuff. if you don't save the signature stuff then you are not enabling a replay.
 
-TODO: When IUA SAML token option is used, should the results look just like the SAML AuditEvent?
+TODO: I notice that IUA did not define the audit event to be recorded when getting the token, just a minimal method to update an activity audit event with a username string. This model might be considered the miniest of minimal, where as here the minimal will be more reliant on ability to lookup token details.
+- Get Authenticated - See IUA ITI-71
+- Get Access Token - See IUA ITI-72
 </div>
 
-##### 3:5.7.4.2.1 OAuth Minimal
+There are two patterns defined: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details taht could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
-Follow IUA like recommendation to create a username string, and place tha tin a .agent
+Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html), the AuditEvent specification here will focus on IUA interactions. The profiling AuditEvent
 
-also record the 
+<div>
+{%include IUA-processflow.svg%}
+</div>
+<br clear="all">
 
-##### 3:5.7.4.2.2 OAuth Comprehensive
+**Figure: OAuth Basic Processing (from IUA Figure 34.4.2.2-1)**
 
-blah blah 
+The figure above will be used to understand the following AuditEvent constraints. The Figure is first shown in [IUA as Figure 34.4.2.2-1](https://profiles.ihe.net/ITI/IUA/index.html#34422-process-flow). This is used as a general flow here.
 
-##### 3:5.7.4.2.3 mapping
+#### 3:5.7.5.1 Get Access Token (ITI-71)
+
+Defined here is the AuditEvent that the Authorization Server could record when successfully (Permit) processing of [IUA](https://profiles.ihe.net/ITI/IUA/index.html) [ITI TF-2: 3.71 Get Access Token \[ITI-71\]](https://profiles.ihe.net/ITI/IUA/index.html#371-get-access-token-iti-71). Which is made up of
+- Client Credential grant type - see [ITI TF-2: 3.71.4.1.2.1](https://profiles.ihe.net/ITI/IUA/index.html#3714121-client-credential-grant-type) and [3.71.4.1.3.1](https://profiles.ihe.net/ITI/IUA/index.html#3714131-client-credential-grant-type)
+- Authorization Code grant type - see [ITI TF-2: 3.71.4.1.2.2](https://profiles.ihe.net/ITI/IUA/index.html#3714122-authorization-code-grant-type) and [3.71.4.1.3.2](https://profiles.ihe.net/ITI/IUA/index.html#3714132-authorization-code-grant-type)
+
+There is an AuditEvent defined in IUA [3.71.5.1](https://profiles.ihe.net/ITI/IUA/index.html#37151-security-audit-considerations). This [AuditEvent is profiled](StructureDefinition-IHE.IUA.71.html)
+
+TODO: consider defining more AuditEvent profiles for each message in ITI-71.
+
+TODO: consider further refinement of the ITI-71 AuditEvent profile.
+
+#### 3:5.7.5.1.1 ITI-71 mapping to AuditEvent
+
+TODO: refinement?
 
 IUA ITI-71 Authorization Request
 
@@ -182,7 +186,66 @@ IUA ITI-71 JSON Web Token
 | ihe_bppc:acp
 {:.grid}
 
-### 3:5.7.5 Privacy Disclosure Audit Message
+
+#### 3:5.7.5.2 Incorporate Access Token (ITI-72)
+
+Defined here is the AuditEvent that the Client and Server could record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured.
+
+#### 3:5.7.5.3 ITI-72 mapping to AuditEvent
+
+IUA ITI-71 Authorization Request
+
+| IUA attribute | AuditEvent element |
+|---------------|--------------------|
+| clint_id | agent[client].who.identifier.value |
+| state | N/A |
+| resource | ? |
+| code_challenge | N/A |
+| code_challenge_method | N/A |
+| redirect_uri | N/A |
+| scope | ? |
+{:.grid}
+
+IUA ITI-71 Access Token Response
+
+| IUA attribute | AuditEvent element |
+|---------------|--------------------|
+| token_type | ? |
+| access_token | ? |
+| scope | ? |
+| expires_in | ? |
+| refresh_token | ? |
+| scope | ? |
+| code | ? |
+{:.grid}
+
+IUA ITI-71 JSON Web Token
+
+| IUA attribute | Description | AuditEvent element |
+|---------------|-------------|--------------------|
+| iss | JWT Issuer | ? |
+| sub | JWT Subject | ? |
+| aud | JWT Audience | ? |
+| jti | JWT ID | ? |
+| exp | JWT Expiration Time | ? |
+| nbf | JWT Not before | ? |
+| iat | JWT Issued at | ? |
+| client_id | OA2 client id | app id | ? |
+| scope | OA2 token scope | ? |
+| ihe_iua:subject_name 
+| ihe_iua:subject_organization
+| ihe_iua:subject_organization_id
+| ihe_iua:subject_role 
+| ihe_iua:purpose_of_use 
+| ihe_iua:home_community_id
+| ihe_iua:national_provider_identifier
+| ihe_iua:person_id
+| ihe_bppc:patient_id
+| ihe_bppc:doc_id
+| ihe_bppc:acp
+{:.grid}
+
+### 3:5.7.6 Privacy Disclosure Audit Message
 
 This is transformed from the content defined today in ATNA ITI-20 [2:3.20.8 Disclosure audit message](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.8). It is replicated here for ease of understanding, and is presented here using the FHIR AuditEvent. There are some differences caused and enabled by the FHIR AuditEvent schema and profiling.
 
@@ -209,7 +272,7 @@ The following is the layout of the Disclosure audit event. This pattern will be 
 * [Disclosure reported by the Source](StructureDefinition-IHE.BasicAudit.PrivacyDisclosure.Source.html)
   * [examples](StructureDefinition-IHE.BasicAudit.PrivacyDisclosure.Source-examples.html)
   
-### 3:5.7.6 Authorization Decision Audit Message
+### 3:5.7.7 Authorization Decision Audit Message
 
 This set of auditEvent messages would be recorded by an Authorization Service when an authorization decision is rendered. Success would indicate that a Permit is allowed, Failure would indicate that Deny was returned as the authorization decision.
 

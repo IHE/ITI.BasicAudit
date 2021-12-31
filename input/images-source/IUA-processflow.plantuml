@@ -1,0 +1,45 @@
+@startuml
+skinparam svgDimensionStyle false
+participant "Authorization Client" as Client
+participant "Authorization Server" as AS
+participant "Resource Server" as RS
+
+autonumber 0 1 "<b>[00]</b>"
+autoactivate on
+
+group (optional) Get Authorization Server Metadata (ITI-103)
+
+	Client-> AS : Authorization Server Metadata Request (ITI-103)
+	AS --> Client: Authorization Server Metadata Response
+
+	RS-> AS : Authorization Server Metadata Request (ITI-103)
+	AS --> RS: Authorization Server Metadata Response
+
+end
+
+group Get Access Token (ITI-71)
+	Client -> AS: Get Access Token Request
+	Client <-- AS: Get Access Token Response
+end
+
+group Incorporate Access Token (ITI-72)
+
+Client -> RS : Resource Request + Incorporate Access Token
+
+alt JWT or SAML token
+  RS -> RS: validate token
+  deactivate RS
+
+else introspect token
+
+  group Introspect Token (ITI-102)
+		RS -> AS : Introspect Token Request
+		AS -> AS : validate token
+		deactivate AS
+		AS --> RS: Introspect Token Response
+  end
+end
+
+Client <-- RS : Resource Response  
+end
+@enduml

@@ -151,7 +151,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~bppc:2007:docid             | entity[consent].what.identifier.value 
 | ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value 
 | ~xua:2012:acp                | entity[consent].detail.valueString 
-| ~resource:resource-id        | entity[consent-patient].what.identifier.value 
+| ~resource:resource-id        | entity[consent-patient].what.identifier.value
 """
 * agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
@@ -249,7 +249,7 @@ SAML field | example value |
 -----|-----|
 Subject.NameID  | "05086900124" 
 Issuer | "https://sts.sykehuspartner.no" 
-ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
+ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -381,7 +381,19 @@ Title: "SAML example from CareQuality"
 Description: "Example of a SAML assertion as seen in CareQuality."
 * status = #current
 * content.attachment.id = "ig-loader-QDI-SAML-20211210.txt"
+//* content.attachment.url = "Binary/B-SAML-QDI"
+* content.attachment.contentType = #application/xml
 * context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
+
+
+// binary throws a File Type error that DocumentReference does not
+//Instance: B-SAML-QDI
+//InstanceOf: Binary
+//Title: "SAML example from CareQuality"
+//Description: "Example of a SAML assertion as seen in CareQuality."
+//* contentType = #application/xml
+//* data = "ig-loader-QDI-SAML-20211210.txt"
+
 
 
 Instance: ex-auditPoke-SAML-QDI-Min

@@ -25,7 +25,8 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - could create profiles here, that depend on MHD, PDQm, PIXm defined AuditEvent profiles and adds to them the IUA further refinement. Could have examples that declare conformance to original (MHD/PDQm/PIXm), and also the RESTful equivilant, and also the IUA refinement. These examples will show where deviations are, and then we can determine if those deviations are okay or should be fixed.
 - OAuth profiling
 - example descriptions don't show up on the example page. For some examples I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
-
+- IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
+- Binary Adjunct files (used to hold examples of SAML assertions) are working, but throwing two errors. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
 
 # Open Issues
 

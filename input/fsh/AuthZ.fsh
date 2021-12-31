@@ -46,7 +46,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
   - Entity
     - patient subject
 	- consent on file for that patient
-	- other data may be recorded that was used in the decision	
+	- other data may be recorded that was used in the decision
 """
 * modifierExtension 0..0
 * type = DCM#110113 "Security Alert"

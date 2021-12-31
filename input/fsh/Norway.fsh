@@ -5,6 +5,7 @@ Title: "Norway SAML example in DocumentReference"
 Description: "DocumentReference of Norway SAML example."
 * status = #current
 * content.attachment.id = "ig-loader-xca-kj-token-20211111.txt"
+* content.attachment.contentType = #application/xml
 * context.related = Reference(AuditEvent/ex-auditPoke-Norway)
 
 
@@ -99,7 +100,7 @@ resource:facility:name | AuditEvent.entity[patient].detail[facility-name]
 resource:facility:system | AuditEvent.entity[patient].detail[facility-system]
 **Patient-consent** | 
 resource:patient-consent-directive  | *AuditEvent.agent[consent].what*
-resource:patient-consent-directive-type | 
+resource:patient-consent-directive-type |
 """
 * purposeOfEvent 1..* MS
 * purposeOfEvent ^short = "saml hso:purpose"

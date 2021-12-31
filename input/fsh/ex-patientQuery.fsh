@@ -10,7 +10,7 @@ Audit Example for a RESTful Query using GET with NO patient subject, recorded by
 - client is a computer at myMachine.example.org
 - user is John Smith
 - query is for a MeasureReport
-- X-Request-Id is specified 
+- X-Request-Id is specified
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
@@ -61,7 +61,7 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 - user is John Smith
 - query is for an Observation for given patient
 - patient is specified
-- X-Request-Id is specified 
+- X-Request-Id is specified
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
@@ -116,7 +116,7 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 - user is John Smith
 - query is for an Observation for given patient
 - patient is specified
-- X-Request-Id is specified 
+- X-Request-Id is specified
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"

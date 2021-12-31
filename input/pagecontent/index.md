@@ -43,7 +43,7 @@ BasicAudit uses ```Must Support``` in StructureDefinition profiles. This is equi
 
 You can also download:
 
-* Canonical URI `http://profiles.ihe.net/ITI/BasicAudit`
+* Canonical URI `http://profiles.ihe.net/ITI/BasicAudit` - [json](ImplementationGuide-ihe.iti.basicaudit.json)
 * Package ID: `ihe.iti.basicaudit`
 * [this entire guide](full-ig.zip)
 * the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip), [ttl](definitions.ttl.zip), or [csv](csvs.zip) format, or

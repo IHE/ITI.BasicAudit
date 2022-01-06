@@ -387,6 +387,7 @@ Description: "Example of a SAML assertion as seen in CareQuality."
 
 
 // binary throws a File Type error that DocumentReference does not
+// likely needs a IG extension - implementationguide-resource-format
 //Instance: B-SAML-QDI
 //InstanceOf: Binary
 //Title: "SAML example from CareQuality"

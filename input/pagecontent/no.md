@@ -11,19 +11,39 @@ subject:id | *AuditEvent.agent[user].who.identifier.value*
 Subject:name | *AuditEvent.agent[user].who.display*
 subject:system | *AuditEvent.agent[user].who.identifier.system*
 subject:assigner | *AuditEvent.agent[user].who.identifier.assigner*
-**PurposeOfEvent** | 
-purpose:id | *AuditEvent.purposeOfEvent.coding.code*
-purpose:name | *AuditEvent.purposeOfEvent.coding.display*
-purpose:system | *AuditEvent.purposeOfEvent.coding.system*
-purpose:description | *AuditEvent.purposeOfEvent.text*
+**qualifications-roles** |
+subject:qualification-role:id | AuditEvent.agent[user].role.code
+subject:qualification-role:name | AuditEvent.agent[user].role.display
+subject:qualification-role:system | AuditEvent.agent[user].role.system
+subject:qualification-role:assigner | N/A eller ekstensjon
+**structural-roles** |  
+subject:role:id | AuditEvent.agent[user].role.code
+subject:role:name | AuditEvent.agent[user].role.display
+subject:role:system | AuditEvent.agent[user].role.system
+subject:role:assigner | N/A eller ekstensjon
+**functional-roles** | 
+subject:functional-role:id | AuditEvent.agent[user].role.code
+subject:functional-role:name | AuditEvent.agent[user].role.display
+subject:functional-role:system | AuditEvent.agent[user].role.system
+subject:functional-role:assigner | N/A eller ekstensjon
+**application-roles** | 
+subject:application-role-id | AuditEvent.agent[user].role.code
+subject:application-role-name | AuditEvent.agent.[user].role.display
+subject:application-role-system | AuditEvent.agent[user].role.system
+subject:application-role-assigner | N/A eller ekstensjon
+**PurposeUse** | 
+purpose:id | AuditEvent.agent[user].purposeOUse.coding.code
+purpose:name | AuditEvent.agent[user].purposeOfUse.coding.display
+purpose:system | AuditEvent.agent[user].purposeOfUse.coding.system
+purpose:description | AuditEvent.agent[user].purposeOfUse.text
 purpose:reason | ????
-**PurposeOfEvent-local** | 
-purpose-local:id | _AuditEvent.agent[user].purposeOUse.coding.code_
-purpose-local:name | _AuditEvent.agent[user].purposeOfUse.coding.display_
-purpose-local:system | _AuditEvent.agent[user].purposeOfUse.coding.system_
-purpose-local:description | ?
+**PurposeUse-local** | 
+purpose-local:id | AuditEvent.agent[user].purposeOUse.coding.code
+purpose-local:name | AuditEvent.agent[user].purposeOfUse.coding.display
+purpose-local:system | AuditEvent.agent[user].purposeOfUse.coding.system
+purpose-local:description | AuditEvent.agent[user].purposeOfUse.text
 purpose-local:reason | ?
-purpose-local:userSelected | _AuditEvent.agent.purposeOfUse.coding.userSelected_
+purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 **qualifications** | 
 subject:qualification:id | AuditEvent.agent[user].extension[otherId][qualification].identifier.value
 subject:qualification:name | AuditEvent.agent[user].extension[otherId][qualification].name
@@ -38,7 +58,7 @@ subject:national-identifier:assigner | AuditEvent.agent[user].extension[otherId]
 subject:assurance-level:id | AuditEvent.agent[user].extension[assurance-level].coding.code
 subject:assurance-level:name | AuditEvent.agent[user].extension[assurance-level].coding.display
 subject:assurance-level:system | AuditEvent.agent[user].extension[assurance-level].coding.system
-subject:assurance-level:assigner | ????
+subject:assurance-level:assigner | 
 **organization** | 
 subject:organization-id:  | *AuditEvent.agent[userorg].who.identifier.value*
 subject:organization-name | *AuditEvent.agent[userorg].who.display*
@@ -94,17 +114,12 @@ resource:patient-consent-directive-type |
   
 ### TODO
 
-- TODO-role-slicing: the qualifications/functional/structural roles.
-  - can these roles be put into the [user].role bucket?
-  - My example just puts all the roles together in .role.
-  - not clear how we can slice the .role as initially described unless there is a defiend set of systems on these codes
-- TODO-application: Unclear what the application roles are, given the application is not defined
-  - should there be an application agent? 
-- TODO-policy: Unclear what policy is?
-  - is this related to consent? user? b2b?
 - TODO-healthcareservice: Unclear if the subject:healthcareservice is a agent or entity
+  - HealthCareService is the service that is provided by the institution for which the subject/ user works. HCS is not specific to the subject, and should probably be reflected by PurposeOfEvent, since it reflects the underlaying reason why access to the patient record was done. There are national valuesets for this, different valuesets will be used depending on if the subject organization is primary healthcare services or specialist/secondary healthcare services.
+  - Question: So is this a code to be put into the PurposeOfEvent?
 - TODO-no-example: Some defined terms did not have examples
   - I modeled it based on theory
+  - Would be good to have a few more examples that overall cover the space.
 - TODO-unknown-example: some examples did not have defined terms
   - hso:subject:application-session
   - hso:issuer:organization
@@ -113,7 +128,9 @@ resource:patient-consent-directive-type |
   - homeCommunityID
 - Check cardionality of all elements
 - is it really necessary to slice the OtherId element? Or is it sufficient to just indicate the set of SAML attributes that get assembled in the otherId bucket. The result will look the same, but the modeling would not have slicing to show this.
+  - I did not understand the comment on multiple OtherId elements. My question is on if slices need to be defined. This is independent of if there can be multiple instances of OtherId. The idea I am proposing is that the slices are not necessary, given that the various identifiers that would go into OtherId(s) all are self explanatory. The slices do not help with reading an AuditEvent. Slices are used to drive mandatory population. Thus we can explain where to place each identifier from the SAML assertion without defining a slice. One would only define a slice when one kind of these identifiers is mandatory.
 - should I define a mapping table? Would be yet-another-place where these tables would go. If they existed on the mapping table, would they be needed elsewhere? Trying to keep them all aligned is hard work.
+  - On the structureDefinition page is a "Mapping" tab, that can have a table expressing the mapping of elements. Much like the narrative above. The drawback is that this format of this table is very restricted. The benefit is that some tooling might be able to use it in a computable way.
 - Audience?
 - possibly other "TODO"
 - possibly other "?"
@@ -122,31 +139,6 @@ resource:patient-consent-directive-type |
 
 Norway SAML attributes | AuditEvent element proposed 
 ----|---- 
-**qualifications-roles** | TODO-role-slicing
-subject:qualification-role:id | AuditEvent.agent[user].role[qualification].code
-subject:qualification-role:name | AuditEvent.agent[user].role[qualification].display
-subject:qualification-role:system | AuditEvent.agent[user].role[qualification].system
-subject:qualification-role:assigner | N/A eller ekstensjon
-**structural-roles** | TODO-role-slicing 
-subject:role:id | AuditEvent.agent[user].role[formal].code
-subject:role:name | AuditEvent.agent[user].role[formal].display
-subject:role:system | AuditEvent.agent[user].role[formal].system
-subject:role:assigner | N/A eller ekstensjon
-**functional-roles** | TODO-role-slicing
-subject:functional-role:id | AuditEvent.agent[user].role[functonal].code
-subject:functional-role:name | AuditEvent.agent[user].role[functonal].display
-subject:functional-role:system | AuditEvent.agent[user].role[functonal].system
-subject:functional-role:assigner | N/A eller ekstensjon
-**application-roles** | TODO-application
-subject:application-role-id | AuditEvent.agent[user].role[application].code
-subject:application-role-name | AuditEvent.agent.[user].role[application].display
-subject:application-role-system | AuditEvent.agent[user].role[application].system
-subject:application-role-assigner | N/A eller ekstensjon
-**policy** | TODO-policy
-subject:policy:id | AuditEvent.agent.policy.coding.code
-subject:policy:system | AuditEvent.agent.policy.coding.system
-subject:policy:assigner | N/A eller ekstensjon
-subject:policy:name | AuditEvent.agent.policy.coding.display
 **healthcareservice** | TODO-healthcareservice
 subject:healthcareservice-id | AuditEvent.agent[healthcareservice].who.identifier.value
 subject:healthcareservice-name | AuditEvent.agent[healthcareservice].who.display

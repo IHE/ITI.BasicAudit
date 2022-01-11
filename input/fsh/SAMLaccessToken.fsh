@@ -111,8 +111,8 @@ note: this profile records minimal information from the SAML access token, which
 * agent[user].who.identifier.value 1..1 MS
 * agent[user].who.identifier.value ^short = "SAML Subject.NameID"
 * agent[user].requestor = true
-* agent[user].role 0.. // discouraged
-* agent[user].altId 0.. // discouraged
+* agent[user].role 0.. // discouraged in minimal
+* agent[user].altId 0.. // discouraged, use otherId extension
 * agent[user].name 0..1 // not sure where you would get it from
 * agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"

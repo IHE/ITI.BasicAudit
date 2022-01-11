@@ -27,17 +27,37 @@ subject:id | *AuditEvent.agent[user].who.identifier.value*
 Subject:name | *AuditEvent.agent[user].who.display*
 subject:system | *AuditEvent.agent[user].who.identifier.system*
 subject:assigner | *AuditEvent.agent[user].who.identifier.assigner*
-**PurposeOfEvent** | 
-purpose:id | *AuditEvent.purposeOfEvent.coding.code*
-purpose:name | *AuditEvent.purposeOfEvent.coding.display*
-purpose:system | *AuditEvent.purposeOfEvent.coding.system*
-purpose:description | *AuditEvent.purposeOfEvent.text*
+**qualifications-roles** |
+subject:qualification-role:id | AuditEvent.agent[user].role.code
+subject:qualification-role:name | AuditEvent.agent[user].role.display
+subject:qualification-role:system | AuditEvent.agent[user].role.system
+subject:qualification-role:assigner | N/A eller ekstensjon
+**structural-roles** |  
+subject:role:id | AuditEvent.agent[user].role.code
+subject:role:name | AuditEvent.agent[user].role.display
+subject:role:system | AuditEvent.agent[user].role.system
+subject:role:assigner | N/A eller ekstensjon
+**functional-roles** | 
+subject:functional-role:id | AuditEvent.agent[user].role.code
+subject:functional-role:name | AuditEvent.agent[user].role.display
+subject:functional-role:system | AuditEvent.agent[user].role.system
+subject:functional-role:assigner | N/A eller ekstensjon
+**application-roles** | 
+subject:application-role-id | AuditEvent.agent[user].role.code
+subject:application-role-name | AuditEvent.agent.[user].role.display
+subject:application-role-system | AuditEvent.agent[user].role.system
+subject:application-role-assigner | N/A eller ekstensjon
+**PurposeUse** | 
+purpose:id | AuditEvent.agent[user].purposeOUse.coding.code
+purpose:name | AuditEvent.agent[user].purposeOfUse.coding.display
+purpose:system | AuditEvent.agent[user].purposeOfUse.coding.system
+purpose:description | AuditEvent.agent[user].purposeOfUse.text
 purpose:reason | ????
-**PurposeOfEvent-local** | **AuditEvent.agent[user].purposeOfUse**
-purpose-local:id | *AuditEvent.agent[user].purposeOUse.coding.code*
-purpose-local:name | *AuditEvent.agent[user].purposeOfUse.coding.display*
-purpose-local:system | *AuditEvent.agent[user].purposeOfUse.coding.system*
-purpose-local:description | ?
+**PurposeUse-local** | 
+purpose-local:id | AuditEvent.agent[user].purposeOUse.coding.code
+purpose-local:name | AuditEvent.agent[user].purposeOfUse.coding.display
+purpose-local:system | AuditEvent.agent[user].purposeOfUse.coding.system
+purpose-local:description | AuditEvent.agent[user].purposeOfUse.text
 purpose-local:reason | ?
 purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 **qualifications** | **hso:subject:qualification:id**
@@ -54,7 +74,7 @@ subject:national-identifier:assigner | AuditEvent.agent[user].extension[otherId]
 subject:assurance-level:id | *AuditEvent.agent[user].extension[assuranceLevel].coding.code*
 subject:assurance-level:name | *AuditEvent.agent[user].extension[assuranceLevel].coding.display*
 subject:assurance-level:system | *AuditEvent.agent[user].extension[assuranceLevel].coding.system*
-subject:assurance-level:assigner | ????
+subject:assurance-level:assigner | 
 **organization** | 
 subject:organization-id:  | *AuditEvent.agent[userorg].who.identifier.value*
 subject:organization-name | *AuditEvent.agent[userorg].who.display*

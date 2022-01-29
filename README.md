@@ -1,4 +1,4 @@
-Implementation Guide for basic AuditEvent 
+# Implementation Guide for basic AuditEvent 
 
 This Implementation Guide provides AuditEvent profiles and examples for some common and reusable patterns. This Implementation Guide depends on IHE-ATNA infrastructure for logging and providing access to the Audit Record Repository. 
 * logging of RESTful interactions. 

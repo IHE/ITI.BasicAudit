@@ -142,7 +142,7 @@ Where an activity impacts more than one Patient/Subject; multiple AuditEvent res
 
 To record a REST interaction or $operation, it is often necessary to complete the transaction in order to determine the Patient/Subject. Inspection of the potential returned results may be necessary. Some REST Search/Query requests and $operations include parameters limiting the results to a specific Patient, in these cases this parameter informs the inclusion of the Patient reference.
 
-The Patient as a Subject is distinct from when the Patient is an Agent. When the Patient is the User, they would be indicated in an .agent and the .entity element would not be necessary. Some examples would be when the Patient is using a Patient-Portal, or when the Patient is authoring Patient Generated Health Data (PGHD).  
+The Patient as a Subject is distinct from when the Patient is an Agent. When the Patient is the User, they would be indicated in an .agent and the .entity element would not be necessary. Some examples would be when the Patient is using a Patient-Portal, or when the Patient is authoring Patient Generated Health Data (PGHD).  Note that in SAML and oAuth the subject of these security tokens is the user. This is contextual use of the word 'subject', as in the context is the security token subject is the user agent.
 
 Finding AuditEvents by Patient:
 * Finding AuditEvents where the Patient is an agent, one would use the `agent` search parameter.
@@ -173,22 +173,22 @@ The generic interaction between a client and a server shown with interactions 1,
 
 Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how an activity AuditEvent (see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
 
-#### 1:52.4.2.3 Use Case #3: Privacy relevant disclosure event
+#### 1:52.4.2.3 Use Case #3: Consent Authorized Decision event
 
-Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.6 Privacy Disclosure Audit Message](content.html#3576-privacy-disclosure-audit-message)
-
-#### 1:52.4.2.4 Use Case #4: Authorization Decision event
-
-Given that an Authorization Service makes Authorization Decisions, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.7 Authorization Decision Audit Message](content.html#3577-authorization-decision-audit-message)
+Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authoried Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
 
 <div>
 {%include usecase4-processflow.svg%}
 </div>
 <br clear="all">
 
-**Figure: Authorization Decision process flow**
+**Figure: Consent Authorized Decision process flow**
 
 Not shown in this interaction diagram is the AuditEvent that would be recorded by the ANY Secure Client and ANY Secure Server to record the auditable event that is the client and server interaction.
+
+#### 1:52.4.2.4 Use Case #4: Privacy relevant disclosure event
+
+Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.7 Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message)
 
 ## 1:52.5 BasicAudit Security Considerations
 

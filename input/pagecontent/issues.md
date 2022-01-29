@@ -14,9 +14,14 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
 - add short descriptions to profiled elements when needed / useful.	
 - is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
+- support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published 
 	
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
+- This IG has patterns for AuditEvent profiling. There are examples, but there are not the classic IHE Profiling of a workflow that results in a profiled AuditEvent for that workflow events. As such conformance with this IG is unclear.
+  - Could explain that QEDm or IPA are candidate grouping. That is to say the BasicAudit could explaint that when grouped with QEDm the following is required. This is opposite directionality of grouping as we tend to do in IHE template with the Security Considerations section. With QEDm we could include a modificaiton of QEDm in the BasicAudit, but with more general things like IPA that is not a solution. 
+  - Note that QEDm and IPA would be using the [Patient Query](StructureDefinition-IHE.BasicAudit.PatientQuery.html) profile, likely with an [OAuth use](tbd.html) profile.
+  - This IG might be published as a recommendation, those that claim it are expected to be compliant, but there would be no clear events that would cause clear AuditEvent output. Thus making it harder to test at connectathon, as connectathon would be fully dependent on the vendor pointing out the events (voluntary).
 - Explain in narrative each profile 
 - I intend to add many examples that are not compliant to the profiles, but should be considered consumable by an Audit-Client and accepted at an Audit-Repository. These will include AuditEvent logs from various IHE profiles, and degenerate forms of the included RESTful. Note that audit logging is a best-effort concept, the profiles show the best-case but best-effort fills out the AuditEvent with everything available even if it is not fully compliant.
 - I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
@@ -24,6 +29,8 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - example descriptions don't show up on the page for that example. For some examples (the REST Query examples) I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
 - IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
 - Not much of a problem, but tracking for a solution anyway -- Binary Adjunct files (used to hold examples of SAML assertions) are working in DocumentReference, but throw a file type error with Binary. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
+- MustSupport -- given that the minimal profiles use MustSupport properly, but those profiles derived off of those minimal profiles add manditory requirement. This gives the appearance that a manditory element is also "R2", which is conflicting as something can't be both manditory and R2. Not sure how to solve this, as the FHIR profiling rules do not allow for removing a MustSupport flag. Thus the best I can think of is to define MustSupport in a way such that the R2 only applies if the element is not manditory, or that MustSupport does not mean anything on manditory elements. [chat thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/must-support.20when.20re-profiling)
+- X-Request-Id header -- I explained this only inside of the RESTful section, but it is applicable anywhere that X-Request-Id is used. I did not define it, as it is documented in FHIR core. I did not make this a standalone section because it is simply too small. This is a tool that some servers do use. This not clear it deserves anything more than what I have said. 
 
 # Open Issues
 

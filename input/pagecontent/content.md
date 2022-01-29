@@ -44,9 +44,11 @@ There are two patterns defined: minimal, and comprehensive. Where minimal presum
 
 #### 3:5.7.4.1 SAML - Minimal AuditEvent record
 
-Follow [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) recommendation to encode a [UserName string](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2), and place that the ATNA Audit message `UserName` element; and [preserve the PurposeOfUse](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.2.3.1). The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) specification in use at the writing of [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) was limited to the DICOM AuditMessage. Now that IHE ATNA includes a FHIR AuditEvent model these attributes can be preserved more fully in the .agent.who.identifier element. The XUA specification indicated that the [Subject-Role](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.1.3.1) may be used to populate the Audit Message. (Note also that XUA recommends alias be filled with SPProvidedID which is not defined in XUA and is found to be deprecated in many specifiations)
+The Minimal AuditEvent pattern defined here is not the same as the one defined in [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage.
 
-The Minimal AuditEvent pattern defined here is not the same as the one defined in XUA, mostly due to the more expressive and coded nature of the FHIR AuditEvent.
+The Minimal AuditEvent pattern preserves the SAML ID, so that the contents of the SAML assertion can be retrieved from the SAML Identity Provider (IdP) when such access is available. The Minimal AuditEvent pattern preserves the Issuer and Subject NameID in the who.Identifier, and any purposeOfUse into the purposeOfUse element.
+
+Note: that XUA recommends alias be filled with SPProvidedID which is not defined in XUA and is found to be deprecated in many SAML specifiations. So this specification does not record or refer to the SPProvidedId.
 
 * [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
@@ -120,38 +122,72 @@ Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html
 
 The figure above will be used to understand the following AuditEvent constraints. The Figure is first shown in [IUA as Figure 34.4.2.2-1](https://profiles.ihe.net/ITI/IUA/index.html#34422-process-flow). This is used as a informative general flow here.
 
-Defined here is the AuditEvent that the Client and Server could record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured.
+Defined here is the AuditEvent that the Client and Server could record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) with the [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured.
+
+The [IUA](https://profiles.ihe.net/ITI/IUA/index.html) profile is used here as a proxy for all oAuth specifications. [IUA](https://profiles.ihe.net/ITI/IUA/index.html) is used here because IHE has direct access and has defined fields. The Minimal AuditEvent pattern defined here is not the same as the one defined in [IUA](https://profiles.ihe.net/ITI/IUA/index.html), mostly due to the more expressive and coded nature of the FHIR AuditEvent fs the DICOM AuditMessage.
+
+
+<div markdown="1" class="stu-note">
+
+It would seem that the input to ITI-71 need to be recorded. The output of ITI-71 logged as output of ITI-71, as it is also the input to ITI-72. Thus all the uses in ITI-72 of the token issued, can be traced back to the ITI-71. I think this abstract concept is clear, but the details are not clear to me. Especially with all the variations in ITI-71. Might I pick just ONE path?
+
+It would seem that during ITI-72, the only thing the client has is the bearer blob. https://profiles.ihe.net/ITI/IUA/index.html#37242-message-semantics
+
+but in theory, the client knew something more during ITI-71, but it is not clear what more they definitely knew, and it is not clear that the more details that were known at ITI-71 by the client are useful. Seems the useful details are rather hidden to the client by the mythical "User Agent"
+https://profiles.ihe.net/ITI/IUA/index.html#3714-messages
+Note I am not exactly sure why IUA has the ITI-71 audit log record the "URL requested" and nothing more. https://profiles.ihe.net/ITI/IUA/index.html#37151-security-audit-considerations
+
+Recording the whole bearer blob seems potentially problematic? Or not? I am concerned that it is big, but am not sure it always is big.
+
+It would seem that during ITI-72 the server has the ability to invoke ITI-102 introspection, but do we force introspection purely for audit logging? I guess it is not a burden to invoke introspection for comprehensive logging? Yet an oAuth token can be used for many auditable transactions, and to force an introspection for audit logging alone will add many network interactions.
+
+ultimately the BasicAudit IG wants to focus only on uses of a token, but without better logging of ITI-71; it seems not possible. 
+</div>
 
 #### 3:5.7.5.1 oAuth - Minimal AuditEvent record
 
+<div markdown="1" class="stu-note">
+
+This specification defines that the Minimal AuditEvent record the .... TODO
+
+The initial view of minimal vs comprehensive was similar to the SAML above, but the client doesn't ever have much of any details. Thus is this pattern logical? Or should the pattern be client vs server vs authZ service? I think it is important to be able to link, within the AuditEvent dataset, the ITI-71 with the uses of the token in ITI-72, with the details of the token.
+
+I think success could be nothing more than minimal logging?
+</div>
+
 #### 3:5.7.5.2 oAuth - Comprehensive AuditEvent record
+
+<div markdown="1" class="stu-note">
+given the above, is comprehensive even possible or desireable?
+
+</div>
 
 #### 3:5.7.5.3 oAuth mapping to AuditEvent
 
-The following table uses a short-hand for the oAuth fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the field and the FHIR AuditEvent element given. Note: Prefix with a ":" is the specification that defined that field (IHE-IUA, IHE-BPPC, etc).
+The following table uses a short-hand for the oAuth fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the field and the FHIR AuditEvent element given. This also presumes that the one recording the AuditEvent has this level access to the oAuth fields. Note: Prefix with a ":" is the specification that defined that field (IHE-IUA, IHE-BPPC, etc).
 
-| SAML field                   | Comprehensive AuditEvent     | Minimal AuditEvent           |
-|------------------------------|-----------------------------------|-----------------------------------|
-| iss (JWT Issuer) | ? |
-| sub (JWT Subject) | ? |
-| aud (JWT Audience) | ? |
-| jti (JWT ID) | ? |
-| exp (JWT Expiration Time) | ? |
-| nbf (JWT Not before) | ? |
-| iat (JWT Issued at) | ? |
-| client_id (OA2 client id) | app id | ? |
-| scope (OA2 token scope) | ? |
-| ihe_iua:subject_name 
-| ihe_iua:subject_organization
-| ihe_iua:subject_organization_id
-| ihe_iua:subject_role 
-| ihe_iua:purpose_of_use 
-| ihe_iua:home_community_id
-| ihe_iua:national_provider_identifier
-| ihe_iua:person_id
-| ihe_bppc:patient_id
-| ihe_bppc:doc_id
-| ihe_bppc:acp
+| oAuth field                          | Comprehensive AuditEvent          | Minimal AuditEvent                |
+|--------------------------------------|-----------------------------------|-----------------------------------|
+| iss (JWT Issuer)                     | agent[user].who.identifier.system | agent[user].who.identifier.system |
+| sub (JWT Subject)                    | agent[user].who.identifier.value  | agent[user].who.identifier.value |
+| aud (JWT Audience)                   |   | |
+| jti (JWT ID)                         | agent[user].policy                | agent[user].policy | |
+| exp (JWT Expiration Time)            |   | |
+| nbf (JWT Not before)                 |   | |
+| iat (JWT Issued at)                  |   | |
+| client_id (OA2 client id)            | agent[client].who.identifier.value | agent[client].who.identifier.value |
+| scope (OA2 token scope)              |   | |
+| ihe_iua:subject_name                 | agent[user].who.display | |
+| ihe_iua:subject_organization         | agent[userorg].who.display | |
+| ihe_iua:subject_organization_id      | agent[userorg].who.identifier.value | |
+| ihe_iua:subject_role                 | agent[user].role | agent[user].role | |
+| ihe_iua:purpose_of_use               | agent[user].purposeOfUse           | agent[user].purposeOfUse | |
+| ihe_iua:home_community_id            | entity[consent].what.identifier.assigner.identifier.value | |
+| ihe_iua:national_provider_identifier | agent[user].extension[otherId][npi].identifier.value | |
+| ihe_iua:person_id                    | agent[user].extension[otherId][provider-id].identifier.value | |
+| ihe_bppc:patient_id                  | entity[consent-patient].what.identifier.value | |
+| ihe_bppc:doc_id                      | entity[consent].what.identifier.value | |
+| ihe_bppc:acp                         | entity[consent].detail.valueString | |
 {:.grid}
 
 ### 3:5.7.6 Consent Authorized Decision Audit Message

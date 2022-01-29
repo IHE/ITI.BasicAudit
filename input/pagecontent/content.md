@@ -171,7 +171,7 @@ The following table uses a short-hand for the oAuth fields and FHIR AuditEvent e
 | iss (JWT Issuer)                     | agent[user].who.identifier.system | agent[user].who.identifier.system |
 | sub (JWT Subject)                    | agent[user].who.identifier.value  | agent[user].who.identifier.value |
 | aud (JWT Audience)                   |   | |
-| jti (JWT ID)                         | agent[user].policy                | agent[user].policy | |
+| jti (JWT ID)                         | agent[user].policy                | agent[user].policy |
 | exp (JWT Expiration Time)            |   | |
 | nbf (JWT Not before)                 |   | |
 | iat (JWT Issued at)                  |   | |
@@ -181,7 +181,7 @@ The following table uses a short-hand for the oAuth fields and FHIR AuditEvent e
 | ihe_iua:subject_organization         | agent[userorg].who.display | |
 | ihe_iua:subject_organization_id      | agent[userorg].who.identifier.value | |
 | ihe_iua:subject_role                 | agent[user].role | agent[user].role | |
-| ihe_iua:purpose_of_use               | agent[user].purposeOfUse           | agent[user].purposeOfUse | |
+| ihe_iua:purpose_of_use               | agent[user].purposeOfUse           | agent[user].purposeOfUse |
 | ihe_iua:home_community_id            | entity[consent].what.identifier.assigner.identifier.value | |
 | ihe_iua:national_provider_identifier | agent[user].extension[otherId][npi].identifier.value | |
 | ihe_iua:person_id                    | agent[user].extension[otherId][provider-id].identifier.value | |

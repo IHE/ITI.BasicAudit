@@ -15,7 +15,10 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - add short descriptions to profiled elements when needed / useful.	
 - is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
 - support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published 
-	
+- put homeCommunityId into both/either of the .agent[user].who.identifier.issuer, and .entity[consent].what.identifier.issuer -- is this a good idea? It is done as either/both to enable proper consent and non consent use-cases.
+- who.identifier and what.identifer are used because it is expected that as audit logging is happening these values are directly available, and the resource reference is not known. However it is possible that the resource reference is known, should we add a MS on who.reference and what.reference to encourage recording of these "when they are known"?
+- Note X-Reqeust-Id is profiled differently than the example given in the FHIR core specification. Specifically there is a entity type defined here to enable slicing, where the example in FHIR core uses both type (job) and role (stream) which is harder to slice.
+
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
 - This IG has patterns for AuditEvent profiling. There are examples, but there are not the classic IHE Profiling of a workflow that results in a profiled AuditEvent for that workflow events. As such conformance with this IG is unclear.

@@ -42,6 +42,7 @@ Description: "ValueSet of the Other Id Types allowed"
 * http://terminology.hl7.org/CodeSystem/v2-0203#NPI
 * http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 
+
 CodeSystem: UserAgentTypes
 Title: "The code used to identifiy a User Agent"
 Description: """
@@ -66,7 +67,10 @@ Often this agent also has a type coding that is more specific to the transaction
 - http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian" // used with export
 """
 * codes from system UserAgentTypes
-
+// TODO: I created a codesystem and code out of the URN urn:ihe:iti:xca:2010:homeCommunityId
+* urn:ihe:iti:xca:2010#homeCommunityId "IHE homeCommunityId"
+//* urn:ihe#urn:ihe:iti:xca:2010:homeCommunityId 
+//* urn:ietf:rfc:3986#urn:ihe:iti:xca:2010:homeCommunityId 
 
 
 Profile:        SAMLaccessTokenUseMinimal
@@ -110,6 +114,7 @@ note: this profile records minimal information from the SAML access token, which
 * agent[user].who.identifier.system ^short = "SAML Issuer"
 * agent[user].who.identifier.value 1..1 MS
 * agent[user].who.identifier.value ^short = "SAML Subject.NameID"
+// TODO should who.reference and/or type be 0.. and MS?
 * agent[user].requestor = true
 * agent[user].role 0.. // discouraged in minimal
 * agent[user].altId 0.. // discouraged, use otherId extension
@@ -135,21 +140,21 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 **Builds upon the Minimal**
 
-| SAML field               | Comprehensive AuditEvent
+| SAML field                   | Comprehensive AuditEvent
 |------------------------------|-----------------------------------|
-| ID                    | agent[user].policy
-| Issuer                | agent[user].who.identifier.system
-| Subject.NameID        | agent[user].who.identifier.value
-| ~subject:role         | agent[user].role
-| ~subject:purposeofuse | agent[user].purposeOfUse
+| ID                           | agent[user].policy
+| Issuer                       | agent[user].who.identifier.system
+| Subject.NameID               | agent[user].who.identifier.value
+| ~subject:role                | agent[user].role
+| ~subject:purposeofuse        | agent[user].purposeOfUse
 | AuthnContextClassRef         | agent[user].extension[assuranceLevel]
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value
 | ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value
 | ~subject:organization        | agent[userorg].who.display
 | ~subject:organization-id     | agent[userorg].who.identifier.value
+| ~homeCommunityId             | agent[homeCommunityId].who.identifier.value 
 | ~bppc:2007:docid             | entity[consent].what.identifier.value 
-| ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value 
 | ~xua:2012:acp                | entity[consent].detail.valueString 
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value
 """
@@ -160,7 +165,8 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent ^slicing.rules = #open
 * agent contains 
     user 1.. and
-	userorg 0..*
+	userorg 0..* and
+	homeCommunityId 0..*
 * agent[user].type = UserAgentTypes#UserSamlAgent
 * agent[user].who 1..1 
 * agent[user].who.identifier.system 0..1 MS
@@ -210,6 +216,20 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[userorg].media 0..0 // media is physical storage media identification
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse 0..0
+
+* agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
+* agent[homeCommunityId].who.identifier 1..1 MS
+* agent[homeCommunityId].who.identifier ^short = "homeCommunityId"
+* agent[homeCommunityId].requestor = false
+* agent[homeCommunityId].role 0..0
+* agent[homeCommunityId].altId 0..0 // discouraged
+* agent[homeCommunityId].name 0..0 
+* agent[homeCommunityId].location 0..0 // discouraged as unlikely to be known in this scenario
+* agent[homeCommunityId].policy 0..0
+* agent[homeCommunityId].media 0..0 // media is physical storage media identification
+* agent[homeCommunityId].network 0..0 // users are not network devices
+* agent[homeCommunityId].purposeOfUse 0..0
+
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
@@ -218,9 +238,6 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
-* entity[consent].what.identifier.assigner.identifier.value 0..1 MS
-* entity[consent].what.identifier.assigner.identifier.value ^short = "homeCommunityId of the Consent"
-
 * entity[consent].detail ^slicing.discriminator.type = #pattern
 * entity[consent].detail ^slicing.discriminator.path = "type"
 * entity[consent].detail ^slicing.rules = #open
@@ -350,6 +367,7 @@ assurance | authenticated AAL 4
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
+* agent[user].requestor = true
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
@@ -364,9 +382,12 @@ assurance | authenticated AAL 4
 * agent[userorg].who.display = "St. Mary of Examples"
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
 * agent[userorg].requestor = false
+* agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
+* agent[homeCommunityId].who.identifier.type = urn:ihe:iti:xca:2010#homeCommunityIdhomeCommunityId
+* agent[homeCommunityId].who.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
+* agent[homeCommunityId].requestor = false
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what.identifier.value = "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002"
-* entity[consent].what.identifier.assigner.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
 * entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[=].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"

@@ -27,6 +27,11 @@ subject:id | *AuditEvent.agent[user].who.identifier.value*
 Subject:name | *AuditEvent.agent[user].who.display*
 subject:system | *AuditEvent.agent[user].who.identifier.system*
 subject:assigner | *AuditEvent.agent[user].who.identifier.assigner*
+**application-session** | 
+subject:application-session:id | AuditEvent.agent[user].extension[otherId][application-session].identifier.value
+subject:application-session:name | AuditEvent.agent[user].extension[otherId][application-session].name
+subject:application-session:system | AuditEvent.agent[user].extension[otherId][application-session].identifier.system
+subject:application-session:assigner | N/A eller ekstensjon
 **qualifications-roles** |
 subject:qualification-role:id | AuditEvent.agent[user].role.code
 subject:qualification-role:name | AuditEvent.agent[user].role.display
@@ -47,18 +52,23 @@ subject:application-role-id | AuditEvent.agent[user].role.code
 subject:application-role-name | AuditEvent.agent.[user].role.display
 subject:application-role-system | AuditEvent.agent[user].role.system
 subject:application-role-assigner | N/A eller ekstensjon
+**healthcareservice** | 
+healthcareservice:id | AuditEvent.purposeOfEvent.coding.code
+healthcareservice:name | AuditEvent.purposeOfEvent.coding.display
+healthcareservice:system | AuditEvent.purposeOfEvent.coding.system
+healthcareservice:assigner | 
 **PurposeUse** | 
-purpose:id | AuditEvent.agent[user].purposeOUse.coding.code
-purpose:name | AuditEvent.agent[user].purposeOfUse.coding.display
-purpose:system | AuditEvent.agent[user].purposeOfUse.coding.system
-purpose:description | AuditEvent.agent[user].purposeOfUse.text
+purpose:id | AuditEvent.purposeOfEvent.coding.code
+purpose:name | AuditEvent.purposeOfEvent.coding.display
+purpose:system | AuditEvent.purposeOfEvent.coding.system
+purpose:description | AuditEvent.purposeOfEvent.text
 purpose:reason | ????
 **PurposeUse-local** | 
 purpose-local:id | AuditEvent.agent[user].purposeOUse.coding.code
 purpose-local:name | AuditEvent.agent[user].purposeOfUse.coding.display
 purpose-local:system | AuditEvent.agent[user].purposeOfUse.coding.system
 purpose-local:description | AuditEvent.agent[user].purposeOfUse.text
-purpose-local:reason | ?
+purpose-local:reason | ????
 purpose-local:userSelected | AuditEvent.agent.purposeOfUse.coding.userSelected
 **qualifications** | **hso:subject:qualification:id**
 subject:qualification:id | AuditEvent.agent[user].extension[otherId][qualification].identifier.value
@@ -114,7 +124,7 @@ resource:system | *AuditEvent.entity[patient].what.identifier.system*
 resource:child-organization:id  | AuditEvent.entity[patient].detail[child-organization-id]
 resource:child-organization:name | AuditEvent.entity[patient].detail[child-organization-name]
 resource:child-organization:system | AuditEvent.entity[patient].detail[child-organization-system]
-**Patient-facility** | TODO: I did not find an example, is this real?
+**Patient-facility** | 
 resource:facility:id | AuditEvent.entity[patient].detail[facility-id]
 resource:facility:name | AuditEvent.entity[patient].detail[facility-name]
 resource:facility:system | AuditEvent.entity[patient].detail[facility-system]
@@ -123,11 +133,12 @@ resource:patient-consent-directive  | *AuditEvent.agent[consent].what*
 resource:patient-consent-directive-type |
 """
 * purposeOfEvent 1..* MS
-* purposeOfEvent ^short = "saml hso:purpose"
+* purposeOfEvent ^short = "saml hso:purpose and healthcareservice"
+* purposeOfEvent ^definition = "Multiple values are recorded, for each set of values from SAML are stored in associated .coding instances. "
 * purposeOfEvent.text ^short = "SAML hso:purpose:description"
-* purposeOfEvent.coding.code ^short = "SAML hso:purpose:id"
-* purposeOfEvent.coding.display ^short = "SAML hso:purpose:name"
-* purposeOfEvent.coding.system ^short = "SAML hso:purpose:system"
+* purposeOfEvent.coding.code ^short = "SAML hso:purpose:id and healthcareservice:id"
+* purposeOfEvent.coding.display ^short = "SAML hso:purpose:name and healthcareservice:name"
+* purposeOfEvent.coding.system ^short = "SAML hso:purpose:system and healthcareservice.system"
 * agent[user].who.display MS
 * agent[user].who.display ^short = "subject:name"
 * agent[user].purposeOfUse 1..* MS
@@ -142,7 +153,8 @@ resource:patient-consent-directive-type |
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
 	qualifications 0..1 and
-	personal 0..1 
+	personal 0..1 and
+	application-session 0..1
 * agent[user].extension[otherId][qualifications].valueReference.identifier.type = NorwayIdentifierTypes#qualification
 * agent[user].extension[otherId][qualifications].valueReference.identifier.system 1..1 MS
 * agent[user].extension[otherId][qualifications].valueReference.identifier.system ^short = "subject:qualification:system"
@@ -152,6 +164,7 @@ resource:patient-consent-directive-type |
 * agent[user].extension[otherId][qualifications].valueReference.display ^short = "subject:qualification:name"
 * agent[user].extension[otherId][qualifications].valueReference.identifier.assigner.identifier.value 1..1 MS
 * agent[user].extension[otherId][qualifications].valueReference.identifier.assigner.identifier.value ^short = "subject:qualification:assigner"
+* agent[user].extension[otherId][qualifications] ^short = "subject:qualification"
 * agent[user].extension[otherId][personal].valueReference.identifier.type = NorwayIdentifierTypes#national-identifier
 * agent[user].extension[otherId][personal].valueReference.identifier.system 1..1 MS
 * agent[user].extension[otherId][personal].valueReference.identifier.system ^short = "subject:national-identifier:system"
@@ -161,6 +174,14 @@ resource:patient-consent-directive-type |
 * agent[user].extension[otherId][personal].valueReference.display ^short = "subject:national-identifier:name"
 * agent[user].extension[otherId][personal].valueReference.identifier.assigner.identifier.value 1..1 MS
 * agent[user].extension[otherId][personal].valueReference.identifier.assigner.identifier.value ^short = "subject:national-identifier:assigner"
+* agent[user].extension[otherId][personal] ^short = "subject:national-identifier"
+* agent[user].extension[otherId][application-session].valueReference.identifier.type = NorwayIdentifierTypes#application-session
+* agent[user].extension[otherId][application-session].valueReference.identifier.system 1..1 MS
+* agent[user].extension[otherId][application-session].valueReference.identifier.system ^short = "subject:appplication-session:system"
+* agent[user].extension[otherId][application-session].valueReference.identifier.value 1..1 MS
+* agent[user].extension[otherId][application-session].valueReference.identifier.value ^short = "subject:application-session:id"
+* agent[user].extension[otherId][application-session] ^short = "subject:application-session"
+* agent[user].extension[otherId][application-session] ^definition = "The application-session is a process identification value for the user session. It is used to coorelate the activities to that session."
 
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
@@ -294,6 +315,7 @@ Description: "These are additional details about the User asserted in the Token.
 * ^caseSensitive = false
 * #qualification "urn:hso:subject:qualification:id"
 * #national-identifier "urn:hso:subject:national-identifier:id"
+* #application-session "urn:hso:subject:application-session"
 
 
 CodeSystem: NorwayAgentTypes
@@ -334,6 +356,7 @@ SAML | example value |
 Subject.NameID  | "05086900124" 
 Issuer | "https://sts.sykehuspartner.no" 
 ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
+healthcareservice | https://volven.no 8655#S08 "Anestesiologi/smertebehandling"
 hso:purpose:id | "1"
 hso:purpose:name | N/A
 hso:purpose:system | "1.0.14265.1"
@@ -349,6 +372,7 @@ subject:qualification:id | "222200068"
 subject:qualification:name | "BEN PSA REDDIK"
 subject:qualification:system | "2.16.578.1.12.4.1.4.4"
 subject:qualification:assigner | "https://register.helsedirektoratet.no/hpr"
+application-session | http://dips.com/session_id_hash#3840231262
 functional-role | urn:oid:2.16.578.1.12.4.3.1.40.5.1#Overlege "Overlege"
 role | https://www.sykehuspartner.no urn:oid:2.16.578.1.12.4.3.1.40.5.3#1035
 qualification-role | http://www.volven.no urn:oid:2.16.578.1.12.4.1.1.9060#LE "Lege"
@@ -383,48 +407,14 @@ resource:name | ????
 resource:system | "2.16.578.1.12.4.1.4.1"
 resource:assigner | "https://www.skatteetaten.no/person/folkeregister/"
 
-**TODO-examples without a model**
+**TODO-examples to be brought into the model**
 
 Key | example value
 -----|-----
-
-healthcareservice | https://volven.no 8655#S08 "Anestesiologi/smertebehandling"
 homecommunity:id | 2.16.578.1.12.4.1.7.1.1
-application-session | http://dips.com/session_id_hash#3840231262
 country | NO
 scope | "patient/Document.read"
 
-**Did Not find these in the sample SAML token given**
-
-SAML | example value |
------|-----|
-**department** | 
-subject:department:id | ????
-subject:department:name |  ????
-subject:department:requester-code |  ????
-subject:department:system |  ????
-subject:department:assigner |  ????
-**sub-department** | 
-subject:sub-department:id |  ????
-subject:sub-department:name |  ????
-subject:sub-department:system |  ????
-subject:sub-department:assigner |  ????
-**unit** | 
-subject:unit:id |  ????
-subject:unit:name |  ????
-subject:unit:system |  ????
-subject:unit:assigner |  ????
-**Patient-child-org** | 
-resource:child-organization:id  | ????
-resource:child-organization:name | ????
-resource:child-organization:system | ????
-**Patient-facility** | 
-resource:facility:id | ????
-resource:facility:name | ????
-resource:facility:system | ????
-**Patient-consent** | 
-resource:patient-consent-directive  | ????
-resource:patient-consent-directive-type | ????
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -433,13 +423,16 @@ resource:patient-consent-directive-type | ????
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* purposeOfEvent.coding = urn:oid:1.0.14265.1#1
+* purposeOfEvent[+].coding.system = "https://volven.no"
+* purposeOfEvent[=].coding.code = "8655\#S08" 
+* purposeOfEvent[=].coding.display = "Anestesiologi/smertebehandling"
+* purposeOfEvent[+].coding = urn:oid:1.0.14265.1#1
 * purposeOfEvent.text = "Oppslag via kjernejournal, helsehjelp"
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding = UserAgentTypes#UserSamlAgent
-//TODO put this back later * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
@@ -456,9 +449,9 @@ resource:patient-consent-directive-type | ????
 * agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
 
-* agent[user].role[0] = urn:oid:2.16.578.1.12.4.3.1.40.5.1#Overlege "Overlege"
-* agent[user].role[1] = urn:oid:2.16.578.1.12.4.3.1.40.5.3#1035
-* agent[user].role[2] = urn:oid:2.16.578.1.12.4.1.1.9060#LE "Lege"
+* agent[user].role[+] = urn:oid:2.16.578.1.12.4.3.1.40.5.1#Overlege "Overlege"
+* agent[user].role[+] = urn:oid:2.16.578.1.12.4.3.1.40.5.3#1035
+* agent[user].role[+] = urn:oid:2.16.578.1.12.4.1.1.9060#LE "Lege"
 
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "GLØSHAUGEN LEGESENTER DA"
@@ -477,6 +470,9 @@ resource:patient-consent-directive-type | ????
 * agent[user].extension[otherId][personal].valueReference.identifier.value = "05086900124"
 * agent[user].extension[otherId][personal].valueReference.display = "BEN PSA REDDIK"
 * agent[user].extension[otherId][personal].valueReference.identifier.assigner.identifier.value = "https://www.skatteetaten.no/person/folkeregister/"
+* agent[user].extension[otherId][application-session].valueReference.identifier.type = NorwayIdentifierTypes#application-session
+* agent[user].extension[otherId][application-session].valueReference.identifier.system = "http://dips.com/session_id_hash"
+* agent[user].extension[otherId][application-session].valueReference.identifier.value = "3840231262"
 
 * agent[user-child-org].type = NorwayAgentTypes#user-child-org
 * agent[user-child-org].who.identifier.value = "874716782"

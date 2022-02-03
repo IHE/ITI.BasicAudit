@@ -3,6 +3,7 @@ skinparam svgDimensionStyle false
 participant "Authorization Client" as Client
 participant "Authorization Server" as AS
 participant "Resource Server" as RS
+participant "Audit Record Repository" as AR
 
 autonumber 0 1 "<b>[00]</b>"
 autoactivate on
@@ -41,5 +42,9 @@ else introspect token
 end
 
 Client <-- RS : Resource Response  
+
+RS --> AR : AuditEvent recorded
+
+Client --> AR : AuditEvent recorded
 end
 @enduml

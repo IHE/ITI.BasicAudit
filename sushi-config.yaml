@@ -82,6 +82,11 @@ menu:
     Cross-Profile Considerations: volume-1.html#1526-basicaudit-cross-profile-considerations    
   Volume 3:
     Basic Audit Log Patterns: content.html
+    -RESTful activities: content.html#3573-restful-activities
+    -SAML Security Token: content.html#3574-saml-security-token
+    -OAuth Security Token: content.html#3575-oauth-security-token
+    -Consent Authorized Decision Audit Message: content.html#3576-consent-authorized-decision-audit-message
+    -Privacy Disclosure Audit Message: content.html#3577-privacy-disclosure-audit-message
   Volume 4:
     Norway: no.html
   Test Plan: testplan.html

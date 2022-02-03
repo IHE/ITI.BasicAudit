@@ -142,6 +142,8 @@ Recording the whole bearer blob seems potentially problematic? Or not? I am conc
 It would seem that during ITI-72 the server has the ability to invoke ITI-102 introspection, but do we force introspection purely for audit logging? I guess it is not a burden to invoke introspection for comprehensive logging? Yet an oAuth token can be used for many auditable transactions, and to force an introspection for audit logging alone will add many network interactions.
 
 ultimately the BasicAudit IG wants to focus only on uses of a token, but without better logging of ITI-71; it seems not possible. 
+
+proposal to add an extension to agent[user] to hold the audience and another to hold the scope. extension could be used in SAML too. A more general model would be to define an agent extension that is tag/value based. that tag/value extension could be used for many things, rather than many extensions for various needs?
 </div>
 
 #### 3:5.7.5.1 oAuth - Minimal AuditEvent record

@@ -11,6 +11,11 @@ subject:id | *AuditEvent.agent[user].who.identifier.value*
 Subject:name | *AuditEvent.agent[user].who.display*
 subject:system | *AuditEvent.agent[user].who.identifier.system*
 subject:assigner | *AuditEvent.agent[user].who.identifier.assigner*
+**application-session** | 
+subject:application-session:id | AuditEvent.agent[user].extension[otherId][application-session].identifier.value
+subject:application-session:name | AuditEvent.agent[user].extension[otherId][application-session].name
+subject:application-session:system | AuditEvent.agent[user].extension[otherId][application-session].identifier.system
+subject:application-session:assigner | N/A eller ekstensjon
 **qualifications-roles** |
 subject:qualification-role:id | AuditEvent.agent[user].role.code
 subject:qualification-role:name | AuditEvent.agent[user].role.display
@@ -31,11 +36,16 @@ subject:application-role-id | AuditEvent.agent[user].role.code
 subject:application-role-name | AuditEvent.agent.[user].role.display
 subject:application-role-system | AuditEvent.agent[user].role.system
 subject:application-role-assigner | N/A eller ekstensjon
+**healthcareservice** | 
+healthcareservice:id | AuditEvent.purposeOfEvent.coding.code
+healthcareservice:name | AuditEvent.purposeOfEvent.coding.display
+healthcareservice:system | AuditEvent.purposeOfEvent.coding.system
+healthcareservice:assigner | 
 **PurposeUse** | 
-purpose:id | AuditEvent.agent[user].purposeOUse.coding.code
-purpose:name | AuditEvent.agent[user].purposeOfUse.coding.display
-purpose:system | AuditEvent.agent[user].purposeOfUse.coding.system
-purpose:description | AuditEvent.agent[user].purposeOfUse.text
+purpose:id | AuditEvent.purposeOfEvent.coding.code
+purpose:name | AuditEvent.purposeOfEvent.coding.display
+purpose:system | AuditEvent.purposeOfEvent.coding.system
+purpose:description | AuditEvent.purposeOfEvent.text
 purpose:reason | ????
 **PurposeUse-local** | 
 purpose-local:id | AuditEvent.agent[user].purposeOUse.coding.code
@@ -74,18 +84,18 @@ subject:facility-id | AuditEvent.agent[detail-org].who.identifier.value
 subject:facility-name | AuditEvent.agent[detail-org].who.display
 subject:facility-system | AuditEvent.agent[detail-org].who.identifier.system
 subject:facility-assigner | AuditEvent.agent[detail-org].who.identifier.assigner
-**department** | TODO-no-example
+**department** | 
 subject:department:id | AuditEvent.agent[local-org-dep].who.identifier.value
 subject:department:name | AuditEvent.agent[local-org-dep].who.display
 subject:department:requester-code | 
 subject:department:system | AuditEvent.agent[local-org-dep].identifier.system
 subject:department:assigner | AuditEvent.agent[local-org-dep].identifier.assigner
-**sub-department** | TODO-no-example
+**sub-department** |
 subject:sub-department:id | AuditEvent.agent[local-org-sec].who.identifier.value
 subject:sub-department:name | AuditEvent.agent[local-org-sec].who.display
 subject:sub-department:system | AuditEvent.agent[local-org-sec].identifier.system
 subject:sub-department:assigner | AuditEvent.agent[local-org-sec].identifier.assigner
-**unit** | TODO-no-example
+**unit** |
 subject:unit:id | AuditEvent.agent[local-org-unit].who.identifier.value
 subject:unit:name | AuditEvent.agent[local-org-unit].who.display
 subject:unit:system | AuditEvent.agent[local-org-unit].identifier.system
@@ -94,15 +104,15 @@ subject:unit:assigner | AuditEvent.agent[local-org-unit].identifier.assigner
 resource:id | _AuditEvent.entity[patient].what.identifier.value_
 resource:name | _AuditEvent.entity[patient].what.display_
 resource:system | _AuditEvent.entity[patient].what.identifier.system_
-**Patient-child-org** | TODO-no-example 
+**Patient-child-org** | 
 resource:child-organization:id  | AuditEvent.entity[patient].detail[child-organization-id]
 resource:child-organization:name | AuditEvent.entity[patient].detail[child-organization-name]
 resource:child-organization:system | AuditEvent.entity[patient].detail[child-organization-system]
-**Patient-facility** | TODO-no-example
+**Patient-facility** | 
 resource:facility:id | AuditEvent.entity[patient].detail[facility-id]
 resource:facility:name | AuditEvent.entity[patient].detail[facility-name]
 resource:facility:system | AuditEvent.entity[patient].detail[facility-system]
-**Patient-consent** | TODO-no-example
+**Patient-consent** | 
 resource:patient-consent-directive  | _AuditEvent.agent[user].policy_
 resource:patient-consent-directive-type | 
 {:.grid}
@@ -114,34 +124,17 @@ resource:patient-consent-directive-type |
   
 ### TODO
 
-- TODO-healthcareservice: Unclear if the subject:healthcareservice is a agent or entity
-  - HealthCareService is the service that is provided by the institution for which the subject/ user works. HCS is not specific to the subject, and should probably be reflected by PurposeOfEvent, since it reflects the underlaying reason why access to the patient record was done. There are national valuesets for this, different valuesets will be used depending on if the subject organization is primary healthcare services or specialist/secondary healthcare services.
-  - Question: So is this a code to be put into the PurposeOfEvent?
-- TODO-no-example: Some defined terms did not have examples
-  - I modeled it based on theory
-  - Would be good to have a few more examples that overall cover the space.
 - TODO-unknown-example: some examples did not have defined terms
-  - hso:subject:application-session
-  - hso:issuer:organization
-  - hso:country
-  - hso:scope
+  - hso:country --> TODO put into agent[user].location
+  - hso:scope -- comes from oauth scope --  define two core extensions audience, and scope (String)
   - homeCommunityID
-- Check cardionality of all elements
+  - patient-consent
 - is it really necessary to slice the OtherId element? Or is it sufficient to just indicate the set of SAML attributes that get assembled in the otherId bucket. The result will look the same, but the modeling would not have slicing to show this.
   - I did not understand the comment on multiple OtherId elements. My question is on if slices need to be defined. This is independent of if there can be multiple instances of OtherId. The idea I am proposing is that the slices are not necessary, given that the various identifiers that would go into OtherId(s) all are self explanatory. The slices do not help with reading an AuditEvent. Slices are used to drive mandatory population. Thus we can explain where to place each identifier from the SAML assertion without defining a slice. One would only define a slice when one kind of these identifiers is mandatory.
 - should I define a mapping table? Would be yet-another-place where these tables would go. If they existed on the mapping table, would they be needed elsewhere? Trying to keep them all aligned is hard work.
   - On the structureDefinition page is a "Mapping" tab, that can have a table expressing the mapping of elements. Much like the narrative above. The drawback is that this format of this table is very restricted. The benefit is that some tooling might be able to use it in a computable way.
-- Audience?
+- purposeOfUse:reason -- is important to preserve. TODO add extension to CodeableConcept to hold reason.
 - possibly other "TODO"
 - possibly other "?"
-
-**TODO-examples without a model**
-
-Norway SAML attributes | AuditEvent element proposed 
-----|---- 
-**healthcareservice** | TODO-healthcareservice
-subject:healthcareservice-id | AuditEvent.agent[healthcareservice].who.identifier.value
-subject:healthcareservice-name | AuditEvent.agent[healthcareservice].who.display
-subject:healthcareservice-system | AuditEvent.agent[healthcareservice].who.identifier.system
-subject:healthcareservice-assigner | AuditEvent.agent[healthcareservice].who.identifier.assigner
-{:.grid}
+- resource:patient-consent-directive  and resource:patient-consent-directive-type
+  - should this be modeled the same way IHE models bppc?

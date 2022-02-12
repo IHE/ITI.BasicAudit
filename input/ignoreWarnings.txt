@@ -12,6 +12,8 @@ Code System URI 'http://dips.com/beslutningsmal' is unknown so the code cannot b
 Code System URI 'urn:oid:2.16.840.1.113883.6.96' is unknown so the code cannot be validated
 Code System URI 'urn:oid:2.16.840.1.113883.3.18.7.1' is unknown so the code cannot be validated
 Code System URI 'urn:oasis:names:tc:SAML:2.0:ac:classes' is unknown so the code cannot be validated
+Code System URI 'urn:ihe:iti:xca:2010' is unknown so the code cannot be validated
+Error from server: Unable to provide support for code system urn:ihe:iti:xca:2010
 
 # dummy example uses dummy data
 The Measure 'http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Reporting' could not be resolved, so no validation can be performed against the Measure

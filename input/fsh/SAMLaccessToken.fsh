@@ -53,6 +53,14 @@ Defined codes for SAML vs OAuth to enable differentiation of .policy as the toke
 * #UserSamlAgent "User SAML Agent participant"
 * #UserOauthAgent "User OAuth Agent participant"
 
+CodeSystem: UserAgentHomeCommunity
+Title: "XCA code for homeCommunity"
+Description: "one code"
+* ^caseSensitive = false
+* ^url = urn:ihe:iti:xca:2010
+* #homeCommunityId "IHE homeCommunityId"
+
+
 ValueSet: UserAgentTypesVS
 Title: "Agent types holding User-Agent"
 Description: """
@@ -383,7 +391,7 @@ assurance | authenticated AAL 4
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
 * agent[userorg].requestor = false
 * agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
-* agent[homeCommunityId].who.identifier.type = urn:ihe:iti:xca:2010#homeCommunityIdhomeCommunityId
+* agent[homeCommunityId].who.identifier.type = urn:ihe:iti:xca:2010#homeCommunityId
 * agent[homeCommunityId].who.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
 * agent[homeCommunityId].requestor = false
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"

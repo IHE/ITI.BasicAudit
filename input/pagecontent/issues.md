@@ -1,39 +1,29 @@
 Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient) , 
 	
-# Questions for Public Comment
+# Questions for committee development prior to public-comment
+
 - Is there an established way to record an OAuth token that I could define? I am expecting that mostly a unique identifier of the token is minimally needed. With a username and purposeOfUse being useful. I need some guidance and samples.
 - Is there any alternatives to the patterns I have defined? I did note some alternatives with recommendations in narrative?
 - Is there some other improvements one could recommend?
 - note in my pattern for Search/Query, I allow the cleaned search parameters to be put into entity.description. Is this useful?
 - I wish there was a flag similar but opposite to MustSupport, something like ShouldNotUse to discourage use while not making it invalid to use. given that this flag does not exist, I have marked everything that would be discouraged as 0..0. This is not necessarily wrong, as one can always be compliant with AuditEvent core, and not follow my IG guidance. It just seems very heavy handed.
 - There is a start at a test plan using Gherkin/Cucumber.
-- X-Request-Id vs TraceId -- I added X-Request-Id profiling. I did not add TraceId, as I am not as aware of what this is. It seems very similar, unclear if it is different or the same thing. The modeling of TraceId that is in the FHIR Core is a bit different than I modeled X-Request-Id here. TraceId example in core is a .entity.type #21 "Job", with a .entity.what.identifier.type #TraceId. Where as for X-Request-Id I followed the example that Grahame indicted his server supports today for X-Request-Id. I welcome comment, as I am not an expert TraceId nor X-Reqeust-Id. 
 - Should response time be recorded in the .period element? Who would be responsible for recording this response time? This seems too undefinable in abstract actor terms. Thus should it be given as guidance without constraints or requirements?
-- SAML profiling is focused on when a SAML token is used. There is no profiling of obtaining (access control decision). This is because [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) only profiled the use.
 - Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
 - Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
-- add short descriptions to profiled elements when needed / useful.	
 - is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
 - support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published 
-- put homeCommunityId into both/either of the .agent[user].who.identifier.issuer, and .entity[consent].what.identifier.issuer -- is this a good idea? It is done as either/both to enable proper consent and non consent use-cases.
-- who.identifier and what.identifer are used because it is expected that as audit logging is happening these values are directly available, and the resource reference is not known. However it is possible that the resource reference is known, should we add a MS on who.reference and what.reference to encourage recording of these "when they are known"?
-- Note X-Reqeust-Id is profiled differently than the example given in the FHIR core specification. Specifically there is a entity type defined here to enable slicing, where the example in FHIR core uses both type (job) and role (stream) which is harder to slice.
+
 
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
-- This IG has patterns for AuditEvent profiling. There are examples, but there are not the classic IHE Profiling of a workflow that results in a profiled AuditEvent for that workflow events. As such conformance with this IG is unclear.
-  - Could explain that QEDm or IPA are candidate grouping. That is to say the BasicAudit could explaint that when grouped with QEDm the following is required. This is opposite directionality of grouping as we tend to do in IHE template with the Security Considerations section. With QEDm we could include a modificaiton of QEDm in the BasicAudit, but with more general things like IPA that is not a solution. 
-  - Note that QEDm and IPA would be using the [Patient Query](StructureDefinition-IHE.BasicAudit.PatientQuery.html) profile, likely with an [OAuth use](tbd.html) profile.
-  - This IG might be published as a recommendation, those that claim it are expected to be compliant, but there would be no clear events that would cause clear AuditEvent output. Thus making it harder to test at connectathon, as connectathon would be fully dependent on the vendor pointing out the events (voluntary).
-- Explain in narrative each profile 
-- I intend to add many examples that are not compliant to the profiles, but should be considered consumable by an Audit-Client and accepted at an Audit-Repository. These will include AuditEvent logs from various IHE profiles, and degenerate forms of the included RESTful. Note that audit logging is a best-effort concept, the profiles show the best-case but best-effort fills out the AuditEvent with everything available even if it is not fully compliant.
 - I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
 - OAuth profiling
 - example descriptions don't show up on the page for that example. For some examples (the REST Query examples) I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
 - IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
 - Not much of a problem, but tracking for a solution anyway -- Binary Adjunct files (used to hold examples of SAML assertions) are working in DocumentReference, but throw a file type error with Binary. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
 - MustSupport -- given that the minimal profiles use MustSupport properly, but those profiles derived off of those minimal profiles add manditory requirement. This gives the appearance that a manditory element is also "R2", which is conflicting as something can't be both manditory and R2. Not sure how to solve this, as the FHIR profiling rules do not allow for removing a MustSupport flag. Thus the best I can think of is to define MustSupport in a way such that the R2 only applies if the element is not manditory, or that MustSupport does not mean anything on manditory elements. [chat thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/must-support.20when.20re-profiling)
-- X-Request-Id header -- I explained this only inside of the RESTful section, but it is applicable anywhere that X-Request-Id is used. I did not define it, as it is documented in FHIR core. I did not make this a standalone section because it is simply too small. This is a tool that some servers do use. This not clear it deserves anything more than what I have said. 
+- add short descriptions to profiled elements when needed / useful.	
 
 # Open Issues
 
@@ -41,3 +31,12 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - The audit examples are brought in from MHD, PIXm, and PDQm; and "adjusted" to fit the RESTful pattern. This adjustment is not necessary, but follows with the proposal that these RESTful patterns are used as patterns in other Implementation Guides. Thus, these need to be evaluated as to if the adjustment is useful, or not. There should be no reason to update MHD, PIXm, or PDQm if there is not benefit, but there should also be no problem updating them. The adjustment here was more as an exercise in determining if the pattern concept could work, and not an excercise in forcing a change.
   - The adjustment was to the .type and .subtype, and one profile was changed from import/create to read.
 - RESTful profiles start with a non-patient specific one, then a derived one with the patient slice. Is this the cleanest?
+- X-Request-Id header -- I explained this only inside of the RESTful section, but it is applicable anywhere that X-Request-Id is used. X-Reqeust-Id is profiled differently than the example given in the FHIR core specification. Specifically there is a entity type defined here to enable slicing, where the example in FHIR core uses both type (job) and role (stream) which is harder to slice. I did not make this a standalone section because it is simply too small.  
+  - X-Request-Id vs TraceId -- I added X-Request-Id profiling. I did not add TraceId, as I am not as aware of what this is. It seems very similar, unclear if it is different or the same thing. The modeling of TraceId that is in the FHIR Core is a bit different than I modeled X-Request-Id here. TraceId example in core is a .entity.type #21 "Job", with a .entity.what.identifier.type #TraceId. Where as for X-Request-Id I followed the example that Grahame indicted his server supports today for X-Request-Id. I welcome comment, as I am not an expert TraceId nor X-Reqeust-Id. 
+
+- who.identifier and what.identifer, rather than the .reference, are used because it is expected that as audit logging is happening these values are directly available, and the resource reference is not known. However it is possible that the resource reference is known, should we add a MS on who.reference and what.reference to encourage recording of these "when they are known"?
+- put homeCommunityId in as an Agent. Given that the definition in XUA is standalone, and is independent of organization or user. 
+- SAML profiling is focused on when a SAML token is used. There is no profiling of obtaining (access control decision). This is because [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) only profiled the use.
+
+
+

@@ -1,13 +1,4 @@
 
-Instance: Dr-SAML-norway
-InstanceOf: DocumentReference
-Title: "Norway SAML example in DocumentReference"
-Description: "DocumentReference of Norway SAML example."
-* status = #current
-* content.attachment.id = "ig-loader-xca-kj-token-20211111.txt"
-* content.attachment.contentType = #application/xml
-* context.related = Reference(AuditEvent/ex-auditPoke-Norway)
-
 
 
 Profile:        SAMLaccessTokenUseComprehensiveNorway
@@ -493,3 +484,25 @@ scope | "patient/Document.read"
 * entity[patient].what.identifier.value = "12057900499"
 * entity[patient].what.identifier.system = "urn:oid:2.16.578.1.12.4.1.4.1"
 * entity[patient].what.identifier.assigner.identifier.value = "https://www.skatteetaten.no/person/folkeregister/"
+
+
+
+
+Instance: Dr-SAML-norway
+InstanceOf: DocumentReference
+Title: "Norway SAML example in DocumentReference"
+Description: "DocumentReference of Norway SAML example."
+* status = #current
+* content.attachment.id = "ig-loader-xca-kj-token-20211111.txt"
+* content.attachment.contentType = #application/xml
+* context.related = Reference(AuditEvent/ex-auditPoke-Norway)
+
+Instance: SAML-JK-norway
+InstanceOf: DocumentReference
+Title: "Norway SAML second example in DocumentReference"
+Description: "DocumentReference of Norway second SAML example."
+* status = #current
+* content.attachment.id = "ig-loader-SAML_KJ_20220203.txt"
+* content.attachment.contentType = #application/xml
+//* context.related = Reference(AuditEvent/ex-auditPoke-Norway)
+

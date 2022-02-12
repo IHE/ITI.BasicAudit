@@ -139,7 +139,7 @@ The [PIXm](https://profiles.ihe.net/ITI/PIXm/index.html) Implementation Guide ha
 
 #### QEDm
 
-The [QEDm]() Implementation Guide has not yet defined AuditEvent profiles. So it should derive off the [Patient Query](StructureDefinition-IHE.BasicAudit.PatientQuery.html) profile, likely with an [OAuth use](tbd.html) profile.
+The [QEDm](https://wiki.ihe.net/index.php?title=Query_for_Existing_Data_for_Mobile_(QEDm)) Implementation Guide has not yet defined AuditEvent profiles. So it should derive off the [Patient Query](StructureDefinition-IHE.BasicAudit.PatientQuery.html) profile, likely with an [OAuth use](StructureDefinition-IHE.BasicAudit.IUAaccessTokenUse.html) profile.
 
 
 

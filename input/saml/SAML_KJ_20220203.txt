@@ -1,0 +1,238 @@
+<saml:Assertion ID="L.-lpU-eSmj36x4Y4NmlivWB6-O" IssueInstant="2022-02-03T14:24:48.274Z" Version="2.0" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+	<saml:Issuer>https://sts.sykehuspartner.no</saml:Issuer>
+	<ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">
+		<ds:SignedInfo>
+			<ds:CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+			<ds:SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"/>
+			<ds:Reference URI="#L.-lpU-eSmj36x4Y4NmlivWB6-O">
+				<ds:Transforms>
+					<ds:Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/>
+					<ds:Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
+				</ds:Transforms>
+				<ds:DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
+				<ds:DigestValue>7HVC33END0WnoNyFFBL4fqmPi5ixO/dRDmgrAR3RHCg=</ds:DigestValue>
+			</ds:Reference>
+		</ds:SignedInfo>
+		<ds:SignatureValue>EUOQH0yafcLDAkOW5ffU16ppR/ivQk6t1m4PSQm1jWW4szamxZNMYVgXUp0yYJsmjmq6gTfZp3q4nn31vgfks6hViA6SjyWxy48JtuMw8uyTcwQPx4s93t5PqH0ZrMDrL1p+qPKHtuO+zVRdQfA155kJeV5sXxOf8vTn+axB2W5eTjKI16gSmkH99f3a86JaB+tqg6dTTXcyiupoLmL1w2UrkeRTa7U2eDtYdsgDaGiHlKlogfqXyQTEduT1gAoA22AkQXaJW93gUOUQHgcdAu08BFHDjE4sD8X/TzHS0ZsB8a056e78bL+Dp8LRLiZdAm93TDk8ArCxSdi6NOEkJw==</ds:SignatureValue>
+		<ds:KeyInfo>
+			<ds:X509Data>
+				<ds:X509Certificate>MIIE6jCCBJCgAwIBAgITFgAAB9odIHwb4YOv2gAAAAAH2jAKBggqhkjOPQQDAjBaMRIwEAYKCZImiZPyLGQBGRYCbm8xFzAVBgoJkiaJk/IsZAEZFgdoZmRyaWZ0MRMwEQYKCZImiZPyLGQBGRYDaWFtMRYwFAYDVQQDEw1TRDMtQ0EtSUFNLTAxMB4XDTIxMDkyMDEwMjcwN1oXDTIyMDkyMDEwMjcwN1owgYcxCzAJBgNVBAYTAk5PMQ0wCwYDVQQIEwRPc2xvMRAwDgYDVQQHEwdEcmFtbWVuMRowGAYDVQQKExFTeWtlaHVzcGFydG5lciBIRjEWMBQGA1UECxMNSUtULXRqZW5lc3RlcjEjMCEGA1UEAxMac3RzLXNpZ24uc3lrZWh1c3BhcnRuZXIubm8wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCZRuUUHbLrD8VMqCzQ5jqNbEhS2Kols8dkcljdLjqdXI50qlXmI8EsdXinP0Es8FHBZ9ZIQaf6FhYPrgOSKnNhSzrNwzETu0LVv94AiYLxo57BxCH5OTCCWcNWu1SGsVq3MDwohU3gsEMEq6J/b02WKIfihcaY6MRueM1es/2/Ro8CDrLn8J+/i1oikhyd39D2qatSFfYUWtCELYhCAAihtjE+SeU92MUbVVszLmjjRqz42PCgfMjt1GfO47XOWsldL2ZJQJoWmyVrfn7HwJ3gDB7g6UJ/sy4sY56NwboyEnGq+7cTRjgVNnBm1Gttckp//cmsWWHOLC/sJz6zzsK1AgMBAAGjggI6MIICNjAlBgNVHREEHjAcghpzdHMtc2lnbi5zeWtlaHVzcGFydG5lci5ubzAdBgNVHQ4EFgQUh8UamiQHXgxcdvLxSscQOKeQDOYwHwYDVR0jBBgwFoAUW64HSmF8j7gnys/ZJ/wHM5ujD7UwawYDVR0fBGQwYjBgoF6gXIYsaHR0cDovL3BraTIuaGVsc2VoZi5uby9wa2kvU0QzLUNBLUlBTS0wMS5jcmyGLGh0dHA6Ly9wa2kxLmhlbHNlaGYubm8vcGtpL1NEMy1DQS1JQU0tMDEuY3JsMIHfBggrBgEFBQcBAQSB0jCBzzBTBggrBgEFBQcwAoZHaHR0cDovL3BraTEuaGVsc2VoZi5uby9wa2kvc2QzLWNhYW0tMDEuaWFtLmhmZHJpZnQubm9fU0QzLUNBLUlBTS0wMS5jcnQwUwYIKwYBBQUHMAKGR2h0dHA6Ly9wa2kyLmhlbHNlaGYubm8vcGtpL3NkMy1jYWFtLTAxLmlhbS5oZmRyaWZ0Lm5vX1NEMy1DQS1JQU0tMDEuY3J0MCMGCCsGAQUFBzABhhdodHRwOi8vb2NzcC5oZWxzZWhmLm5vLzAOBgNVHQ8BAf8EBAMCB4AwPAYJKwYBBAGCNxUHBC8wLQYlKwYBBAGCNxUIg8aIEIa76h+GiYUfqsMzl4QpgVeFuZdbg7KdfQIBZAIBDzATBgNVHSUEDDAKBggrBgEFBQcDATAbBgkrBgEEAYI3FQoEDjAMMAoGCCsGAQUFBwMBMAoGCCqGSM49BAMCA0gAMEUCIQC0fG6sMY7swkYTo6bd5tpjyImY2LZGPdsDIoihmOlqMQIgSkUE7dp12rH8lu4pnFlUZCjxn1HviTY2wtppz2b6Tyc=</ds:X509Certificate>
+			</ds:X509Data>
+			<ds:KeyValue>
+				<ds:RSAKeyValue>
+					<ds:Modulus>mUblFB2y6w/FTKgs0OY6jWxIUtiqJbPHZHJY3S46nVyOdKpV5iPBLHV4pz9BLPBRwWfWSEGn+hYWD64DkipzYUs6zcMxE7tC1b/eAImC8aOewcQh+TkwglnDVrtUhrFatzA8KIVN4LBDBKuif29NliiH4oXGmOjEbnjNXrP9v0aPAg6y5/Cfv4taIpIcnd/Q9qmrUhX2FFrQhC2IQgAIobYxPknlPdjFG1VbMy5o40as+NjwoHzI7dRnzuO1zlrJXS9mSUCaFpsla35+x8Cd4Awe4OlCf7MuLGOejcG6MhJxqvu3E0Y4FTZwZtRrbXJKf/3JrFlhziwv7Cc+s87CtQ==</ds:Modulus>
+					<ds:Exponent>AQAB</ds:Exponent>
+				</ds:RSAKeyValue>
+			</ds:KeyValue>
+		</ds:KeyInfo>
+	</ds:Signature>
+	<saml:Subject>
+		<saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">02125900278</saml:NameID>
+		<saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:bearer"/>
+	</saml:Subject>
+	<saml:Conditions NotBefore="2022-02-03T14:19:48.274Z" NotOnOrAfter="2022-02-03T16:24:48.274Z">
+		<saml:AudienceRestriction>
+			<saml:Audience>https://sds-iisregt-61.sikt.sykehuspartner.no</saml:Audience>
+		</saml:AudienceRestriction>
+	</saml:Conditions>
+	<saml:AttributeStatement>
+		<saml:Attribute Name="hso:subject:application-session:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://dips.com</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">OLATEST</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:functional-role:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Overlege</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:issuer:organization:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Sykehuspartner HF</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:country:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.iso.org/iso-3166-country-codes.html</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:organization:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Oslo universitetssykehus HF</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:country:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Norge</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">yyzqpp+0000151631585</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:role:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://www.volven.no</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:role:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Lege</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">HENV_PAS</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:country:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:1.0.3166.1.2.2</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:child-organization:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.brreg.no/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">NINA FOS TRONDSEN</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:resource:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.skatteetaten.no/person/folkeregister/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:national-identifier:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">NINA FOS TRONDSEN</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:national-identifier:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">02125900278</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:issuer:organization:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">914637651</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.helse-sorost.no</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose:description" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Oppslag via kjernejournal, helsehjelp</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.4.4</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Nina Fos Trondsen</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:facility:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://register.nhn.no/resh</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:facility:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.1.102</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:assurance-level:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://begrep.difi.no/Felles/sikkerhetsnivaa</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:child-organization:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">975298744</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:role:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://www.volven.no</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:issuer:organization:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.brreg.no/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:facility:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">4211303</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:organization:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">993467049</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:resource:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">09090950972</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:role:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">LE</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:functional-role:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">219534</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:issuer:organization:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.1.101</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:resource:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.4.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:functional-role:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://oslo-universitetssykehus.no/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:role:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Lege</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:reason" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">YUUUUUUUUHU det funker (kanskje)</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:assurance-level:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.digdir.no/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://register.helsedirektoratet.no/hpr</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:assurance-level:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">4</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.iso.org/standard/54547.html</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:role:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">LE</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:homecommunity:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.7.1.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.3.1.40.25.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">1.0.14265.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:functional-role:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.3.1.40.5.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:description" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Henvendelse fra pasienten. Gyldig fra 03.02.2022 00:00:00 til 04.02.2022 15:08:44</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:country:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">NO</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:national-identifier:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.1.4.1</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://dips.com</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:role:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.1.9060</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:scope" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">patient/Document.read</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:national-identifier:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">https://www.skatteetaten.no/person/folkeregister/</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">431001137</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:userselected" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">True</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:qualification:role:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.1.9060</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:application-session:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://dips.com/session_id_hash</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:child-organization:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Olafiapoliklinikken - Somatikk</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:purpose-local:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">http://dips.com/carerelation</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:organization:assigner" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Brønnøysundregistrene</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:child-organization:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:oid:2.16.578.1.12.4.1.101</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:facility:name" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">Olafiaklinikken</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:application-session:id" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">577036188</saml:AttributeValue>
+		</saml:Attribute>
+		<saml:Attribute Name="hso:subject:organization:system" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:basic">
+			<saml:AttributeValue xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">2.16.578.1.12.4.1.4.101</saml:AttributeValue>
+		</saml:Attribute>
+	</saml:AttributeStatement>
+</saml:Assertion>

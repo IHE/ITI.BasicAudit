@@ -466,7 +466,7 @@ AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
-* agent[user].who.identifier.system = "ldap://example.com/CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 
@@ -514,7 +514,7 @@ AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 * agent[user].who.identifier.value = "UID=kskagerb"
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
-* agent[user].who.identifier.system = "ldap://example.com/CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."

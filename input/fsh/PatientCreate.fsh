@@ -14,6 +14,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
 - And when a user is known they are the Author, Informant, or Custodian
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+// TODO: Need to change this to a slice to allow other codes in addition to this value.
 * subtype 1..1
 * subtype = http://hl7.org/fhir/restful-interaction#create "create"
 * action = #C

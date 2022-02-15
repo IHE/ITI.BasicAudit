@@ -40,7 +40,7 @@ This section is only concerned with the AuditEvent profiling to use when an even
 
 In this section we use the term "SAML Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40), or (b) any other SAML token used to secure an Interoperability transaction.
 
-There are two patterns defined: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details taht could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
+There is documentation of the audit event details to be added to a grouped transaction audit event log in [XUA Security Considerations 2:3.40.4.2](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2), however this is not explaining how this should be recorded in a FHIR AuditEvent. There are two patterns defined here: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details taht could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
 #### 3:5.7.4.1 SAML - Minimal AuditEvent record
 
@@ -107,16 +107,7 @@ In this section we use the term "OAuth Security Token" in a general sense to ref
 
 There are two patterns defined: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details that could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
-Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html), the AuditEvent specification here will focus on IUA interactions. The profiling AuditEvent
-
-<div>
-{%include IUA-processflow.svg%}
-</div>
-<br clear="all">
-
-**Figure: OAuth Basic Processing (from IUA Figure 34.4.2.2-1)**
-
-The figure above will be used to understand the following AuditEvent constraints. The Figure is first shown in [IUA as Figure 34.4.2.2-1](https://profiles.ihe.net/ITI/IUA/index.html#34422-process-flow). This is used as a informative general flow here.
+Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html), and has [Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), the AuditEvent specification here will focus on IUA interactions. The profiling AuditEvent
 
 Defined here is the AuditEvent that the Client and Server could record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) with the [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured.
 

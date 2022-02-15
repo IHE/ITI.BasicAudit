@@ -66,9 +66,7 @@ pages:
   other.md:
     title: Changes to Other Profiles
     generation: markdown
-  no.md:
-    title: 4:6 Norway National Extension
-    generation: markdown
+
 
 menu:
   BasicAudit Home: index.html
@@ -87,8 +85,6 @@ menu:
     -OAuth Security Token: content.html#3575-oauth-security-token
     -Consent Authorized Decision Audit Message: content.html#3576-consent-authorized-decision-audit-message
     -Privacy Disclosure Audit Message: content.html#3577-privacy-disclosure-audit-message
-  Volume 4:
-    Norway: no.html
   Test Plan: testplan.html
   Artifacts: artifacts.html
   Other: other.html

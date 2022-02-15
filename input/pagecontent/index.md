@@ -22,9 +22,6 @@ This guide is organized into three main sections:
 
 2. Volume 3: Content Section
     1. [5.7 Basic Audit Log Patterns](content.html)
-
-3. Volume 4: National Extensions
-    1. [6 Norway](no.html)
 	
 4. [Test Plan](testplan.html)
 

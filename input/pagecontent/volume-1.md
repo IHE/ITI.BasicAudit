@@ -171,8 +171,8 @@ The generic interaction between a client and a server shown with interactions 1,
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
-Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human. Define how an activity AuditEvent (see Use Case #1) would be enhanced to record details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
-
+Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human; there is a need to record well formatted details about the security context. This use-case needs an audit event pattern defined, to be combined with the audit event pattern for the security relevant event (see Use Case #1), that would enhance the audit event log record with details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
+  
 #### 1:52.4.2.3 Use Case #3: Consent Authorized Decision event
 
 Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authoried Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)

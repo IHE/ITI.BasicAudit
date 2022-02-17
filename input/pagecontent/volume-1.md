@@ -9,7 +9,7 @@ This implementation guide is intended to be fully compliant with the HL7 [FHIR](
 
 ## 1:52.1 BasicAudit Actors and Content
 
-Figure 52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. Note that the actors in this profile are the same as the actors defined in the [ATNA Profile \[ITI TF-1: 9\]](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) and [Add RESTful ATNA (Query and Feed) Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf).
+Figure 52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
 
 <div>
 {%include ActorsAndTransactions.svg%}
@@ -22,14 +22,15 @@ Table 52.1-1: BasicAudit; Profile - Actors and Transactions
 
 | Actors                  | Transactions              | Initiator or Responder | Optionality| Reference|
 |-------------------------|---------------------------|:----------------------:|:----------:|----------|
-| *ANY Secure Client*     | *ANY request/response*    | Initiator | R | <any>  |
-| *ANY Secure Client*     | Record Audit Event        | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| *ANY Secure Server*     | *ANY request/response*    | Responder | R | <any>  |
-| *ANY Secure Server*     | Record Audit Event        | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| Audit Record Repository | Record AuditEvent         | Responder | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| Audit Record Repository | Retrieve ATNA Audit Event | Responder | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| Audit Consumer          | Retrieve ATNA Audit Event | Initiator | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| *ANY Secure Client*     | *ANY request/response*    | Initiator | R | [1:52.1.1.1](volume-1.html#152111-any-secure-client) |
+| *ANY Secure Client*     | ATNA Record Audit Event   | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| *ANY Secure Server*     | *ANY request/response*    | Responder | R | [1:52.1.1.2](volume-1.html#152112-any-secure-server) |
+| *ANY Secure Server*     | ATNA Record Audit Event   | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| ATNA Audit Record Repository | ATNA Record AuditEvent         | Responder | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| ATNA Audit Record Repository | ATNA Retrieve ATNA Audit Event | Responder | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| ATNA Audit Consumer          | ATNA Retrieve ATNA Audit Event | Initiator | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
 {:.grid}
+
 
 ### 1:52.1.1 Actor Descriptions and Actor Profile Requirements
 
@@ -43,7 +44,7 @@ Table 52.1-1: BasicAudit; Profile - Actors and Transactions
 
 #### 1:52.1.1.3 ATNA Audit Record Repository
 
-The Audit Record Repository shown is not specialized, it is the ATNA Audit Record Repository with support for ATNA ATX:FHIR Feed Option, and Retrieve Audit Message Option.
+The Audit Record Repository shown is the ATNA Audit Record Repository with support for ATNA ATX:FHIR Feed Option, and Retrieve Audit Message Option.
 
 #### 1:52.1.1.4 ATNA Audit Consumer
 

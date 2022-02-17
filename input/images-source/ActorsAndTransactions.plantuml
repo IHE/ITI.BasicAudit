@@ -1,11 +1,20 @@
 @startuml
-agent "ANY Secure Client" as Client
-agent "ANY Secure Server" as Server
+rectangle "ANY Secure Client" {
+  agent "any client" as cRest
+  agent "Secure Application" as cAud
+  cRest -down.* cAud 
+}
+rectangle "Any Secure Server" {
+  agent "Secure Application" as sAud
+  agent "any server" as sRest
+  sRest -down.* sAud
+}
+
 agent "Audit Record Repository" as AuditRepository
 agent "Audit Consumer" as AuditClient
-Client -right-> Server : ANY request/response
-Server -down-> AuditRepository: Record Audit Event
-Client --> AuditRepository: Record Audit Event
-AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event
-@enduml
 
+cRest -right..> sRest : ANY request/response
+sAud -down-> AuditRepository: Record Audit Event [ITI-20]
+cAud --> AuditRepository: Record Audit Event [ITI-20]
+AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event [ITI-20]
+@enduml

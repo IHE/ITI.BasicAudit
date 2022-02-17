@@ -36,7 +36,7 @@ Where it is known that a http RESTful transaction included a X-Request-Id, that 
 
 ### 3:5.7.4 SAML Security Token
 
-This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in a SAML Security Token. This does not cover how the SAML Token was created, acquired, authorized, or managed. See [IHE-XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html).  This specification presumes that the interactions to obtain the "SAML Security Token" were themselves auditable events and properly recorded in the audit log. 
+This section only applies to auditing agents that have access to the content of the SAML Security Token. This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in a SAML Security Token. This does not cover how the SAML Token was created, acquired, authorized, or managed. See [IHE-XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html).  This specification presumes that the interactions to obtain the "SAML Security Token" were themselves auditable events and properly recorded in the audit log. 
 
 In this section we use the term "SAML Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40), or (b) any other SAML token used to secure an Interoperability transaction.
 

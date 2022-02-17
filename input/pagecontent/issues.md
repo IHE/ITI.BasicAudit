@@ -2,7 +2,6 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 	
 # Questions for committee development prior to public-comment
 
-- Is there an established way to record an OAuth token that I could define? I am expecting that mostly a unique identifier of the token is minimally needed. With a username and purposeOfUse being useful. I need some guidance and samples.
 - Is there any alternatives to the patterns I have defined? I did note some alternatives with recommendations in narrative?
 - Is there some other improvements one could recommend?
 - note in my pattern for Search/Query, I allow the cleaned search parameters to be put into entity.description. Is this useful?
@@ -18,7 +17,6 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 # TODO - tasks I know need to be done, I just didn't get to them yet.
 	   
 - I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
-- OAuth profiling
 - example descriptions don't show up on the page for that example. For some examples (the REST Query examples) I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
 - IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
 - Not much of a problem, but tracking for a solution anyway -- Binary Adjunct files (used to hold examples of SAML assertions) are working in DocumentReference, but throw a file type error with Binary. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
@@ -27,6 +25,7 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 
 # Open Issues
 
+- Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters biggenough yet not too big?
 - The R4 version of AuditEvent uses extensible binding often, this has limited the ways that the AuditEvent can be constrained. R5 has relaxed these to either example or preferred binding, so some further can be done in this IG once R5 is released.
 - The audit examples are brought in from MHD, PIXm, and PDQm; and "adjusted" to fit the RESTful pattern. This adjustment is not necessary, but follows with the proposal that these RESTful patterns are used as patterns in other Implementation Guides. Thus, these need to be evaluated as to if the adjustment is useful, or not. There should be no reason to update MHD, PIXm, or PDQm if there is not benefit, but there should also be no problem updating them. The adjustment here was more as an exercise in determining if the pattern concept could work, and not an excercise in forcing a change.
   - The adjustment was to the .type and .subtype, and one profile was changed from import/create to read.

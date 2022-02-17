@@ -52,6 +52,7 @@ Defined codes for SAML vs OAuth to enable differentiation of .policy as the toke
 * ^caseSensitive = false
 * #UserSamlAgent "User SAML Agent participant"
 * #UserOauthAgent "User OAuth Agent participant"
+//* #UserOauthClientId "Application client_id"
 
 CodeSystem: UserAgentHomeCommunity
 Title: "XCA code for homeCommunity"

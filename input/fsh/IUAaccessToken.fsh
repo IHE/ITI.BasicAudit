@@ -1,4 +1,72 @@
 
+Profile: OAUTHaccessTokenUseOpaque
+Parent: AuditEvent
+Id: IHE.BasicAudit.OAUTHaccessTokenUse.Opaque
+Title: "Basic AuditEvent pattern for oAuth Opaque"
+Description: """
+Used when only have an opaque oAuth token.
+"""
+* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.path = "type"
+* agent ^slicing.rules = #open
+* agent contains 
+    user 1..
+* agent[user].type = UserAgentTypes#UserOauthAgent
+* agent[user] ^short = "other elements may be filled in as needed."
+* agent[user].requestor = true
+* agent[user].policy 1..1 MS
+* agent[user].policy ^short = "last 32 characters of the oAuth token."
+* agent[user].policy ^definition = "do NOT include the whole opaque token. The last 32 characters should be enough and would be the most entropy."
+* agent[user].purposeOfUse MS 
+* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
+
+Profile: OAUTHaccessTokenUseMinimal
+Parent: AuditEvent
+Id: IHE.BasicAudit.OAUTHaccessTokenUse.Minimal
+Title: "Basic AuditEvent pattern for oAuth Minimal"
+Description: """
+Used when only have access to the oAuth token details (JWT).
+"""
+* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.path = "type"
+* agent ^slicing.rules = #open
+* agent 1..2
+* agent contains 
+    client 1..1 and 
+    user 0..1
+* agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 "Application"
+* agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
+* agent[client].network 0..1 MS // as known by TCP connection information
+* agent[client].role 0..0 
+* agent[client].altId 0..0
+* agent[client].name 0..0 
+* agent[client].location 0..0 
+* agent[client].policy 0..0 
+* agent[client].media 0..0 
+* agent[client].purposeOfUse 0..0 
+* agent[user].type = UserAgentTypes#UserOauthAgent
+* agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
+* agent[user].requestor = true
+* agent[user].role MS // if the OAuth token includes any roles, they are recorded here
+* agent[user].altId 0..0 // discouraged
+* agent[user].name MS // might also be in .who.text but here is searchable
+* agent[user].location 0..0 // discouraged as unlikely to be known in this scenario
+* agent[user].policy 1..1 
+* agent[user].policy ^short = "jti (JWT ID)"
+* agent[user].media 0..0 // media is physical storage media identification
+* agent[user].network 0..0 // users are not network devices
+* agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
+
+Profile: OAUTHaccessTokenUseComprehensive
+Parent: OAUTHaccessTokenUseMinimal
+Id: IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive
+Title: "Basic AuditEvent pattern for oAuth Comprehensive"
+Description: """
+Used when only have access to the oAuth token details (JWT).
+"""
+// TODO fill in with something useful.
+
+
 Profile:        IUAaccessTokenUse
 Parent:         AuditEvent
 Id:             IHE.BasicAudit.IUAaccessTokenUse

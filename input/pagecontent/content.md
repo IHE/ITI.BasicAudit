@@ -61,7 +61,7 @@ Local policy may choose to record less than are defined here, or may choose to r
 
 For those using SAML beyond XUA, there is no specific guidance here.
 
-* [StructureDefinition profile of Basic AuditEvent pattern for Comprehensive](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
+* [StructureDefinition profile of Basic AuditEvent pattern for SAML Comprehensive](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive-examples.html)
 
 #### 3:5.7.4.3 SAML mapping to AuditEvent
@@ -101,59 +101,57 @@ Other SAML attributes may be defined, but this specificaiton focuses on XUA attr
 
 ### 3:5.7.5 OAuth Security Token
 
-This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in a OAuth Security Token. This does not cover how the oAuth Token was created, acquired, authorized, or managed. See [IUA](https://profiles.ihe.net/ITI/IUA/index.html).  This specification presumes that the interactions to obtain the "Oauth Security Token" were themselves auditable events and properly recorded in the audit log. 
+This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in an OAuth Security Token. This does not cover how the oAuth Token was created, acquired, authorized, or managed. See [IUA](https://profiles.ihe.net/ITI/IUA/index.html).  This specification presumes that the interactions to obtain the "Oauth Security Token" were themselves auditable events and properly recorded in the audit log. 
 
 In this section we use the term "OAuth Security Token" in a general sense to refer to either (a) an [IUA](https://profiles.ihe.net/ITI/IUA/index.html) OAuth Access Token being used in an [ITI-72](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72), or (b) any other OAuth Access Token used to secure an Interoperability transaction (e.g. [SMART Backend Services](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#presenting-an-access-token-to-fhir-api), or [SMART App Launch Framework](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api), or other)
 
-There are two patterns defined: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details that could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
+There are three patterns defined: opaque, minimal, and comprehensive. 
+* Where opaque is used when the client and/or server has only an opaque token (encrypted JWT) where no further details are known. There is still a need to include some evidence in the AuditEvent to tie this audit log entry with a specific token, but the whole token should not be recorded for security reasons. There are introspection functions often available, but often use of this impacts performance.
+* Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details that could be looked up later are not replicated in the AuditEvent. 
+* Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
-Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html), and has [Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), the AuditEvent specification here will focus on IUA interactions. The profiling AuditEvent
-
-Defined here is the AuditEvent that the Client and Server could record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) with the [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured.
+Given that IHE has the [IUA profile](https://profiles.ihe.net/ITI/IUA/index.html), and has [Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), the AuditEvent specification here will focus on IUA interactions. The profiling AuditEvent defined here is the AuditEvent that the Client and Server would record when using [IUA](https://profiles.ihe.net/ITI/IUA/index.html) with the [ITI TF-2: 3.72 Incorporate Access Token \[ITI-72\]](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) to secure some RESTful transaction. The RESTful transaction is not defined here, just the additional AuditEvent element details that would be added to the AuditEvent for the RESTful transaction being secured (see [RESTful activities](content.html#3573-restful-activities) for general purpose logging).
 
 The [IUA](https://profiles.ihe.net/ITI/IUA/index.html) profile is used here as a proxy for all oAuth specifications. [IUA](https://profiles.ihe.net/ITI/IUA/index.html) is used here because IHE has direct access and has defined fields. The Minimal AuditEvent pattern defined here is not the same as the one defined in [IUA](https://profiles.ihe.net/ITI/IUA/index.html), mostly due to the more expressive and coded nature of the FHIR AuditEvent fs the DICOM AuditMessage.
 
+The Client and Server are both encouraged to log an AuditEvent covering any security relevant event, and to enhance that AuditEvent with one of the following patterns when an oAuth token is associated with authorizing (or forbidding) the event.
 
-<div markdown="1" class="stu-note">
+#### 3:5.7.5.1 oAuth - Opaque AuditEvent record
 
-It would seem that the input to ITI-71 need to be recorded. The output of ITI-71 logged as output of ITI-71, as it is also the input to ITI-72. Thus all the uses in ITI-72 of the token issued, can be traced back to the ITI-71. I think this abstract concept is clear, but the details are not clear to me. Especially with all the variations in ITI-71. Might I pick just ONE path?
+The Opaque AuditEvent profile would be used when the token is opaque (usually encrypted JWT). The token should be shortened to not more than 32 characters, and those characters should be from the end of the token to assure the most entropy. The presumption is that the many AuditEvent(s) can be coorelated to all be related to the same security token given this shortened token string.
 
-It would seem that during ITI-72, the only thing the client has is the bearer blob. https://profiles.ihe.net/ITI/IUA/index.html#37242-message-semantics
+Other elements may be recorded following the Minimal or Comprehensive pattern.
 
-but in theory, the client knew something more during ITI-71, but it is not clear what more they definitely knew, and it is not clear that the more details that were known at ITI-71 by the client are useful. Seems the useful details are rather hidden to the client by the mythical "User Agent"
-https://profiles.ihe.net/ITI/IUA/index.html#3714-messages
-Note I am not exactly sure why IUA has the ITI-71 audit log record the "URL requested" and nothing more. https://profiles.ihe.net/ITI/IUA/index.html#37151-security-audit-considerations
+* [StructureDefinition profile of Basic AuditEvent pattern for oAuth Opaque](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Opaque.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Opaque-examples.html)
 
-Recording the whole bearer blob seems potentially problematic? Or not? I am concerned that it is big, but am not sure it always is big.
+#### 3:5.7.5.2 oAuth - Minimal AuditEvent record
 
-It would seem that during ITI-72 the server has the ability to invoke ITI-102 introspection, but do we force introspection purely for audit logging? I guess it is not a burden to invoke introspection for comprehensive logging? Yet an oAuth token can be used for many auditable transactions, and to force an introspection for audit logging alone will add many network interactions.
+The Minimal AuditEvent pattern would be used when the JWT token is available at the time the AuditEvent is recorded. 
 
-ultimately the BasicAudit IG wants to focus only on uses of a token, but without better logging of ITI-71; it seems not possible. 
+The Minimal AuditEvent pattern defined here is not the same as the one defined in [ITI-72 Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage. This AuditEvent pattern is also recommended for both client and server to the extent possible.
 
-proposal to add an extension to agent[user] to hold the audience and another to hold the scope. extension could be used in SAML too. A more general model would be to define an agent extension that is tag/value based. that tag/value extension could be used for many things, rather than many extensions for various needs?
-</div>
+The Minimal AuditEvent pattern preserves the oAuth JWT ID, so that the contents of the oAuth token can be retrieved from the oAuth Authority when such access is available. The Minimal AuditEvent pattern preserves the iss (JWT Issuer) and sub (JWT Subject) in the who.Identifier, the client_id in second agent, and any purposeOfUse into the purposeOfUse element.
 
-#### 3:5.7.5.1 oAuth - Minimal AuditEvent record
+* [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an oAuth security token](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal-examples.html)
 
-<div markdown="1" class="stu-note">
+#### 3:5.7.5.3 oAuth - Comprehensive AuditEvent record
 
-This specification defines that the Minimal AuditEvent record the .... TODO
+This pattern preserves most oAuth JWT fields in the AuditEvent. Not all are preserved as some attributes are proven during the oAuth token validation and thus carry no further informtion useful in an AuditEvent (e.g. not before). 
 
-The initial view of minimal vs comprehensive was similar to the SAML above, but the client doesn't ever have much of any details. Thus is this pattern logical? Or should the pattern be client vs server vs authZ service? I think it is important to be able to link, within the AuditEvent dataset, the ITI-71 with the uses of the token in ITI-72, with the details of the token.
+Local policy may choose to record less than are defined here, or may choose to record more. 
 
-I think success could be nothing more than minimal logging?
-</div>
+For those using oAuth beyond IUA, there is no specific guidance here.
 
-#### 3:5.7.5.2 oAuth - Comprehensive AuditEvent record
+* [StructureDefinition profile of Basic AuditEvent pattern for oAuth Comprehensive](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive.html)
+  * [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive-examples.html)
 
-<div markdown="1" class="stu-note">
-given the above, is comprehensive even possible or desireable?
-
-</div>
-
-#### 3:5.7.5.3 oAuth mapping to AuditEvent
+#### 3:5.7.5.4 oAuth mapping to AuditEvent
 
 The following table uses a short-hand for the oAuth fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the field and the FHIR AuditEvent element given. This also presumes that the one recording the AuditEvent has this level access to the oAuth fields. Note: Prefix with a ":" is the specification that defined that field (IHE-IUA, IHE-BPPC, etc).
+
+Note: Opaque is not shown in the table as it has no access to any oAuth Fields.
 
 | oAuth field                          | Comprehensive AuditEvent          | Minimal AuditEvent                |
 |--------------------------------------|-----------------------------------|-----------------------------------|
@@ -169,7 +167,7 @@ The following table uses a short-hand for the oAuth fields and FHIR AuditEvent e
 | ihe_iua:subject_name                 | agent[user].who.display | |
 | ihe_iua:subject_organization         | agent[userorg].who.display | |
 | ihe_iua:subject_organization_id      | agent[userorg].who.identifier.value | |
-| ihe_iua:subject_role                 | agent[user].role | agent[user].role | |
+| ihe_iua:subject_role                 | agent[user].role | agent[user].role |
 | ihe_iua:purpose_of_use               | agent[user].purposeOfUse           | agent[user].purposeOfUse |
 | ihe_iua:home_community_id            | entity[consent].what.identifier.assigner.identifier.value | |
 | ihe_iua:national_provider_identifier | agent[user].extension[otherId][npi].identifier.value | |

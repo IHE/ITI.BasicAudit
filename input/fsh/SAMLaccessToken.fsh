@@ -19,6 +19,7 @@ The Vocabulary is not defined here. Some sources of vocabulary:
 """
 * value[x] only CodeableConcept
 * valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
+* valueCodeableConcept 1..1
 
 
 
@@ -27,7 +28,7 @@ Id: ihe-otherId
 Title: "AuditEvent.agent other identifiers"
 Description: "Carries other identifiers are known for an agent."
 * value[x] only Reference
-
+* valueReference 1..1
 
 CodeSystem:  OtherIdentifierTypes 
 Title: "OtherId Identifier Types"

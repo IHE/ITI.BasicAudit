@@ -12,8 +12,15 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * Then an AuditEvent following this profile is recorded
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* subtype ^slicing.discriminator.type = #value
+* subtype ^slicing.discriminator.path = "$this"
+* subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
-* subtype from Reads (required)
+//* subtype contains anyRead 1..1 
+//* subtype[anyRead] from Reads (exactly)
+* subtype contains anyRead 0..1 and anyVread 0..1
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read" (exactly)
+* subtype[anyVread] = http://hl7.org/fhir/restful-interaction#vread "vread" (exactly)
 * action = #R
 * recorded 1..1
 // failures are recorded differently

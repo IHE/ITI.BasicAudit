@@ -3,7 +3,7 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: ihe.iti.basicaudit
-canonical: http://profiles.ihe.net/ITI/BasicAudit
+canonical: https://profiles.ihe.net/ITI/BasicAudit
 name: IHE_ITI_BasicAudit
 title: "IHE ITI Basic AuditEvent Implementation Guide"
 status: draft

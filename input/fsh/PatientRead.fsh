@@ -17,7 +17,7 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
 //* subtype contains anyRead 1..1 
-//* subtype[anyRead] from Reads (exactly)
+//* subtype[anyRead] from Reads (required)
 * subtype contains anyRead 0..1 and anyVread 0..1
 * subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read" (exactly)
 * subtype[anyVread] = http://hl7.org/fhir/restful-interaction#vread "vread" (exactly)
@@ -124,12 +124,12 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully, 
 
 
 
-
-ValueSet: Reads
-Title: "subtypes for RESTful reads"
-Description: "read operators that are in REST"
-* http://hl7.org/fhir/restful-interaction#read "read"
-* http://hl7.org/fhir/restful-interaction#vread "vread"
+// not used anymore
+//ValueSet: Reads
+//Title: "subtypes for RESTful reads"
+//Description: "read operators that are in REST"
+//* http://hl7.org/fhir/restful-interaction#read "read"
+//* http://hl7.org/fhir/restful-interaction#vread "vread"
 
 ValueSet: RestObjectRoles
 Title: "RESTful objects role in the event"

@@ -1,5 +1,3 @@
-// TODO: need encoding rules for ID values to URI encoding (policy), and X509 to URI encoding (system)
-// IG builder does not like ldap: as a uri - https://github.com/HL7/fhir-ig-publisher/issues/356
 
 
 Extension: AssuranceLevel

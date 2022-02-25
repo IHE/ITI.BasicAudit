@@ -13,9 +13,9 @@ Usage: #example
 //* type = DCM#110107 "Import"
 //* action = #C
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
-* subtype[+] = http://hl7.org/fhir/restful-interaction#read "read"
-* subtype[+] = urn:ihe:event-type-code#ITI-68 "Retrieve Document"
-* subtype[+] = DCM#110107 "Import"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[1] = urn:ihe:event-type-code#ITI-68 "Retrieve Document"
+* subtype[2] = DCM#110107 "Import"
 * action = #R
 // -- BasicAudit
 //* severity = #Informational
@@ -52,9 +52,9 @@ Usage: #example
 // BasicAudit --
 //* type = DCM#110106 "Export"
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
-* subtype[+] = http://hl7.org/fhir/restful-interaction#read "read"
-* subtype[+] = urn:ihe:event-type-code#ITI-68 "Retrieve Document"
-* subtype[+] = DCM#110106 "Export"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[1] = urn:ihe:event-type-code#ITI-68 "Retrieve Document"
+* subtype[2] = DCM#110107 "Import"
 * action = #R
 // -- BasicAudit
 //* severity = #Informational

@@ -13,8 +13,12 @@ A basic AuditEvent profile for when a RESTful Delete action happens successfully
 * Then an AuditEvent following this profile is recorded using the id that is no longer valid
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
-* subtype 1..1
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype ^slicing.discriminator.type = #value
+* subtype ^slicing.discriminator.path = "$this"
+* subtype ^slicing.rules = #open // allow other codes
+* subtype 1..
+* subtype contains anyDelete 1..1 
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete" (exactly)
 * action = #D
 * recorded 1..1
 // failures are recorded differently

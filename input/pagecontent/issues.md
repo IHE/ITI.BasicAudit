@@ -1,30 +1,8 @@
 Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient) , 
 	
-# Questions for committee development prior to public-comment
-
-- Is there any alternatives to the patterns I have defined? I did note some alternatives with recommendations in narrative?
-- Is there some other improvements one could recommend?
-- note in my pattern for Search/Query, I allow the cleaned search parameters to be put into entity.description. Is this useful?
-- I wish there was a flag similar but opposite to MustSupport, something like ShouldNotUse to discourage use while not making it invalid to use. given that this flag does not exist, I have marked everything that would be discouraged as 0..0. This is not necessarily wrong, as one can always be compliant with AuditEvent core, and not follow my IG guidance. It just seems very heavy handed.
-- There is a start at a test plan using Gherkin/Cucumber.
-- Should response time be recorded in the .period element? Who would be responsible for recording this response time? This seems too undefinable in abstract actor terms. Thus should it be given as guidance without constraints or requirements?
-- Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
-- Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
-- is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
-- support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published 
-
-
-# TODO - tasks I know need to be done, I just didn't get to them yet.
-	   
-- I used SNOMED codes... are these freely available? are there alternatives? Should this IG just define codes rather than use SNOMED codes? Should IHE ask for these codes?
-- example descriptions don't show up on the page for that example. For some examples (the REST Query examples) I have replicated the example description in the -info.md pagecontent. I hope that the IG builder can do this automatically - https://github.com/HL7/ig-template-base/issues/184
-- IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
-- Not much of a problem, but tracking for a solution anyway -- Binary Adjunct files (used to hold examples of SAML assertions) are working in DocumentReference, but throw a file type error with Binary. https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/Binary.20Adjunct
-- MustSupport -- given that the minimal profiles use MustSupport properly, but those profiles derived off of those minimal profiles add manditory requirement. This gives the appearance that a manditory element is also "R2", which is conflicting as something can't be both manditory and R2. Not sure how to solve this, as the FHIR profiling rules do not allow for removing a MustSupport flag. Thus the best I can think of is to define MustSupport in a way such that the R2 only applies if the element is not manditory, or that MustSupport does not mean anything on manditory elements. [chat thread](https://chat.fhir.org/#narrow/stream/179177-conformance/topic/must-support.20when.20re-profiling)
-- add short descriptions to profiled elements when needed / useful.	
-
 # Open Issues
 
+1. This IG is more an abstract pattern setting than it is an implementable and conformance. Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
 1. Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters biggenough yet not too big?
 1. The R4 version of AuditEvent uses extensible binding often, this has limited the ways that the AuditEvent can be constrained. R5 has relaxed these to either example or preferred binding, so some further can be done in this IG once R5 is released.
 1. The audit examples are brought in from MHD, PIXm, and PDQm; and "adjusted" to fit the RESTful pattern. This adjustment is not necessary, but follows with the proposal that these RESTful patterns are used as patterns in other Implementation Guides. Thus, these need to be evaluated as to if the adjustment is useful, or not. There should be no reason to update MHD, PIXm, or PDQm if there is not benefit, but there should also be no problem updating them. The adjustment here was more as an exercise in determining if the pattern concept could work, and not an excercise in forcing a change.
@@ -36,6 +14,18 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 1. who.identifier and what.identifer, rather than the .reference, are used because it is expected that as audit logging is happening these values are directly available, and the resource reference is not known. However it is possible that the resource reference is known, should we add a MS on who.reference and what.reference to encourage recording of these "when they are known"?
 1. put homeCommunityId in as an Agent. Given that the definition in XUA is standalone, and is independent of organization or user. 
 1. SAML profiling is focused on when a SAML token is used. There is no profiling of obtaining (access control decision). This is because [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html) only profiled the use.
+1. Some SNOMED codes are used in the Disclosure profile and example. Should we get these approved, or define our own codes? Are there other available codes to use?
+1. Welcome comments about other patterns that would be needed and defined.
+1. For RESTful Search/Query, the cleaned search parameters can be put into entity.description. Is this useful?
+1. cardionality is set to 0..0 for those elements that have no defined use. However in real-world there should be no failure to record an auditEvent that has something in these elements. It is expected that this behaviour, of saving anything that comes in, will happen. The profiles provided here are "best-case".
+1. There is a start at a test plan using Gherkin/Cucumber.
+1. In an AuditEvent that is describing a network interaction, should response time be recorded in the .period element? Who would be responsible for recording this response time? This seems too undefinable in abstract actor terms. Thus should it be given as guidance without constraints or requirements?
+1. Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
+1. Is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
+1. Note: Support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published 
+1. The profiles can provide more specific to that profile element short descriptions, definitions, and comments. please provide comments where specific profiled elements would be needed or useful.	
 
-
+# known builder bugs
+	   
+- IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
 

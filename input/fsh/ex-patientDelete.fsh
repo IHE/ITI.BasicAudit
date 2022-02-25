@@ -14,7 +14,7 @@ Audit Example for a RESTful Delete of a resource that is NOT patient specific
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-06T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -53,7 +53,7 @@ Audit Example for a RESTful Delete of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -95,7 +95,7 @@ Audit Example for a RESTful Delete of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -138,7 +138,7 @@ Audit Example for a RESTful Delete of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -180,7 +180,7 @@ Audit Example for a RESTful Delete of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -223,7 +223,7 @@ Audit Example for a RESTful Delete of a resource with a patient subject with no 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -263,7 +263,7 @@ Audit Example for a RESTful Delete of a Report (document) resource with a patien
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -303,7 +303,7 @@ Audit Example for a RESTful Delete of a Job (document) resource with a patient s
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #D
-* subtype = http://hl7.org/fhir/restful-interaction#delete "delete"
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

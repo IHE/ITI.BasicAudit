@@ -15,7 +15,7 @@ Audit Example for a RESTful read of a resource with no patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -59,7 +59,7 @@ Audit Example for a RESTful read of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -107,7 +107,7 @@ Audit Example for a RESTful read of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -158,7 +158,7 @@ Audit Example for a RESTful read of a resource with a patient subject with no us
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

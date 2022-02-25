@@ -52,6 +52,7 @@ Defined codes for SAML vs OAuth to enable differentiation of .policy as the toke
 * #UserSamlAgent "User SAML Agent participant"
 * #UserOauthAgent "User OAuth Agent participant"
 //* #UserOauthClientId "Application client_id"
+* #AuthzOauthService "OAuth Authorization Server"
 
 CodeSystem: UserAgentHomeCommunity
 Title: "XCA code for homeCommunity"
@@ -380,12 +381,12 @@ assurance | authenticated AAL 4
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
-* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnDoe"
-* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][=].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
-* agent[user].extension[otherId][+].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][=].valueReference.identifier.value = "JohnD"
+* agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][subject-id].valueReference.identifier.value = "JohnDoe"
+* agent[user].extension[otherId][npi].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][npi].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
+* agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "St. Mary of Examples"
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
@@ -410,19 +411,10 @@ Title: "SAML example from CareQuality"
 Description: "Example of a SAML assertion as seen in CareQuality."
 * status = #current
 * content.attachment.id = "ig-loader-QDI-SAML-20211210.txt"
-//* content.attachment.url = "Binary/B-SAML-QDI"
 * content.attachment.contentType = #application/xml
 * context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
 
 
-// binary throws a File Type error that DocumentReference does not
-// likely needs a IG extension - implementationguide-resource-format
-//Instance: B-SAML-QDI
-//InstanceOf: Binary
-//Title: "SAML example from CareQuality"
-//Description: "Example of a SAML assertion as seen in CareQuality."
-//* contentType = #application/xml
-//* data = "ig-loader-QDI-SAML-20211210.txt"
 
 
 

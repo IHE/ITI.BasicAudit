@@ -15,7 +15,7 @@ Audit Example for a RESTful Update of a Measure Report resource. This might be a
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -54,7 +54,7 @@ Audit Example for a RESTful Update using Patch of a resource with a patient subj
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#patch "patch"
+* subtype[anyPatch] = http://hl7.org/fhir/restful-interaction#patch "patch"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -98,7 +98,7 @@ Audit Example for a RESTful Update by the informant of a resource with a patient
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -142,7 +142,7 @@ Audit Example for a RESTful Update of a resource with a patient subject, updated
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -187,7 +187,7 @@ Audit Example for a RESTful Update of a resource with a patient subject with no 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -229,7 +229,7 @@ Audit Example for a RESTful Update of a Report (document) resource with a patien
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -271,7 +271,7 @@ Audit Example for a RESTful Update of a Job (document) resource with a patient s
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype = http://hl7.org/fhir/restful-interaction#update "update"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

@@ -20,8 +20,14 @@ A basic AuditEvent profile for when a RESTful Query / Search action happens succ
 Note: the pattern defined in DICOM and IHE have the client is identified as the Source Role ID, and the server is identified as the Destination Role ID. This represents the query parameters are flowing from the client to the server. This may not be so obvious, as the data actually flows the opposite direction. This pattern is established and thus followed here.
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* subtype ^slicing.discriminator.type = #value
+* subtype ^slicing.discriminator.path = "$this"
+* subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
-* subtype from Querys (extensible)
+* subtype contains anySearch 0..1 and anySearchT 0..1 and anySearchS 0..1
+* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search" (exactly)
+* subtype[anySearchT] =  http://hl7.org/fhir/restful-interaction#search-type "search-type" (exactly)
+* subtype[anySearchS] =  http://hl7.org/fhir/restful-interaction#search-system "search-system" (exactly)
 * action = #E
 * recorded 1..1
 // failures are recorded differently
@@ -142,11 +148,5 @@ Note: the pattern defined in DICOM and IHE have that the client is identified as
 
 
 
-ValueSet: Querys
-Title: "subtypes for RESTful search/query"
-Description: "Search/query operators that are in REST"
-* http://hl7.org/fhir/restful-interaction#search "search"
-* http://hl7.org/fhir/restful-interaction#search-type "search-type"
-* http://hl7.org/fhir/restful-interaction#search-system "search-system"
 
 

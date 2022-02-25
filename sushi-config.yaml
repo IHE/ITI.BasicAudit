@@ -6,6 +6,9 @@ id: ihe.iti.basicaudit
 canonical: https://profiles.ihe.net/ITI/BasicAudit
 name: IHE_ITI_BasicAudit
 title: "IHE ITI Basic AuditEvent Implementation Guide"
+date: 2021-12-31
+version: 0.1.0
+releaselabel: ci-build
 status: draft
 publisher:
   - name: IHE IT Infrastructure Technical Committee
@@ -21,11 +24,8 @@ copyright: IHE http://www.ihe.net/Governance/#Intellectual_Property
 description: >-
   Basic AuditEvent patterns including FHIR REST and operations where the activity includes a subject.
 license: CC-BY-SA-4.0
-date: 2021-12-31
-version: 0.1.0
 fhirVersion: 4.0.1
 copyrightyear: '2020+'
-releaselabel: ci-build
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   path-resource:

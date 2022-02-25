@@ -41,8 +41,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 * agent[client].policy 0..0 
 * agent[client].media 0..0 
 * agent[client].purposeOfUse 0..0 
-// TODO: need a specific code for auth-server agent
-* agent[auth-server].type = http://dicom.nema.org/resources/ontology/DCM#110152 "Destination Role ID"
+* agent[auth-server].type = UserAgentTypes#AuthzOauthService
 * agent[auth-server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
 * agent[auth-server].network 1..1 // as known by TCP connection information
 * agent[auth-server].role 0..0 
@@ -94,5 +93,5 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 * entity[token-response].detail 1..*
 // detail holds the key values from the response
 
-//TODO - use the 4 examples from IUA
+// might use the 4 examples from IUA
 // Figure 3.71.4.1.2.2-2: Example Authorization Request

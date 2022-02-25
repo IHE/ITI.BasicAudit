@@ -63,8 +63,6 @@ Title: "Dummy DocumentReference 2 example"
 Description: "Dummy DocumentReference 2 example for completeness sake. No actual use of this resource other than an example target"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * status = #current
-// TODO: figure out how to get Binary attachments in sushi
-//* content.attachment.url = "Binary/ex-b-binary"
 * content.attachment.title = "Hello World"
 * content.attachment.language = #en
 

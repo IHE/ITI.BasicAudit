@@ -15,7 +15,7 @@ Audit Example for a RESTful Create of a resource with No patient subject. This e
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -56,7 +56,7 @@ Audit Example for a RESTful Create of a resource with a patient subject
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -99,7 +99,7 @@ Audit Example for a RESTful Create of a resource with a patient subject created 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -142,7 +142,7 @@ Audit Example for a RESTful Create of a resource with a patient subject by an in
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -186,7 +186,7 @@ Audit Example for a RESTful Create of a resource with a patient subject by a cus
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -230,7 +230,7 @@ Audit Example for a RESTful Create of a resource with a patient subject with no 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -270,7 +270,7 @@ Audit Example for a RESTful Create of a Report (document) resource with a patien
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -310,7 +310,7 @@ Audit Example for a RESTful Create of a Job (document) resource with a patient s
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype = http://hl7.org/fhir/restful-interaction#create "create"
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

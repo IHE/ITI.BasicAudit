@@ -64,7 +64,7 @@ Title: "Basic AuditEvent pattern for oAuth Comprehensive"
 Description: """
 Used when only have access to the oAuth token details (JWT).
 """
-// TODO fill in with something useful.
+// TODO fill the oauth comprehensive with the deeper requirements.
 
 
 Profile:        IUAaccessTokenUse

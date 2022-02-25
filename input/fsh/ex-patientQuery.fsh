@@ -15,7 +15,7 @@ Audit Example for a RESTful Query using GET with NO patient subject, recorded by
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
-* subtype = http://hl7.org/fhir/restful-interaction#search "search"
+* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -66,7 +66,7 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
-* subtype = http://hl7.org/fhir/restful-interaction#search "search"
+* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -121,7 +121,7 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
-* subtype = http://hl7.org/fhir/restful-interaction#search "search"
+* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -176,7 +176,7 @@ Audit Example for a RESTful Query using POST with a patient subject, recorded by
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #E
-* subtype = http://hl7.org/fhir/restful-interaction#search-type "search-type"
+* subtype[anySearchT] = http://hl7.org/fhir/restful-interaction#search-type "search-type"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

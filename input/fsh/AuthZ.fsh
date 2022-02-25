@@ -46,6 +46,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
   - Entity
     - patient subject
 	- consent on file for that patient
+	- the token id (JWT ID) issued (if one is issued) should be recorded
 	- other data may be recorded that was used in the decision
 """
 * modifierExtension 0..0
@@ -120,14 +121,21 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * entity ^slicing.description = "patient and submission set involved"
 * entity contains
 	patient 1..1 and
-	consent 1..*
+	consent 1..* and
+	token 0..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
 * entity[consent].what 1..1 MS // consent identifier
-//TODO: seems one would record the OAuth token ID issued?
+* entity[token].type = UserAgentTypes#UserOauthAgent
+* entity[token].what 1..1
+* entity[token].what.identifier 1..1
+* entity[token].what.identifier.value 1..1
+* entity[token].what.identifier.value ^short =  "jti (JWT ID)"
+
+
 
 
 ////////////////////////////////////////////////////////EXAMPLES/////////////////////////////////////////////////

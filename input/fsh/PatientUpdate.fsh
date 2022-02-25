@@ -12,8 +12,13 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * Then an AuditEvent following this profile is recorded where the Resource is identified by the updated version specific id where versioning is available
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
-* subtype 1..1
-* subtype from Updates (required)
+* subtype ^slicing.discriminator.type = #value
+* subtype ^slicing.discriminator.path = "$this"
+* subtype ^slicing.rules = #open // allow other codes
+* subtype 1..
+* subtype contains anyUpdate 0..1 and anyPatch 0..1
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update "update" (exactly)
+* subtype[anyPatch] = http://hl7.org/fhir/restful-interaction#patch "patch" (exactly)
 * action = #U
 * recorded 1..1
 // failures are recorded differently
@@ -117,10 +122,4 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 
 
 
-
-ValueSet: Updates
-Title: "subtypes for RESTful updates"
-Description: "update operators that are in REST"
-* http://hl7.org/fhir/restful-interaction#update "update"
-* http://hl7.org/fhir/restful-interaction#patch "patch"
 

@@ -2,37 +2,37 @@
 This section modifies other IHE profiles, and is not a part of the BasicAudit profile. The content here will be incorporated into the target narrative at a future time, usually when BasicAudit goes normative.
 </div>
 
-## IHE Technical Frameworks General Introduction Appendix A – Actor Summary Definitions
+## IHE Technical Frameworks General Introduction Appendix A: Actors
 
 |------------------------------------------------|
-| Editor, Add the following new or modified Actors definition in the [IHE Technical Frameworks General Introduction Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html): |
+| Editor, add the following new or modified Actors definition in the [IHE Technical Frameworks General Introduction Appendix A](https://profiles.ihe.net/GeneralIntro/ch-A.html): |
 {:.grid .bg-info}
 
 | Actor                         | Definition                                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------------------|
-| none | . |
+| none |  |
 {:.grid .table-striped}
 
-TODO: Not likely there are new Actors as this depends on ATNA for the actors and transactions
+TODO: Not likely there are new actors as this depends on ATNA for the actors and transactions.
 
-## IHE Technical Frameworks General Introduction Appendix B – Transaction Summary Definitions
+## IHE Technical Frameworks General Introduction Appendix B: Transactions
 
 |------------------------------------------------|
-| Editor, Add the following new or modified transactions to the [IHE Technical Frameworks General Introduction Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html): |
+| Editor, add the following new or modified transactions to the [IHE Technical Frameworks General Introduction Appendix B](https://profiles.ihe.net/GeneralIntro/ch-B.html): |
 {:.grid .bg-info}
 
 
 | Transaction                              | Definition                                                                              |
 | ---------------------------------------- | --------------------------------------------------------------------------------------- |
-| none | . |
+| none |  |
 {:.grid .table-striped}
 
-TODO: Not likely there are new Transactions as this depends on ATNA for actors and transactions
+TODO: Not likely there are new transactions as this depends on ATNA for actors and transactions.
 
 
 ## AuditEvent use in IHE Implementation Guides
 
-In general IHE Profiles should have "Security Considerations" sections in both Volume 1 and in Volume 2. In Volume 2 the Security Considerations section should have a definition of how the AuditEvent is filled out when the given transaction happens. This definition usually includes one specification of an AuditEvent to be created by each of the Actors involved in the Transaction.
+In general IHE Profiles should have "Security Considerations" sections in both Volume 1 and in Volume 2. In Volume 2 the Security Considerations section should have a definition of how the AuditEvent is filled out when the given transaction happens. This definition usually includes one specification of an AuditEvent to be created by each of the actors involved in the transaction.
 
 All of the AuditEvent (AuditMessage) encodings can be found on [Gazelle AuditTrail section](https://gazelle.ihe.net/gss/audit-messages/list.seam;jsessionid=O8kPo08QmPxFgrWZQbhfzfTr). These specifications usually use a table format. These are in the format of DICOM AuditMessage, but the mapping to FHIR AuditEvent is defined in the [FHIR AuditEvent mapping to DICOM](http://hl7.org/fhir/auditevent-mappings.html#dicom).
 
@@ -40,7 +40,7 @@ The IHE ITI-18 transaction has prototyped the documentation change to use the ga
 
 ### IG Publisher
 
-Some of the IHE Profiles are being converted to using the IG Publisher. When this is done the AuditEvent is "profiled" using the FHIR StructureDefinition, and Examples are provided for each.
+Some of the IHE Profiles are being converted to using the IG Publisher. When this is done, the AuditEvent is "profiled" using the FHIR StructureDefinition and Examples are provided for each.
 
 #### MHD
 

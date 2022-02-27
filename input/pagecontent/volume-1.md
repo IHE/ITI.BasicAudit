@@ -9,16 +9,16 @@ This implementation guide is intended to be fully compliant with the HL7 [FHIR](
 
 ## 1:52.1 BasicAudit Actors and Content
 
-Figure 52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
+Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
 
 <div>
 {%include ActorsAndTransactions.svg%}
 </div>
 <br clear="all">
 
-**Figure 52.1: BasicAudit Actor Diagram**
+**Figure 1:52.1: BasicAudit Actor Diagram**
 
-Table 52.1-1: BasicAudit; Profile - Actors and Transactions
+Table 1:52.1-1: BasicAudit; Profile - Actors and Transactions
 
 | Actors                  | Transactions              | Initiator or Responder | Optionality| Reference|
 |-------------------------|---------------------------|:----------------------:|:----------:|----------|
@@ -48,14 +48,14 @@ The Audit Record Repository shown is the ATNA Audit Record Repository with suppo
 
 #### 1:52.1.1.4 ATNA Audit Consumer
 
-The Audit Consumer shown is an ATNA Audit Consumer actor that understands and uses the AuditEvent patterns defined here.
+The Audit Consumer shown is an ATNA Audit Consumer Actor that understands and uses the AuditEvent patterns defined here.
 
 ## 1:52.2 BasicAudit Actor Options
 
 Each AuditEvent pattern defined here can be declared by an *ANY Secure Client*, *ANY Secure Server*, or Audit Consumer.
 
 <div markdown="1" class="stu-note">
-TODO: likely need an Option named for each AuditEvent pattern (and combinations) defined. 
+TODO: likely need an option named for each AuditEvent pattern (and combinations) defined. 
 </div>
 
 ## 1:52.3 BasicAudit Required Actor Grouping
@@ -84,7 +84,7 @@ The following use-case represents a generic interaction between a client and a s
 </div>
 <br clear="all">
 
-**Figure: Audit log event creation**
+**Figure: 1:52.4.1.1-1: Audit log event creation**
 
 #### 1:52.4.1.2 AuditEvents are available to authorized clients
 
@@ -95,7 +95,7 @@ The following use-case represents the use-case defined in ATNA [ITI-81](https://
 </div>
 <br clear="all">
 
-**Figure: Audit Use**
+**Figure: 1:52.4.1.2-1: Audit Use**
 
 #### 1:52.4.1.3 Minimal vs Comprehensive AuditEvent
 
@@ -158,7 +158,7 @@ The AuditEvent patterns defined here cover the following Use Cases.
 
 #### 1:52.4.2.1 Use Case #1: Generic AuditEvent pattern for FHIR RESTful operations
 
-Given the http RESTful operations of Create, Read, Update, Delete, and Search; the patterns defined here will capture sufficient information for audit analysis by an Audit Consumer actor. See [3:5.7.3 RESTful activities](content.html#3573-restful-activities) for the pattern definitions and examples.
+Given the http RESTful operations of Create, Read, Update, Delete, and Search; the patterns defined here will capture sufficient information for audit analysis by an Audit Consumer Actor. See [3:5.7.3 RESTful activities](content.html#3573-restful-activities) for the pattern definitions and examples.
 
 The Use Case #1 is represented by the figure first introduced in section [1:52.4.1.1 Data access requests produce an AuditEvent](#152411-data-access-requests-produce-an-auditevent).
 The generic interaction between a client and a server shown with interactions 1, 2, and 4 represent the activity that is auditable. The interaction 3 is the recording of the AuditEvent following this Implementation Guide by the server. The interaction 5 is the recording of the AuditEvent following this Implementation Guide by the client.
@@ -168,7 +168,7 @@ The generic interaction between a client and a server shown with interactions 1,
 </div>
 <br clear="all">
 
-**Figure: Audit log event creation**
+**Figure: 1:52.4.2.1-1: Audit log event creation**
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
@@ -183,7 +183,7 @@ Given that an Authorization Service makes Authorization Decisions based on a Con
 </div>
 <br clear="all">
 
-**Figure: Consent Authorized Decision process flow**
+**Figure: 1:52.4.23.-1: Consent Authorized Decision process flow**
 
 Not shown in this interaction diagram is the AuditEvent that would be recorded by the ANY Secure Client and ANY Secure Server to record the auditable event that is the client and server interaction.
 

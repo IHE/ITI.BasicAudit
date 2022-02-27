@@ -16,7 +16,7 @@ Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Patter
 </div>
 <br clear="all">
 
-**Figure 1:52.1: BasicAudit Actor Diagram**
+**Figure 1:52.1-1: BasicAudit Actor Diagram**
 
 Table 1:52.1-1: BasicAudit; Profile - Actors and Transactions
 

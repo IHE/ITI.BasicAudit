@@ -16,5 +16,5 @@ agent "Audit Consumer" as AuditClient
 cRest -right..> sRest : ANY request/response
 sAud -down-> AuditRepository: Record Audit Event [ITI-20]
 cAud --> AuditRepository: Record Audit Event [ITI-20]
-AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event [ITI-20]
+AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event [ITI-81]
 @enduml

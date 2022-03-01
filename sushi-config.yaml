@@ -3,12 +3,13 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: ihe.iti.basicaudit
-canonical: https://profiles.ihe.net/ITI/BasicAudit
+canonical: https://profiles.ihe.net/ITI/basicaudit
 name: IHE_ITI_BasicAudit
 title: "IHE ITI Basic AuditEvent Implementation Guide"
-date: 2021-12-31
-version: 0.1.0
-releaselabel: ci-build
+date: 2022-03-01
+version: 1.0.0-comment
+#releaselabel: ci-build
+releaselabel: ballot
 status: draft
 publisher:
   - name: IHE IT Infrastructure Technical Committee
@@ -25,7 +26,7 @@ description: >-
   Basic AuditEvent patterns including FHIR REST and operations where the activity includes a subject.
 license: CC-BY-SA-4.0
 fhirVersion: 4.0.1
-copyrightyear: '2020+'
+copyrightyear: '2022+'
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters
   path-resource:

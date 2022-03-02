@@ -6,10 +6,10 @@ id: ihe.iti.basicaudit
 canonical: https://profiles.ihe.net/ITI/basicaudit
 name: IHE_ITI_BasicAudit
 title: "IHE ITI Basic AuditEvent Implementation Guide"
-date: 2022-03-01
-version: 1.0.1
-#releaselabel: ci-build
-releaselabel: ballot
+#date: 2022-03-01
+version: 1.0.2-current
+releaselabel: ci-build
+#releaselabel: ballot
 status: active
 publisher:
   - name: IHE IT Infrastructure Technical Committee

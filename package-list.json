@@ -1,6 +1,6 @@
 {
   "package-id": "ihe.iti.basicaudit",
-  "title": "IHE Basic AuditEvent Implementation Guide",
+  "title": "IHE Basic Audit Log Patterns (BasicAudit)",
   "canonical": "https://profiles.ihe.net/ITI/basicaudit",
   "introduction": "The Basic Audit Log Patterns (BasicAudit) **Content Profile** defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations, to be used when there is not a more specific audit event defined. Where a more specific audit event can be defined it should be derived off of these basic patterns.",
   "category": "Privacy / Security",

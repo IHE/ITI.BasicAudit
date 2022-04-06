@@ -1,6 +1,5 @@
 <!--badges-->
 ### IG Status
-![qa-errs](https://img.shields.io/github/workflow/status/IHE/ITI.BasicAudit/ig-build?label=Build%20status)
 
 ![issues](https://img.shields.io/github/issues/IHE/ITI.BasicAudit)
 

@@ -1,4 +1,12 @@
-# Implementation Guide for basic AuditEvent 
+<!--badges-->
+### IG Status
+![qa-errs](https://img.shields.io/github/workflow/status/IHE/ITI.BasicAudit/ig-build?label=Build%20status)
+
+![issues](https://img.shields.io/github/issues/IHE/ITI.BasicAudit)
+
+<!--/badges-->
+
+### Implementation Guide for basic AuditEvent 
 
 This Implementation Guide provides AuditEvent profiles and examples for some common and reusable patterns. This Implementation Guide depends on IHE-ATNA infrastructure for logging and providing access to the Audit Record Repository. 
 * logging of RESTful interactions. 
@@ -12,3 +20,4 @@ This Implementation Guide provides AuditEvent profiles and examples for some com
 
 continuous build http://build.fhir.org/ig/IHE/ITI.BasicAudit/branches/main/index.html
 
+released https://profiles.ihe.net/ITI/basicaudit

@@ -19,7 +19,8 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * modifierExtension 0..0
 * type = DCM#110107 "Import"
 * action = #C
-* subtype = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+* insert requireAtLeastOneMatch(subtype, disclosure, http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose )
+* subtype ^slicing.description = "needs to at least be a disclosure event"
 // * severity in R5
 * recorded 1..1 // already required
 * outcome 1..1
@@ -41,9 +42,9 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * agent[source].type = DCM#110153 "Source Role ID"
 * agent[source].who 1..1
 * agent[source].network 1..1
+* agent[recipient] obeys val-audit-source
 * agent[recipient].type = DCM#110152 "Destination Role ID"
 * agent[recipient].who 1..1
-* agent[recipient] obeys val-audit-source
 * agent[recipient].network 1..1
 * agent[custodian].type = SCT#159541003 "Record keeping/library clerk"
 * agent[custodian].who 1..1
@@ -53,16 +54,20 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #closed
-* entity ^slicing.description = "patient and submission set involved"
+* entity ^slicing.description = "patient and some data involved"
 * entity contains
 	patient 1..1 and
-	data 1..*
+	docs 0..* and 
+	data 0..*
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[data].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs] ^short = "When the data exposed is a Document"
+* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs].what 1..1
+* entity[data] ^short = "Any other kind of data"
 * entity[data].what 1..1
 
 
@@ -92,12 +97,13 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * modifierExtension 0..0
 * type = DCM#110106 "Export"
 * action = #R
-* subtype = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+* insert requireAtLeastOneMatch(subtype, disclosure, http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose)
+* subtype ^slicing.description = "needs to at least be a disclosure event"
 // * severity in R5
 * recorded 1..1 // already required
 * outcome 1..1
 * outcomeDesc MS // encouraged
-* purposeOfEvent 1.. // why was the data disclosed
+* purposeOfEvent MS // why was the data disclosed
 // source is already required, see invariant val-audit-source use
 * agent 2..*
 * agent ^slicing.discriminator.type = #pattern
@@ -113,8 +119,8 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 	// likely do need to express WHO requested the data be disclosued, and WHO authorized the disclosure
 * agent[source].type = DCM#110153 "Source Role ID"
 * agent[source].who 1..1
-* agent[source] obeys val-audit-source
 * agent[source].network 1..1
+* agent[source] obeys val-audit-source
 * agent[recipient].type = DCM#110152 "Destination Role ID"
 * agent[recipient].who 1..1
 * agent[recipient].network 1..1
@@ -126,18 +132,21 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #closed
-* entity ^slicing.description = "patient and submission set involved"
+* entity ^slicing.description = "patient and some data involved"
 * entity contains
 	patient 1..1 and
-	data 1..*
+	docs 0..* and 
+	data 0..*
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[data].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs] ^short = "When the data exposed is a Document"
+* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs].what 1..1
+* entity[data] ^short = "Any other kind of data"
 * entity[data].what 1..1
-
 
 
 Instance: ex-auditPrivacyDisclosure-recipient
@@ -172,9 +181,9 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[data].what = Reference(DocumentReference/ex-documentreference)
+* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs].what = Reference(DocumentReference/ex-documentreference)
 
 
 Instance: ex-auditPrivacyDisclosure-source
@@ -185,7 +194,8 @@ Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110106 "Export"
 * action = #R
-* subtype = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+* subtype[+] = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+* subtype[+] = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
@@ -209,7 +219,82 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs].what = Reference(DocumentReference/ex-documentreference)
+
+Instance: ex-auditPrivacyDisclosure-source2
+InstanceOf: IHE.BasicAudit.PrivacyDisclosure.Source
+Title: "Audit Example of Privacy Disclosure at source"
+Description: "Audit Example for a Privacy Disclosure from source perspective"
+Usage: #example
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110106 "Export"
+* action = #R
+* subtype[+] = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[+] = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+//* severity = #Informational
+* recorded = 2020-04-29T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* purposeOfEvent = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT "patient requested"
+* source.site = "mobile app foo-bar"
+* source.observer.display = "model number ABC, serial number 1234"
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#1 "User Device"
+* agent[source].type = DCM#110153 "Source Role ID"
+* agent[source].who.display = "model number ABC, serial number 1234"
+* agent[source].requestor = false
+* agent[source].network.address = "myDevice.example.com"
+* agent[source].network.type = http://hl7.org/fhir/network-type#1 "domain name"
+* agent[recipient].type = DCM#110152 "Destination Role ID"
+* agent[recipient].requestor = false
+* agent[recipient].who.display = "myMachine.example.org"
+* agent[recipient].network.address = "http://server.example.com/fhir"
+* agent[recipient].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[authorizer].type = SCT#429577009 "Patient Advocate"
+* agent[authorizer].who = Reference(Patient/ex-patient)
+* agent[authorizer].requestor = true
+* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[patient].what = Reference(Patient/ex-patient)
+* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[docs].what = Reference(DocumentReference/ex-documentreference)
+
+
+Instance: ex-auditPrivacyDisclosure-measurereport
+InstanceOf: IHE.BasicAudit.PrivacyDisclosure.Source
+Title: "Audit Example of Privacy Disclosure of a patient specific MeasureReport"
+Description: "Audit Example for a Privacy Disclosure from source perspective of a MeasureReport"
+Usage: #example
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = DCM#110106 "Export"
+* action = #R
+* subtype[+] = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[+] = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+//* severity = #Informational
+* recorded = 2020-04-29T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* purposeOfEvent = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT "patient requested"
+* source.site = "mobile app foo-bar"
+* source.observer.display = "model number ABC, serial number 1234"
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#1 "User Device"
+* agent[source].type = DCM#110153 "Source Role ID"
+* agent[source].who.display = "model number ABC, serial number 1234"
+* agent[source].requestor = false
+* agent[source].network.address = "myDevice.example.com"
+* agent[source].network.type = http://hl7.org/fhir/network-type#1 "domain name"
+* agent[recipient].type = DCM#110152 "Destination Role ID"
+* agent[recipient].requestor = false
+* agent[recipient].who.display = "myMachine.example.org"
+* agent[recipient].network.address = "http://server.example.com/fhir"
+* agent[recipient].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[authorizer].type = SCT#429577009 "Patient Advocate"
+* agent[authorizer].who = Reference(Patient/ex-patient)
+* agent[authorizer].requestor = true
+* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[patient].what = Reference(Patient/ex-patient)
+* entity[data].type = http://hl7.org/fhir/resource-types#MeasureReport
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[data].what = Reference(DocumentReference/ex-documentreference)
+* entity[data].what = Reference(MeasureReport/ex-measurereport)
 

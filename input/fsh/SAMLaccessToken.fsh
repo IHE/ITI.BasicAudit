@@ -25,8 +25,8 @@ Extension: OtherId
 Id: ihe-otherId
 Title: "AuditEvent.agent other identifiers"
 Description: "Carries other identifiers are known for an agent."
-* value[x] only Reference
-* valueReference 1..1
+* value[x] only Identifier
+* valueIdentifier 1..1
 
 CodeSystem:  OtherIdentifierTypes 
 Title: "OtherId Identifier Types"
@@ -157,9 +157,9 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~subject:role                | agent[user].role
 | ~subject:purposeofuse        | agent[user].purposeOfUse
 | AuthnContextClassRef         | agent[user].extension[assuranceLevel]
-| ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value
-| ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value
-| ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value
+| ~subject:subject-id          | agent[user].extension[otherId][subject-id].value
+| ~subject:npi                 | agent[user].extension[otherId][npi].value
+| ~subject:provider-identifier | agent[user].extension[otherId][provider-id].value
 | ~subject:organization        | agent[userorg].who.display
 | ~subject:organization-id     | agent[userorg].who.identifier.value
 | ~homeCommunityId             | agent[homeCommunityId].who.identifier.value 
@@ -194,22 +194,22 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[user].purposeOfUse MS 
 * agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
 
-* agent[user].extension[otherId] ^slicing.discriminator.type = #pattern
-* agent[user].extension[otherId] ^slicing.discriminator.path = "$this.value.ofType(Reference).identifier.type"
+* agent[user].extension[otherId] ^slicing.discriminator.type = #value
+* agent[user].extension[otherId] ^slicing.discriminator.path = "type"
 * agent[user].extension[otherId] ^slicing.rules = #open
 * agent[user].extension[otherId] contains 
 	subject-id 0..* and
 	npi 0..* and
 	provider-id 0..*
-* agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][subject-id].valueReference.identifier.value 1..1 MS
-* agent[user].extension[otherId][subject-id].valueReference.identifier.value ^short = "SAML Attribute subject-id"
-* agent[user].extension[otherId][npi].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][npi].valueReference.identifier.value 1..1 MS
-* agent[user].extension[otherId][npi].valueReference.identifier.value ^short = "SAML Attribute npi"
-* agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][provider-id].valueReference.identifier.value 1..1 MS
-* agent[user].extension[otherId][provider-id].valueReference.identifier.value ^short = "SAML Attribute provider-identifier"
+* agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][subject-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][subject-id].valueIdentifier.value ^short = "SAML Attribute subject-id"
+* agent[user].extension[otherId][npi].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][npi].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][npi].valueIdentifier.value ^short = "SAML Attribute npi"
+* agent[user].extension[otherId][provider-id].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][provider-id].valueIdentifier.value ^short = "SAML Attribute provider-identifier"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 // note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
 * agent[userorg].who.display 1..1 MS
@@ -381,12 +381,12 @@ assurance | authenticated AAL 4
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
-* agent[user].extension[otherId][subject-id].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][subject-id].valueReference.identifier.value = "JohnDoe"
-* agent[user].extension[otherId][npi].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][npi].valueReference.identifier.value = "1234567@myNPIregistry.example.org"
-* agent[user].extension[otherId][provider-id].valueReference.identifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][provider-id].valueReference.identifier.value = "JohnD"
+* agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][subject-id].valueIdentifier.value = "JohnDoe"
+* agent[user].extension[otherId][npi].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
+* agent[user].extension[otherId][npi].valueIdentifier.value = "1234567@myNPIregistry.example.org"
+* agent[user].extension[otherId][provider-id].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
+* agent[user].extension[otherId][provider-id].valueIdentifier.value = "JohnD"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "St. Mary of Examples"
 * agent[userorg].who.identifier.value = "1234567@myOrganizationRegistry.example.org"
@@ -511,8 +511,8 @@ AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
-* agent[user].extension[otherId][+].valueReference.identifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][=].valueReference.identifier.value = "Karl S Skagerberg"
+* agent[user].extension[otherId][+].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][=].valueIdentifier.value = "Karl S Skagerberg"
 
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "connectred5.fedsconnect.org"

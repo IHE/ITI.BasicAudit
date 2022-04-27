@@ -135,7 +135,7 @@ This principle also recognizes that some detail could be obtained, but through e
 
 #### 1:52.4.1.6 Patient as a Subject
 
-It is a best practice to include a reference to the Patient/Subject affected by any auditable event, in order to enable Privacy Accounting of Disclosures and Access Logs, and to enable privacy office and security office audit log analysis. Reasonable efforts should be taken to assure the Patient/Subject is recorded, but it is recognized that there are times when this is [not reasonable](#152415-best-effort).
+It is a best practice to include a reference to the Patient/Subject affected by any auditable event, in order to enable Privacy Accounting of Disclosures and Access Logs, and to enable privacy office and security office audit log analysis. Reasonable efforts should be taken to assure the Patient/Subject is recorded, but it is recognized that there are times when this is not reasonable, see the Best Effort section above.
 
 The Patient/Subject of an activity is indicated in an .entity element; with the .entity.who indicating the Patient reference, and the .entity.type indicating “1” Person, and the .entity.role indicating “1” patient. No other elements in this .entity need to be filled out. The indicator of the .entity.who, .entity.type, and .entity.role are enough to indicate that this AuditEvent activity has a subject as indicated.
 

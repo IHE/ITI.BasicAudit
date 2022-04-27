@@ -66,7 +66,7 @@ For those using SAML beyond XUA, there is no specific guidance here.
 
 #### 3:5.7.4.3 SAML mapping to AuditEvent
 
-The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. There are SAML fields defined that are not showin in the following table, these SAML fields should not be preserved in the AuditEvent.
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. There are SAML fields defined that are not showin in the following table, these SAML fields need not be preserved in the AuditEvent.
 
 | SAML field                   | Comprehensive AuditEvent     | Minimal AuditEvent           |
 |------------------------------|-----------------------------------|-----------------------------------|

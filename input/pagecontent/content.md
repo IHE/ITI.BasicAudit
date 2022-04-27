@@ -66,24 +66,14 @@ For those using SAML beyond XUA, there is no specific guidance here.
 
 #### 3:5.7.4.3 SAML mapping to AuditEvent
 
-The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. 
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. There are SAML fields defined that are not showin in the following table, these SAML fields need not be preserved in the AuditEvent.
 
 | SAML field                   | Comprehensive AuditEvent     | Minimal AuditEvent           |
 |------------------------------|-----------------------------------|-----------------------------------|
 | ID                           | agent[user].policy | agent[user].policy |
 | Issuer                       | agent[user].who.identifier.system | agent[user].who.identifier.system |
-| SignedInfo                   |   |
-| KeyInfo                      |   |
-| KeyValue                     |   |
 | Subject.NameID               | agent[user].who.identifier.value  | agent[user].who.identifier.value  |
-| SubjectConfirmation          |   |
-| NotBefore                    |   |
-| NotOnOrAfter                 |   |
-| AudienceRestrictions         |   |
-| ProxyRestrictions            |   |
-| OneTimeUser                  |   |
 | AuthnContextClassRef         | agent[user].extension[assuranceLevel]  |
-| AuthnContextDeclRef          |   |
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].identifier.value |
 | ~subject:npi                 | agent[user].extension[otherId][npi].identifier.value |
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].identifier.value |
@@ -190,7 +180,7 @@ This is transformed from the content defined today in ATNA ITI-20 [2:3.20.8 Disc
 
 In some countries a Patient has the right to get an accounting of disclosures. This report includes disclosures of their data that meet regulatory criteria. Most audit events, including export events, must be post-analyzed to determine whether they describe an event that needs to be included in the accounting of disclosures. For example, in the USA these rules are defined in [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html), and only a few kinds of export events meet the criteria to be included in an accounting of disclosures report. When it is known, at the time the event is recorded, that the event is indeed a disclosure, the disclosure audit message can be used to document the event.
 
-The requirements of an accounting of disclosures are defined in [ASTM-2147](https://www.astm.org/e2147-01.html). A disclosure shall include the following, when the value is known:
+The requirements of an accounting of disclosures are defined in [ASTM-2147](https://www.astm.org/e2147-18.html). A disclosure shall include the following, when the value is known:
 
 - Who did the disclosure (the releasing agent), 
 - When did the disclosure happen,

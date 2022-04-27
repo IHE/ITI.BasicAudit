@@ -1,7 +1,7 @@
 
 The Basic Audit Log Pattern (BasicAudit) Content Profile defines some basic and reusable AuditEvent patterns. 
 
-The Audit Log Patterns defined here rely on the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile for transport of the AuditEvent and query/retrival of AuditEvents previously recorded. 
+The Audit Log Patterns defined here rely on the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile for transport of the AuditEvent and query/retrieval of AuditEvents previously recorded. 
 The patterns defined here may be used as they are, or further refined to specific use-cases. 
 Where a more specific audit event is defined, it should be derived off of these basic patterns. Thus a more specific AuditEvent would be compliant with one or more of the AuditEvent patterns defined here.
 

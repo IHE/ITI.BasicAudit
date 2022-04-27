@@ -17,7 +17,6 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 1. Some SNOMED codes are used in the Disclosure profile and example. Should we get these approved, or define our own codes? Are there other available codes to use?
 1. Welcome comments about other patterns that would be needed and defined.
 1. For RESTful Search/Query, the cleaned search parameters can be put into entity.description. Is this useful?
-1. There is a start at a test plan using Gherkin/Cucumber.
 1. In an AuditEvent that is describing a network interaction, should response time be recorded in the .period element? Who would be responsible for recording this response time? This seems too undefinable in abstract actor terms. Thus should it be given as guidance without constraints or requirements?
 1. Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?
 1. Is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?

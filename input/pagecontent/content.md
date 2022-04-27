@@ -190,7 +190,7 @@ This is transformed from the content defined today in ATNA ITI-20 [2:3.20.8 Disc
 
 In some countries a Patient has the right to get an accounting of disclosures. This report includes disclosures of their data that meet regulatory criteria. Most audit events, including export events, must be post-analyzed to determine whether they describe an event that needs to be included in the accounting of disclosures. For example, in the USA these rules are defined in [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html), and only a few kinds of export events meet the criteria to be included in an accounting of disclosures report. When it is known, at the time the event is recorded, that the event is indeed a disclosure, the disclosure audit message can be used to document the event.
 
-The requirements of an accounting of disclosures are defined in [ASTM-2147](https://www.astm.org/e2147-01.html). A disclosure shall include the following, when the value is known:
+The requirements of an accounting of disclosures are defined in [ASTM-2147](https://www.astm.org/e2147-18.html). A disclosure shall include the following, when the value is known:
 
 - Who did the disclosure (the releasing agent), 
 - When did the disclosure happen,

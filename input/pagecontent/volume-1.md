@@ -54,15 +54,7 @@ The Audit Consumer shown is an ATNA Audit Consumer Actor that understands and us
 
 Each AuditEvent pattern defined here can be declared by an *ANY Secure Client*, *ANY Secure Server*, or Audit Consumer.
 
-<div markdown="1" class="stu-note">
-TODO: likely need an option named for each AuditEvent pattern (and combinations) defined. 
-</div>
-
 ## 1:52.3 BasicAudit Required Actor Grouping
-
-<div markdown="1" class="stu-note">
-TODO: not clear what to say here or how to say it.
-</div>
 
 The required groupings for BasicAudit are those in the ATNA Profile, see [IHE ITI TF-1:9.3](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html)
 

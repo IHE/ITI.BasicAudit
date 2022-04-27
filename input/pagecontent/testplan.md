@@ -12,18 +12,7 @@ The Examples listed in [Example Instances](artifacts.html#example-example-instan
 This section will be filled in as the IHE-Connectathon need drives the creation of the test plans, test procedures, test tools, and reporting.
 
 
-## AuditEvent use documentation in products
 
-
-### Fire.Ly
-
-https://docs.fire.ly/firelyserver/features/auditing.html
-
-[Fire.Ly Sandbox with audit logging on](https://server.fire.ly/r4/AuditEvent)
-
-### Grahame's Server
-
-http://test.fhir.org/r4/AuditEvent
 
 
 

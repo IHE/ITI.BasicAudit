@@ -17,7 +17,6 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 1. Some SNOMED codes are used in the Disclosure profile and example. Should we get these approved, or define our own codes? Are there other available codes to use?
 1. Welcome comments about other patterns that would be needed and defined.
 1. For RESTful Search/Query, the cleaned search parameters can be put into entity.description. Is this useful?
-1. cardionality is set to 0..0 for those elements that have no defined use. However in real-world there should be no failure to record an auditEvent that has something in these elements. It is expected that this behaviour, of saving anything that comes in, will happen. The profiles provided here are "best-case".
 1. There is a start at a test plan using Gherkin/Cucumber.
 1. In an AuditEvent that is describing a network interaction, should response time be recorded in the .period element? Who would be responsible for recording this response time? This seems too undefinable in abstract actor terms. Thus should it be given as guidance without constraints or requirements?
 1. Should a minimally populated or maximum populated AuditEvent have a defined .meta.security code so as to be more able to be access controlled at the Audit Consumer API?

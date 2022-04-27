@@ -176,7 +176,7 @@ Given that a security relevant event is being recorded, for example Generic FHIR
   
 #### 1:52.4.2.3 Use Case #3: Consent Authorized Decision event
 
-Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authoried Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
+Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
 
 <div>
 {%include usecase4-processflow.svg%}

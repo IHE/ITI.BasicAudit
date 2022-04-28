@@ -67,7 +67,9 @@ pages:
   other.md:
     title: Changes to Other Profiles
     generation: markdown
-
+  appendix.md:
+    title: AuditEvent use in IHE Implementation Guides
+    generation: markdown
 
 menu:
   BasicAudit Home: index.html
@@ -88,4 +90,6 @@ menu:
     -Privacy Disclosure Audit Message: content.html#3577-privacy-disclosure-audit-message
   Test Plan: testplan.html
   Artifacts: artifacts.html
-  Other: other.html
+  Other: 
+    Changes to Other Specifications: other.html
+    AuditEvent use in Other Profiles: appendix.html

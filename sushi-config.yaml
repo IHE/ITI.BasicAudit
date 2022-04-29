@@ -10,6 +10,7 @@ title: "IHE ITI Basic AuditEvent Implementation Guide"
 version: 1.0.2-current
 releaselabel: ci-build
 #releaselabel: ballot
+#releaselabel: Trial-Implementation
 status: active
 publisher:
   - name: IHE IT Infrastructure Technical Committee

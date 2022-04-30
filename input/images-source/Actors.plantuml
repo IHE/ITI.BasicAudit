@@ -1,0 +1,12 @@
+@startuml
+agent "Audit Creator" as cAud
+cloud AuditRepository [
+ATNA
+....
+Audit Record Repository
+]
+agent "Audit Consumer" as AuditClient
+
+cAud -down-> AuditRepository: Record Audit Event [ITI-20]
+AuditClient -up-> AuditRepository: Retrieve ATNA Audit Event [ITI-81]
+@enduml

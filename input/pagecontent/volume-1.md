@@ -1,5 +1,5 @@
 
-The Basic Audit Log Pattern (BasicAudit) Content Profile defines some basic and reusable AuditEvent patterns. 
+The Basic Audit Log Pattern (BALP) is a Content Profile that defines some basic and reusable AuditEvent patterns. 
 
 The Audit Log Patterns defined here rely on the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile for transport of the AuditEvent and query/retrieval of AuditEvents previously recorded. 
 The patterns defined here may be used as they are, or further refined to specific use-cases. 
@@ -7,52 +7,58 @@ Where a more specific audit event is defined, it should be derived off of these 
 
 This implementation guide is intended to be fully compliant with the HL7 [FHIR](http://hl7.org/fhir/) specification, providing only use-case driven constraints to aid with interoperability, deterministic results, and compatibility with [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) and other IHE Profiles.
 
-## 1:52.1 BasicAudit Actors and Content
-
-Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
+Figure 1:52-1 shows a broader setting for the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
 
 <div>
-{%include ActorsAndTransactions.svg%}
+{%include ActorContext.svg%}
+</div>
+<br clear="all">
+
+**Figure 1:52-1: BasicAudit Actor Setting**
+
+*ANY Secure Client* and *ANY Secure Server* represent abstractions of any client/server actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the **ATX: FHIR Feed Option**, defined in [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Client* and *ANY Secure Server* are involved in some communication that is an auditable event described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded (ITI-20) by the *Secure Node* or *Secure Application* that is grouped within the diagramed *ANY Secure Client* and the *ANY Secure Server*. 
+
+The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect but rather indicates that the actor did not have access to that data. 
+
+## 1:52.1 BasicAudit Actors and Content
+
+Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. The **Audit Creator** creates AuditEvent records following this profile that is consumed by the **Audit Consumer**. The transport for the AuditEvent records is the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile.
+
+<div>
+{%include Actors.svg%}
 </div>
 <br clear="all">
 
 **Figure 1:52.1-1: BasicAudit Actor Diagram**
 
-Table 1:52.1-1: BasicAudit; Profile - Actors and Transactions
+Table 1:52.1-1: BasicAudit; Profile - Actors  
 
-| Actors                  | Transactions              | Initiator or Responder | Optionality| Reference|
-|-------------------------|---------------------------|:----------------------:|:----------:|----------|
-| *ANY Secure Client*     | *ANY request/response*    | Initiator | R | [1:52.1.1.1](volume-1.html#152111-any-secure-client) |
-| *ANY Secure Client*     | ATNA Record Audit Event   | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| *ANY Secure Server*     | *ANY request/response*    | Responder | R | [1:52.1.1.2](volume-1.html#152112-any-secure-server) |
-| *ANY Secure Server*     | ATNA Record Audit Event   | Initiator | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| ATNA Audit Record Repository | ATNA Record AuditEvent         | Responder | R | [ITI-20](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| ATNA Audit Record Repository | ATNA Retrieve ATNA Audit Event | Responder | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
-| ATNA Audit Consumer          | ATNA Retrieve ATNA Audit Event | Initiator | R | [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) |
+| Actors                  |  Optionality| Reference|
+|-------------------------|:----------:|----------|
+| Audit Creator           | R | 1:52.1.1.1 |
+| Audit Consumer          | R | 1:52.1.1.2 |
 {:.grid}
 
 
 ### 1:52.1.1 Actor Descriptions and Actor Profile Requirements
 
-#### 1:52.1.1.1 ANY Secure Client
 
-*ANY Secure Client* represent abstractions of any client actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the ATX: FHIR Feed Option, defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Client* is involved in an auditable event that is described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded (ITI-20) by the *ANY Secure Client* and the *ANY Secure Server*. The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect but rather indicates that the actor did not have access to that data. 
+#### 1:52.1.1.1 Audit Creator
 
-#### 1:52.1.1.2 ANY Secure Server
+The Audit Creator shall detect the defined auditable events, and record a complaint AuditEvent as defined.
+The Audit Creator shall be grouped with an **ATNA Secure Application** or **ATNA Secure Node** with support for **ATNA ATX:FHIR Feed Option** [defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) for the recording of the compliant AuditEvent to the Audit Record Repository.
 
-*ANY Secure Server* represent abstractions of any server actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the ATX: FHIR Feed Option, defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Server* is involved in an auditable event that is described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded (ITI-20) by the *ANY Secure Client* and the *ANY Secure Server*. The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect but rather indicates that the actor did not have access to that data. 
+#### 1:52.1.1.2 Audit Consumer
+
+The Audit Consumer shall be grouped with an **ATNA Audit Consumer** with support for the **Retrieve Audit Message Option** [defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The Audit Consumer understands the AuditEvent profiles defined, but shall not reject an AuditEvent due to non-compliance.
 
 #### 1:52.1.1.3 ATNA Audit Record Repository
 
-The Audit Record Repository shown is the ATNA Audit Record Repository with support for ATNA ATX:FHIR Feed Option, and Retrieve Audit Message Option. These options are defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf).
-
-#### 1:52.1.1.4 ATNA Audit Consumer
-
-The Audit Consumer shown is an ATNA Audit Consumer Actor that understands and uses the AuditEvent patterns defined here.
+The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Audit Record Repository with support for **ATNA ATX:FHIR Feed Option**, and **Retrieve Audit Message Option**. These options are defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The ATNA Audit Record Repository may detect and validate the AuditEvent requirements defined here, but shall not reject an AuditEvent due to non-compliance.
 
 ## 1:52.2 BasicAudit Actor Options
 
-Each AuditEvent pattern defined here can be declared by an *ANY Secure Client*, *ANY Secure Server*, or Audit Consumer.
+Each AuditEvent pattern defined here can be declared by an **Audit Creator**, or **Audit Consumer**.
 
 ## 1:52.3 BasicAudit Required Actor Grouping
 
@@ -65,7 +71,7 @@ Cross-Profile Considerations describes some optional groupings in other related 
 ## 1:52.4 BasicAudit Overview
 
 ### 1:52.4.1 Concepts
-The BasicAudit implementation guide provides reusable AuditEvent patterns that can be used directly, or combined, or as derivation material for a more specific AuditEvent. 
+This guide provides reusable AuditEvent patterns that can be used directly, or combined, or as derivation material for a more specific AuditEvent. 
 
 ##### 1:52.4.1.1 Data access requests produce an AuditEvent
 
@@ -175,9 +181,9 @@ Given that an Authorization Service makes Authorization Decisions based on a Con
 </div>
 <br clear="all">
 
-**Figure: 1:52.4.23.-1: Consent Authorized Decision process flow**
+**Figure: 1:52.4.2.3-1: Consent Authorized Decision process flow**
 
-Not shown in this interaction diagram is the AuditEvent that would be recorded by the ANY Secure Client and ANY Secure Server to record the auditable event that is the client and server interaction.
+This diagram focuses on the Authorization Decision, so not shown in this interaction diagram are the other AuditEvent that would be recorded by the ANY Secure Client and ANY Secure Server to record the auditable event that is the client and server interaction.
 
 #### 1:52.4.2.4 Use Case #4: Privacy relevant disclosure event
 

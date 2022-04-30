@@ -2,7 +2,6 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 	
 # Open Issues
 
-- [BasicAudit/1](https://github.com/IHE/ITI.BasicAudit/issues/40). This IG is more an abstract pattern setting than it is an implementable and conformance. Not clear how conformance to this IG will be declared in a way that is understandable at the IHE Integration Statement. Do we need named options for each defined pattern? Are the current "ANY Secure Client" and "ANY Secure Server" sufficient?     
 - [BasicAudit/2](https://github.com/IHE/ITI.BasicAudit/issues/41). Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters biggenough yet not too big?
 - [BasicAudit/3](https://github.com/IHE/ITI.BasicAudit/issues/42). The R4 version of AuditEvent uses extensible binding often, this has limited the ways that the AuditEvent can be constrained. R5 has relaxed these to either example or preferred binding, so some further can be done in this IG once R5 is released.
 - [BasicAudit/6](https://github.com/IHE/ITI.BasicAudit/issues/45). This IG covers only basic RESTful http. Not covered are FHIR Operations, or advanced http activities like Patch, conditional create, conditional update, etc? What others are needed, for them please provide an example transaction that can be used in a profiled example.
@@ -11,4 +10,4 @@ Comments and questions are welcome as github issues, FHIR chat [stream for the t
 - [BasicAudit/18](https://github.com/IHE/ITI.BasicAudit/issues/55). Is the use of AssuranceLevel proper? Should the extension element be defined more specific to NIST-800-63 assurance levels, and not allow to be carrying historical vocabulary that is not specifically assurance-level but rather the method of authentication used (e.g. urn:oasis:names:tc:SAML:2.0:ac:classes:PasswordProtectedTransport)?
 - [BasicAudit/19](https://github.com/IHE/ITI.BasicAudit/issues/56). Note: Support for [HL7 Security for Scalable Registration, Authentication, and Authorization (aka UDAP) ](http://hl7.org/fhir/us/udap-security/history.html) when it gets published  
 - [BasicAudit/21](https://github.com/IHE/ITI.BasicAudit/issues/37). IG builder / validation issue with the slicing I need to use in AuditEvent. Discussion can be found https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20with.20complex.20.24this and https://chat.fhir.org/#narrow/stream/179252-IG-creation/topic/slicing.20sliced.20extension
-
+- [BasicAudit/22](https://github.com/IHE/ITI.BasicAudit/issues/60). There are no named options. It might be useful to have named options to enable minimal vs comprehensive; or to allow claims of compliance to only disclosure auditEvent.

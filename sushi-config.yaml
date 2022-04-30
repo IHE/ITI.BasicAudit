@@ -3,14 +3,14 @@
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
 id: ihe.iti.basicaudit
-canonical: https://profiles.ihe.net/ITI/basicaudit
-name: IHE_ITI_BasicAudit
-title: "IHE ITI Basic AuditEvent Implementation Guide"
-#date: 2022-03-01
-version: 1.0.2-current
-releaselabel: ci-build
+canonical: https://profiles.ihe.net/ITI/BasicAudit
+name: IHE_ITI_BALP
+title: "IHE ITI Basic Audit Log Pattern (BALP) Implementation Guide"
+date: 2022-05-06
+version: 1.2.0
+#releaselabel: ci-build
 #releaselabel: ballot
-#releaselabel: Trial-Implementation
+releaselabel: Trial-Implementation
 status: active
 publisher:
   - name: IHE IT Infrastructure Technical Committee
@@ -22,10 +22,10 @@ contact:
       - system: email
         value: iti@ihe.net
 jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
-copyright: IHE http://www.ihe.net/Governance/#Intellectual_Property
+copyright: Integrating the Healthcare Enterprise (IHE) http://www.ihe.net/Governance/#Intellectual_Property
 description: >-
   The Basic Audit Log Patterns (BasicAudit) **Content Profile** defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations, to be used when there is not a more specific audit event defined. Where a more specific audit event can be defined it should be derived off of these basic patterns.
-license: CC-BY-SA-4.0
+license: CC-BY-4.0
 fhirVersion: 4.0.1
 copyrightyear: '2022+'
 
@@ -51,7 +51,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 
 pages:
   index.md:
-    title: Basic Audit
+    title: Basic Audit Log Pattern (BALP)
     generation: markdown
   volume-1.md:
     title: 1:52 Basic Audit

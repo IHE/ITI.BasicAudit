@@ -1,8 +1,8 @@
 {
   "package-id": "ihe.iti.basicaudit",
-  "title": "IHE Basic Audit Log Patterns (BasicAudit)",
-  "canonical": "https://profiles.ihe.net/ITI/basicaudit",
-  "introduction": "The Basic Audit Log Patterns (BasicAudit) **Content Profile** defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations, to be used when there is not a more specific audit event defined. Where a more specific audit event can be defined it should be derived off of these basic patterns.",
+  "title": "IHE Basic Audit Log Patterns (BALP)",
+  "canonical": "https://profiles.ihe.net/ITI/BasicAudit",
+  "introduction": "The Basic Audit Log Patterns (BALP) **Content Profile** defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations, to be used when there is not a more specific audit event defined. Where a more specific audit event can be defined it should be derived off of these basic patterns.",
   "category": "Privacy / Security",
   "list": [
     {
@@ -13,14 +13,24 @@
       "current": true
     },
     {
+      "version": "1.1.0",
+      "desc": "Trial Implementation - Basic Audit Log Patterns (BALP)",
+      "path": "https://profiles.ihe.net/ITI/BasicAudit/1.1.0",
+      "status": "trial-use",
+      "fhirversion": "4.0.1",
+      "sequence": "Trial Implementation",
+      "date": "2022-04-06",
+      "current": true
+    },
+    {
       "version": "1.0.1",
       "desc": "Public Comment - Basic Audit",
-      "path": "https://profiles.ihe.net/ITI/basicaudit/1.0.1",
+      "path": "https://profiles.ihe.net/ITI/BasicAudit/1.0.1",
       "status": "ballot",
       "fhirversion": "4.0.1",
-      "sequence": "Public-Comment",
+      "sequence": "Public Comment",
       "date": "2022-03-01",
-      "current": true
+      "current": false
     }
   ]
 }

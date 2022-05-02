@@ -1,4 +1,4 @@
-The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Profile** that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations, to be used when there is not a more specific audit event defined. A focus is enabling Privacy centric AuditEvent logs that hold well formed indication of the Patient when they are the subject of the activity being recorded in the log. Where a more specific audit event can be defined it should be derived off of these basic patterns.
+The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Profile** that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations to be used when there is not a more specific audit event defined. A focus is enabling Privacy centric AuditEvent logs that hold well formed indication of the Patient when they are the subject of the activity being recorded in the log. Where a more specific audit event can be defined it should be derived off of these basic patterns.
 
 <div markdown="1" class="stu-note">
 
@@ -10,7 +10,7 @@ The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Prof
 </div>
 
 ### Organization of This Guide
-This guide is organized into three main sections:
+This guide is organized into four main sections:
 
 1. Volume 1: [52 BasicAudit Introduction](volume-1.html)
     1. [52.1 BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
@@ -50,4 +50,4 @@ You can also download:
 * the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip), [ttl](definitions.ttl.zip), or [csv](csvs.zip) format, or
 * the example resources in [json](examples.json.zip), [xml](examples.xml.zip) or [ttl](examples.ttl.zip) format.
 
-The source code for this Implementation Guide can be found on [IHE GitHub](https://github.com/IHE/ITI.BasicAudit)
+The source code for this Implementation Guide can be found on [IHE GitHub](https://github.com/IHE/ITI.BasicAudit).

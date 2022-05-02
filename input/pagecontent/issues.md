@@ -1,8 +1,8 @@
-Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient) , 
+Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient), 
 	
 # Open Issues
 
-- [BasicAudit/2](https://github.com/IHE/ITI.BasicAudit/issues/41). Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters biggenough yet not too big?
+- [BasicAudit/2](https://github.com/IHE/ITI.BasicAudit/issues/41). Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters big enough yet not too big?
 - [BasicAudit/3](https://github.com/IHE/ITI.BasicAudit/issues/42). The R4 version of AuditEvent uses extensible binding often, this has limited the ways that the AuditEvent can be constrained. R5 has relaxed these to either example or preferred binding, so some further can be done in this IG once R5 is released.
 - [BasicAudit/6](https://github.com/IHE/ITI.BasicAudit/issues/45). This IG covers only basic RESTful http. Not covered are FHIR Operations, or advanced http activities like Patch, conditional create, conditional update, etc? What others are needed, for them please provide an example transaction that can be used in a profiled example.
 - [BasicAudit/7](https://github.com/IHE/ITI.BasicAudit/issues/46). X-Request-Id header -- I explained this only inside of the RESTful section, but it is applicable anywhere that X-Request-Id is used. X-Reqeust-Id is profiled differently than the example given in the FHIR core specification. Specifically there is a entity type defined here to enable slicing, where the example in FHIR core uses both type (job) and role (stream) which is harder to slice. I did not make this a standalone section because it is simply too small.  

@@ -13,7 +13,7 @@ The following AuditEvent patterns are defined:
 
 ### 3:5.7.3 RESTful activities
 
-All but Delete follow a similar pattern of the initiator (client) of the RESTful interaction is identified as the Source Role ID, where the responder (server) is the Destination Role ID. This pattern is found in both DICOM and XDS.  It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
+All but Delete follow a similar pattern where the initiator (client) of the RESTful interaction is identified as the Source Role ID and the responder (server) is the Destination Role ID. This pattern is found in both DICOM and XDS.  It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
 
 When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns include a `user` slice that is minimally populated. These AuditEvent patterns can be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
 
@@ -32,30 +32,30 @@ An example of an auditable event being recorded by the client and server is repr
 
 #### 3:5.7.3.1 X-Request-Id header 
 
-Where it is known that a http RESTful transaction included a X-Request-Id, that value should be recorded in an .entity dedicated to X-Request-Id. This ID can be used to coorelated AuditEvents from client and server, and may aid with coorelation on further activitites recorded caused by the transaction. This means that the .entity holding the X-Request-Id may appear in AuditEvents beyond those defined here.
+Where it is known that an http RESTful transaction included an X-Request-Id, that value should be recorded in an .entity dedicated to X-Request-Id. This ID can be used to correlated AuditEvents from client and server, and may aid with correlation on further activities recorded caused by the transaction. This means that the .entity holding the X-Request-Id may appear in AuditEvents beyond those defined here.
 
 ### 3:5.7.4 SAML Security Token
 
 This section only applies to auditing agents that have access to the content of the SAML Security Token. This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in a SAML Security Token. This does not cover how the SAML Token was created, acquired, authorized, or managed. See [IHE-XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html).  This specification presumes that the interactions to obtain the "SAML Security Token" were themselves auditable events and properly recorded in the audit log. 
 
-In this section we use the term "SAML Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40), or (b) any other SAML token used to secure an Interoperability transaction.
+In this section, we use the term "SAML Security Token" in a general sense to refer to either (a) a XUA SAML token being used in an [ITI-40](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40) or (b) any other SAML token used to secure an Interoperability transaction.
 
-There is documentation of the audit event details to be added to a grouped transaction audit event log in [XUA Security Considerations 2:3.40.4.2](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2), however this is not explaining how this should be recorded in a FHIR AuditEvent. There are two patterns defined here: minimal, and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details taht could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
+There is documentation of the audit event details to be added to a grouped transaction audit event log in [XUA Security Considerations 2:3.40.4.2](https://profiles.ihe.net/ITI/TF/Volume2/ITI-40.html#3.40.4.2); however, this does not explain how this should be recorded in a FHIR AuditEvent. There are two patterns defined here: minimal and comprehensive. Where minimal presumes that when the audit log is used, the system using the AuditEvent has access to the security infrastructure registry and logs to lookup the identifiers, thus the details that could be looked up later are not replicated in the AuditEvent. Comprehensive presumes that there is no access to lookup these details, thus preserving as much of the Security Token into the AuditEvent as is reasonable and useful.
 
 #### 3:5.7.4.1 SAML - Minimal AuditEvent record
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage.
 
-The Minimal AuditEvent pattern preserves the SAML ID, so that the contents of the SAML assertion can be retrieved from the SAML Identity Provider (IdP) when such access is available. The Minimal AuditEvent pattern preserves the Issuer and Subject NameID in the who.Identifier, and any purposeOfUse into the purposeOfUse element.
+The Minimal AuditEvent pattern preserves the SAML ID so that the contents of the SAML assertion can be retrieved from the SAML Identity Provider (IdP) when such access is available. The Minimal AuditEvent pattern preserves the Issuer and Subject NameID in the who.Identifier, and any purposeOfUse into the purposeOfUse element.
 
-Note: that XUA recommends alias be filled with SPProvidedID which is not defined in XUA and is found to be deprecated in many SAML specifiations. So this specification does not record or refer to the SPProvidedId.
+Note: that XUA recommends alias be filled with SPProvidedID which is not defined in XUA and is found to be deprecated in many SAML specifications. So this specification does not record or refer to the SPProvidedId.
 
 * [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an SAML access token](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal.html)
   * [examples](StructureDefinition-IHE.BasicAudit.SAMLaccessTokenUse.Minimal-examples.html)
 
 #### 3:5.7.4.2 SAML - Comprehensive AuditEvent record
 
-This pattern preserves most SAML attributes in the AuditEvent. Not all are preserved as some attributes are proven during the SAML token validation and thus carry no further informtion useful in an AuditEvent (e.g., not before). 
+This pattern preserves most SAML attributes in the AuditEvent. Not all are preserved as some attributes are proven during the SAML token validation and thus carry no further information useful in an AuditEvent (e.g., not before). 
 
 Local policy may choose to record less than are defined here, or may choose to record more. 
 
@@ -66,7 +66,7 @@ For those using SAML beyond XUA, there is no specific guidance here.
 
 #### 3:5.7.4.3 SAML mapping to AuditEvent
 
-The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. There are SAML fields defined that are not showin in the following table, these SAML fields need not be preserved in the AuditEvent.
+The following table uses a short-hand for the SAML fields and FHIR AuditEvent elements to keep the table compact. It is presumed the reader can understand the SAML field and the FHIR AuditEvent element given. Note the `~` character represents attributes under the SAML `AttributeStatement`. There are SAML fields defined that are not shown in the following table, these SAML fields need not be preserved in the AuditEvent.
 
 | SAML field                   | Comprehensive AuditEvent     | Minimal AuditEvent           |
 |------------------------------|-----------------------------------|-----------------------------------|
@@ -87,13 +87,13 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value | 
 {:.grid}
 
-Other SAML attributes may be defined, but this specificaiton focuses on XUA attributes only.
+Other SAML attributes may be defined, but this specification focuses on XUA attributes only.
 
 ### 3:5.7.5 OAuth Security Token
 
 This section is only concerned with the AuditEvent profiling to use when an event is attributable to an agent defined in an OAuth Security Token. This does not cover how the oAuth Token was created, acquired, authorized, or managed. See [IUA](https://profiles.ihe.net/ITI/IUA/index.html).  This specification presumes that the interactions to obtain the "Oauth Security Token" were themselves auditable events and properly recorded in the audit log. 
 
-In this section we use the term "OAuth Security Token" in a general sense to refer to either (a) an [IUA](https://profiles.ihe.net/ITI/IUA/index.html) OAuth Access Token being used in an [ITI-72](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72), or (b) any other OAuth Access Token used to secure an Interoperability transaction (e.g., [SMART Backend Services](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#presenting-an-access-token-to-fhir-api), or [SMART App Launch Framework](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api), or other).
+In this section we use the term "OAuth Security Token" in a general sense to refer to either (a) an [IUA](https://profiles.ihe.net/ITI/IUA/index.html) OAuth Access Token being used in an [ITI-72](https://profiles.ihe.net/ITI/IUA/index.html#372-incorporate-access-token-iti-72) or (b) any other OAuth Access Token used to secure an Interoperability transaction (e.g., [SMART Backend Services](https://hl7.org/fhir/uv/bulkdata/authorization/index.html#presenting-an-access-token-to-fhir-api), or [SMART App Launch Framework](http://hl7.org/fhir/smart-app-launch/index.html#step-4-app-accesses-clinical-data-via-fhir-api), or other).
 
 There are three patterns defined: opaque, minimal, and comprehensive. 
 * Where opaque is used when the client and/or server has only an opaque token (encrypted JWT) where no further details are known. There is still a need to include some evidence in the AuditEvent to tie this audit log entry with a specific token, but the whole token should not be recorded for security reasons. There are introspection functions often available, but often use of this impacts performance.
@@ -108,7 +108,7 @@ The Client and Server are both encouraged to log an AuditEvent covering any secu
 
 #### 3:5.7.5.1 oAuth - Opaque AuditEvent record
 
-The Opaque AuditEvent profile would be used when the token is opaque (usually encrypted JWT). The token should be shortened to not more than 32 characters, and those characters should be from the end of the token to assure the most entropy. The presumption is that the many AuditEvent(s) can be coorelated to all be related to the same security token given this shortened token string.
+The Opaque AuditEvent profile would be used when the token is opaque (usually encrypted JWT). The token should be shortened to not more than 32 characters, and those characters should be from the end of the token to assure the most entropy. The presumption is that the many AuditEvent(s) can be correlated to all be related to the same security token given this shortened token string.
 
 Other elements may be recorded following the Minimal or Comprehensive pattern.
 
@@ -121,14 +121,14 @@ The Minimal AuditEvent pattern would be used when the JWT token is available at 
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in [ITI-72 Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage. This AuditEvent pattern is also recommended for both client and server to the extent possible.
 
-The Minimal AuditEvent pattern preserves the oAuth JWT ID, so that the contents of the oAuth token can be retrieved from the oAuth Authority when such access is available. The Minimal AuditEvent pattern preserves the iss (JWT Issuer) and sub (JWT Subject) in the who.Identifier, the client_id in second agent, and any purposeOfUse into the purposeOfUse element.
+The Minimal AuditEvent pattern preserves the oAuth JWT ID so that the contents of the oAuth token can be retrieved from the oAuth Authority when such access is available. The Minimal AuditEvent pattern preserves the iss (JWT Issuer) and sub (JWT Subject) in the who.Identifier, the client_id in second agent, and any purposeOfUse into the purposeOfUse element.
 
 * [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an oAuth security token](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal.html)
   * [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal-examples.html)
 
 #### 3:5.7.5.3 oAuth - Comprehensive AuditEvent record
 
-This pattern preserves most oAuth JWT fields in the AuditEvent. Not all are preserved as some attributes are proven during the oAuth token validation and thus carry no further informtion useful in an AuditEvent (e.g., not before). 
+This pattern preserves most oAuth JWT fields in the AuditEvent. Not all are preserved as some attributes are proven during the oAuth token validation and thus carry no further information useful in an AuditEvent (e.g., not before). 
 
 Local policy may choose to record less than are defined here, or may choose to record more. 
 
@@ -169,7 +169,7 @@ Note: Opaque is not shown in the table as it has no access to any oAuth Fields.
 
 ### 3:5.7.6 Consent Authorized Decision Audit Message
 
-This set of auditEvent messages would be recorded by an Authorization Service when an authorization decision is rendered that is based on a Consent. This AuditEvent is not specific to the authorization technolology (SAML/XACML, Oauth, other). This AuditEvent is specific to describing the Consent involved in the authorization decision. Success would indicate that a Permit is allowed, Failure would indicate that Deny was returned as the authorization decision.
+This set of auditEvent messages would be recorded by an Authorization Service when an authorization decision is rendered that is based on a Consent. This AuditEvent is not specific to the authorization technology (SAML/XACML, Oauth, other). This AuditEvent is specific to describing the Consent involved in the authorization decision. Success would indicate that a Permit is allowed, Failure would indicate that Deny was returned as the authorization decision.
 
 * [Authorization Decision inclusive of Consent](StructureDefinition-IHE.BasicAudit.AuthZconsent.html)
   * [examples](StructureDefinition-IHE.BasicAudit.AuthZconsent-examples.html)
@@ -178,7 +178,7 @@ This set of auditEvent messages would be recorded by an Authorization Service wh
 
 This is transformed from the content defined today in ATNA ITI-20 [2:3.20.8 Disclosure audit message](https://profiles.ihe.net/ITI/TF/Volume2/ITI-20.html#3.20.8). It is replicated here for ease of understanding, and is presented here using the FHIR AuditEvent. There are some differences caused and enabled by the FHIR AuditEvent schema and profiling.
 
-In some countries a Patient has the right to get an accounting of disclosures. This report includes disclosures of their data that meet regulatory criteria. Most audit events, including export events, must be post-analyzed to determine whether they describe an event that needs to be included in the accounting of disclosures. For example, in the USA these rules are defined in [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html), and only a few kinds of export events meet the criteria to be included in an accounting of disclosures report. When it is known, at the time the event is recorded, that the event is indeed a disclosure, the disclosure audit message can be used to document the event.
+In some countries a Patient has the right to get an accounting of disclosures. This report includes disclosures of their data that meet regulatory criteria. Most audit events, including export events, must be post-analyzed to determine whether they describe an event that needs to be included in the accounting of disclosures. For example, in the USA these rules are defined in [HIPAA](https://www.cdc.gov/phlp/publications/topic/hipaa.html), and only a few kinds of export events meet the criteria to be included in an accounting of disclosures report. When it is known, at the time the event is recorded that the event is indeed a disclosure, the disclosure audit message can be used to document the event.
 
 The requirements of an accounting of disclosures are defined in [ASTM-2147](https://www.astm.org/e2147-18.html). A disclosure shall include the following, when the value is known:
 

@@ -197,6 +197,6 @@ In some cases, this profile has defined a minimally-populated AuditEvent that is
 
 ## 1:52.6 BasicAudit Cross-Profile Considerations
 
-This profile defines some AuditEvent patterns for use when there is not a more specific AuditEvent pattern defined. Thus when grouped with an IHE Profile that has defined an AuditEvent (AuditMessage) pattern, that more specific pattern defined in the grouped IHE Profile shall be used.
+This profile defines some AuditEvent patterns for use when there is not a more specific AuditEvent pattern defined. Thus, when grouped with an IHE Profile that has defined an AuditEvent (AuditMessage) pattern, that more specific pattern defined in the grouped IHE Profile shall be used.
 
 The patterns defined here might be used as profiling parent to a more specific defined AuditEvent.

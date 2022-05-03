@@ -2,8 +2,8 @@
 # │  The properties below are used to create the ImplementationGuide resource. For a list of       │
 # │  supported properties, see: https://fshschool.org/docs/sushi/configuration/                         │
 # ╰────────────────────────────────────────────────────────────────────────────────────────────────╯
-id: ihe.iti.basicaudit
-canonical: https://profiles.ihe.net/ITI/BasicAudit
+id: ihe.iti.balp
+canonical: https://profiles.ihe.net/ITI/BALP
 name: IHE_ITI_BALP
 title: "IHE ITI Basic Audit Log Pattern (BALP) Implementation Guide"
 date: 2022-05-06

@@ -19,4 +19,4 @@ This Implementation Guide provides AuditEvent profiles and examples for some com
 
 continuous build http://build.fhir.org/ig/IHE/ITI.BasicAudit/branches/main/index.html
 
-released https://profiles.ihe.net/ITI/basicaudit
+released https://profiles.ihe.net/ITI/BALP

@@ -1,5 +1,5 @@
 <div markdown="1" class="stu-note">
-This section modifies other IHE profiles, and is not a part of the BasicAudit profile. The content here will be incorporated into the target narrative at a future time, usually when BasicAudit goes normative.
+This section modifies other IHE profiles, and is not a part of the Basic Audit Log Patterns Profile. The content here will be incorporated into the target narrative at a future time, usually when BasicAudit goes normative.
 </div>
 
 ## IHE Technical Frameworks General Introduction Appendix A: Actors

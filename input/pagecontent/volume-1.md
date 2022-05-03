@@ -3,9 +3,9 @@ The Basic Audit Log Pattern (BALP) is a Content Profile that defines some basic 
 
 The Audit Log Patterns defined here rely on the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile for transport of the AuditEvent and query/retrieval of AuditEvents previously recorded. 
 The patterns defined here may be used as they are, or further refined to specific use-cases. 
-Where a more specific audit event is defined, it should be derived off of these basic patterns. Thus a more specific AuditEvent would be compliant with one or more of the AuditEvent patterns defined here.
+Where a more specific audit event is defined, it should be derived off of these basic patterns. Thus, a more specific AuditEvent would be compliant with one or more of the AuditEvent patterns defined here.
 
-This implementation guide is intended to be fully compliant with the HL7 [FHIR](http://hl7.org/fhir/) specification, providing only use-case driven constraints to aid with interoperability, deterministic results, and compatibility with [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) and other IHE Profiles.
+This Implementation Guide is intended to be fully compliant with the HL7 [FHIR](http://hl7.org/fhir/) specification, providing only use-case driven constraints to aid with interoperability, deterministic results, and compatibility with [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) and other IHE Profiles.
 
 Figure 1:52-1 shows a broader setting for the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
 
@@ -18,7 +18,7 @@ Figure 1:52-1 shows a broader setting for the actors directly involved in the Ba
 
 *ANY Secure Client* and *ANY Secure Server* represent abstractions of any client/server actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the **ATX: FHIR Feed Option**, defined in [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Client* and *ANY Secure Server* are involved in some communication that is an auditable event described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded (ITI-20) by the *Secure Node* or *Secure Application* that is grouped within the diagramed *ANY Secure Client* and the *ANY Secure Server*. 
 
-The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect but rather indicates that the actor did not have access to that data. 
+The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect, but rather indicates that the actor did not have access to that data. 
 
 ## 1:52.1 BasicAudit Actors and Content
 
@@ -31,7 +31,7 @@ Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Patter
 
 **Figure 1:52.1-1: BasicAudit Actor Diagram**
 
-Table 1:52.1-1: BasicAudit; Profile - Actors  
+**Table 1:52.1-1: BasicAudit - Actors**  
 
 | Actors                  |  Optionality| Reference|
 |-------------------------|:----------:|----------|
@@ -45,7 +45,7 @@ Table 1:52.1-1: BasicAudit; Profile - Actors
 
 #### 1:52.1.1.1 Audit Creator
 
-The Audit Creator shall detect the defined auditable events, and record a complaint AuditEvent as defined.
+The Audit Creator shall detect the defined auditable events and record a complaint AuditEvent as defined.
 The Audit Creator shall be grouped with an **ATNA Secure Application** or **ATNA Secure Node** with support for **ATNA ATX:FHIR Feed Option** [defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) for the recording of the compliant AuditEvent to the Audit Record Repository.
 
 #### 1:52.1.1.2 Audit Consumer
@@ -62,7 +62,7 @@ Each AuditEvent pattern defined here can be declared by an **Audit Creator**, or
 
 ## 1:52.3 BasicAudit Required Actor Grouping
 
-The required groupings for BasicAudit are those in the ATNA Profile, see [IHE ITI TF-1:9.3](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html)
+The required groupings for BasicAudit are those in the ATNA Profile, see [IHE ITI TF-1:9.3](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html).
 
 The Security Considerations page describes some optional groupings that may be of interest for security considerations.
 
@@ -103,9 +103,9 @@ In this Implementation Guide there are sometimes two sets of patterns defined:
 
 The minimal AuditEvent pattern should be used whenever possible. The minimal AuditEvent pattern avoids replicating information that can be looked up by any audit analysis application that has access. By placing minimal information into the AuditEvent the size of the AuditEvent is dramatically reduced, and there is less exposure of privacy and security information. 
 
-With minimal AuditEvent the AuditEvent contains identifiers or References, and not the details. For example user identifier, practitioner identifier, organizational identifier, patient identifier, data object identifier, location identifiers, and security token identifier. With minimal the users names would not be recorded, details of a diagnosis would not be replicated, postal addresses would not be replicated. The identifiers that are recorded can be looked up using a user directory, practitioner directory, patient directory, data registry, and token introspection. The lookup of these values is further protection of the data behind them, preventing abuse by someone who has access to the AuditEvent log for one purpose gaining knowledge from other AuditEvent records.
+With minimal AuditEvent the AuditEvent contains identifiers or References, and not the details. For example, user identifier, practitioner identifier, organizational identifier, patient identifier, data object identifier, location identifiers, and security token identifier. With minimal the users names would not be recorded, details of a diagnosis would not be replicated, postal addresses would not be replicated. The identifiers that are recorded can be looked up using a user directory, practitioner directory, patient directory, data registry, and token introspection. The lookup of these values is further protection of the data behind them, preventing abuse by someone who has access to the AuditEvent log for one purpose gaining knowledge from other AuditEvent records.
 
-With minimal AuditEvent, the AuditEvent contains only the search (aka, query) parameters, and never the results of the search. This too limits the size of the AuditEvent, and the exposure of sensitive results data into the AuditEvent log. The results can be determined by re-executing the search or query, adjusting the results based on the time of the search. 
+With minimal AuditEvent, the AuditEvent contains only the search (aka query) parameters, and never the results of the search. This too limits the size of the AuditEvent and the exposure of sensitive results data into the AuditEvent log. The results can be determined by re-executing the search or query, adjusting the results based on the time of the search. 
 
 The minimal AuditEvent is lower risk, but would still contain sensitive data. 
 
@@ -113,9 +113,9 @@ The minimal AuditEvent is lower risk, but would still contain sensitive data.
 
 There are times when the AuditEvent log are used by Audit Consumer actors are known to not have access to some lookup services. In these cases, it is better to record the details into the AuditEvent. For example, where in a Cross-Community setting the details of the user may not be possible to lookup the security token details.
 
-With Comprehensive AuditEvent, the search results might be preserved in the AuditEvent. This will create a very large AuditEvent with replicated data. So, care should be taken to select the kinds of auditable events where the results are recorded comprenensively, and these results should be purged regularly to limit the overall impact as the results data tend to be less useful as the AuditEvent ages. 
+With Comprehensive AuditEvent, the search results might be preserved in the AuditEvent. This will create a very large AuditEvent with replicated data. So, care should be taken to select the kinds of auditable events where the results are recorded comprehensively, and these results should be purged regularly to limit the overall impact as the results data tend to be less useful as the AuditEvent ages. 
 
-In Cross-Community settings making full access to all of the needed directory and registry services may not be logictically possible. The counter argument is that when one party needs to perform AuditEvent log analysis and has suspiction based on that analysis, they could use out-of-band methods to request a lookup of an identifier. For example, when the AuditEvent log shows a strange behaviour by a user identifier, such as an unusually large number of search activities at strange times of day or searches against a VIP patient. These out-of-band requests should be supported by the Cross-Community policy agreements.
+In Cross-Community settings making full access to all of the needed directory and registry services may not be logistically possible. The counter argument is that when one party needs to perform AuditEvent log analysis and has suspicion based on that analysis, they could use out-of-band methods to request a lookup of an identifier. For example, when the AuditEvent log shows a strange behavior by a user identifier, such as an unusually large number of search activities at strange times of day or searches against a VIP patient. These out-of-band requests should be supported by the Cross-Community policy agreements.
 
 #### 1:52.4.1.4 Query Parameter Handling
 
@@ -123,7 +123,7 @@ The raw search request is base64 encoded and placed in the .entity[query].query 
 
 The cleaned search may be recorded (not base64) in the .entity[query].description. The cleaned search request would have removed parameters that were not understood/supported. The cleaned search request in the .description element enables more efficient processing.
 
-The results of the search are not included in the minimal AuditEvent, and are recommended to not be included in the comprehensive AuditEvent. Recording the results of a seach in the AuditEvent will produce very large resources that are hard to process, and which replicate the database searched multiple times over. The AuditEvent record with search results contain highly sensitive data.
+The results of the search are not included in the minimal AuditEvent, and are recommended to not be included in the comprehensive AuditEvent. Recording the results of a search in the AuditEvent will produce very large resources that are hard to process, and which replicate the database searched multiple times over. The AuditEvent record with search results contain highly sensitive data.
 
 #### 1:52.4.1.5 Best Effort
 
@@ -137,7 +137,7 @@ It is a best practice to include a reference to the Patient/Subject affected by 
 
 The Patient/Subject of an activity is indicated in an .entity element; with the .entity.who indicating the Patient reference, and the .entity.type indicating “1” Person, and the .entity.role indicating “1” patient. No other elements in this .entity need to be filled out. The indicator of the .entity.who, .entity.type, and .entity.role are enough to indicate that this AuditEvent activity has a subject as indicated.
 
-Where an activity impacts more than one Patient/Subject; multiple AuditEvent resources should be recorded, one for each Patient/Subject. This best enables segmentation of the AuditEvent details so as to limit the Privacy impact. The use of multiple AuditEvent is a best-practice and should be driven by a Policy. There will be cases where the use of multiple AuditEvent resources are not necessary, such as public health reporting.
+Where an activity impacts more than one Patient/Subject, multiple AuditEvent resources should be recorded, one for each Patient/Subject. This best enables segmentation of the AuditEvent details so as to limit the Privacy impact. The use of multiple AuditEvent is a best-practice and should be driven by a Policy. There will be cases where the use of multiple AuditEvent resources are not necessary, such as public health reporting.
 
 To record a REST interaction or $operation, it is often necessary to complete the transaction in order to determine the Patient/Subject. Inspection of the potential returned results may be necessary. Some REST Search/Query requests and $operations include parameters limiting the results to a specific Patient, in these cases this parameter informs the inclusion of the Patient reference.
 
@@ -170,7 +170,7 @@ The generic interaction between a client and a server shown with interactions 1,
 
 #### 1:52.4.2.2 Use Case #2: Security token enhancement pattern 
 
-Given that a security relevant event is being recorded, for example Generic FHIR RESTful operations, and where a security token is known that descrbes the client and possibly the human; there is a need to record well formatted details about the security context. This use-case needs an audit event pattern defined, to be combined with the audit event pattern for the security relevant event (see Use Case #1), that would enhance the audit event log record with details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
+Given that a security relevant event is being recorded, for example, Generic FHIR RESTful operations, and where a security token is known that describes the client and possibly the human; there is a need to record well formatted details about the security context. This use-case needs an audit event pattern defined, to be combined with the audit event pattern for the security relevant event (see Use Case #1), that would enhance the audit event log record with details from the OAuth or SAML token. See [3:5.7.4 SAML Security Token](content.html#3574-saml-security-token) and [3:5.7.5 OAuth Security Token](content.html#3575-oauth-security-token) for the pattern definitions and examples.
   
 #### 1:52.4.2.3 Use Case #3: Consent Authorized Decision event
 
@@ -193,7 +193,7 @@ Given that a privacy relevant disclosure event is detected, this use-case shows 
 
 This profile does not define any transactions. This profile defines AuditEvent patterns to be used when a more specific AuditEvent pattern is defined. 
 
-In some cases this profile has defined a minimally-populated AuditEvent that is focused on recording identifiers with no descriptive or replication. The minimally-populated AuditEvent helps preserve privacy of the data, actors, and events recorded in the AuditEvent. The minimally-populated AuditEvent is expected to be used by an audit log using agent that has knowledge of the source material for these identifiers, and has access rights to use those source materials. For example, recording a Practitioner identifier, without recording the Practitioner name or other elements that can be found in the Practitioner resource; where audit log analysis would use an organization directory where that identitifier can be looked up to find the full details of the Practitioner.
+In some cases, this profile has defined a minimally-populated AuditEvent that is focused on recording identifiers with no descriptive or replication. The minimally-populated AuditEvent helps preserve privacy of the data, actors, and events recorded in the AuditEvent. The minimally-populated AuditEvent is expected to be used by an audit log using agent that has knowledge of the source material for these identifiers, and has access rights to use those source materials. For example, recording a Practitioner identifier, without recording the Practitioner name or other elements that can be found in the Practitioner resource; where audit log analysis would use an organization directory where that identifier can be looked up to find the full details of the Practitioner.
 
 ## 1:52.6 BasicAudit Cross-Profile Considerations
 

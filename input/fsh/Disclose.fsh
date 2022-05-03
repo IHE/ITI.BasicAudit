@@ -53,22 +53,15 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * entity 2..*
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #closed
+* entity ^slicing.rules = #open
 * entity ^slicing.description = "patient and some data involved"
 * entity contains
-	patient 1..1 and
-	docs 0..* and 
-	data 0..*
+	patient 1..1 
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-* entity[docs] ^short = "When the data exposed is a Document"
-* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[docs].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[docs].what 1..1
-* entity[data] ^short = "Any other kind of data"
-* entity[data].what 1..1
+
 
 
 Invariant: val-audit-source
@@ -131,22 +124,16 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * entity 2..*
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #closed
+* entity ^slicing.rules = #open
 * entity ^slicing.description = "patient and some data involved"
 * entity contains
-	patient 1..1 and
-	docs 0..* and 
-	data 0..*
+	patient 1..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-* entity[docs] ^short = "When the data exposed is a Document"
-* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[docs].role  = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[docs].what 1..1
-* entity[data] ^short = "Any other kind of data"
-* entity[data].what 1..1
+
+
 
 
 Instance: ex-auditPrivacyDisclosure-recipient
@@ -181,9 +168,9 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[docs].what = Reference(DocumentReference/ex-documentreference)
+* entity[1].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[1].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[1].what = Reference(DocumentReference/ex-documentreference)
 
 
 Instance: ex-auditPrivacyDisclosure-source
@@ -219,9 +206,9 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[docs].what = Reference(DocumentReference/ex-documentreference)
+* entity[1].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[1].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[1].what = Reference(DocumentReference/ex-documentreference)
 
 Instance: ex-auditPrivacyDisclosure-source2
 InstanceOf: IHE.BasicAudit.PrivacyDisclosure.Source
@@ -256,9 +243,9 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[docs].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[docs].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[docs].what = Reference(DocumentReference/ex-documentreference)
+* entity[1].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[1].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[1].what = Reference(DocumentReference/ex-documentreference)
 
 
 Instance: ex-auditPrivacyDisclosure-measurereport
@@ -294,7 +281,7 @@ Usage: #example
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://hl7.org/fhir/resource-types#MeasureReport
-* entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
-* entity[data].what = Reference(MeasureReport/ex-measurereport)
+* entity[1].type = http://hl7.org/fhir/resource-types#MeasureReport
+* entity[1].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
+* entity[1].what = Reference(MeasureReport/ex-measurereport)
 

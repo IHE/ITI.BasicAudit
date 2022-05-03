@@ -10,10 +10,10 @@ This section modifies other IHE profiles, and is not a part of the BasicAudit pr
 
 | Actor                         | Definition                                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------------------|
-| none |  |
+| Audit Creator  | Creates audit log messages (e.g. AuditEvent) following a defined pattern. |
+| Audit Consumer | Consumes audit log messages (e.g. AuditEvent) following a defined pattern. |
 {:.grid .table-striped}
 
-TODO: Not likely there are new actors as this depends on ATNA for the actors and transactions.
 
 ## IHE Technical Frameworks General Introduction Appendix B: Transactions
 
@@ -27,6 +27,6 @@ TODO: Not likely there are new actors as this depends on ATNA for the actors and
 | none |  |
 {:.grid .table-striped}
 
-TODO: Not likely there are new transactions as this depends on ATNA for actors and transactions.
+
 
 

@@ -6,7 +6,7 @@ id: ihe.iti.balp
 canonical: https://profiles.ihe.net/ITI/BALP
 name: IHE_ITI_BALP
 title: "Basic Audit Log Patterns (BALP)"
-date: 2022-05-06
+date: 2022-05-04
 version: 1.1.0
 #releaselabel: ci-build
 #releaselabel: ballot

@@ -10,8 +10,8 @@ This section modifies other IHE profiles, and is not a part of the Basic Audit L
 
 | Actor                         | Definition                                                                                |
 | ----------------------------- | ------------------------------------------------------------------------------------------|
-| Audit Creator  | Creates audit log messages (e.g. AuditEvent) following a defined pattern. |
-| Audit Consumer | Consumes audit log messages (e.g. AuditEvent) following a defined pattern. |
+| Audit Creator  | Creates audit log messages (e.g., AuditEvent) following a defined pattern. |
+| Audit Consumer | Consumes audit log messages (e.g., AuditEvent) following a defined pattern. |
 {:.grid .table-striped}
 
 

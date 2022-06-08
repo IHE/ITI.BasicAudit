@@ -144,7 +144,7 @@ Usage: #example
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110107 "Import"
 * action = #C
-* subtype = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
+* subtype[+] = http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose "Disclose Record Lifecycle Event"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

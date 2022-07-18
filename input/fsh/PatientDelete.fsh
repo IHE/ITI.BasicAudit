@@ -6,11 +6,14 @@ Title:          "Basic AuditEvent for a successful Delete"
 Description:    """
 A basic AuditEvent profile for when a RESTful Delete action happens successfully.
 
-* Given a Resource has no Patient subject 
-* And OAuth is used to authorize both app and user
-* When an App requests a RESTful Delete of a target Resource
-* And the target Resource is successfully Deleted thus having an id that is no longer valid
-* Then an AuditEvent following this profile is recorded using the id that is no longer valid
+- Given a Resource Delete is requested 
+- And that resource has does not have a Patient subject or is otherwise associated with a Patient
+  - when the resource is Patient specific then [PatientDelete](StructureDefinition-IHE.BasicAudit.PatientDelete.html) is used
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype ^slicing.discriminator.type = #value
@@ -72,12 +75,13 @@ Title:          "Basic AuditEvent for a successful Delete with Patient"
 Description:    """
 A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable Patient subject associated with the Resource being deleted.
 
-* Given a Resource has a Patient subject 
-* And OAuth is used to authorize both app and user
-* When an App requests a RESTful Delete of a target Resource
-* And the target Resource is successfully Deleted thus having an id that is no longer valid
-* Then an AuditEvent following this profile is recorded using the id that is no longer valid
-* Patient is specified
+- Given a Resource Delete is requested 
+- And that resource has a Patient subject or is otherwise associated with a Patient
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
 """
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"

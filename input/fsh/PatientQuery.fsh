@@ -7,13 +7,19 @@ Title:          "Basic AuditEvent for a successful Query"
 Description:    """
 A basic AuditEvent profile for when a RESTful Query / Search action happens successfully.
 
-- Given a RESTful Query 
-- And there is no known Patient subject. 
-  - The requestor logging the event would potentially not know a patient identity
+- Given a RESTful Query is requested
+- And the request does not have a Patient subject indicated
+  - The requestor logging the event would potentially not know they have requested Patient specific data
   - The data objects may not be patient specific kind of objects
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Query to retrieve Resource(s) 
-- Then the search request is recorded  
+  - when the request is Patient specific then [PatientQuery](StructureDefinition-IHE.BasicAudit.PatientQuery.html) is used
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+  - Note success may result in zero or more results. The number of results and the content of the results are not recorded.
+- And the results are not Patient specific
+  - when the results are Patient specific then [PatientQuery](StructureDefinition-IHE.BasicAudit.PatientQuery.html) are used
+- Then the AuditEvent recorded will conform
   - The raw search request is base64 encoded and placed in the .entity[query].query element. The base64 encoding of the raw search request enables preserving exactly what was requested, including possibly malicious patterns. This enables detection of malicious or malformed requests.
   - The cleaned search may be recorded (not base64) in the .entity[query].description. The cleaned search request would have removed parameters that were not understood/supported. The cleaned search request in the .description element enables more efficient processing.
 
@@ -84,29 +90,19 @@ Title:          "Basic AuditEvent for a successful Query with Patient"
 Description:    """
 A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).
 
-- Given a RESTful Query 
-- And there is a known Patient subject. 
-  - The query parameters may have identified a specific patient, or 
-  - The data resulting from a query do have a patient subject
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Query to retrieve Resource(s) 
-- Then the search request is recorded  
+- Given a RESTful Query is requested
+- And the request is for a Patient subject indicated
+  - The requestor includes a Patient id or identifier as a query parameter
+  - The requestor security context is limited to a given Patient identity
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+  - Note success may result in zero or more results. The number of results and the content of the results are not recorded.
+- Then the AuditEvent recorded will conform
   - The raw search request is base64 encoded and placed in the .entity[query].query element. The base64 encoding of the raw search request enables preserving exactly what was requested, including possibly malicious patterns. This enables detection of malicious or malformed requests.
   - The cleaned search may be recorded (not base64) in the .entity[query].description. The cleaned search request would have removed parameters that were not understood/supported. The cleaned search request in the .description element enables more efficient processing.
-
-no results returned
-- Given no Resource(s) are available for a given Patient identity
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Query to retrieve Resources(s) for a given single Patient
-- When policy indicates success with an empty bundle should be returned
-- Then an AuditEvent following this profile is recorded for the requested given Patient
-
-multiple patient results are returned. Note that one AuditEvent is created for every Patient identified in the resulting search set. Note this is true when the search set bundle includes any number of resources that collectively reference multiple Patients. This includes one Resource with multiple subject values, or many Resources with single subject values that are different.
-- Given Resource(s) are known associated with multiple subjects 
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Query to retrieve Resource(s) 
-- And when the query resulting search set contains Resources associated with more than one Patient
-- Then an AuditEvent following this profile is recorded for the Patient identified in the search set returned
+- And When multiple patient results are returned, one AuditEvent is created for every Patient identified in the resulting search set. Note this is true when the search set bundle includes any number of resources that collectively reference multiple Patients. This includes one Resource with multiple subject values, or many Resources with single subject values that are different.
 
 Note: the pattern defined in DICOM and IHE have that the client is identified as the Source Role ID, and the server is identified as the Destination Role ID. This may not be so obvious, as the data actually flows the opposite direction. This pattern is established and thus followed here.
 """

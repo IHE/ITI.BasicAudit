@@ -5,11 +5,15 @@ Title:          "Basic AuditEvent for a successful Update"
 Description:    """
 A basic AuditEvent profile for when a RESTful Update action happens successfully.
 
-* Given a Resource has no Patient subject 
-* And OAuth is used to authorize both app and user
-* When an App requests a RESTful Update of an existing Resource
-* And the Resource is successfully Updated thus where the server supports FHIR Versioning the updated Resource has a new id version assigned
-* Then an AuditEvent following this profile is recorded where the Resource is identified by the updated version specific id where versioning is available
+- Given a Resource Update is requested 
+- And that resource does not have a Patient subject or is otherwise associated with a Patient
+  - when the resource is Patient specific then [PatientUpdate](StructureDefinition-IHE.BasicAudit.PatientUpdate.html) is used
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
+- And where the server supports FHIR Versioning the AuditEvent should use the version specific id
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype ^slicing.discriminator.type = #value
@@ -72,11 +76,14 @@ Title:          "Basic AuditEvent for a successful Update with a Patient subject
 Description:    """
 A basic AuditEvent profile for when a RESTful Update action happens successfully, and where there is an identifiable Patient subject associated with the Update of the Resource.
 
-* Given a Resource has a Patient subject 
-* And OAuth is used to authorize both app and user
-* When an App requests a RESTful Update of an existing Resource
-* And the Resource is successfully Updated thus where the server supports FHIR Versioning the updated Resource has a new id version assigned
-* Then an AuditEvent following this profile is recorded where the Resource is identified by the updated version specific id where versioning is available
+- Given a Resource Update is requested 
+- And that resource has a Patient subject or is otherwise associated with a Patient
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
+- And where the server supports FHIR Versioning the AuditEvent should use the version specific id
 """
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"

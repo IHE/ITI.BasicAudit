@@ -6,12 +6,14 @@ Title:          "Basic AuditEvent for a successful Create not related to a Patie
 Description:    """
 A basic AuditEvent profile for when a RESTful Create action happens successfully.
 
-- Given a Resource Create is requested with no Patient subject
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Create of a new Resource
-- And the new Resource is successfully created thus having an id assigned
-- Then an AuditEvent following this profile is recorded 
-- And when a user is known they are the Author, Informant, or Custodian
+- Given a Resource Create is requested 
+- And that resource does not have a Patient subject or is otherwise associated with a Patient
+  - when the resource is Patient specific then [PatientCreate](StructureDefinition-IHE.BasicAudit.PatientCreate.html) is used
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
 """
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * subtype ^slicing.discriminator.type = #value
@@ -72,12 +74,13 @@ Title:          "Basic AuditEvent for a successful Create with known Patient sub
 Description:    """
 A basic AuditEvent profile for when a RESTful Create action happens successfully, and where there is an identifiable Patient subject associated with the create of the Resource.
 
-- Given a Resource Create is requested with a Patient subject
-- And OAuth is used to authorize both app and user
-- When an App requests a RESTful Create of a new Resource
-- And the new Resource is successfully created thus having an id assigned
-- Then an AuditEvent following this profile is recorded 
-- And when a user is known they are the Author, Informant, or Custodian
+- Given a Resource Create is requested 
+- And that resource has a Patient subject or is otherwise associated with a Patient
+- And the request is authorized
+  - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
+- When successful
+  - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
+- Then the AuditEvent recorded will conform
 """
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"

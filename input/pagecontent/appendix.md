@@ -24,45 +24,23 @@ The [MHD](https://profiles.ihe.net/ITI/MHD/index.html) Implementation Guide has 
   - Document Consumer
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.FindDocumentLists.Audit.Consumer.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditFindDocumentLists-consumer.html)
-	- [BasicAudit adjusted example](AuditEvent-ex-auditFindDocumentLists-consumer.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
-  - Document Responder
+	- Document Responder
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.FindDocumentLists.Audit.Responder.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditFindDocumentLists-responder.html)
-	- [BasicAudit adjusted example](AuditEvent-ex-auditFindDocumentLists-responder.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
 - [Find Document References \[ITI-67\]](https://profiles.ihe.net/ITI/MHD/ITI-67.html)
   - Document Consumer
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.FindDocumentReferences.Audit.Consumer.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditFindDocumentReferences-consumer.html)
-	- [BasicAudit adjusted examples](AuditEvent-ex-auditFindDocumentReferences-consumer.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
   - Document Responder
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.FindDocumentReferences.Audit.Responder.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditFindDocumentReferences-responder.html)
-	- [BasicAudit adjusted examples](AuditEvent-ex-auditFindDocumentReferences-responder.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
 - [Retrieve Document \[ITI-68\]](https://profiles.ihe.net/ITI/MHD/ITI-68.html)  
   - Document Consumer
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.RetrieveDocument.Audit.Consumer.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditRetrieveDocument-consumer.html)
-	- [BasicAudit adjusted examples](AuditEvent-ex-auditRetrieveDocument-consumer.html)
-	  - changed the type to REST
-	  - added an additional .subtype for REST read
-	  - moved Export to a .subtype
-	  - changed from Create to Read
   - Document Responder
     - [profile](https://profiles.ihe.net/ITI/MHD/StructureDefinition-IHE.MHD.RetrieveDocument.Audit.Responder.html)
 	- [examples](https://profiles.ihe.net/ITI/MHD/AuditEvent-ex-auditRetrieveDocument-responder.html)
-	- [BasicAudit adjusted examples](AuditEvent-ex-auditRetrieveDocument-responder.html)
-	  - changed the type to REST
-	  - added an additional .subtype for REST read
-	  - moved Export to a .subtype
-	  - changed from Create to Read
 	
 MHD [open issue to align AuditEvents with BasicAudit](https://github.com/IHE/ITI.MHD/issues/133)	
 
@@ -73,15 +51,9 @@ The [PDQm](https://profiles.ihe.net/ITI/PDQm/index.html) Implementation Guide ha
   - Patient Demographics Consumer
     - [profile](https://profiles.ihe.net/ITI/PDQm/StructureDefinition-IHE.PDQm.Query.Audit.Consumer.html)
     - [example](https://profiles.ihe.net/ITI/PDQm/AuditEvent-ex-auditPdqmQuery-consumer.html)
-    - [BasicAudit adjusted example](AuditEvent-ex-auditPdqmQuery-consumer.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query  
   - Patient Demographics Supplier
     - [profile](https://profiles.ihe.net/ITI/PDQm/StructureDefinition-IHE.PDQm.Query.Audit.Supplier.html)
     - [example](https://profiles.ihe.net/ITI/PDQm/AuditEvent-ex-auditPdqmQuery-supplier.html)
-    - [BasicAudit adjusted example](AuditEvent-ex-auditPdqmQuery-supplier.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
 
 PDQm [open issue to align AuditEvents with BasicAudit](https://github.com/IHE/ITI.PDQm/issues/84)
 	  
@@ -92,15 +64,9 @@ The [PIXm](https://profiles.ihe.net/ITI/PIXm/index.html) Implementation Guide ha
   - Patient Identifier Cross-reference Consumer
     - [profile](https://profiles.ihe.net/ITI/PIXm/StructureDefinition-IHE.PIXm.Query.Audit.Consumer.html)
     - [example](https://profiles.ihe.net/ITI/PIXm/AuditEvent-ex-auditPixmQuery-consumer.html)
-    - [BasicAudit adjusted example](AuditEvent-ex-auditPixmQuery-consumer.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query  
   - Patient Identifier Cross-reference Manager
     - [profile](https://profiles.ihe.net/StructureDefinition-IHE.PIXm.Query.Audit.Manager.html)
     - [example](https://profiles.ihe.net/ITI/PIXm/AuditEvent-ex-auditPixmQuery-manager.html)
-    - [BasicAudit adjusted example](AuditEvent-ex-auditPixmQuery-manager.html)
-	  - changed the .type to REST
-	  - added an additional .subtype for REST query
 - [Patient Identitifier Cross-reference Feed \[ITI-104\]](https://profiles.ihe.net/ITI/PIXm/ITI-104.html)
   - Patient Identifier Cross-reference Consumer
     - [profile](https://profiles.ihe.net/ITI/PIXm/StructureDefinition-IHE.PIXm.Feed.Audit.Source.html)

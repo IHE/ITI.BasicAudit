@@ -13,7 +13,7 @@ The Vocabulary is not defined here. Some sources of vocabulary:
 - [idmanagement.gov](https://developers.login.gov/saml/#specifying-attributes-and-assurance-levels) published on login.gov
   - this is defined to be carried in the saml:AuthnContextClassRef
 - OASIS [Authentication Context for SAML](https://docs.oasis-open.org/security/saml/v2.0/saml-authn-context-2.0-os.pdf)
-- An example of a customized and purpose defined small set of codes can be found in the HL7 [SMART Health Cards](http://build.fhir.org/ig/HL7/fhir-shc-vaccination-ig/) defines a [valueset](http://hl7.org/fhir/uv/shc-vaccination/ValueSet/identity-assurance-level)
+- An example of a customized and purpose defined small set of codes can be found in the HL7 [SMART Health Cards](http://hl7.org/fhir/uv/shc-vaccination/2021Sep/) defines a [valueset](http://hl7.org/fhir/uv/shc-vaccination/ValueSet/identity-assurance-level)
 """
 * value[x] only CodeableConcept
 * valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)

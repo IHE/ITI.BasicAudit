@@ -68,9 +68,15 @@ pages:
   testplan.md:
     title: BasicAudit Test Plan
     generation: markdown
+    extension: 
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
   issues.md:
     title: BasicAudit Open and Closed issues
     generation: markdown
+    extension: 
+      - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+        valueCode: informative
   other.md:
     title: Changes to Other Profiles
     generation: markdown

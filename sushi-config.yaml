@@ -28,11 +28,11 @@ description: >-
 license: CC-BY-4.0
 fhirVersion: 4.0.1
 copyrightyear: '2022+'
-#extension: 
-#  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
-#    valueCode: trial-use
-#  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
-#    valueInteger: 3
+extension: 
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-standards-status
+    valueCode: trial-use
+  - url: http://hl7.org/fhir/StructureDefinition/structuredefinition-fmm
+    valueInteger: 2
 
 
 parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+Parameters

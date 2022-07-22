@@ -1,5 +1,8 @@
 Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient), 
 	
+# Changes since 1.0.0 release
+- Removed the adjusted AuditEvent profiles for MHD, PDQm, and PIXm; as IHE will update those IGs.
+
 # Open Issues
 
 - [BasicAudit/2](https://github.com/IHE/ITI.BasicAudit/issues/41). Is the oAuth AuditEvent patterns appropriate, especially the opaque one. With Opaque is the last 32 characters big enough yet not too big? Note there are no examples given due to this need for Trial Implementation feedback and experience (5 warnings).

@@ -21,8 +21,8 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
 * subtype contains anyRead 0..1 and anyVread 0..1
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read" (exactly)
-* subtype[anyVread] = http://hl7.org/fhir/restful-interaction#vread "vread" (exactly)
+* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* subtype[anyVread] = http://hl7.org/fhir/restful-interaction#vread "vread"
 * action = #R
 * recorded 1..1
 // failures are recorded differently
@@ -105,6 +105,7 @@ ValueSet: RestObjectRoles
 Title: "RESTful objects role in the event"
 Description: "The role that the given Object played in the Audit Event recorded"
 // I expect "Domain Resource" most of the time, but the other two are acceptable
+* ^experimental = false
 * http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
 * http://terminology.hl7.org/CodeSystem/object-role#20 "Job"

@@ -82,8 +82,8 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~subject:role                | agent[user].role | agent[user].role |
 | ~subject:purposeofuse        | agent[user].purposeOfUse | agent[user].purposeOfUse
 | ~bppc:2007:docid             | entity[consent].what.identifier.value |
-| ~xua:2012:acp                | entity[consent].detail.valueString |
-| ~resource:resource-id        | entity[consent-patient].what.identifier.value |
+| ~xua:2012:acp                | entity[consent].detail[acp].valueString |
+| ~resource:resource-id        | entity[consent].detail[patient-id].valueString |
 | ~homeCommunityId             | entity[consent].what.identifier.assigner.identifier.value | 
 {:.grid}
 

@@ -3,12 +3,14 @@ CodeSystem:  AuthZsubType
 Title: "Authorization subType events"
 Description:  "These AuditEvent subTypes are related to Authorization Decisions. These are more specific types of Security Alert."
 * ^caseSensitive = true
+* ^experimental = false
 * #AuthZ-Consent "Authorization Decision using Roles and Consent"
 * #AuthZ-Role "Authorization Decision using only Roles"
 
 ValueSet: AuthZsubTypeVS
 Title: "Authorization subType events valueset"
 Description: "ValueSet of the Authorization AuditEvent types"
+* ^experimental = false
 * codes from system AuthZsubType
 
 

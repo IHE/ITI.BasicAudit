@@ -31,9 +31,9 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
 * subtype contains anySearch 0..1 and anySearchT 0..1 and anySearchS 0..1
-* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search" (exactly)
-* subtype[anySearchT] =  http://hl7.org/fhir/restful-interaction#search-type "search-type" (exactly)
-* subtype[anySearchS] =  http://hl7.org/fhir/restful-interaction#search-system "search-system" (exactly)
+* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search "search"
+* subtype[anySearchT] =  http://hl7.org/fhir/restful-interaction#search-type "search-type"
+* subtype[anySearchS] =  http://hl7.org/fhir/restful-interaction#search-system "search-system"
 * action = #E
 * recorded 1..1
 // failures are recorded differently

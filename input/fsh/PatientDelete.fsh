@@ -21,7 +21,7 @@ A basic AuditEvent profile for when a RESTful Delete action happens successfully
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
 * subtype contains anyDelete 1..1 
-* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete" (exactly)
+* subtype[anyDelete] = http://hl7.org/fhir/restful-interaction#delete "delete"
 * action = #D
 * recorded 1..1
 // failures are recorded differently

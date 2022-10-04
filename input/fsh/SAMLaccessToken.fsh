@@ -32,11 +32,13 @@ CodeSystem:  OtherIdentifierTypes
 Title: "OtherId Identifier Types"
 Description:  "OtherId Types beyond those in the FHIR core"
 * ^caseSensitive = true
+* ^experimental = false
 * #SAML-subject-id "SAML subject-id"
 
 ValueSet: OtherIdentifierTypesVS
 Title: "Other Id Types ValueSet"
 Description: "ValueSet of the Other Id Types allowed"
+* ^experimental = false
 * codes from system OtherIdentifierTypes
 * http://terminology.hl7.org/CodeSystem/v2-0203#NPI
 * http://terminology.hl7.org/CodeSystem/v2-0203#PRN
@@ -49,17 +51,20 @@ Code used to identify the User Agent.
 Defined codes for SAML vs OAuth to enable differentiation of .policy as the token ID
 """
 * ^caseSensitive = false
+* ^experimental = false
 * #UserSamlAgent "User SAML Agent participant"
 * #UserOauthAgent "User OAuth Agent participant"
 //* #UserOauthClientId "Application client_id"
 * #AuthzOauthService "OAuth Authorization Server"
 
-CodeSystem: UserAgentHomeCommunity
-Title: "XCA code for homeCommunity"
-Description: "one code"
-* ^caseSensitive = false
-* ^url = urn:ihe:iti:xca:2010
-* #homeCommunityId "IHE homeCommunityId"
+// Note, the following CodeSystem could not be defined here, but likely should be defined somewhere.
+// CodeSystem: UserAgentHomeCommunity
+// Title: "XCA code for homeCommunity"
+// Description: "one code"
+// * ^caseSensitive = false
+// * ^experimental = false
+// *  ^url = urn:ihe:iti:xca:2010
+// * #homeCommunityId "IHE homeCommunityId"
 
 
 ValueSet: UserAgentTypesVS
@@ -75,6 +80,7 @@ Often this agent also has a type coding that is more specific to the transaction
 - http://terminology.hl7.org/CodeSystem/v3-ParticipationType#INF "Informant" // used with export
 - http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian" // used with export
 """
+* ^experimental = false
 * codes from system UserAgentTypes
 // TODO: I created a codesystem and code out of the URN urn:ihe:iti:xca:2010:homeCommunityId
 * urn:ihe:iti:xca:2010#homeCommunityId "IHE homeCommunityId"
@@ -253,10 +259,10 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].detail contains 
 	acp 0..1 and
 	patient-id 0..1
-* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp" (exactly)
+* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[acp] ^short = "Home Community ID where the Consent is."
 * entity[consent].detail[acp].value[x] only string
-* entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id" (exactly)
+* entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[patient-id] ^short = "The Patient Identity where the Consent is."
 * entity[consent].detail[patient-id].value[x] only string
 
@@ -273,9 +279,9 @@ Minimal only records the SAML assertion id, issuer, and subject. Minimal may rec
 
 SAML field | example value |
 -----|-----|
-Subject.NameID  | "05086900124" 
-Issuer | "https://sts.sykehuspartner.no" 
-ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
+Subject.NameID  | 05086900124
+Issuer | https://sts.sykehuspartner.no
+ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -347,20 +353,20 @@ Comprehensive is different than Minimal in that it presumes that when the AuditE
 
 SAML field | example value |
 -----|-----|
-Subject.NameID  | "05086900124" 
-Issuer | "https://sts.sykehuspartner.no" 
-ID | "XC4WdYS0W5bjsMGc5Ue6tClD_5U" 
-purposeOfUse | "http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT"
+Subject.NameID  | 05086900124
+Issuer | https://sts.sykehuspartner.no
+ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
+purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 assurance | authenticated AAL 4
-~subject:subject-id          | "JohnDoe"
-~subject:npi                 | "1234567@myNPIregistry.example.org"
-~subject:provider-identifier | "JohnD"
-~subject:organization        | "St. Mary of Examples"
-~subject:organization-id     | "1234567@myOrganizationRegistry.example.org"
-~bppc:2007:docid             | "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002" 
-~xua:2012:acp                | "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
-~homeCommunityId             | "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002" 
-~resource:resource-id        | "urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002"
+~subject:subject-id          | JohnDoe
+~subject:npi                 | 1234567@myNPIregistry.example.org
+~subject:provider-identifier | JohnD
+~subject:organization        | St. Mary of Examples
+~subject:organization-id     | 1234567@myOrganizationRegistry.example.org
+~bppc:2007:docid             | urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002 
+~xua:2012:acp                | urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002
+~homeCommunityId             | urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002 
+~resource:resource-id        | urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -428,20 +434,20 @@ Minimal only records the SAML assertion id, issuer, and subject. Minimal may rec
 
 SAML field | example value |
 -----|-----|
-Subject.NameID  | "UID=kskagerb" 
-Issuer | "CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US" 
-ID | "_d87f8adf-711a-4545-bf77-ff8517b498e4" 
-subject-id | "Karl S Skagerberg"
-subject:organization | "connectred5.fedsconnect.org"
-subject:organization-id | "urn:oid:2.16.840.1.113883.3.333"
-homeCommunityId | "urn:oid:2.16.840.1.113883.3.333"
-subject:role | "2.16.840.1.113883.6.96#307969004"
-purposofuse | "2.16.840.1.113883.3.18.7.1#PUBLICHEALTH"
-resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+Subject.NameID  | UID=kskagerb 
+Issuer | CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US
+ID | _d87f8adf-711a-4545-bf77-ff8517b498e4
+subject-id | Karl S Skagerberg
+subject:organization | connectred5.fedsconnect.org
+subject:organization-id | urn:oid:2.16.840.1.113883.3.333
+homeCommunityId | urn:oid:2.16.840.1.113883.3.333
+subject:role | 2.16.840.1.113883.6.96#307969004
+purposofuse | 2.16.840.1.113883.3.18.7.1#PUBLICHEALTH
+resource-id | 500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO
 AuthzDecisionStatement | nesting
-.AccessConsentPolicy | "urn:oid:1.2.3.4"
-.InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
-AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+.AccessConsentPolicy | urn:oid:1.2.3.4
+.InstanceAccessConsentPolicy | urn:oid:1.2.3.4.123456789
+AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -476,20 +482,20 @@ Example AuditEvent showing QDI sample with just the comprehensive SAML access to
 
 SAML | example value |
 -----|-----|
-Subject.NameID  | "UID=kskagerb" 
-Issuer | "CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US" 
-ID | "_d87f8adf-711a-4545-bf77-ff8517b498e4" 
-subject-id | "Karl S Skagerberg"
-subject:organization | "connectred5.fedsconnect.org"
-subject:organization-id | "urn:oid:2.16.840.1.113883.3.333"
-homeCommunityId | "urn:oid:2.16.840.1.113883.3.333"
-subject:role | "2.16.840.1.113883.6.96#307969004"
-purposofuse | "2.16.840.1.113883.3.18.7.1#PUBLICHEALTH"
-resource-id | "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+Subject.NameID  | UID=kskagerb
+Issuer | CN=John Miller,OU=Harris,O=HITS,L=Melbourne,ST=FL,C=US
+ID | _d87f8adf-711a-4545-bf77-ff8517b498e4
+subject-id | Karl S Skagerberg
+subject:organization | connectred5.fedsconnect.org
+subject:organization-id | urn:oid:2.16.840.1.113883.3.333
+homeCommunityId | urn:oid:2.16.840.1.113883.3.333
+subject:role | 2.16.840.1.113883.6.96#307969004
+purposofuse | 2.16.840.1.113883.3.18.7.1#PUBLICHEALTH
+resource-id | 500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO
 AuthzDecisionStatement | nesting
-.AccessConsentPolicy | "urn:oid:1.2.3.4"
-.InstanceAccessConsentPolicy | "urn:oid:1.2.3.4.123456789"
-AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
+.AccessConsentPolicy | urn:oid:1.2.3.4
+.InstanceAccessConsentPolicy | urn:oid:1.2.3.4.123456789
+AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = DCM#110100 "Application Activity"
@@ -511,8 +517,8 @@ AuthnContextClassRef | "urn:oasis:names:tc:SAML:2.0:ac:classes:X509"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
-* agent[user].extension[otherId][+].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][=].valueIdentifier.value = "Karl S Skagerberg"
+* agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
+* agent[user].extension[otherId][subject-id].valueIdentifier.value = "Karl S Skagerberg"
 
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
 * agent[userorg].who.display = "connectred5.fedsconnect.org"

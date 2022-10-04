@@ -21,7 +21,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
 * subtype contains anyCreate 1..1 
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create" (exactly)
+* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 * action = #C
 * recorded 1..1
 // failures are recorded differently
@@ -99,6 +99,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
 ValueSet: DataSources
 Title: "participant source types for RESTful create"
 Description: "create agent participant types for user operators that are in REST"
+* ^experimental = false
 * http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "Author"
 * http://terminology.hl7.org/CodeSystem/v3-ParticipationType#INF "Informant"
 * http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian"

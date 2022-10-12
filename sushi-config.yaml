@@ -53,6 +53,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
   apply-version: 'true'
   autoload-resources: 'true'
   path-binary: input/saml
+  fmm-definition: https://profiles.ihe.net/GeneralIntro/ch-8.html
 
 
 pages:

@@ -1,6 +1,15 @@
 Comments and questions are welcome as github issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient), 
 	
-# Changes since 1.0.0 release
+# Signficant Changes
+
+## Changes in 1.1.1 release
+There are no functional changes or breaking changes. This release is primarly to address validation messages that have been made more strict by HL7 than when 1.1.0 was released.
+- clarify explaination of each structureDefinition profile
+- cleanup examples with explicit slice use to eliminate validation warnings
+- fix the Actor definitions
+- switch to new IHE template
+
+## Changes 1.1.0 release
 - Removed the adjusted AuditEvent profiles for MHD, PDQm, and PIXm; as IHE will update those IGs.
 
 # Open Issues

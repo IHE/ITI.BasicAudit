@@ -183,3 +183,148 @@ Audit Example for a RESTful read of a resource with a patient subject with no us
 * entity[data].what = Reference(List/ex-list)
 * entity[transaction].type = BasicAuditEntityType#XrequestId
 * entity[transaction].what.identifier.value = "c07cf648-f068-4dd9-9411-8e69ca07d525"
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+Instance: ex-auditBasicReadOClient
+InstanceOf: OAUTHaccessTokenUseOpaque
+Title: "oAuth Client - Audit Example of a basic patient identifiable read"
+Description: """
+Audit Example for a oAuth authorized RESTful read of a resource with a patient subject
+
+- This example is otherwise the same as [client](AuditEvent-ex-auditBasicReadClient.html) 
+- client logs using the OAUTHaccessTokenUseOpaque profile as it doesn't have access to the details
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* action = #R
+* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+//* severity = #Informational
+* recorded = 2020-04-29T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.observer.display = "myMachine.example.org"
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#1 "User Device"
+* agent[oUser].type = UserAgentTypes#UserOauthAgent
+* agent[oUser].who.display = "JohnSmith" // just a display name pulled from the OAuth token
+* agent[oUser].requestor = true
+* agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
+// TODO sushi seems to work right when I do this
+* agent[1].type = DCM#110153 "Source Role ID"
+* agent[1].requestor = false
+* agent[1].who = Reference(Device/ex-device)
+* agent[1].network.address = "http://server.example.com/fhir"
+* agent[1].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[2].type = DCM#110152 "Destination Role ID"
+* agent[2].requestor = false
+* agent[2].who.display = "myMachine.example.org"
+* agent[2].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[2].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[=].what = Reference(Patient/ex-patient)
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+* entity[=].what = Reference(List/ex-list)
+* entity[+].type = BasicAuditEntityType#XrequestId
+* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+/////////////////////////////////////////////////////////////////////////////////////////
+Instance: ex-auditBasicReadOServer
+InstanceOf: OAUTHaccessTokenUseComprehensive
+Title: "oAuth Server - Audit Example of a basic patient identifiable read"
+Description: """
+Audit Example for a oAuth authorized RESTful read of a resource with a patient subject
+
+- This example is otherwise the same as [server](AuditEvent-ex-auditBasicReadServer.html)
+- server has access to the oAuth token details so uses IUAaccessOAUTHaccessTokenUseComprehensiveTokenUse profile
+- TODO. Sushi has issues that prevent me from including all the agent entries, so this just has the agent entries for the oAuth profile and not the Read profile
+  - should also be a Destination and Source agent
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* action = #R
+* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+//* severity = #Informational
+* recorded = 2020-04-29T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[oClient].type = http://dicom.nema.org/resources/ontology/DCM#110150 "Application"
+* agent[oClient].who.identifier.value = "SampleApp"
+* agent[oClient].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[oClient].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[oClient].requestor = false
+* agent[oUser].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[oUser].who.display = "JohnSmith" // just a display name pulled from the OAuth token
+* agent[oUser].who.identifier.system = "http://localhost:5100"
+* agent[oUser].who.identifier.value = "35fb1058-7f36-415b-b862-677a37c95f35"
+* agent[oUser].requestor = true
+* agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
+// TODO: Sushi does not let me do this
+//* agent[+].type = DCM#110152 "Destination Role ID"
+//* agent[=].requestor = false
+//* agent[=].who.display = "myMachine.example.org"
+//* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+//* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+//* agent[+].type = DCM#110153 "Source Role ID"
+//* agent[=].requestor = false
+//* agent[=].who = Reference(Device/ex-device)
+//* agent[=].network.address = "http://server.example.com/fhir"
+//* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[=].what = Reference(Patient/ex-patient)
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+* entity[=].what = Reference(List/ex-list)
+* entity[+].type = BasicAuditEntityType#XrequestId
+* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+/////////////////////////////////////////////////////////////////////////////////////////
+Instance: ex-auditBasicReadOServerMin
+InstanceOf: OAUTHaccessTokenUseMinimal
+Title: "oAuth Server Minimal - Audit Example of a basic patient identifiable read"
+Description: """
+Audit Example for minimally recorded oAuth authorized RESTful read of a resource with a patient subject
+
+- This example is otherwise the same as [server](AuditEvent-ex-auditBasicReadServer.html)
+- server has access to the oAuth token details but policy requests minimal recorded so uses IUAaccessOAUTHaccessTokenUseMinimalTokenUse profile
+- TODO. Sushi has issues that prevent me from including all the agent entries, so this just has the agent entries for the oAuth profile and not the Read profile
+  - should also be a Destination and Source agent
+"""
+* meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
+* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* action = #R
+* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+//* severity = #Informational
+* recorded = 2020-04-29T09:49:00.000Z
+* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site = "server.example.com"
+* source.observer = Reference(Device/ex-device)
+* source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
+* agent[oUser].type = UserAgentTypes#UserOauthAgent
+* agent[oUser].requestor = true
+* agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
+// TODO sushi seems to work right when I do this
+* agent[1].type = DCM#110153 "Source Role ID"
+* agent[1].requestor = false
+* agent[1].who = Reference(Device/ex-device)
+* agent[1].network.address = "http://server.example.com/fhir"
+* agent[1].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[2].type = DCM#110152 "Destination Role ID"
+* agent[2].requestor = false
+* agent[2].who.display = "myMachine.example.org"
+* agent[2].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[2].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* entity[=].what = Reference(Patient/ex-patient)
+* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+* entity[=].what = Reference(List/ex-list)
+* entity[+].type = BasicAuditEntityType#XrequestId
+* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+
+

@@ -17,3 +17,9 @@ The Measure 'http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Re
 # Disclosure requires some data are indicated, but does not have a slice. Thus examples will not match a slice.
 This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source
 This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient
+
+# oAuth examples also are Read examples, but given I can't indicate two profiles, then these info are okay
+INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque
+INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque
+INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal
+INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal

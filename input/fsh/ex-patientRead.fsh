@@ -208,17 +208,17 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
 * agent[oUser].who.display = "JohnSmith" // just a display name pulled from the OAuth token
 * agent[oUser].requestor = true
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
-// TODO sushi seems to work right when I do this
+// TODO sushi hack to use one index number, then +=
 * agent[1].type = DCM#110153 "Source Role ID"
-* agent[1].requestor = false
-* agent[1].who = Reference(Device/ex-device)
-* agent[1].network.address = "http://server.example.com/fhir"
-* agent[1].network.type = http://hl7.org/fhir/network-type#5 "URI"
-* agent[2].type = DCM#110152 "Destination Role ID"
-* agent[2].requestor = false
-* agent[2].who.display = "myMachine.example.org"
-* agent[2].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[2].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[=].requestor = false
+* agent[=].who = Reference(Device/ex-device)
+* agent[=].network.address = "http://server.example.com/fhir"
+* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[+].type = DCM#110152 "Destination Role ID"
+* agent[=].requestor = false
+* agent[=].who.display = "myMachine.example.org"
+* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
 * entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)
@@ -261,17 +261,17 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
 * agent[oUser].who.identifier.value = "35fb1058-7f36-415b-b862-677a37c95f35"
 * agent[oUser].requestor = true
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
-// TODO: Sushi does not let me do this
-//* agent[+].type = DCM#110152 "Destination Role ID"
-//* agent[=].requestor = false
-//* agent[=].who.display = "myMachine.example.org"
-//* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-//* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-//* agent[+].type = DCM#110153 "Source Role ID"
-//* agent[=].requestor = false
-//* agent[=].who = Reference(Device/ex-device)
-//* agent[=].network.address = "http://server.example.com/fhir"
-//* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+// TODO sushi hack to use one index number, then +=
+* agent[2].type = DCM#110152 "Destination Role ID"
+* agent[=].requestor = false
+* agent[=].who.display = "myMachine.example.org"
+* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[+].type = DCM#110153 "Source Role ID"
+* agent[=].requestor = false
+* agent[=].who = Reference(Device/ex-device)
+* agent[=].network.address = "http://server.example.com/fhir"
+* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
 * entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)
@@ -306,17 +306,17 @@ Audit Example for minimally recorded oAuth authorized RESTful read of a resource
 * agent[oUser].type = UserAgentTypes#UserOauthAgent
 * agent[oUser].requestor = true
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
-// TODO sushi seems to work right when I do this
+// TODO sushi hack to use one index number, then +=
 * agent[1].type = DCM#110153 "Source Role ID"
-* agent[1].requestor = false
-* agent[1].who = Reference(Device/ex-device)
-* agent[1].network.address = "http://server.example.com/fhir"
-* agent[1].network.type = http://hl7.org/fhir/network-type#5 "URI"
-* agent[2].type = DCM#110152 "Destination Role ID"
-* agent[2].requestor = false
-* agent[2].who.display = "myMachine.example.org"
-* agent[2].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[2].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[=].requestor = false
+* agent[=].who = Reference(Device/ex-device)
+* agent[=].network.address = "http://server.example.com/fhir"
+* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[+].type = DCM#110152 "Destination Role ID"
+* agent[=].requestor = false
+* agent[=].who.display = "myMachine.example.org"
+* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
 * entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
 * entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)

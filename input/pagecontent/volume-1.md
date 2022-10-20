@@ -16,7 +16,7 @@ Figure 1:52-1 shows a broader setting for the actors directly involved in the Ba
 
 **Figure 1:52-1: BasicAudit Actor Setting**
 
-*ANY Secure Client* and *ANY Secure Server* represent abstractions of any client/server actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the **ATX: FHIR Feed Option**, defined in [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Client* and *ANY Secure Server* are involved in some communication that is an auditable event described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded (ITI-20) by the *Secure Node* or *Secure Application* that is grouped within the diagramed *ANY Secure Client* and the *ANY Secure Server*. 
+*ANY Secure Client* and *ANY Secure Server* represent abstractions of any client/server actor grouped with an **ATNA Secure Node** or an **ATNA Secure Application** supporting the **ATX: FHIR Feed Option**, defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). Where *ANY Secure Client* and *ANY Secure Server* are involved in some communication that is an auditable event described in this Implementation Guide and for which some AuditEvent pattern is defined. The AuditEvent patterns defined here will be created and recorded \[ITI-20\] by the *Secure Node* or *Secure Application* that is grouped within the diagramed *ANY Secure Client* and the *ANY Secure Server*. 
 
 The double recording enables forensic analysis to detect failures better. Both audit events recorded will be different as the AuditEvent.source would identify the actor recording the event. Some actors will be able to populate the AuditEvent pattern given more fully, the lack of an element being populated is not a defect, but rather indicates that the actor did not have access to that data. 
 
@@ -45,12 +45,11 @@ Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Patter
 
 #### 1:52.1.1.1 Audit Creator
 
-The Audit Creator shall detect the defined auditable events and record a complaint AuditEvent as defined.
-The Audit Creator shall be grouped with an **ATNA Secure Application** or **ATNA Secure Node** with support for **ATNA ATX:FHIR Feed Option** [defined in RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) for the recording of the compliant AuditEvent to the Audit Record Repository.
+The Audit Creator shall detect the defined auditable events and record a complaint AuditEvent as defined. The Audit Creator shall be grouped with an **ATNA Secure Application** or **ATNA Secure Node** with support for **ATNA ATX:FHIR Feed Option** defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) for the recording of the compliant AuditEvent to the Audit Record Repository.
 
 #### 1:52.1.1.2 Audit Consumer
 
-The Audit Consumer shall be grouped with an **ATNA Audit Consumer** with support for the **Retrieve Audit Message Option** [defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The Audit Consumer understands the AuditEvent profiles defined, but shall not reject an AuditEvent due to non-compliance.
+The Audit Consumer shall be grouped with an **ATNA Audit Consumer** with support for the **Retrieve Audit Message Option** defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The Audit Consumer understands the AuditEvent profiles defined, but shall not reject an AuditEvent due to non-compliance.
 
 #### 1:52.1.1.3 ATNA Audit Record Repository
 
@@ -58,7 +57,7 @@ The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Audit Record Repos
 
 ## 1:52.2 BasicAudit Actor Options
 
-Each AuditEvent pattern defined here can be declared by an **Audit Creator**, or **Audit Consumer**.
+Each AuditEvent pattern defined here can be declared by an **Audit Creator** or an **Audit Consumer**.
 
 ## 1:52.3 BasicAudit Required Actor Grouping
 
@@ -105,13 +104,13 @@ The minimal AuditEvent pattern should be used whenever possible. The minimal Aud
 
 With minimal AuditEvent the AuditEvent contains identifiers or References, and not the details. For example, user identifier, practitioner identifier, organizational identifier, patient identifier, data object identifier, location identifiers, and security token identifier. With minimal the users names would not be recorded, details of a diagnosis would not be replicated, postal addresses would not be replicated. The identifiers that are recorded can be looked up using a user directory, practitioner directory, patient directory, data registry, and token introspection. The lookup of these values is further protection of the data behind them, preventing abuse by someone who has access to the AuditEvent log for one purpose gaining knowledge from other AuditEvent records.
 
-With minimal AuditEvent, the AuditEvent contains only the search (aka query) parameters, and never the results of the search. This too limits the size of the AuditEvent and the exposure of sensitive results data into the AuditEvent log. The results can be determined by re-executing the search or query, adjusting the results based on the time of the search. 
+With minimal AuditEvent, the AuditEvent contains only the search (aka, query) parameters, and never the results of the search. This too limits the size of the AuditEvent and the exposure of sensitive results data into the AuditEvent log. The results can be determined by re-executing the search or query, adjusting the results based on the time of the search. 
 
 The minimal AuditEvent is lower risk, but would still contain sensitive data. 
 
 ##### 1:52.4.1.3.2 Comprehensive AuditEvent
 
-There are times when the AuditEvent log are used by Audit Consumer actors are known to not have access to some lookup services. In these cases, it is better to record the details into the AuditEvent. For example, where in a Cross-Community setting the details of the user may not be possible to lookup the security token details.
+There are times when the AuditEvent log are used by Audit Consumer Actors are known to not have access to some lookup services. In these cases, it is better to record the details into the AuditEvent. For example, where in a Cross-Community setting the details of the user may not be possible to lookup the security token details.
 
 With Comprehensive AuditEvent, the search results might be preserved in the AuditEvent. This will create a very large AuditEvent with replicated data. So, care should be taken to select the kinds of auditable events where the results are recorded comprehensively, and these results should be purged regularly to limit the overall impact as the results data tend to be less useful as the AuditEvent ages. 
 
@@ -144,9 +143,9 @@ To record a REST interaction or $operation, it is often necessary to complete th
 The Patient as a Subject is distinct from when the Patient is an Agent. When the Patient is the User, they would be indicated in an .agent and the .entity element would not be necessary. Some examples would be when the Patient is using a Patient-Portal, or when the Patient is authoring Patient Generated Health Data (PGHD).  Note that in SAML and oAuth the subject of these security tokens is the user. This is contextual use of the word 'subject', as in the context is the security token subject is the user agent.
 
 Finding AuditEvents by Patient:
-* Finding AuditEvents where the Patient is an agent, one would use the `agent` search parameter.
-* Finding AuditEvents where the Patient is a subject, one would use the `entity` search parameter.
-* Finding AuditEvents where the Patient is either an agent or subject, one would use the `patient` search parameter.
+- Finding AuditEvents where the Patient is an agent, one would use the `agent` search parameter.
+- Finding AuditEvents where the Patient is a subject, one would use the `entity` search parameter.
+- Finding AuditEvents where the Patient is either an agent or subject, one would use the `patient` search parameter.
 
 This Implementation Guide includes profiles that include the Patient as the subject.
 
@@ -174,7 +173,7 @@ Given that a security relevant event is being recorded, for example, Generic FHI
   
 #### 1:52.4.2.3 Use Case #3: Consent Authorized Decision event
 
-Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
+Given that an Authorization Service makes Authorization Decisions based on a Consent, this use-case shows how the details of the authorization decision event can be recorded. See [3:5.7.6 Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message).
 
 <div>
 {%include usecase4-processflow.svg%}
@@ -187,7 +186,7 @@ This diagram focuses on the Authorization Decision, so not shown in this interac
 
 #### 1:52.4.2.4 Use Case #4: Privacy relevant disclosure event
 
-Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.7 Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message)
+Given that a privacy relevant disclosure event is detected, this use-case shows how the details of the event can be recorded. See [3:5.7.7 Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message).
 
 ## 1:52.5 BasicAudit Security Considerations
 

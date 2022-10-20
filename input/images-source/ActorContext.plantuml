@@ -4,7 +4,7 @@ rectangle "ANY Secure Client" {
   agent "Secure Application" as cAud
   cRest -down.* cAud 
 }
-rectangle "Any Secure Server" {
+rectangle "ANY Secure Server" {
   agent "Secure Application" as sAud
   agent "any server" as sRest
   sRest -down.* sAud

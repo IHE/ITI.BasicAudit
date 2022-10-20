@@ -4,8 +4,6 @@ In general, IHE Profiles should have "Security Considerations" sections in both 
 
 All of the AuditEvent (AuditMessage) encodings can be found on [Gazelle AuditTrail section](https://gazelle.ihe.net/gss/audit-messages/list.seam;jsessionid=O8kPo08QmPxFgrWZQbhfzfTr). These specifications usually use a table format. These are in the format of DICOM AuditMessage, but the mapping to FHIR AuditEvent is defined in the [FHIR AuditEvent mapping to DICOM](http://hl7.org/fhir/auditevent-mappings.html#dicom).
 
-The IHE \[ITI-18\] transaction has prototyped the documentation change to use the gazelle method rather than using a table. See the (XDS) Registry Stored Query Transaction [2:3.18.5 Security Considerations](https://profiles.ihe.net/ITI/TF/Volume2/ITI-18.html#3.18.5).
-
 ### IG Publisher
 
 Some of the IHE Profiles are being converted to using the IG Publisher. When this is done, the AuditEvent is "profiled" using the FHIR StructureDefinition and Examples are provided for each.
@@ -77,11 +75,4 @@ The [PIXm](https://profiles.ihe.net/ITI/PIXm/index.html) Implementation Guide ha
 
 PIXm [open issue to align AuditEvents](https://github.com/IHE/ITI.PIXm/issues/116)
 
-#### QEDm
-
-The [QEDm](https://wiki.ihe.net/index.php?title=Query_for_Existing_Data_for_Mobile_(QEDm)) Implementation Guide has not yet defined AuditEvent profiles. So it should derive off the [Patient Query](StructureDefinition-IHE.BasicAudit.PatientQuery.html) profile, likely with an [OAuth use](StructureDefinition-IHE.BasicAudit.IUAaccessTokenUse.html) profile.
-
-#### mCSD
-
-The mCSD should [create AuditEvents based on AuditEvent](https://github.com/IHE/ITI.mCSD/issues/91)
 

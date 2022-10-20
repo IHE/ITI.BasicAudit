@@ -117,11 +117,11 @@ Other elements may be recorded following the Minimal or Comprehensive pattern.
 
 #### 3:5.7.5.2 oAuth - Minimal AuditEvent record
 
-The Minimal AuditEvent pattern would be used when the JWT token is available at the time the AuditEvent is recorded. 
+The Minimal AuditEvent pattern would be used when the JWT token is available at the time the AuditEvent is recorded, but where minimal oAuth details are desired in the AuditEvent log. 
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in [\[ITI-72\] Security Audit Considerations](https://profiles.ihe.net/ITI/IUA/index.html#37251-security-audit-considerations), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage. This AuditEvent pattern is also recommended for both client and server to the extent possible.
 
-The Minimal AuditEvent pattern preserves the oAuth JWT ID so that the contents of the oAuth token can be retrieved from the oAuth Authority when such access is available. The Minimal AuditEvent pattern preserves the iss (JWT Issuer) and sub (JWT Subject) in the who.Identifier, the client_id in second agent, and any purposeOfUse into the purposeOfUse element.
+The Minimal AuditEvent record recommends using the Opaque AuditEvent record
 
 - [StructureDefinition profile of Basic AuditEvent pattern for when activity was authorized by an oAuth security token](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal.html)
   - [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Minimal-examples.html)

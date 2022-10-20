@@ -1,5 +1,5 @@
 
-The Basic Audit Log Pattern (BALP) is a Content Profile that defines some basic and reusable AuditEvent patterns. 
+The Basic Audit Log Patterns (BALP) is a Content Profile that defines some basic and reusable AuditEvent patterns. 
 
 The Audit Log Patterns defined here rely on the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile for transport of the AuditEvent and query/retrieval of AuditEvents previously recorded. 
 The patterns defined here may be used as they are, or further refined to specific use-cases. 
@@ -7,7 +7,7 @@ Where a more specific audit event is defined, it should be derived off of these 
 
 This Implementation Guide is intended to be fully compliant with the HL7 [FHIR](http://hl7.org/fhir/) specification, providing only use-case driven constraints to aid with interoperability, deterministic results, and compatibility with [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) and other IHE Profiles.
 
-Figure 1:52-1 shows a broader setting for the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. 
+Figure 1:52-1 shows a broader setting for the actors directly involved in the Basic Audit Log Patterns Profile and the relevant transactions between them. 
 
 <div>
 {%include ActorContext.svg%}
@@ -22,7 +22,7 @@ The double recording enables forensic analysis to detect failures better. Both a
 
 ## 1:52.1 BasicAudit Actors and Content
 
-Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Pattern Profile and the relevant transactions between them. The **Audit Creator** creates AuditEvent records following this profile that is consumed by the **Audit Consumer**. The transport for the AuditEvent records is the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile.
+Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Patterns Profile and the relevant transactions between them. The **Audit Creator** creates AuditEvent records following this profile that is consumed by the **Audit Consumer**. The transport for the AuditEvent records is the [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Profile.
 
 <div>
 {%include Actors.svg%}

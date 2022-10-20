@@ -110,7 +110,7 @@ The Client and Server are both encouraged to log an AuditEvent covering any secu
 
 The Opaque AuditEvent profile would be used when the token is opaque (usually encrypted JWT). The token should be shortened to not more than 32 characters, and those characters should be from the end of the token to assure the most entropy. The presumption is that the many AuditEvent(s) can be correlated to all be related to the same security token given this shortened token string.
 
-Other elements may be recorded following the Minimal or Comprehensive pattern.
+Other elements may be recorded following the Minimal or Comprehensive patterns.
 
 - [StructureDefinition profile of Basic AuditEvent pattern for oAuth Opaque](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Opaque.html)
   - [examples](StructureDefinition-IHE.BasicAudit.OAUTHaccessTokenUse.Opaque-examples.html)

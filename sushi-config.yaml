@@ -59,10 +59,10 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 
 pages:
   index.md:
-    title: Basic Audit Log Pattern (BALP)
+    title: Basic Audit Log Patterns (BALP)
     generation: markdown
   volume-1.md:
-    title: 1:52 Basic Audit Log Pattern
+    title: 1:52 Basic Audit Log Patterns
     generation: markdown
   content.md:
     title: 3:5.7 Basic Audit Log Patterns

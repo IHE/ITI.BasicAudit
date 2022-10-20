@@ -85,7 +85,7 @@ The following use-case represents a generic interaction between a client and a s
 
 #### 1:52.4.1.2 AuditEvents are available to authorized clients
 
-The following use-case represents the use-case defined in ATNA [ITI-81](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The use of this transaction in this Implementation Guide is to specialize it with the use of the patient identity to retrieve AuditEvent resources where that patient identity was found in the .agent or .entity. Where the patient identity in the .agent element indicates that the patient was actively engaged in the activity recorded in that AuditEvent, and .entity element indicates that the patient was the subject of the event. Note that accessing the audit log is an auditable event and thus interactions 3 and 5.
+The following use-case represents the use-case defined in [ATNA \[ITI-81\]](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The use of this transaction in this Implementation Guide is to specialize it with the use of the patient identity to retrieve AuditEvent resources where that patient identity was found in the .agent or .entity. Where the patient identity in the .agent element indicates that the patient was actively engaged in the activity recorded in that AuditEvent, and .entity element indicates that the patient was the subject of the event. Note that accessing the audit log is an auditable event and thus interactions 3 and 5.
 
 <div>
 {%include usecase2-processflow.svg%}

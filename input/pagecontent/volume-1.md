@@ -47,13 +47,19 @@ Figure 1:52.1-1 shows the actors directly involved in the Basic Audit Log Patter
 
 The Audit Creator shall detect the defined auditable events and record a complaint AuditEvent as defined. The Audit Creator shall be grouped with an **ATNA Secure Application** or **ATNA Secure Node** with support for **ATNA ATX:FHIR Feed Option** defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf) for the recording of the compliant AuditEvent to the Audit Record Repository.
 
+A `requirements` CapabilityStatements defines full functional [Audit Creator](CapabilityStatement-IHE.BALP.AuditCreator.html) with ATNA support for ITI-20.
+
 #### 1:52.1.1.2 Audit Consumer
 
 The Audit Consumer shall be grouped with an **ATNA Audit Consumer** with support for the **Retrieve Audit Message Option** defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The Audit Consumer understands the AuditEvent profiles defined, but shall not reject an AuditEvent due to non-compliance.
 
+A `requirements` CapabilityStatements defines full functional [Audit Consumer](CapabilityStatement-IHE.BALP.AuditConsumer.html) with ATNA support for ITI-81.
+
 #### 1:52.1.1.3 ATNA Audit Record Repository
 
 The [ATNA](https://profiles.ihe.net/ITI/TF/Volume1/ch-9.html) Audit Record Repository with support for **ATNA ATX:FHIR Feed Option**, and **Retrieve Audit Message Option**. These options are defined in the [RESTful ATNA Supplement](https://www.ihe.net/uploadedFiles/Documents/ITI/IHE_ITI_Suppl_RESTful-ATNA.pdf). The ATNA Audit Record Repository may detect and validate the AuditEvent requirements defined here, but shall not reject an AuditEvent due to non-compliance.
+
+A `requirements` CapabilityStatements defines full functional [ATNA Audit Record Repository](CapabilityStatement-IHE.BALP.ATNA.AuditRecordRepository.html) with support for the BALP content profiles.
 
 ## 1:52.2 BasicAudit Actor Options
 

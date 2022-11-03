@@ -49,13 +49,19 @@ This CapabilityStatement replicates the requirements that would come from the AT
       * name = "_id"
       * type = #token
     * searchParam[+]
-      * name = "_lastUpdate"
+      * name = "_lastUpdated"
+      * type = #date
+    * searchParam[+]
+      * name = "date"
       * type = #date
     * searchParam[+]
       * name = "address"
       * type = #string
     * searchParam[+]
       * name = "agent.identifier"
+      * type = #token
+    * searchParam[+]
+      * name = "patient.identifier"
       * type = #token
     * searchParam[+]
       * name = "entity.identifier"
@@ -133,13 +139,19 @@ This Actor is derived off of the ATNA Audit Record Repository actor that is not 
       * name = "_id"
       * type = #token
     * searchParam[+]
-      * name = "_lastUpdate"
+      * name = "_lastUpdated"
+      * type = #date
+    * searchParam[+]
+      * name = "date"
       * type = #date
     * searchParam[+]
       * name = "address"
       * type = #string
     * searchParam[+]
       * name = "agent.identifier"
+      * type = #token
+    * searchParam[+]
+      * name = "patient.identifier"
       * type = #token
     * searchParam[+]
       * name = "entity.identifier"

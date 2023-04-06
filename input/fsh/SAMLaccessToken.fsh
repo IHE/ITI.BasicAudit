@@ -15,6 +15,8 @@ The Vocabulary is not defined here. Some sources of vocabulary:
 - OASIS [Authentication Context for SAML](https://docs.oasis-open.org/security/saml/v2.0/saml-authn-context-2.0-os.pdf)
 - An example of a customized and purpose defined small set of codes can be found in the HL7 [SMART Health Cards](http://hl7.org/fhir/uv/shc-vaccination/2021Sep/) defines a [valueset](http://hl7.org/fhir/uv/shc-vaccination/ValueSet/identity-assurance-level)
 """
+* ^context[+].type = #element
+* ^context[=].expression = "AuditEvent.agent"
 * value[x] only CodeableConcept
 * valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
 * valueCodeableConcept 1..1
@@ -25,6 +27,8 @@ Extension: OtherId
 Id: ihe-otherId
 Title: "AuditEvent.agent other identifiers"
 Description: "Carries other identifiers are known for an agent."
+* ^context[+].type = #element
+* ^context[=].expression = "AuditEvent.agent"
 * value[x] only Identifier
 * valueIdentifier 1..1
 

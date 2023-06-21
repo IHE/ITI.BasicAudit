@@ -29,6 +29,8 @@ Title: "AuditEvent.agent other identifiers"
 Description: "Carries other identifiers are known for an agent."
 * ^context[+].type = #element
 * ^context[=].expression = "AuditEvent.agent"
+* ^context[+].type = #element
+* ^context[=].expression = "OperationOutcome.issue.details"
 * value[x] only Identifier
 * valueIdentifier 1..1
 

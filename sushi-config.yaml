@@ -13,9 +13,9 @@ releaselabel: ci-build
 #releaselabel: Trial-Implementation
 status: active
 publisher:
-  - name: IHE IT Infrastructure Technical Committee
-  - url: https://www.ihe.net/ihe_domains/it_infrastructure/
-  - email: iti@ihe.net
+  name: IHE IT Infrastructure Technical Committee
+  url: https://www.ihe.net/ihe_domains/it_infrastructure/
+  email: iti@ihe.net
 contact:
   - name: IHE IT Infrastructure Technical Committee
     telecom:
@@ -70,11 +70,14 @@ pages:
   testplan.md:
     title: BasicAudit Test Plan
     generation: markdown
-  issues.md:
-    title: BasicAudit Open and Closed issues
-    generation: markdown
   other.md:
     title: Changes to Other Profiles
+    generation: markdown
+  download.md:
+    title: "Download and Analysis"
+    generation: markdown
+  issues.md:
+    title: BasicAudit Open and Closed issues
     generation: markdown
   appendix.md:
     title: AuditEvent use in IHE Implementation Guides
@@ -98,8 +101,9 @@ menu:
     -OAuth Security Token: content.html#3575-oauth-security-token
     -Consent Authorized Decision Audit Message: content.html#3576-consent-authorized-decision-audit-message
     -Privacy Disclosure Audit Message: content.html#3577-privacy-disclosure-audit-message
-  Test Plan: testplan.html
   Artifacts: artifacts.html
   Other: 
+    Test Plan: testplan.html
     Changes to Other Specifications: other.html
+    Download and Analysis: download.html
     AuditEvent use in Other Profiles: appendix.html

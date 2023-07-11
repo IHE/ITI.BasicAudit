@@ -82,9 +82,9 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
   - Note a failure AuditEvent may follow this pattern, but would not be a successful outcome and should have an OperationOutcome
 - Then the AuditEvent recorded will conform
 """
-* entity ^slicing.discriminator.type = #pattern
-* entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #open
+//* entity ^slicing.discriminator.type = #pattern
+//* entity ^slicing.discriminator.path = "type"
+//* entity ^slicing.rules = #open
 * entity 2..
 * entity contains 
     patient 1..1 

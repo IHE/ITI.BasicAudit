@@ -106,9 +106,9 @@ A basic AuditEvent profile for when a RESTful Query action happens successfully,
 
 Note: the pattern defined in DICOM and IHE have that the client is identified as the Source Role ID, and the server is identified as the Destination Role ID. This may not be so obvious, as the data actually flows the opposite direction. This pattern is established and thus followed here.
 """
-* entity ^slicing.discriminator.type = #pattern
-* entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #open
+//* entity ^slicing.discriminator.type = #pattern
+//* entity ^slicing.discriminator.path = "type"
+//* entity ^slicing.rules = #open
 * entity 1..
 * entity contains 
     patient 1..1 

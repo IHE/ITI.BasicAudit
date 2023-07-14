@@ -204,9 +204,10 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[user].purposeOfUse MS 
 * agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
 
-* agent[user].extension ^slicing.discriminator.type = #value
-* agent[user].extension ^slicing.discriminator.path = "type"
-* agent[user].extension ^slicing.rules = #open
+// Thanks to Chris Moesel for figuring out how to slice an extension
+// Note: slicing.discriminator[0] is the standard extension discriminator (#value / url)
+* agent[user].extension ^slicing.discriminator[1].type = #value
+* agent[user].extension ^slicing.discriminator[=].path = "value.ofType(Identifier).type"
 * agent[user].extension[otherId] contains 
 	subject-id 0..* and
 	npi 0..* and

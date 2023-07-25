@@ -34,3 +34,4 @@ INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[2]: This e
 
 # should, but don't, have an example of this
 WARNING: StructureDefinition.where(url = 'https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.IUA.71'): The Implementation Guide contains no examples for this profile
+

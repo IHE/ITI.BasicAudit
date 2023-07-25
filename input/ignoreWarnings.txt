@@ -22,7 +22,7 @@ INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.subtype[1]:
 INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2-current
 INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2-current
 INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2-current
-
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-recipient-minCodes: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient|1.1.2-current
 
 # oAuth examples also are Read examples, but given I can't indicate two profiles, then these info are okay
 INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque|1.1.2-current

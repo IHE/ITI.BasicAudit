@@ -61,7 +61,7 @@ A basic AuditEvent profile for when a RESTful Create action happens successfully
 * entity[transaction].type = BasicAuditEntityType#XrequestId
 * entity[transaction].what.identifier.value 1..1
 * entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
 * entity[data].role from RestObjectRoles (required)
 * entity[data].what 1..1
 * entity[data].securityLabel ^short = "may contain the security labels on the resource returned"

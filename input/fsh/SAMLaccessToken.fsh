@@ -220,7 +220,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[user].extension[otherId][provider-id].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
 * agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1 MS
 * agent[user].extension[otherId][provider-id].valueIdentifier.value ^short = "SAML Attribute provider-identifier"
-* agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV "healthcare provider"
+* agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 // note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
 * agent[userorg].who.display 1..1 MS
 * agent[userorg].who.display ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization"
@@ -254,7 +254,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity ^slicing.rules = #open
 * entity contains 
 	consent 0..*
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
+* entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
 * entity[consent].detail ^slicing.discriminator.type = #pattern
@@ -297,7 +297,7 @@ ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
 * source.site = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
-* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
+* agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"

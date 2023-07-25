@@ -10,23 +10,30 @@ The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Prof
 </div>
 
 ### Organization of This Guide
+
 This guide is organized into four main sections:
 
-1. Volume 1: Profiles
-    1. [52 BasicAudit Introduction](volume-1.html)
-    2. [52.1 BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
-    3. [52.2 BasicAudit Actor Options](volume-1.html#1522-basicaudit-actor-options)
-    4. [52.3 BasicAudit Required Groupings](volume-1.html#1523-basicaudit-required-actor-grouping)
-    5. [52.4 BasicAudit Overview](volume-1.html#1524-basicaudit-overview)
-    6. [52.5 BasicAudit Security Considerations](volume-1.html#1525-basicaudit-security-considerations)
-    7. [52.6 BasicAudit Cross-Profile Considerations](volume-1.html#1526-basicaudit-cross-profile-considerations)
-
-2. Volume 3: Content Section
-    1. [5.7 Basic Audit Log Patterns](content.html)
-
-3. [Test Plan](testplan.html)
-
-4. [Changes to other documents](other.html)
+- Volume 1: Profiles
+  - [52 BasicAudit Introduction](volume-1.html)
+  - [52.1 BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
+  - [52.2 BasicAudit Actor Options](volume-1.html#1522-basicaudit-actor-options)
+  - [52.3 BasicAudit Required Groupings](volume-1.html#1523-basicaudit-required-actor-grouping)
+  - [52.4 BasicAudit Overview](volume-1.html#1524-basicaudit-overview)
+  - [52.5 BasicAudit Security Considerations](volume-1.html#1525-basicaudit-security-considerations)
+  - [52.6 BasicAudit Cross-Profile Considerations](volume-1.html#1526-basicaudit-cross-profile-considerations)
+- Volume 3: Content Section
+  - [5.7 Basic Audit Log Patterns](content.html)
+  - [5.7.3 RESTful activities](content.html#3573-restful-activities)
+  - [5.7.4 SAML Security Token](content.html#3574-saml-security-token)
+  - [5.7.5 OAuth Security Token](content.html#3575-oauth-security-token)
+  - [5.7.6 Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
+  - [5.7.7 Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message)
+- [Artifacts](artifacts.html)
+- Other:
+  - [Test Plan](testplan.html)
+  - [Changes to other documents](other.html)
+  - [Download and Analysis](download.html)
+  - [AuditEvent use in Other Profiles](appendix.html)
 
 See also the [table of contents](toc.html) and the index of [artifacts](artifacts.html) defined as part of this implementation guide.
 
@@ -41,29 +48,3 @@ The use of ```mustSupport``` in StructureDefinition profiles equivalent to the I
 mustSupport of true - only has a meaning on items that are minimal cardinality of zero (0), and applies only to the source actor populating the data. The source actor shall populate the elements marked with MustSupport, if the concept is supported by the actor, a value exists, and security and consent rules permit. 
 The consuming actors should handle these elements being populated or being absent/empty. 
 Note that sometimes mustSupport will appear on elements with a minimal cardinality greater than zero (0), this is due to inheritance from a less constrained profile.
-
-### Download 
-
-You can also download:
-
-- [this entire guide](full-ig.zip)
-- the definition resources in [json](definitions.json.zip), [xml](definitions.xml.zip), [ttl](definitions.ttl.zip), or [csv](csvs.zip) format, or
-- the example resources in [json](examples.json.zip), [xml](examples.xml.zip) or [ttl](examples.ttl.zip) format.
-
-The source code for this Implementation Guide can be found on IHE GitHub [https://github.com/IHE/ITI.BasicAudit](https://github.com/IHE/ITI.BasicAudit).
-
-#### Cross Version Analysis
-
-{% include cross-version-analysis.xhtml %}
-
-#### Dependency Table
-
-{% include dependency-table.xhtml %}
-
-#### Globals Table
-
-{% include globals-table.xhtml %}
-
-#### IP Statements
-
-{% include ip-statements.xhtml %}

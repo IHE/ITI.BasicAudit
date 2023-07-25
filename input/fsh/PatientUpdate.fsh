@@ -85,9 +85,9 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 - Then the AuditEvent recorded will conform
 - And where the server supports FHIR Versioning the AuditEvent should use the version specific id
 """
-* entity ^slicing.discriminator.type = #pattern
-* entity ^slicing.discriminator.path = "type"
-* entity ^slicing.rules = #open
+//* entity ^slicing.discriminator.type = #pattern
+//* entity ^slicing.discriminator.path = "type"
+//* entity ^slicing.rules = #open
 * entity 2..
 * entity contains 
     patient 1..1 

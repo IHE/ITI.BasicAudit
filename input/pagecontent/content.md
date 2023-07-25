@@ -13,7 +13,7 @@ The following AuditEvent patterns are defined:
 
 ### 3:5.7.3 RESTful activities
 
-All but Delete follow a similar pattern where the initiator (client) of the RESTful interaction is identified as the Source Role ID and the responder (server) is the Destination Role ID. This pattern is found in both DICOM and XDS.  It is possible to deviate from that pattern and use Application and Custodian. This deviation should be carefully considered.
+Create, Update, and Query follow a similar pattern where the initiator (client) of the RESTful interaction is identified as the Source Role ID and the responder (server) is the Destination Role ID. Read pattern with the (client) of the RESTful interaction, which will receive the data, is considered the Destination Role ID and the responder (server) is the Source Role ID. This pattern is found in both DICOM and XDS. Delete uses of a pattern with (client) of the RESTful interaction is indicated as the Application and (server) of the RESTful interaction is indicated as the Custodian.
 
 When a FHIR RESTful interaction happens, the following AuditEvent patterns can be used. These AuditEvent patterns include a `user` slice that is minimally populated. These AuditEvent patterns can be combined with the Security Token Use pattern to record one AuditEvent that contains the details of the security context and the FHIR RESTful context.
 

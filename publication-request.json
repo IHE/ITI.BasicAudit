@@ -1,0 +1,19 @@
+{
+ "package-id" : "ihe.iti.balp",
+ "version" : "1.1.2",
+ "path" : "https://profiles.ihe.net/ITI/BALP/1.1.2",
+ "mode" : "milestone",
+ "status" : "trial-use",
+ "sequence": "Publication",
+ "desc" : "Trial Implementation - use shareable as parent, quality, capabilityStatement improvements.",
+ "descmd" : "Version 1.1.2
+- add date and patient.identifier search parameter
+- add context to extensions
+- fix slicing of a sliced extension profiling
+- do not include vocabulary display name in profiles to allow instances to not have display names
+- quality improvements
+- capabilityStatement improvements.",
+ "changes" : "issues.html"
+}
+
+

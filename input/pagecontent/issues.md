@@ -1,15 +1,27 @@
 Comments and questions are welcome as GitHub issues, FHIR chat [stream for the topic AuditEvent for Patient](https://chat.fhir.org/#narrow/stream/179247-Security-and.20Privacy/topic/AuditEvent.20for.20Patient) 
-	
+
 # Significant Changes
 
+## Changes in 1.1.2 release
+
+- add date and patient.identifier search parameter
+- add context to extensions
+- fix slicing of a sliced extension profiling
+- do not include vocabulary display name in profiles to allow instances to not have display names
+- quality improvements
+- capabilityStatement improvements.
+
 ## Changes in 1.1.1 release
+
 There are no functional changes or breaking changes. This release is primarily to address validation messages that have been made more strict by HL7 than when 1.1.0 was released.
+
 - clarify explanation of each structureDefinition profile
 - cleanup examples with explicit slice use to eliminate validation warnings
 - fix the Actor definitions
 - switch to new IHE template
 
 ## Changes 1.1.0 release
+
 - Removed the adjusted AuditEvent profiles for MHD, PDQm, and PIXm; as IHE will update those IGs.
 
 # Open Issues

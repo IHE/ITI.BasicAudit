@@ -22,4 +22,7 @@ continuous build http://build.fhir.org/ig/IHE/ITI.BasicAudit/branches/main/index
 
 released https://profiles.ihe.net/ITI/BALP
 
-...
+### Platform Implementations of BALP
+
+- HAPI FHIR Server - https://hapifhir.io/hapi-fhir/docs/security/balp_interceptor.html 
+- Firefly FHIR Server - https://docs.fire.ly/projects/Firely-Server/en/latest/security/auditing.html 

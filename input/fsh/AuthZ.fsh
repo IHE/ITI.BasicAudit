@@ -136,6 +136,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * entity[token].what.identifier 1..1
 * entity[token].what.identifier.value 1..1
 * entity[token].what.identifier.value ^short =  "jti (JWT ID)"
+* entity[token].what.identifier.value ^comment =  "jti SHALL be prefixed with \"urn:ietf:params:oauth:jti:\". This URN is based on RFC3553."
 
 
 

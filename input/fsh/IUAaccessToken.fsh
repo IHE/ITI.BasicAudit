@@ -45,6 +45,7 @@ Used when access to the oAuth token, but want to log minimal details.
 * agent[oUser].requestor = true
 * agent[oUser].policy 1..1 
 * agent[oUser].policy ^short = "jti (JWT ID)"
+* agent[oUser].policy ^comment =  "jti SHALL be prefixed with \"urn:ietf:params:oauth:jti:\". This URN is based on RFC3553."
 * agent[oUser].media 0..0 // media is physical storage media identification
 * agent[oUser].network 0..0 // users are not network devices
 

@@ -16,13 +16,13 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 - 1 entity  
   - the access token request
 """
-* type = http://dicom.nema.org/resources/ontology/DCM#110114 // "User Authentication"
-* subtype 1..1
-* subtype = urn:ihe:event-type-code#ITI-71 // "Get Access Token"
+* category = http://dicom.nema.org/resources/ontology/DCM#110114 // "User Authentication"
+* code 1..1
+* code = urn:ihe:event-type-code#ITI-71 // "Get Access Token"
 * action = #E
 * recorded 1..1
 // failures are recorded differently
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #closed
@@ -33,21 +33,19 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
     user 0..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
-* agent[client].network 1..1 // as known by TCP connection information
-* agent[client].media 0..0 
+* agent[client].network[x]1..1 // as known by TCP connection information
+
 * agent[auth-server].type = UserAgentTypes#AuthzOauthService
 * agent[auth-server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
-* agent[auth-server].network 1..1 // as known by TCP connection information
-* agent[auth-server].media 0..0 
+* agent[auth-server].network[x]1..1 // as known by TCP connection information
+
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
 * agent[user].role MS // if the OAuth token includes any roles, they are recorded here
-* agent[user].altId 0..0 // discouraged
-* agent[user].name MS // might also be in .who.text but here is searchable
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
+
+* agent[user].network[x] 0..0 // users are not network devices
+* agent[user].authorization MS // if the OAuth token includes a PurposeOfUse it is recorded here
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "role"
@@ -56,14 +54,14 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 * entity contains 
     token-request 1..1 and
     token-response 0..1	
-* entity[token-request].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+
 * entity[token-request].role = http://terminology.hl7.org/CodeSystem/object-role#24 // "Query"
 * entity[token-request].what 0..0
 * entity[token-request].query 1..1
 * entity[token-request].query ^short = "contains the http request in raw form, without the code_verifier value"
 
 
-* entity[token-response].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+
 * entity[token-response].role = http://terminology.hl7.org/CodeSystem/object-role#13 // "Security Resource"
 * entity[token-response].what 1..1
 * entity[token-response].what ^short = "holds the token id issued" 

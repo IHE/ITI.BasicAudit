@@ -116,7 +116,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ID                    | agent[user].policy
 | Issuer                | agent[user].who.identifier.system
 | Subject.NameID        | agent[user].who.identifier.value
-| ~subject:purposeofuse | agent[user].purposeOfUse
+| ~subject:authorization | agent[user].authorization
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
@@ -136,14 +136,12 @@ note: this profile records minimal information from the SAML access token, which
 // TODO should who.reference and/or type be 0.. and MS?
 * agent[user].requestor = true
 * agent[user].role 0.. // discouraged in minimal
-* agent[user].altId 0.. // discouraged, use otherId extension
-* agent[user].name 0..1 // not sure where you would get it from
 * agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS 
-* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
+
+* agent[user].network[x] 0..0 // users are not network devices
+* agent[user].authorization MS 
+* agent[user].authorization ^short = "SAML subject:purposeofuse"
 
 
 
@@ -165,7 +163,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | Issuer                       | agent[user].who.identifier.system
 | Subject.NameID               | agent[user].who.identifier.value
 | ~subject:role                | agent[user].role
-| ~subject:purposeofuse        | agent[user].purposeOfUse
+| ~subject:purposeofuse        | agent[user].authorization
 | AuthnContextClassRef         | agent[user].extension[assuranceLevel]
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].value
 | ~subject:npi                 | agent[user].extension[otherId][npi].value
@@ -195,14 +193,12 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[user].requestor = true
 * agent[user].role MS 
 * agent[user].role ^short = "SAML subject:role(s)"
-* agent[user].altId 0..0 // discouraged
-* agent[user].name 0..1 // not sure where you would get it from
 * agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS 
-* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
+
+* agent[user].network[x] 0..0 // users are not network devices
+* agent[user].authorization MS 
+* agent[user].authorization ^short = "SAML subject:purposeofuse"
 
 // Thanks to Chris Moesel for figuring out how to slice an extension
 // Note: slicing.discriminator[0] is the standard extension discriminator (#value / url)
@@ -229,33 +225,29 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[userorg].who.identifier.value ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization-id"
 * agent[userorg].requestor = false
 * agent[userorg].role 0..0
-* agent[userorg].altId 0..0 // discouraged
-* agent[userorg].name 0..0 
 * agent[userorg].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[userorg].policy 0..0
-* agent[userorg].media 0..0 // media is physical storage media identification
-* agent[userorg].network 0..0 // users are not network devices
-* agent[userorg].purposeOfUse 0..0
+
+* agent[userorg].network[x] 0..0 // users are not network devices
+* agent[userorg].authorization 0..0
 
 * agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
 * agent[homeCommunityId].who.identifier 1..1 MS
 * agent[homeCommunityId].who.identifier ^short = "homeCommunityId"
 * agent[homeCommunityId].requestor = false
 * agent[homeCommunityId].role 0..0
-* agent[homeCommunityId].altId 0..0 // discouraged
-* agent[homeCommunityId].name 0..0 
 * agent[homeCommunityId].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[homeCommunityId].policy 0..0
-* agent[homeCommunityId].media 0..0 // media is physical storage media identification
-* agent[homeCommunityId].network 0..0 // users are not network devices
-* agent[homeCommunityId].purposeOfUse 0..0
+
+* agent[homeCommunityId].network[x] 0..0 // users are not network devices
+* agent[homeCommunityId].authorization 0..0
 
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity contains 
 	consent 0..*
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
+
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
 * entity[consent].detail ^slicing.discriminator.type = #pattern
@@ -264,10 +256,10 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].detail contains 
 	acp 0..1 and
 	patient-id 0..1
-* entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[acp].type.text = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[acp] ^short = "Home Community ID where the Consent is."
 * entity[consent].detail[acp].value[x] only string
-* entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[patient-id].type.text = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[patient-id] ^short = "The Patient Identity where the Consent is."
 * entity[consent].detail[patient-id].value[x] only string
 
@@ -280,7 +272,7 @@ Title: "Audit Example of a basic SAML access token of minimal"
 Description: """
 Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
 
-Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and authorization if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
 
 SAML field | example value |
 -----|-----|
@@ -289,13 +281,13 @@ Issuer | https://sts.sykehuspartner.no
 ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
+* category = DCM#110100 "Application Activity"
 * action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+* code = urn:ietf:rfc:1438#poke "Boredom poke"
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
@@ -308,30 +300,30 @@ ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
 
 Instance: ex-auditPoke-SAML-Min2
 InstanceOf: IHE.BasicAudit.SAMLaccessTokenUse.Minimal
-Title: "Audit Example of a basic SAML access token of minimal with multiple PurposeOfUse"
+Title: "Audit Example of a basic SAML access token of minimal with multiple authorization"
 Description: """
 Example AuditEvent showing just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
 
-Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and authorization if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
 
 SAML field | example value |
 -----|-----|
 Subject.NameID  | "JoeL" 
 Issuer | "https://carequality.org" 
 ID | "_5a6b51b7-cd3e-4629-aac8-9846cbc3cf84" 
-~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, TREAT
-~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, ETREAT
-~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, HPAYMT
-~purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason, HOPERAT
+~authorization | http://terminology.hl7.org/CodeSystem/v3-ActReason, TREAT
+~authorization | http://terminology.hl7.org/CodeSystem/v3-ActReason, ETREAT
+~authorization | http://terminology.hl7.org/CodeSystem/v3-ActReason, HPAYMT
+~authorization | http://terminology.hl7.org/CodeSystem/v3-ActReason, HOPERAT
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
+* category = DCM#110100 "Application Activity"
 * action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+* code = urn:ietf:rfc:1438#poke "Boredom poke"
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
@@ -339,10 +331,10 @@ ID | "_5a6b51b7-cd3e-4629-aac8-9846cbc3cf84"
 * agent[user].who.identifier.value = "JoeL"
 * agent[user].who.identifier.system = "https://carequality.org"
 * agent[user].policy = "_5a6b51b7-cd3e-4629-aac8-9846cbc3cf84"
-* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
-* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#ETREAT
-* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HPAYMT
-* agent[user].purposeOfUse[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
+* agent[user].authorization[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#TREAT
+* agent[user].authorization[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#ETREAT
+* agent[user].authorization[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HPAYMT
+* agent[user].authorization[+] = http://terminology.hl7.org/CodeSystem/v3-ActReason#HOPERAT
 
 
 
@@ -361,7 +353,7 @@ SAML field | example value |
 Subject.NameID  | 05086900124
 Issuer | https://sts.sykehuspartner.no
 ID | XC4WdYS0W5bjsMGc5Ue6tClD_5U
-purposeOfUse | http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
+authorization | http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 assurance | authenticated AAL 4
 ~subject:subject-id          | JohnDoe
 ~subject:npi                 | 1234567@myNPIregistry.example.org
@@ -374,13 +366,13 @@ assurance | authenticated AAL 4
 ~resource:resource-id        | urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
+* category = DCM#110100 "Application Activity"
 * action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+* code = urn:ietf:rfc:1438#poke "Boredom poke"
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[user].type.coding[+] = UserAgentTypes#UserSamlAgent
@@ -389,7 +381,7 @@ assurance | authenticated AAL 4
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
 * agent[user].requestor = true
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
-* agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
+* agent[user].authorization = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 //TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
@@ -406,12 +398,12 @@ assurance | authenticated AAL 4
 * agent[homeCommunityId].who.identifier.type = urn:ihe:iti:xca:2010#homeCommunityId
 * agent[homeCommunityId].who.identifier.value = "urn:uuid:cadbf8d0-5493-11ec-bf63-0242ac130002"
 * agent[homeCommunityId].requestor = false
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
+
 * entity[consent].what.identifier.value = "urn:uuid:a4b1d27e-5493-11ec-bf63-0242ac130002"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
-* entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[+].type.text = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[=].valueString = "urn:uuid:b8aa8eec-5493-11ec-bf63-0242ac130002"
-* entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[+].type.text = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[=].valueString = "urn:uuid:d7391e5a-5493-11ec-bf63-0242ac130002"
 
 
@@ -423,7 +415,7 @@ Description: "Example of a SAML assertion as seen in CareQuality."
 * status = #current
 * content.attachment.id = "ig-loader-QDI-SAML-20211210.txt"
 * content.attachment.contentType = #application/xml
-* context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
+//* context.related = Reference(AuditEvent/ex-auditPoke-SAML-QDI-Min)
 
 
 
@@ -435,7 +427,7 @@ Title: "Audit Example of a basic SAML access token of minimal from QDI sample"
 Description: """
 Example AuditEvent showing QDI sample with just the minimal SAML access token. The event being recorded is a theoretical **poke** (not intended to represent anything useful).
 
-Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and purposeOfUse if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
+Minimal only records the SAML assertion id, issuer, and subject. Minimal may record roles and authorization if known. Minimal presumes you have access to the SAML Identity Provider (IDP) to reverse lookup given this information.
 
 SAML field | example value |
 -----|-----|
@@ -455,13 +447,13 @@ AuthzDecisionStatement | nesting
 AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
+* category = DCM#110100 "Application Activity"
 * action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+* code = urn:ietf:rfc:1438#poke "Boredom poke"
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
@@ -471,7 +463,7 @@ AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 // the string must also be url escaped. 
 * agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
-* agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+* agent[user].authorization = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 
 
 
@@ -503,13 +495,13 @@ AuthzDecisionStatement | nesting
 AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110100 "Application Activity"
+* category = DCM#110100 "Application Activity"
 * action = #R
-* subtype = urn:ietf:rfc:1438#poke "Boredom poke"
+* code = urn:ietf:rfc:1438#poke "Boredom poke"
 //* severity = #Informational
 * recorded = 2021-12-03T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
@@ -520,7 +512,7 @@ AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 * agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
-* agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
+* agent[user].authorization = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
 * agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][subject-id].valueIdentifier.value = "Karl S Skagerberg"
@@ -530,12 +522,12 @@ AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 * agent[userorg].who.identifier.value = "urn:oid:2.16.840.1.113883.3.333"
 * agent[userorg].requestor = false
 
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent "Consent"
+
 * entity[consent].what.identifier.value = "urn:oid:1.2.3.4.123456789"
 //TODO this should be able to use the slice names [acp] and [patient-id], but it doesn't seem to work.
-* entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
+* entity[consent].detail[+].type.text = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[=].valueString = "urn:oid:1.2.3.4"
-* entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
+* entity[consent].detail[+].type.text = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[=].valueString = "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
 
 

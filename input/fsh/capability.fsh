@@ -76,10 +76,10 @@ This CapabilityStatement replicates the requirements that would come from the AT
       * name = "source.identifier"
       * type = #token
     * searchParam[+]
-      * name = "type"
+      * name = "category"
       * type = #token
     * searchParam[+]
-      * name = "subtype"
+      * name = "code"
       * type = #token
     * searchParam[+]
       * name = "outcome"
@@ -166,10 +166,10 @@ This Actor is derived off of the ATNA Audit Record Repository actor that is not 
       * name = "source.identifier"
       * type = #token
     * searchParam[+]
-      * name = "type"
+      * name = "category"
       * type = #token
     * searchParam[+]
-      * name = "subtype"
+      * name = "code"
       * type = #token
     * searchParam[+]
       * name = "outcome"

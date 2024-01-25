@@ -100,10 +100,10 @@ Title: "Dummy Consent example"
 Description: "Dummy Consent example for completeness sake. No actual use of this resource other than an example target"
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * status = #active
-* scope = http://terminology.hl7.org/CodeSystem/consentscope#patient-privacy
-* category = LOINC#57016-8
-* patient = Reference(ex-patient)
-* policy.uri = "urn:uuid:a7ff9fa3-fbb6-4c5e-a1cc-6128069bbd4b"
+* category[+] = http://terminology.hl7.org/CodeSystem/consentscope#patient-privacy
+* category[+] = LOINC#57016-8
+* subject = Reference(ex-patient)
+//* policy.uri = "urn:uuid:a7ff9fa3-fbb6-4c5e-a1cc-6128069bbd4b"
 
 
 Instance: ex-measurereport

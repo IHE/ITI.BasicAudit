@@ -13,29 +13,27 @@ Audit Example for a RESTful Create of a resource with No patient subject. This e
 - created resource is ex-measurereport
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "author (originator)"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(MeasureReport/ex-measurereport)
 
@@ -54,31 +52,29 @@ Audit Example for a RESTful Create of a resource with a patient subject
 - created resource is ex-list
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
 * source.observer.display = "myMachine.example.org"
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "author (originator)"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
 
@@ -97,31 +93,29 @@ Audit Example for a RESTful Create of a resource with a patient subject created 
 - created resource is ex-list
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#AUT "author (originator)"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
 
@@ -140,32 +134,30 @@ Audit Example for a RESTful Create of a resource with a patient subject by an in
 - created resource is ex-list
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#INF "Informant"
 * agent[user].who.display = "Betty Jones" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
 
@@ -184,32 +176,30 @@ Audit Example for a RESTful Create of a resource with a patient subject by a cus
 - created resource is ex-list
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#CST "Custodian"
 * agent[user].who.display = "Charley Miller" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
 
@@ -228,29 +218,27 @@ Audit Example for a RESTful Create of a resource with a patient subject with no 
 - created resource is ex-list
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
 
@@ -268,29 +256,27 @@ Audit Example for a RESTful Create of a Report (document) resource with a patien
 - created resource is ex-documentreference
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
 * entity[data].what = Reference(DocumentReference/ex-documentreference)
 
@@ -308,29 +294,27 @@ Audit Example for a RESTful Create of a Job (document) resource with a patient s
 - created job is ex-documentreference
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #C
-* subtype[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
+//* code[anyCreate] = http://hl7.org/fhir/restful-interaction#create "create"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110152 "Destination Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
 * agent[client].type = DCM#110153 "Source Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#20 "Job"
 * entity[data].what = Reference(DocumentReference/ex-documentreference)
 

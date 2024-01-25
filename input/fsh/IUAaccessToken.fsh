@@ -23,8 +23,8 @@ Used when:
 * agent[oUser].policy 1..1 MS
 * agent[oUser].policy ^short = "last 32 characters of the oAuth token."
 * agent[oUser].policy ^comment = "do NOT include the whole opaque token. The last 32 characters should be enough and would be the most entropy."
-* agent[oUser].purposeOfUse MS 
-* agent[oUser].purposeOfUse ^short = "SAML subject:purposeofuse"
+* agent[oUser].authorization MS 
+* agent[oUser].authorization ^short = "SAML subject:purposeofuse"
 
 Profile: OAUTHaccessTokenUseMinimal
 Parent: AuditEvent
@@ -46,8 +46,8 @@ Used when access to the oAuth token, but want to log minimal details.
 * agent[oUser].policy 1..1 
 * agent[oUser].policy ^short = "jti (JWT ID)"
 * agent[oUser].policy ^comment =  "jti SHALL be prefixed with \"urn:ietf:params:oauth:jti:\". This URN is based on RFC3553."
-* agent[oUser].media 0..0 // media is physical storage media identification
-* agent[oUser].network 0..0 // users are not network devices
+
+* agent[oUser].network[x] 0..0 // users are not network devices
 
 Profile: OAUTHaccessTokenUseComprehensive
 Parent: AuditEvent
@@ -69,10 +69,9 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 - client slice holds the application details
   - This is likely replicated in other slices, but is consistently identified as the Application slice for ease of tracking all events caused by this client
   - place the client_id into .who.identifier.value (system is not needed, but avaialble if you have a system)
-  - any network identification detail should be placed in .network (may be a IP address, or hostname)
+  - any network identification detail should be placed in .network[x](may be a IP address, or hostname)
 - oUser slice holds the user details
   - user id is recorded in the .who.identifier
-  - user id is also recorded in .name to be more easy searched
   - if roles or purposeOfUse are known record them here
   - the JWT ID is recorded in .policy. Expecting that during audit anaysis this ID can be looked up and dereferenced
 """
@@ -91,9 +90,9 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 * agent[oClient].who.identifier.value ^short = "Token client ID (client_id)"
 * agent[oClient].who ^short = "client identifier"
 * agent[oClient].who ^comment = "May be an Device Resource, but more likely an identifier given the App identified in the OAuth token"
-* agent[oClient].network 0..1 MS 
-* agent[oClient].network ^short = "The client as known by TCP connection information"
-* agent[oClient].media 0..0 
+* agent[oClient].network[x] 0..1 MS 
+* agent[oClient].network[x] ^short = "The client as known by TCP connection information"
+
 * agent[oUser].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[oUser].who 1..1 
 * agent[oUser].who ^short = "May be a Resource, but likely just an identifier from the OAuth token"
@@ -107,12 +106,9 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 * agent[oUser].requestor = true
 * agent[oUser].role MS 
 * agent[oUser].role ^comment = "if the OAuth token includes any roles, they are recorded here"
-* agent[oUser].name MS 
-* agent[oUser].name ^short = "User Name (USER_NAME)"
-* agent[oUser].name ^comment = "This is more searchable than .who.display"
 * agent[oUser].policy 1..1 
 * agent[oUser].policy ^short = "jti (JWT ID)"
-* agent[oUser].media 0..0 // media is physical storage media identification
-* agent[oUser].network 0..0 // users are not network devices
-* agent[oUser].purposeOfUse MS 
-* agent[oUser].purposeOfUse ^comment = "if the OAuth token includes a PurposeOfUse it is recorded here"
+
+* agent[oUser].network[x] 0..0 // users are not network devices
+* agent[oUser].authorization MS 
+* agent[oUser].authorization ^comment = "if the OAuth token includes a PurposeOfUse it is recorded here"

@@ -46,7 +46,7 @@ There is documentation of the audit event details to be added to a grouped trans
 
 The Minimal AuditEvent pattern defined here is not the same as the one defined in [XUA](https://profiles.ihe.net/ITI/TF/Volume1/ch-13.html), mostly due to the more expressive and coded nature of the FHIR AuditEvent over the DICOM AuditMessage.
 
-The Minimal AuditEvent pattern preserves the SAML ID so that the contents of the SAML assertion can be retrieved from the SAML Identity Provider (IdP) when such access is available. The Minimal AuditEvent pattern preserves the Issuer and Subject NameID in the who.Identifier, and any purposeOfUse into the purposeOfUse element.
+The Minimal AuditEvent pattern preserves the SAML ID so that the contents of the SAML assertion can be retrieved from the SAML Identity Provider (IdP) when such access is available. The Minimal AuditEvent pattern preserves the Issuer and Subject NameID in the who.Identifier, and any purposeOfUse into the authorization element.
 
 Note: that XUA recommends alias be filled with SPProvidedID which is not defined in XUA and is found to be deprecated in many SAML specifications. So this specification does not record or refer to the SPProvidedId.
 
@@ -80,7 +80,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~subject:organization        | agent[userorg].who.display |
 | ~subject:organization-id     | agent[userorg].who.identifier.value |
 | ~subject:role                | agent[user].role | agent[user].role |
-| ~subject:purposeofuse        | agent[user].purposeOfUse | agent[user].purposeOfUse
+| ~subject:purposeofuse        | agent[user].authorization | agent[user].authorization
 | ~bppc:2007:docid             | entity[consent].what.identifier.value |
 | ~xua:2012:acp                | entity[consent].detail[acp].valueString |
 | ~resource:resource-id        | entity[consent].detail[patient-id].valueString |
@@ -158,7 +158,7 @@ Note: Opaque is not shown in the table as it has no access to any oAuth Fields.
 | ihe_iua:subject_organization         | agent[userorg].who.display | |
 | ihe_iua:subject_organization_id      | agent[userorg].who.identifier.value | |
 | ihe_iua:subject_role                 | agent[user].role | agent[user].role |
-| ihe_iua:purpose_of_use               | agent[user].purposeOfUse           | agent[user].purposeOfUse |
+| ihe_iua:purpose_of_use               | agent[user].authorization           | agent[user].authorization |
 | ihe_iua:home_community_id            | entity[consent].what.identifier.assigner.identifier.value | |
 | ihe_iua:national_provider_identifier | agent[user].extension[otherId][npi].identifier.value | |
 | ihe_iua:person_id                    | agent[user].extension[otherId][provider-id].identifier.value | |

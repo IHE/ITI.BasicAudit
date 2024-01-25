@@ -52,15 +52,15 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	- other data may be recorded that was used in the decision
 """
 * modifierExtension 0..0
-* type = DCM#110113 // "Security Alert"
-* subtype from AuthZsubTypeVS
+* category = DCM#110113 // "Security Alert"
+* code from AuthZsubTypeVS
 * action = #E
 // subtype
 // * severity in R5
 * recorded 1..1 // already required
 * outcome 1..1
-* outcomeDesc MS // encouraged
-* purposeOfEvent MS // why was the data disclosed
+* outcome.detail MS // encouraged
+* authorization MS // why was the data disclosed
 // source is already required, see invariant val-audit-source use
 * agent 2..*
 * agent ^slicing.discriminator.type = #pattern
@@ -74,48 +74,40 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	authorizer 1..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
-* agent[client].network 1..1 // as known by TCP connection information
+* agent[client].network[x] 1..1 // as known by TCP connection information
 * agent[client].role 0..0 
-* agent[client].altId 0..0
-* agent[client].name 0..0 
 * agent[client].location 0..0 
 * agent[client].policy MS // input client token id
-* agent[client].media 0..0 
-* agent[client].purposeOfUse 0..0 
+
+* agent[client].authorization 0..0 
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
 * agent[user].role MS // if the OAuth token includes any roles, they are recorded here
-* agent[user].altId 0..0 // discouraged
-* agent[user].name MS // might also be in .who.text but here is searchable
 * agent[user].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[user].policy MS // input user token id
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS // if the requested purposeOfUse is applied to just the user
+
+* agent[user].network[x] 0..0 // users are not network devices
+* agent[user].authorization MS // if the requested purposeOfUse is applied to just the user
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 * agent[userorg].who 1..1 MS
 * agent[userorg].requestor = false
 * agent[userorg].role 0..0
-* agent[userorg].altId 0..0 // discouraged
-* agent[userorg].name 0..0 
 * agent[userorg].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[userorg].policy 0..0
-* agent[userorg].media 0..0 // media is physical storage media identification
-* agent[userorg].network 0..0 // users are not network devices
-* agent[userorg].purposeOfUse MS // if the request purposeOfUse is applied to the whole organization
+
+* agent[userorg].network[x] 0..0 // users are not network devices
+* agent[userorg].authorization MS // if the request purposeOfUse is applied to the whole organization
 * agent[authorizer].type = http://terminology.hl7.org/CodeSystem/extra-security-role-type#authserver // "authorization server"
 * agent[authorizer] obeys val-audit-source
 * agent[authorizer].who 1..1
 * agent[authorizer].requestor = false
 * agent[authorizer].role 0..0
-* agent[authorizer].altId 0..0 // discouraged
-* agent[authorizer].name 0..0 
 * agent[authorizer].location 0..0 // discouraged as unlikely to be known in this scenario
 * agent[authorizer].policy 0..0
-* agent[authorizer].media 0..0 // media is physical storage media identification
-* agent[authorizer].network 0..0 // users are not network devices
-* agent[authorizer].purposeOfUse 0..0
+
+* agent[authorizer].network[x] 0..0 // users are not network devices
+* agent[authorizer].authorization 0..0
 * entity 2..*
 * entity ^slicing.discriminator.type = #pattern
 * entity ^slicing.discriminator.path = "type"
@@ -125,13 +117,13 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	patient 1..1 and
 	consent 1..* and
 	token 0..1
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
+
 * entity[consent].what 1..1 MS // consent identifier
-* entity[token].type = UserAgentTypes#UserOauthAgent
+
 * entity[token].what 1..1
 * entity[token].what.identifier 1..1
 * entity[token].what.identifier.value 1..1
@@ -151,13 +143,13 @@ Description: """
 Example AuditEvent showing an authorization decision.
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110113 "Security Alert"
-* subtype = AuthZsubType#AuthZ-Consent
+* category = DCM#110113 "Security Alert"
+* code = AuthZsubType#AuthZ-Consent
 * action = #E
 //* severity = #Informational
 * recorded = 2021-12-27T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-authz)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#6 // "Security Server"
 * agent[authorizer].type = http://terminology.hl7.org/CodeSystem/extra-security-role-type#authserver // "authorization server"
@@ -165,20 +157,19 @@ Example AuditEvent showing an authorization decision.
 * agent[authorizer].requestor = false
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[client].who = Reference(Device/ex-device)
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 // "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[client].requestor = false
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].who = Reference(Practitioner/ex-practitioner)
-* agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
+* agent[user].authorization = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].requestor = true
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 * agent[userorg].who = Reference(Organization/ex-organization)
 * agent[userorg].requestor = false
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
+
 * entity[consent].what = Reference(Consent/ex-consent)
 
 
@@ -189,13 +180,13 @@ Description: """
 Example AuditEvent showing an authorization decision resulting in deny.
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = DCM#110113 "Security Alert"
-* subtype = AuthZsubType#AuthZ-Consent
+* category = DCM#110113 "Security Alert"
+* code = AuthZsubType#AuthZ-Consent
 * action = #E
 * recorded = 2021-12-27T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#8 "Serious failure"
-* outcomeDesc = "Consent denied access to this user"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#8 "Serious failure"
+* outcome.detail.text = "Consent denied access to this user"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-authz)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#6 "Security Server"
 * agent[authorizer].type = http://terminology.hl7.org/CodeSystem/extra-security-role-type#authserver // "authorization server"
@@ -203,18 +194,17 @@ Example AuditEvent showing an authorization decision resulting in deny.
 * agent[authorizer].requestor = false
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[client].who = Reference(Device/ex-device)
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
 * agent[client].requestor = false
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].who = Reference(Practitioner/ex-practitioner)
-* agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
+* agent[user].authorization = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
 * agent[user].requestor = true
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 * agent[userorg].who = Reference(Organization/ex-organization)
 * agent[userorg].requestor = false
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
+
 * entity[consent].what = Reference(Consent/ex-consent)

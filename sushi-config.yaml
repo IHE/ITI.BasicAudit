@@ -7,7 +7,7 @@ canonical: https://profiles.ihe.net/ITI/BALP
 name: IHE_ITI_BALP
 title: "Basic Audit Log Patterns (BALP)"
 date: 2023-08-04
-version: 1.1.2
+version: 2.0.0
 #releaselabel: ci-build
 #releaselabel: ballot
 releaselabel: Trial-Implementation
@@ -26,7 +26,7 @@ jurisdiction: 'http://unstats.un.org/unsd/methods/m49/m49.htm#001'
 description: >-
   The Basic Audit Log Patterns (BALP) Implementation Guide is a Content Profile that defines some basic and reusable AuditEvent patterns. This includes basic audit log profiles for FHIR RESTful operations to be used when there is not a more specific audit event defined. A focus is enabling Privacy centric AuditEvent logs that hold well formed indication of the Patient when they are the subject of the activity being recorded in the log. Where a more specific audit event can be defined it should be derived off of these basic patterns.
 license: CC-BY-4.0
-fhirVersion: 4.0.1
+fhirVersion: 5.0.0
 #fhirVersion: 4.3.0
 copyrightyear: '2022+'
 #extension: 

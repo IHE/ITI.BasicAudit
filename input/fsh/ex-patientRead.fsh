@@ -13,29 +13,29 @@ Audit Example for a RESTful read of a resource with no patient subject
 - read resource is ex-measurereport
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110153 "Source Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
+
 * agent[client].type = DCM#110152 "Destination Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(MeasureReport/ex-measurereport)
 
@@ -57,35 +57,35 @@ Audit Example for a RESTful read of a resource with a patient subject
 - x-request-id is 76d148b6-586d-11ec-bf63-0242ac130002
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110153 "Source Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
+
 * agent[client].type = DCM#110152 "Destination Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
-* entity[transaction].type = BasicAuditEntityType#XrequestId
+
 * entity[transaction].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
 
 
@@ -105,34 +105,34 @@ Audit Example for a RESTful read of a resource with a patient subject
 - x-request-id is 76d148b6-586d-11ec-bf63-0242ac130002
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
 * source.observer.display = "myMachine.example.org"
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#1 "User Device"
 * agent[server].type = DCM#110153 "Source Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
+
 * agent[client].type = DCM#110152 "Destination Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.display = "John Smith" // just a display name pulled from the OAuth token
 * agent[user].requestor = true
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
-* entity[transaction].type = BasicAuditEntityType#XrequestId
+
 * entity[transaction].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
 
 
@@ -156,32 +156,32 @@ Audit Example for a RESTful read of a resource with a patient subject with no us
 - x-request-id is c07cf648-f068-4dd9-9411-8e69ca07d525
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[server].type = DCM#110153 "Source Role ID"
 * agent[server].requestor = false
 * agent[server].who = Reference(Device/ex-device)
-* agent[server].network.address = "http://server.example.com/fhir"
-* agent[server].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[server].networkUri = "http://server.example.com/fhir"
+
 * agent[client].type = DCM#110152 "Destination Role ID"
 * agent[client].requestor = false
 * agent[client].who.display = "myMachine.example.org"
-* agent[client].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[client].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
+* agent[client].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
+
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[patient].what = Reference(Patient/ex-patient)
-* entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
+
 * entity[data].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[data].what = Reference(List/ex-list)
-* entity[transaction].type = BasicAuditEntityType#XrequestId
+
 * entity[transaction].what.identifier.value = "c07cf648-f068-4dd9-9411-8e69ca07d525"
 
 
@@ -196,12 +196,12 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
 - client logs using the OAUTHaccessTokenUseOpaque profile as it doesn't have access to the details
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
 * source.observer.display = "myMachine.example.org"
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#1 "User Device"
 * agent[oUser].type = UserAgentTypes#UserOauthAgent
@@ -209,24 +209,24 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
 * agent[oUser].requestor = true
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
 // TODO sushi hack to use one index number, then +=
-* agent[1].type = DCM#110153 "Source Role ID"
+* agent[+].type = DCM#110153 "Source Role ID"
 * agent[=].requestor = false
 * agent[=].who = Reference(Device/ex-device)
-* agent[=].network.address = "http://server.example.com/fhir"
-* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[=].networkUri = "http://server.example.com/fhir"
+
 * agent[+].type = DCM#110152 "Destination Role ID"
 * agent[=].requestor = false
 * agent[=].who.display = "myMachine.example.org"
-* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* agent[=].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[=].what = Reference(List/ex-list)
-* entity[+].type = BasicAuditEntityType#XrequestId
-* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+* entity[+].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
 
 /////////////////////////////////////////////////////////////////////////////////////////
 Instance: ex-auditBasicReadOServer
@@ -241,19 +241,19 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
   - should also be a Destination and Source agent
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[oClient].type = http://dicom.nema.org/resources/ontology/DCM#110150 "Application"
 * agent[oClient].who.identifier.value = "SampleApp"
-* agent[oClient].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[oClient].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[oClient].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * agent[oClient].requestor = false
 * agent[oUser].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[oUser].who.display = "JohnSmith" // just a display name pulled from the OAuth token
@@ -262,24 +262,24 @@ Audit Example for a oAuth authorized RESTful read of a resource with a patient s
 * agent[oUser].requestor = true
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
 // TODO sushi hack to use one index number, then +=
-* agent[2].type = DCM#110152 "Destination Role ID"
+* agent[+].type = DCM#110152 "Destination Role ID"
 * agent[=].requestor = false
 * agent[=].who.display = "myMachine.example.org"
-* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
+* agent[=].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
 * agent[+].type = DCM#110153 "Source Role ID"
 * agent[=].requestor = false
 * agent[=].who = Reference(Device/ex-device)
-* agent[=].network.address = "http://server.example.com/fhir"
-* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* agent[=].networkUri = "http://server.example.com/fhir"
+
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[=].what = Reference(List/ex-list)
-* entity[+].type = BasicAuditEntityType#XrequestId
-* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+* entity[+].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
 
 /////////////////////////////////////////////////////////////////////////////////////////
 Instance: ex-auditBasicReadOServerMin
@@ -294,37 +294,38 @@ Audit Example for minimally recorded oAuth authorized RESTful read of a resource
   - should also be a Destination and Source agent
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
-* type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
+* category = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #R
-* subtype = http://hl7.org/fhir/restful-interaction#read "read"
+* code = http://hl7.org/fhir/restful-interaction#read "read"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
-* outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
-* source.site = "server.example.com"
+* outcome.code = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"
+* source.site.display = "server.example.com"
 * source.observer = Reference(Device/ex-device)
 * source.type = http://terminology.hl7.org/CodeSystem/security-source-type#4 "Application Server"
 * agent[oUser].type = UserAgentTypes#UserOauthAgent
 * agent[oUser].requestor = true
+* agent[oUser].who.display = "User"
 * agent[oUser].policy = "C187CC480FAC40A0936902D8BC324F5F"
 // TODO sushi hack to use one index number, then +=
-* agent[1].type = DCM#110153 "Source Role ID"
+* agent[+].type = DCM#110153 "Source Role ID"
 * agent[=].requestor = false
 * agent[=].who = Reference(Device/ex-device)
-* agent[=].network.address = "http://server.example.com/fhir"
-* agent[=].network.type = http://hl7.org/fhir/network-type#5 "URI"
+* agent[=].networkUri = "http://server.example.com/fhir"
+
 * agent[+].type = DCM#110152 "Destination Role ID"
 * agent[=].requestor = false
 * agent[=].who.display = "myMachine.example.org"
-* agent[=].network.address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334"
-* agent[=].network.type = http://hl7.org/fhir/network-type#2 "IP Address"
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 "Person"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
+* agent[=].networkUri = "http://2001:0db8:85a3:0000:0000:8a2e:0370:7334"
+
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#1 "Patient"
 * entity[=].what = Reference(Patient/ex-patient)
-* entity[+].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 "System Object"
-* entity[=].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
+
+* entity[+].role = http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * entity[=].what = Reference(List/ex-list)
-* entity[+].type = BasicAuditEntityType#XrequestId
-* entity[=].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
+
+* entity[+].what.identifier.value = "76d148b6-586d-11ec-bf63-0242ac130002"
 
 
 

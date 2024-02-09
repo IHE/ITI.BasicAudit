@@ -53,7 +53,9 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 """
 * modifierExtension 0..0
 * type = DCM#110113 // "Security Alert"
+* type 1..
 * subtype from AuthZsubTypeVS
+* subtype 1..
 * action = #E
 // subtype
 // * severity in R5
@@ -127,6 +129,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	token 0..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
+* entity[patient].role 1..
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"

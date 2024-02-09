@@ -17,6 +17,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 - shall have a set identity entity
 """
 * modifierExtension 0..0
+* type 1..
 * type = DCM#110107 // "Import"
 * action = #C
 * insert requireAtLeastOneMatch(subtype, disclosure, http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose )
@@ -59,6 +60,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 	patient 1..1 
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
+* entity[patient].role 1..
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
 
@@ -89,6 +91,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 """
 * modifierExtension 0..0
 * type = DCM#110106 // "Export"
+* type 1..
 * action = #R
 * insert requireAtLeastOneMatch(subtype, disclosure, http://terminology.hl7.org/CodeSystem/iso-21089-lifecycle#disclose)
 * subtype ^slicing.description = "needs to at least be a disclosure event"
@@ -130,6 +133,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 	patient 1..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
+* entity[patient].role 1..
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
 

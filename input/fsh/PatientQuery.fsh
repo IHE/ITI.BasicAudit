@@ -1,5 +1,14 @@
 
 ////////////////////////////////////////////////////////////// Query Profile ////////////////////////
+ValueSet: AllSearchVS
+Title: "all Searches"
+Description: "ValueSet of the restful-interaction searches"
+* ^experimental = false
+* http://hl7.org/fhir/restful-interaction#search // "search"
+* http://hl7.org/fhir/restful-interaction#search-type // "search-type"
+* http://hl7.org/fhir/restful-interaction#search-system // "search-system"
+
+
 Profile:        Query
 Parent:         AuditEvent
 Id:             IHE.BasicAudit.Query
@@ -30,10 +39,8 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
 * subtype ^slicing.discriminator.path = "$this"
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
-* subtype contains anySearch 0..1 and anySearchT 0..1 and anySearchS 0..1
-* subtype[anySearch] = http://hl7.org/fhir/restful-interaction#search // "search"
-* subtype[anySearchT] =  http://hl7.org/fhir/restful-interaction#search-type // "search-type"
-* subtype[anySearchS] =  http://hl7.org/fhir/restful-interaction#search-system // "search-system"
+* subtype contains anySearch 1..1
+* subtype[anySearch] from AllSearchVS (required)
 * action = #E
 * recorded 1..1
 // failures are recorded differently
@@ -116,9 +123,6 @@ Note: the pattern defined in DICOM and IHE have that the client is identified as
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
-
-
-
 
 
 

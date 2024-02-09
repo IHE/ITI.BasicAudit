@@ -1,3 +1,12 @@
+
+ValueSet: AllUpdateVS
+Title: "all Updates"
+Description: "ValueSet of the restful-interaction updates"
+* ^experimental = false
+* http://hl7.org/fhir/restful-interaction#update // "update"
+* http://hl7.org/fhir/restful-interaction#patch // "patch"
+
+
 Profile:        Update
 Parent:         AuditEvent
 Id:             IHE.BasicAudit.Update
@@ -20,9 +29,8 @@ A basic AuditEvent profile for when a RESTful Update action happens successfully
 * subtype ^slicing.discriminator.path = "$this"
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
-* subtype contains anyUpdate 0..1 and anyPatch 0..1
-* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#update // "update"
-* subtype[anyPatch] = http://hl7.org/fhir/restful-interaction#patch // "patch"
+* subtype contains anyUpdate 1..1
+* subtype[anyUpdate] from AllUpdateVS (required)
 * action = #U
 * recorded 1..1
 // failures are recorded differently

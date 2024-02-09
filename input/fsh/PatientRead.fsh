@@ -1,3 +1,9 @@
+ValueSet: AllReadVS
+Title: "all Reads"
+Description: "ValueSet of the restful-interaction reads"
+* ^experimental = false
+* http://hl7.org/fhir/restful-interaction#read // "read"
+* http://hl7.org/fhir/restful-interaction#vread // "vread"
 
 Profile:        Read
 Parent:         AuditEvent
@@ -20,9 +26,8 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * subtype ^slicing.discriminator.path = "$this"
 * subtype ^slicing.rules = #open // allow other codes
 * subtype 1..
-* subtype contains anyRead 0..1 and anyVread 0..1
-* subtype[anyRead] = http://hl7.org/fhir/restful-interaction#read // "read"
-* subtype[anyVread] = http://hl7.org/fhir/restful-interaction#vread // "vread"
+* subtype contains anyRead 1..1
+* subtype[anyRead] from AllReadVS (required)
 * action = #R
 * recorded 1..1
 // failures are recorded differently
@@ -109,5 +114,4 @@ Description: "The role that the given Object played in the Audit Event recorded"
 * http://terminology.hl7.org/CodeSystem/object-role#4 "Domain Resource"
 * http://terminology.hl7.org/CodeSystem/object-role#3 "Report"
 * http://terminology.hl7.org/CodeSystem/object-role#20 "Job"
-
 

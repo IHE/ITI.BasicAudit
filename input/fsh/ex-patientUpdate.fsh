@@ -54,7 +54,7 @@ Audit Example for a RESTful Update using Patch of a resource with a patient subj
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
 * action = #U
-* subtype[anyPatch] = http://hl7.org/fhir/restful-interaction#patch "patch"
+* subtype[anyUpdate] = http://hl7.org/fhir/restful-interaction#patch "patch"
 //* severity = #Informational
 * recorded = 2020-04-29T09:49:00.000Z
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 "Success"

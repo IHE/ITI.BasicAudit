@@ -1,37 +1,49 @@
 == Suppressed Messages ==
 
 # codesystems the build validation doesn't understand
-Code System URI 'urn:ihe:event-type-code' is unknown so the code cannot be validated
-Code System URI 'urn:ietf:rfc:1438' is unknown so the code cannot be validated
-Code System URI 'urn:oid:2.16.840.1.113883.6.96' is unknown so the code cannot be validated
-Code System URI 'urn:oid:2.16.840.1.113883.3.18.7.1' is unknown so the code cannot be validated
-Code System URI 'urn:oasis:names:tc:SAML:2.0:ac:classes' is unknown so the code cannot be validated
-Code System URI 'urn:ihe:iti:xca:2010' is unknown so the code cannot be validated
-WARNING: ValueSet/UserAgentTypesVS: ValueSet.compose[0].include[1]: Unknown System 'urn:ihe:iti:xca:2010' specified, so Concepts and Filters can't be checked (Details: Code System URI 'urn:ihe:iti:xca:2010' is unknown so the code cannot be validated)
-Error from server: Unable to provide support for code system urn:ihe:iti:xca:2010
+A definition for CodeSystem 'urn:ihe:event-type-code' could not be found, so the code cannot be validated
+A definition for CodeSystem 'urn:oid:2.16.840.1.113883.6.96' could not be found, so the code cannot be validated
+A definition for CodeSystem 'urn:oid:2.16.840.1.113883.3.18.7.1' could not be found, so the code cannot be validated
+A definition for CodeSystem 'urn:oasis:names:tc:SAML:2.0:ac:classes' could not be found, so the code cannot be validated
+A definition for CodeSystem 'urn:ihe:iti:xca:2010' could not be found, so the code cannot be validated
+Unknown System 'urn:ihe:iti:xca:2010' specified, so Concepts and Filters can't be checked (Details: A definition for CodeSystem 'urn:ihe:iti:xca:2010' could not be found, so the code cannot be validated)
+Error from http://tx.fhir.org/r4: Unable to provide support for code system urn:ihe:iti:xca:2010
 
 # dummy example uses dummy data
 The Measure 'http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Reporting' could not be resolved, so no validation can be performed against the Measure
 
 
 # Disclosure requires some data are indicated, but does not have a slice. Thus examples will not match a slice.
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-measurereport: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-measurereport: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-recipient: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.2
-INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-recipient-minCodes: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient|1.1.2
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-measurereport: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-measurereport: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-recipient: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-recipient-minCodes: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Recipient|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.subtype[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditPrivacyDisclosure-source2: AuditEvent.entity[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.PrivacyDisclosure.Source|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
 
 # oAuth examples also are Read examples, but given I can't indicate two profiles, then these info are okay
-INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque|1.1.2
-INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque|1.1.2
-INFORMATION: AuditEvent/ex-auditBasicReadOServer: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive|1.1.2
-INFORMATION: AuditEvent/ex-auditBasicReadOServer: AuditEvent.agent[3]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive|1.1.2
-INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal|1.1.2
-INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal|1.1.2
+INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditBasicReadOClient: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Opaque|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditBasicReadOServer: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditBasicReadOServer: AuditEvent.agent[3]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Comprehensive|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[1]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+INFORMATION: AuditEvent/ex-auditBasicReadOServerMin: AuditEvent.agent[2]: This element does not match any known slice defined in the profile https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.BasicAudit.OAUTHaccessTokenUse.Minimal|1.1.3 (this may not be a problem, but you should check that it's not intended to match a slice)
+
 
 # should, but don't, have an example of this
 WARNING: StructureDefinition.where(url = 'https://profiles.ihe.net/ITI/BALP/StructureDefinition/IHE.IUA.71'): The Implementation Guide contains no examples for this profile
 
+# understood these are draft
+Reference to experimental CodeSystem http://terminology.hl7.org/CodeSystem/extra-security-role-type|0.2.0
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/object-role|0.5.0
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/v3-ObservationValue|2.1.0
+Reference to draft ValueSet http://hl7.org/fhir/ValueSet/consent-category|4.0.1
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/v3-ActCode|2018-08-12
+Reference to trial-use CodeSystem http://terminology.hl7.org/CodeSystem/consentcategorycodes|4.0.1
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/audit-entity-type|0.5.0
+Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/provenance-participant-type|0.1.0
+Reference to trial-use ValueSet http://hl7.org/fhir/ValueSet/consent-category|4.0.1
+Reference to external ValueSet http://terminology.hl7.org/ValueSet/v3-ActConsentType|2014-03-26
+INFORMATION: Consent/ex-consent: Consent.category[0]: Reference to draft CodeSystem http://terminology.hl7.org/CodeSystem/consentcategorycodes|4.0.1

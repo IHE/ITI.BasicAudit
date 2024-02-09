@@ -2,6 +2,12 @@ Comments and questions are welcome as GitHub issues, FHIR chat [stream for the t
 
 # Significant Changes
 
+## Changes in 1.1.3 release
+
+- tighten constraints on .type
+- tighten constraints on required values
+- update for IG publisher warnings
+
 ## Changes in 1.1.2 release
 
 - add date and patient.identifier search parameter

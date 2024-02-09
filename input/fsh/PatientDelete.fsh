@@ -26,6 +26,7 @@ A basic AuditEvent profile for when a RESTful Delete action happens successfully
 * recorded 1..1
 // failures are recorded differently
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
+* outcome 1..
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
@@ -63,6 +64,7 @@ A basic AuditEvent profile for when a RESTful Delete action happens successfully
 * entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
 * entity[data].role from RestObjectRoles (required)
+* entity[data].role 1..
 * entity[data].what 1..1
 * entity[data].securityLabel 0..* // may contain the securityLabels on the resource
 * entity[data].securityLabel ^short = "may be replicated from the resource .meta.security"
@@ -91,5 +93,6 @@ A basic AuditEvent profile for when a RESTful Delete action happens successfully
     patient 1..1 
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
+* entity[patient].role 1..
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)

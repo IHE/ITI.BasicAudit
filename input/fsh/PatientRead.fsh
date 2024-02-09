@@ -32,6 +32,7 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * recorded 1..1
 // failures are recorded differently
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
+* outcome 1..
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
@@ -100,6 +101,7 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully, 
     patient 1..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
+* entity[patient].role 1..
 * entity[patient].what 1..1
 * entity[patient].what only Reference(Patient)
 

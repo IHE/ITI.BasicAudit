@@ -17,12 +17,14 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
   - the access token request
 """
 * type = http://dicom.nema.org/resources/ontology/DCM#110114 // "User Authentication"
+* type 1..
 * subtype 1..1
 * subtype = urn:ihe:event-type-code#ITI-71 // "Get Access Token"
 * action = #E
 * recorded 1..1
 // failures are recorded differently
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
+* outcome 1..
 * agent ^slicing.discriminator.type = #pattern
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #closed
@@ -58,6 +60,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
     token-response 0..1	
 * entity[token-request].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
 * entity[token-request].role = http://terminology.hl7.org/CodeSystem/object-role#24 // "Query"
+* entity[token-request].role 1..
 * entity[token-request].what 0..0
 * entity[token-request].query 1..1
 * entity[token-request].query ^short = "contains the http request in raw form, without the code_verifier value"
@@ -65,6 +68,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 
 * entity[token-response].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
 * entity[token-response].role = http://terminology.hl7.org/CodeSystem/object-role#13 // "Security Resource"
+* entity[token-response].role 1..
 * entity[token-response].what 1..1
 * entity[token-response].what ^short = "holds the token id issued" 
 * entity[token-response].detail 1..*

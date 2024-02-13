@@ -31,9 +31,9 @@ This guide is organized into four main sections:
 - [Artifacts](artifacts.html)
 - Other:
   - [Test Plan](testplan.html)
-  - [Changes to other documents](other.html)
+  - [Changes to Other IHE Profiles](other.html)
   - [Download and Analysis](download.html)
-  - [AuditEvent use in Other Profiles](appendix.html)
+  - [AuditEvent Use in IHE Profiles](appendix.html)
 
 See also the [table of contents](toc.html) and the index of [artifacts](artifacts.html) defined as part of this implementation guide.
 

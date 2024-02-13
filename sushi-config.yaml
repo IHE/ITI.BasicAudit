@@ -72,18 +72,17 @@ pages:
     title: BasicAudit Test Plan
     generation: markdown
   other.md:
-    title: Changes to Other Profiles
+    title: Changes to Other IHE Profiles
     generation: markdown
   download.md:
-    title: "Download and Analysis"
+    title: Download and Analysis
+    generation: markdown
+  appendix.md:
+    title: AuditEvent Use in IHE Profiles
     generation: markdown
   issues.md:
     title: BasicAudit Open and Closed issues
     generation: markdown
-  appendix.md:
-    title: AuditEvent use in IHE Implementation Guides
-    generation: markdown
-
 
 menu:
   BasicAudit Home: index.html
@@ -105,6 +104,6 @@ menu:
   Artifacts: artifacts.html
   Other: 
     Test Plan: testplan.html
-    Changes to Other Specifications: other.html
+    Changes to Other IHE Profiles: other.html
     Download and Analysis: download.html
-    AuditEvent use in Other Profiles: appendix.html
+    AuditEvent Use in IHE Profiles: appendix.html

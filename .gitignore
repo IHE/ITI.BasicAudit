@@ -7,7 +7,6 @@ template/
 input-cache/
 output/
 fsh-generated/
-/_updatePublisher.sh
 /_gencontinuous.bat
 /_gencontinuous.sh
 /_genonce.bat

@@ -2,7 +2,7 @@ The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Prof
 
 <div markdown="1" class="stu-note">
 
-| [Significant Changes, Open, and Closed Issues](issues.html) |
+| [Significant Changes, Open and Closed Issues](issues.html) |
 {: .grid}
 
 **[Search this IG](https://www.google.com/search?q=site%3Ahttps%3A%2F%2Fprofiles.ihe.net%2FITI%2FBasicAudit)**
@@ -11,31 +11,33 @@ The **Basic Audit Log Patterns (BALP) Implementation Guide** is a **Content Prof
 
 ### Organization of This Guide
 
-This guide is organized into four main sections:
+This guide is organized into following main sections:
 
 - Volume 1: Profiles
-  - [52 BasicAudit Introduction](volume-1.html)
-  - [52.1 BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
-  - [52.2 BasicAudit Actor Options](volume-1.html#1522-basicaudit-actor-options)
-  - [52.3 BasicAudit Required Groupings](volume-1.html#1523-basicaudit-required-actor-grouping)
-  - [52.4 BasicAudit Overview](volume-1.html#1524-basicaudit-overview)
-  - [52.5 BasicAudit Security Considerations](volume-1.html#1525-basicaudit-security-considerations)
-  - [52.6 BasicAudit Cross-Profile Considerations](volume-1.html#1526-basicaudit-cross-profile-considerations)
+  - [BasicAudit Introduction](volume-1.html)
+  - [BasicAudit Actors and Content](volume-1.html#1521-basicaudit-actors-and-content)
+  - [BasicAudit Actor Options](volume-1.html#1522-basicaudit-actor-options)
+  - [BasicAudit Required Groupings](volume-1.html#1523-basicaudit-required-actor-grouping)
+  - [BasicAudit Overview](volume-1.html#1524-basicaudit-overview)
+  - [BasicAudit Security Considerations](volume-1.html#1525-basicaudit-security-considerations)
+  - [BasicAudit Cross-Profile Considerations](volume-1.html#1526-basicaudit-cross-profile-considerations)
 - Volume 3: Content Section
-  - [5.7 Basic Audit Log Patterns](content.html)
-  - [5.7.3 RESTful activities](content.html#3573-restful-activities)
-  - [5.7.4 SAML Security Token](content.html#3574-saml-security-token)
-  - [5.7.5 OAuth Security Token](content.html#3575-oauth-security-token)
-  - [5.7.6 Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
-  - [5.7.7 Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message)
+  - [Basic Audit Log Patterns](content.html)
+    - [Scope](content.html#3571-scope)
+    - [Content](content.html#3572-content)
+    - [RESTful activities](content.html#3573-restful-activities)
+    - [SAML Security Token](content.html#3574-saml-security-token)
+    - [OAuth Security Token](content.html#3575-oauth-security-token)
+    - [Consent Authorized Decision Audit Message](content.html#3576-consent-authorized-decision-audit-message)
+    - [Privacy Disclosure Audit Message](content.html#3577-privacy-disclosure-audit-message)
 - [Artifacts](artifacts.html)
 - Other:
-  - [Test Plan](testplan.html)
-  - [Changes to Other IHE Profiles](other.html)
+  - [Changes to Other IHE Specifications](other.html)
   - [Download and Analysis](download.html)
   - [AuditEvent Use in IHE Profiles](appendix.html)
+  - [Test Plan](testplan.html)
 
-See also the [table of contents](toc.html) and the index of [artifacts](artifacts.html) defined as part of this implementation guide.
+See also the [Table of Contents](toc.html) and the index of [Artifacts](artifacts.html) defined as part of this implementation guide.
 
 ### Conformance Expectations
 

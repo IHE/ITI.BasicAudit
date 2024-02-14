@@ -37,7 +37,7 @@ This guide is organized into following main sections:
   - [AuditEvent Use in IHE Profiles](appendix.html)
   - [Test Plan](testplan.html)
 
-See also the [table of contents](toc.html) and the index of [artifacts](artifacts.html) defined as part of this implementation guide.
+See also the [Table of Contents](toc.html) and the index of [Artifacts](artifacts.html) defined as part of this implementation guide.
 
 ### Conformance Expectations
 

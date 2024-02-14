@@ -72,7 +72,7 @@ pages:
     title: BasicAudit Test Plan
     generation: markdown
   other.md:
-    title: Changes to Other IHE Profiles
+    title: Changes to Other IHE Specifications
     generation: markdown
   download.md:
     title: Download and Analysis
@@ -103,7 +103,7 @@ menu:
     -Privacy Disclosure Audit Message: content.html#3577-privacy-disclosure-audit-message
   Artifacts: artifacts.html
   Other: 
-    Test Plan: testplan.html
-    Changes to Other IHE Profiles: other.html
-    Download and Analysis: download.html
     AuditEvent Use in IHE Profiles: appendix.html
+    Changes to Other IHE Specifications: other.html
+    Download and Analysis: download.html    
+    Test Plan: testplan.html

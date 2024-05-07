@@ -1,5 +1,5 @@
 // This FSH file contains vocabulary unique to BasicAudit, that is used by many profiles. 
-// Some vocabulary are specific to one profile, and is thus defiend with that profile.
+// Some vocabulary are specific to one profile, and is thus defined with that profile.
 
 CodeSystem: BasicAuditEntityType
 Title: "Entity Types that are defined in IHE BasicAudit"
@@ -9,6 +9,8 @@ These are new codes used in BasicAudit IG, where AuditEvent.entity is used to ho
 * ^caseSensitive = true
 * ^experimental = false
 * #XrequestId "transport specific unique identifier where http X-Request-Id is used"
+* #Traceparent "transport specific unique identifier where http traceparent is used"
+* #Tracestate "transport specific unique identifier where http tracestate is used"
 
 
 

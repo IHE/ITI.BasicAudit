@@ -448,7 +448,7 @@ subject:organization-id | urn:oid:2.16.840.1.113883.3.333
 homeCommunityId | urn:oid:2.16.840.1.113883.3.333
 subject:role | 2.16.840.1.113883.6.96#307969004
 purposofuse | 2.16.840.1.113883.3.18.7.1#PUBLICHEALTH
-resource-id | 500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO
+resource-id | 500000000^^^&2.16.840.1.113883.3.333&ISO
 AuthzDecisionStatement | nesting
 .AccessConsentPolicy | urn:oid:1.2.3.4
 .InstanceAccessConsentPolicy | urn:oid:1.2.3.4.123456789
@@ -496,7 +496,7 @@ subject:organization-id | urn:oid:2.16.840.1.113883.3.333
 homeCommunityId | urn:oid:2.16.840.1.113883.3.333
 subject:role | 2.16.840.1.113883.6.96#307969004
 purposofuse | 2.16.840.1.113883.3.18.7.1#PUBLICHEALTH
-resource-id | 500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO
+resource-id | 500000000^^^&2.16.840.1.113883.3.333&ISO
 AuthzDecisionStatement | nesting
 .AccessConsentPolicy | urn:oid:1.2.3.4
 .InstanceAccessConsentPolicy | urn:oid:1.2.3.4.123456789
@@ -536,7 +536,7 @@ AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 * entity[consent].detail[+].type = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[=].valueString = "urn:oid:1.2.3.4"
 * entity[consent].detail[+].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
-* entity[consent].detail[=].valueString = "500000000^^^&amp;2.16.840.1.113883.3.333&amp;ISO"
+* entity[consent].detail[=].valueString = "500000000^^^&2.16.840.1.113883.3.333&ISO"
 
 
 

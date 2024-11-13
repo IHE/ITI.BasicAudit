@@ -12,7 +12,7 @@ Used when:
   - record only the last 32 characters of the oAuth token to limit risk or replay
   - presume 32 characters is enough to coorelate AuditEvent log entries
 """
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -35,7 +35,7 @@ Used when access to the oAuth token, but want to log minimal details.
 
 - oUser slice holds only the JWT ID
 """
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -76,7 +76,7 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
   - if roles or purposeOfUse are known record them here
   - the JWT ID is recorded in .policy. Expecting that during audit anaysis this ID can be looked up and dereferenced
 """
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 //* agent 1..2

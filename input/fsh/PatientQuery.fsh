@@ -46,7 +46,7 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
 // failures are recorded differently
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
 * outcome 1..
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent 2..
@@ -71,7 +71,7 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
 * agent[user].network 0..0 // users are not network devices
 * agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity 1..
@@ -115,7 +115,7 @@ A basic AuditEvent profile for when a RESTful Query action happens successfully,
 
 Note: the pattern defined in DICOM and IHE have that the client is identified as the Source Role ID, and the server is identified as the Destination Role ID. This may not be so obvious, as the data actually flows the opposite direction. This pattern is established and thus followed here.
 """
-//* entity ^slicing.discriminator.type = #pattern
+//* entity ^slicing.discriminator.type = #value
 //* entity ^slicing.discriminator.path = "type"
 //* entity ^slicing.rules = #open
 * entity 1..

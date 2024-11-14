@@ -122,7 +122,7 @@ note: this profile records minimal information from the SAML access token, which
 """
 * agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -179,7 +179,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 """
 * agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
@@ -250,7 +250,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[homeCommunityId].network 0..0 // users are not network devices
 * agent[homeCommunityId].purposeOfUse 0..0
 
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity contains 
@@ -258,7 +258,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
-* entity[consent].detail ^slicing.discriminator.type = #pattern
+* entity[consent].detail ^slicing.discriminator.type = #value
 * entity[consent].detail ^slicing.discriminator.path = "type"
 * entity[consent].detail ^slicing.rules = #open
 * entity[consent].detail contains 

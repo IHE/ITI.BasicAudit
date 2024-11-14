@@ -65,7 +65,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * purposeOfEvent MS // why was the data disclosed
 // source is already required, see invariant val-audit-source use
 * agent 2..*
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent ^slicing.description = "client, user, and organization requesting authorization; and authoizer"
@@ -119,7 +119,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * agent[authorizer].network 0..0 // users are not network devices
 * agent[authorizer].purposeOfUse 0..0
 * entity 2..*
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #closed
 * entity ^slicing.description = "patient and submission set involved"

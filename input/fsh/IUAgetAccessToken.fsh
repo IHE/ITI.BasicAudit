@@ -25,7 +25,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 // failures are recorded differently
 * outcome = http://terminology.hl7.org/CodeSystem/audit-event-outcome#0 // "Success"
 * outcome 1..
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #closed
 * agent 2..3
@@ -51,7 +51,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 * agent[user].network 0..0 // users are not network devices
 * agent[user].purposeOfUse MS // if the OAuth token includes a PurposeOfUse it is recorded here
 * source MS // what agent recorded the event. Likely the client or server but might be an intermediary
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "role"
 * entity ^slicing.rules = #closed
 * entity 1..1

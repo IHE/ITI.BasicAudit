@@ -29,7 +29,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * purposeOfEvent MS // why was the data disclosed
 // source is already required, see invariant val-audit-source use
 * agent 2..*
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent ^slicing.description = "source, recipient, and possibly the user who participated"
@@ -52,7 +52,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * agent[authorizer].type = SCT#429577009 // "Patient Advocate"
 * agent[authorizer].who 1..1
 * entity 2..*
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity ^slicing.description = "patient and some data involved"
@@ -102,7 +102,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * purposeOfEvent MS // why was the data disclosed
 // source is already required, see invariant val-audit-source use
 * agent 2..*
-* agent ^slicing.discriminator.type = #pattern
+* agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent ^slicing.description = "source, recipient, and possibly the user who participated"
@@ -125,7 +125,7 @@ Defines constraints on the AuditEvent Resource to record when a Privacy Disclosu
 * agent[authorizer].type = SCT#429577009 // "Patient Advocate"
 * agent[authorizer].who 1..1
 * entity 2..*
-* entity ^slicing.discriminator.type = #pattern
+* entity ^slicing.discriminator.type = #value
 * entity ^slicing.discriminator.path = "type"
 * entity ^slicing.rules = #open
 * entity ^slicing.description = "patient and some data involved"

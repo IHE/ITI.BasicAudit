@@ -65,9 +65,10 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 * entity contains 
 	transaction 0..1 and
     data 1..1
-* entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].type.system = "https://profiles.ihe.net/ITI/BALP/CodeSystem/BasicAuditEntityType"
+* entity[transaction].type from BasicAuditEntityTypesVS (required)
 * entity[transaction].what.identifier.value 1..1
-* entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
+* entity[transaction].what.identifier.value ^short = "the value of the transaction identifier"
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
 * entity[data].role from RestObjectRoles (required)
 * entity[data].what 1..1

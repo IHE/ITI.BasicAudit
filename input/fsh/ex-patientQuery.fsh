@@ -116,7 +116,7 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 - user is John Smith
 - query is for an Observation for given patient
 - patient is specified
-- X-Request-Id is specified
+- traceparent is specified
 """
 * meta.security = http://terminology.hl7.org/CodeSystem/v3-ActReason#HTEST
 * type = http://terminology.hl7.org/CodeSystem/audit-event-type#rest "Restful Operation"
@@ -148,11 +148,11 @@ Audit Example for a RESTful Query using GET with a patient subject, recorded by 
 * entity[query].description = """
 GET test.fhir.org/r4/Observation?patient=ex-patient&_lastUpdated=gt2020-11-06T21:52:30.300Z&_sort=_lastUpdated&_count=10
 Accept: application/fhir+json; fhirVersion=4.0
-X-Request-Id: cc6d168e-5871-11ec-bf63-0242ac130002
+traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
 """
-* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvT2JzZXJ2YXRpb24/cGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2NvdW50PTEwCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKWC1SZXF1ZXN0LUlkOiBjYzZkMTY4ZS01ODcxLTExZWMtYmY2My0wMjQyYWMxMzAwMDI="
-* entity[transaction].type = BasicAuditEntityType#XrequestId
-* entity[transaction].what.identifier.value = "cc6d168e-5871-11ec-bf63-0242ac130002"
+* entity[query].query = "R0VUIHRlc3QuZmhpci5vcmcvcjQvT2JzZXJ2YXRpb24/cGF0aWVudD1leC1wYXRpZW50Jl9sYXN0VXBkYXRlZD1ndDIwMjAtMTEtMDZUMjE6NTI6MzAuMzAwWiZfc29ydD1fbGFzdFVwZGF0ZWQmX2NvdW50PTEwCkFjY2VwdDogYXBwbGljYXRpb24vZmhpcitqc29uOyBmaGlyVmVyc2lvbj00LjAKdHJhY2VwYXJlbnQ6IDAwLTBhZjc2NTE5MTZjZDQzZGQ4NDQ4ZWIyMTFjODAzMTljLWI3YWQ2YjcxNjkyMDMzMzEtMDE="
+* entity[transaction].type = BasicAuditEntityType#Traceparent
+* entity[transaction].what.identifier.value = "00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01"
 
 
 

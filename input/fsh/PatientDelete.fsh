@@ -7,7 +7,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Delete action happens successfully.
 
 - Given a Resource Delete is requested 
-- And that resource has does not have a Patient subject or is otherwise associated with a Patient
+- And that resource has does not have a [Patient subject](volume-1.html#152416-patient-as-a-subject) or is otherwise associated with a Patient
   - when the resource is Patient specific then [PatientDelete](StructureDefinition-IHE.BasicAudit.PatientDelete.html) is used
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
@@ -75,7 +75,7 @@ Parent:         Delete
 Id:             IHE.BasicAudit.PatientDelete
 Title:          "Basic AuditEvent for a successful Delete with Patient"
 Description:    """
-A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable Patient subject associated with the Resource being deleted.
+A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable [Patient subject](volume-1.html#152416-patient-as-a-subject) associated with the Resource being deleted.
 
 - Given a Resource Delete is requested 
 - And that resource has a Patient subject or is otherwise associated with a Patient

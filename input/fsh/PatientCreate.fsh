@@ -7,7 +7,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Create action happens successfully.
 
 - Given a Resource Create is requested 
-- And that resource does not have a Patient subject or is otherwise associated with a Patient
+- And that resource does not have a [Patient subject](volume-1.html#152416-patient-as-a-subject) or is otherwise associated with a Patient
   - when the resource is Patient specific then [PatientCreate](StructureDefinition-IHE.BasicAudit.PatientCreate.html) is used
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
@@ -74,7 +74,7 @@ Parent:         Create
 Id:             IHE.BasicAudit.PatientCreate
 Title:          "Basic AuditEvent for a successful Create with known Patient subject"
 Description:    """
-A basic AuditEvent profile for when a RESTful Create action happens successfully, and where there is an identifiable Patient subject associated with the create of the Resource.
+A basic AuditEvent profile for when a RESTful Create action happens successfully, and where there is an identifiable [Patient subject](volume-1.html#152416-patient-as-a-subject) associated with the create of the Resource.
 
 - Given a Resource Create is requested 
 - And that resource has a Patient subject or is otherwise associated with a Patient

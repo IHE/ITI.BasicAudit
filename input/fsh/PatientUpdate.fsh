@@ -15,7 +15,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Update action happens successfully.
 
 - Given a Resource Update is requested 
-- And that resource does not have a Patient subject or is otherwise associated with a Patient
+- And that resource does not have a [Patient subject](volume-1.html#152416-patient-as-a-subject) or is otherwise associated with a Patient
   - when the resource is Patient specific then [PatientUpdate](StructureDefinition-IHE.BasicAudit.PatientUpdate.html) is used
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
@@ -87,7 +87,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Update action happens successfully, and where there is an identifiable Patient subject associated with the Update of the Resource.
 
 - Given a Resource Update is requested 
-- And that resource has a Patient subject or is otherwise associated with a Patient
+- And that resource has a [Patient subject](volume-1.html#152416-patient-as-a-subject) or is otherwise associated with a Patient
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
 - When successful

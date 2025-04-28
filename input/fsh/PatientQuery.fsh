@@ -17,7 +17,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Query / Search action happens successfully.
 
 - Given a RESTful Query is requested
-- And the request does not have a Patient subject indicated
+- And the request does not have a [Patient subject](volume-1.html#152416-patient-as-a-subject) indicated
   - The requestor logging the event would potentially not know they have requested Patient specific data
   - The data objects may not be patient specific kind of objects
   - when the request is Patient specific then [PatientQuery](StructureDefinition-IHE.BasicAudit.PatientQuery.html) is used
@@ -100,8 +100,8 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).
 
 - Given a RESTful Query is requested
-- And the request is for a Patient subject indicated
-  - The requestor includes a Patient id or identifier as a query parameter
+- And the request is for a [Patient subject](volume-1.html#152416-patient-as-a-subject) indicated
+  - The requestor includes a Patient id or identifier as a query parameter, or
   - The requestor security context is limited to a given Patient identity
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)

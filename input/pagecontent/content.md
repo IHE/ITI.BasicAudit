@@ -30,9 +30,13 @@ Execute (search and query) | [Query](StructureDefinition-IHE.BasicAudit.Query.ht
 
 An example of an auditable event being recorded by the client and server is represented by the Create examples. 
 
-#### 3:5.7.3.1 X-Request-Id header 
+#### 3:5.7.3.1 Transaction identifiers
 
-Where it is known that an http RESTful transaction included an X-Request-Id, that value should be recorded in an .entity dedicated to X-Request-Id. This ID can be used to correlated AuditEvents from client and server, and may aid with correlation on further activities recorded caused by the transaction. This means that the .entity holding the X-Request-Id may appear in AuditEvents beyond those defined here.
+When a transaction contains an identifier (such as the `X-Request-Id` and `traceparent`/`tracestate` HTTP headers), that
+value should be recorded in an .entity dedicated to transaction identifiers. This ID can be used to correlated
+AuditEvents from client and server, and may aid with correlation on further activities recorded caused by the
+transaction. This means that the .entity holding the transaction identifier may appear in AuditEvents beyond those 
+defined here.
 
 ### 3:5.7.4 SAML Security Token
 

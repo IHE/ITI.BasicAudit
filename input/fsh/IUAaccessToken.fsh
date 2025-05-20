@@ -17,6 +17,7 @@ Used when:
 * agent ^slicing.rules = #open
 * agent contains 
     oUser 1..
+* agent[oUser].type 1..1
 * agent[oUser].type = UserAgentTypes#UserOauthAgent
 * agent[oUser] ^short = "other elements may be filled in as needed."
 * agent[oUser].requestor = true
@@ -40,6 +41,7 @@ Used when access to the oAuth token, but want to log minimal details.
 * agent ^slicing.rules = #open
 * agent contains 
     oUser 1..
+* agent[oUser].type 1..1
 * agent[oUser].type = UserAgentTypes#UserOauthAgent
 * agent[oUser] ^short = "other elements may be filled in as needed."
 * agent[oUser].requestor = true
@@ -83,6 +85,7 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 * agent contains 
     oClient 1..1 and 
     oUser 0..1
+* agent[oClient].type 1..1
 * agent[oClient].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[oClient].who 1..1 
 * agent[oClient].who ^short = "May be a Resource, but likely just an identifier from the OAuth token"
@@ -94,6 +97,7 @@ A basic AuditEvent profile for when an activity was authorized by an IUA access 
 * agent[oClient].network 0..1 MS 
 * agent[oClient].network ^short = "The client as known by TCP connection information"
 * agent[oClient].media 0..0 
+* agent[oUser].type 1..1
 * agent[oUser].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[oUser].who 1..1 
 * agent[oUser].who ^short = "May be a Resource, but likely just an identifier from the OAuth token"

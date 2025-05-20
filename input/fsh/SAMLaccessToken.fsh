@@ -128,6 +128,7 @@ note: this profile records minimal information from the SAML access token, which
 * agent contains 
     user 1..
 * agent[user].type = UserAgentTypes#UserSamlAgent
+* agent[user].type 1..1
 * agent[user].who 1..1 
 * agent[user].who.identifier.system 0..1 MS
 * agent[user].who.identifier.system ^short = "SAML Issuer"
@@ -186,6 +187,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
     user 1.. and
 	userorg 0..* and
 	homeCommunityId 0..*
+* agent[user].type 1..1
 * agent[user].type = UserAgentTypes#UserSamlAgent
 * agent[user].who 1..1 
 * agent[user].who.identifier.system 0..1 MS
@@ -212,20 +214,23 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 	subject-id 0..* and
 	npi 0..* and
 	provider-id 0..*
+* agent[user].extension[otherId][subject-id].valueIdentifier.type 1..1
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][subject-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][subject-id].valueIdentifier.value 1..1
 * agent[user].extension[otherId][subject-id].valueIdentifier.value ^short = "SAML Attribute subject-id"
+* agent[user].extension[otherId][npi].valueIdentifier.type 1..1
 * agent[user].extension[otherId][npi].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][npi].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][npi].valueIdentifier.value 1..1
 * agent[user].extension[otherId][npi].valueIdentifier.value ^short = "SAML Attribute npi"
+* agent[user].extension[otherId][provider-id].valueIdentifier.type 1..1
 * agent[user].extension[otherId][provider-id].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1
 * agent[user].extension[otherId][provider-id].valueIdentifier.value ^short = "SAML Attribute provider-identifier"
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 // note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
-* agent[userorg].who.display 1..1 MS
+* agent[userorg].who.display 1..1
 * agent[userorg].who.display ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization"
-* agent[userorg].who.identifier.value 1..1 MS
+* agent[userorg].who.identifier.value 1..1
 * agent[userorg].who.identifier.value ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization-id"
 * agent[userorg].requestor = false
 * agent[userorg].role 0..0
@@ -237,8 +242,9 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse 0..0
 
+* agent[homeCommunityId].type 1..1
 * agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
-* agent[homeCommunityId].who.identifier 1..1 MS
+* agent[homeCommunityId].who.identifier 1..1
 * agent[homeCommunityId].who.identifier ^short = "homeCommunityId"
 * agent[homeCommunityId].requestor = false
 * agent[homeCommunityId].role 0..0
@@ -255,6 +261,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity ^slicing.rules = #open
 * entity contains 
 	consent 0..*
+* entity[consent].type 1..1
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
@@ -264,9 +271,11 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].detail contains 
 	acp 0..1 and
 	patient-id 0..1
+* entity[consent].detail[acp].type 1..1
 * entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[acp] ^short = "Home Community ID where the Consent is."
 * entity[consent].detail[acp].value[x] only string
+* entity[consent].detail[patient-id].type 1..1
 * entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[patient-id] ^short = "The Patient Identity where the Consent is."
 * entity[consent].detail[patient-id].value[x] only string

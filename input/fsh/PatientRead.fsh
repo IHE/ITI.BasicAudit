@@ -42,14 +42,17 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
     server 1..1 and 
     user 0..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110152 // "Destination Role ID"
+* agent[client].type 1..1
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
 * agent[client].media 0..0 
 * agent[server].type = http://dicom.nema.org/resources/ontology/DCM#110153 // "Source Role ID"
+* agent[server].type 1..1
 * agent[server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
 * agent[server].network 1..1 // as known by TCP connection information
 * agent[server].media 0..0 
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
+* agent[user].type 1..1
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
 * agent[user].role MS // if the OAuth token includes any roles, they are recorded here
@@ -66,9 +69,11 @@ A basic AuditEvent profile for when a RESTful Read action happens successfully.
 	transaction 0..1 and
     data 1..1
 * entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].type 1..1
 * entity[transaction].what.identifier.value 1..1
 * entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
 * entity[data].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+* entity[data].type 1..1
 * entity[data].role from RestObjectRoles (required)
 * entity[data].what 1..1
 * entity[data].securityLabel ^short = "may contain the security labels on the resource returned"

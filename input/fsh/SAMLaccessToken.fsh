@@ -120,8 +120,8 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
-* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent.extension contains OtherId named otherId 0..* MS
+* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open

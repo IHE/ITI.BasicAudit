@@ -208,6 +208,8 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 // Thanks to Chris Moesel for figuring out how to slice an extension
 // Note: slicing.discriminator[0] is the standard extension discriminator (#value / url)
+* agent[user].extension ^slicing.discriminator[0].type = #value
+* agent[user].extension ^slicing.discriminator[=].path = "url"
 * agent[user].extension ^slicing.discriminator[1].type = #value
 * agent[user].extension ^slicing.discriminator[=].path = "value.ofType(Identifier).type"
 * agent[user].extension[otherId] contains 

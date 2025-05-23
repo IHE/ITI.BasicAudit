@@ -74,6 +74,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	user 1..1 and
 	userorg 1..1 and
 	authorizer 1..1
+* agent[client].type 1..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
@@ -84,6 +85,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * agent[client].policy MS // input client token id
 * agent[client].media 0..0 
 * agent[client].purposeOfUse 0..0 
+* agent[user].type 1..1
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
@@ -95,6 +97,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * agent[user].media 0..0 // media is physical storage media identification
 * agent[user].network 0..0 // users are not network devices
 * agent[user].purposeOfUse MS // if the requested purposeOfUse is applied to just the user
+* agent[userorg].type 1..1
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
 * agent[userorg].who 1..1 MS
 * agent[userorg].requestor = false
@@ -106,6 +109,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * agent[userorg].media 0..0 // media is physical storage media identification
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse MS // if the request purposeOfUse is applied to the whole organization
+* agent[authorizer].type 1..1
 * agent[authorizer].type = http://terminology.hl7.org/CodeSystem/extra-security-role-type#authserver // "authorization server"
 * agent[authorizer] obeys val-audit-source
 * agent[authorizer].who 1..1
@@ -127,6 +131,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 	patient 1..1 and
 	consent 1..* and
 	token 0..1
+* entity[patient].type 1..1
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
 * entity[patient].role 1..
@@ -134,6 +139,7 @@ An AduitEvent recording a permit authorization decision by a Consent Decision Se
 * entity[patient].what only Reference(Patient)
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
 * entity[consent].what 1..1 MS // consent identifier
+* entity[token].type 1..1
 * entity[token].type = UserAgentTypes#UserOauthAgent
 * entity[token].what 1..1
 * entity[token].what.identifier 1..1

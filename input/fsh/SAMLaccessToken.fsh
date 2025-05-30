@@ -126,8 +126,6 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
-* agent.extension contains OtherId named otherId 0..* MS
-* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
@@ -196,6 +194,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[user].role ^short = "SAML subject:role(s)"
 // Thanks to Chris Moesel for figuring out how to slice an extension
 // Note: slicing.discriminator[0] is the standard extension discriminator (#value / url)
+* agent[user].extension contains OtherId named otherId 0..* MS
 * agent[user].extension ^slicing.discriminator[0].type = #value
 * agent[user].extension ^slicing.discriminator[=].path = "url"
 * agent[user].extension ^slicing.discriminator[1].type = #value

@@ -17,6 +17,8 @@ The Vocabulary is not defined here. Some sources of vocabulary:
 """
 * ^context[+].type = #element
 * ^context[=].expression = "AuditEvent.agent"
+* ^context[+].type = #element
+* ^context[=].expression = "Identifier"
 * value[x] only CodeableConcept
 * valueCodeableConcept from 	http://terminology.hl7.org/ValueSet/v3-SecurityTrustAssuranceObservationValue (preferred)
 * valueCodeableConcept 1..1
@@ -31,6 +33,10 @@ Description: "Carries other identifiers are known for an agent."
 * ^context[=].expression = "AuditEvent.agent"
 * value[x] only Identifier
 * valueIdentifier 1..1
+* valueIdentifier.type 1..1
+* valueIdentifier.type from OtherIdentifierTypesVS
+* valueIdentifier.value 1..1
+
 
 CodeSystem:  OtherIdentifierTypes 
 Title: "OtherId Identifier Types"
@@ -120,14 +126,13 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 
 note: this profile records minimal information from the SAML access token, which presumes that use of the AuditEvent at a later time will be able to resolve the given information.
 """
-* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
-* agent.extension contains OtherId named otherId 0..* MS
 * agent ^slicing.discriminator.type = #value
 * agent ^slicing.discriminator.path = "type"
 * agent ^slicing.rules = #open
 * agent contains 
     user 1..
 * agent[user].type = UserAgentTypes#UserSamlAgent
+* agent[user].type 1..1
 * agent[user].who 1..1 
 * agent[user].who.identifier.system 0..1 MS
 * agent[user].who.identifier.system ^short = "SAML Issuer"
@@ -136,7 +141,7 @@ note: this profile records minimal information from the SAML access token, which
 // TODO should who.reference and/or type be 0.. and MS?
 * agent[user].requestor = true
 * agent[user].role 0.. // discouraged in minimal
-* agent[user].altId 0.. // discouraged, use otherId extension
+* agent[user].altId 0..0 // discouraged, use otherId extension
 * agent[user].name 0..1 // not sure where you would get it from
 * agent[user].policy 1..1 MS
 * agent[user].policy ^short = "SAML token ID"
@@ -148,8 +153,8 @@ note: this profile records minimal information from the SAML access token, which
 
 
 Profile:        SAMLaccessTokenUseComprehensive
-//Parent:         IHE.BasicAudit.SAMLaccessTokenUse.Minimal
-Parent:         AuditEvent
+Parent:         IHE.BasicAudit.SAMLaccessTokenUse.Minimal
+//Parent:         AuditEvent
 Id:             IHE.BasicAudit.SAMLaccessTokenUse.Comprehensive
 Title:          "Basic AuditEvent pattern for when an activity was authorized by an SAML access token Comprehensive"
 Description:    """
@@ -164,9 +169,9 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ID                           | agent[user].policy
 | Issuer                       | agent[user].who.identifier.system
 | Subject.NameID               | agent[user].who.identifier.value
+| AuthnContextClassRef         | agent[user].extension[assuranceLevel]
 | ~subject:role                | agent[user].role
 | ~subject:purposeofuse        | agent[user].purposeOfUse
-| AuthnContextClassRef         | agent[user].extension[assuranceLevel]
 | ~subject:subject-id          | agent[user].extension[otherId][subject-id].value
 | ~subject:npi                 | agent[user].extension[otherId][npi].value
 | ~subject:provider-identifier | agent[user].extension[otherId][provider-id].value
@@ -177,55 +182,45 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 | ~xua:2012:acp                | entity[consent].detail.valueString 
 | ~resource:resource-id        | entity[consent-patient].what.identifier.value
 """
-* agent.extension contains AssuranceLevel named assuranceLevel 0..* MS
-* agent.extension contains OtherId named otherId 0..* MS
-* agent ^slicing.discriminator.type = #value
-* agent ^slicing.discriminator.path = "type"
-* agent ^slicing.rules = #open
+// building on the minimal profile where user is defined
 * agent contains 
-    user 1.. and
+//    user 1.. and
 	userorg 0..* and
 	homeCommunityId 0..*
-* agent[user].type = UserAgentTypes#UserSamlAgent
-* agent[user].who 1..1 
-* agent[user].who.identifier.system 0..1 MS
-* agent[user].who.identifier.system ^short = "SAML Issuer"
-* agent[user].who.identifier.value 1..1 MS
-* agent[user].who.identifier.value ^short = "SAML Subject.NameID"
-* agent[user].requestor = true
+
+// Add these to the user slice
+* agent[user].extension contains AssuranceLevel named assuranceLevel 0..* MS
 * agent[user].role MS 
 * agent[user].role ^short = "SAML subject:role(s)"
-* agent[user].altId 0..0 // discouraged
-* agent[user].name 0..1 // not sure where you would get it from
-* agent[user].policy 1..1 MS
-* agent[user].policy ^short = "SAML token ID"
-* agent[user].media 0..0 // media is physical storage media identification
-* agent[user].network 0..0 // users are not network devices
-* agent[user].purposeOfUse MS 
-* agent[user].purposeOfUse ^short = "SAML subject:purposeofuse"
-
 // Thanks to Chris Moesel for figuring out how to slice an extension
 // Note: slicing.discriminator[0] is the standard extension discriminator (#value / url)
+* agent[user].extension contains OtherId named otherId 0..* MS
+* agent[user].extension ^slicing.discriminator[0].type = #value
+* agent[user].extension ^slicing.discriminator[=].path = "url"
 * agent[user].extension ^slicing.discriminator[1].type = #value
 * agent[user].extension ^slicing.discriminator[=].path = "value.ofType(Identifier).type"
 * agent[user].extension[otherId] contains 
 	subject-id 0..* and
 	npi 0..* and
 	provider-id 0..*
+* agent[user].extension[otherId][subject-id].valueIdentifier.type 1..1
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
-* agent[user].extension[otherId][subject-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][subject-id].valueIdentifier.value 1..1
 * agent[user].extension[otherId][subject-id].valueIdentifier.value ^short = "SAML Attribute subject-id"
+* agent[user].extension[otherId][npi].valueIdentifier.type 1..1
 * agent[user].extension[otherId][npi].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
-* agent[user].extension[otherId][npi].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][npi].valueIdentifier.value 1..1
 * agent[user].extension[otherId][npi].valueIdentifier.value ^short = "SAML Attribute npi"
+* agent[user].extension[otherId][provider-id].valueIdentifier.type 1..1
 * agent[user].extension[otherId][provider-id].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#PRN
-* agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1 MS
+* agent[user].extension[otherId][provider-id].valueIdentifier.value 1..1
 * agent[user].extension[otherId][provider-id].valueIdentifier.value ^short = "SAML Attribute provider-identifier"
+
 * agent[userorg].type = http://terminology.hl7.org/CodeSystem/v3-RoleClass#PROV // "healthcare provider"
-// note that there might need to be different types when other organation types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
-* agent[userorg].who.display 1..1 MS
+// note that there might need to be different types when other organization types get involved, but somehow the SAML would need to indicate it is not a healthcare provider org.
+* agent[userorg].who.display 1..1
 * agent[userorg].who.display ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization"
-* agent[userorg].who.identifier.value 1..1 MS
+* agent[userorg].who.identifier.value 1..1
 * agent[userorg].who.identifier.value ^short = "SAML Attribute urn:oasis:names:tc:xspa:1.0:subject:organization-id"
 * agent[userorg].requestor = false
 * agent[userorg].role 0..0
@@ -237,8 +232,9 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * agent[userorg].network 0..0 // users are not network devices
 * agent[userorg].purposeOfUse 0..0
 
+* agent[homeCommunityId].type 1..1
 * agent[homeCommunityId].type = urn:ihe:iti:xca:2010#homeCommunityId
-* agent[homeCommunityId].who.identifier 1..1 MS
+* agent[homeCommunityId].who.identifier 1..1
 * agent[homeCommunityId].who.identifier ^short = "homeCommunityId"
 * agent[homeCommunityId].requestor = false
 * agent[homeCommunityId].role 0..0
@@ -255,6 +251,7 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity ^slicing.rules = #open
 * entity contains 
 	consent 0..*
+* entity[consent].type 1..1
 * entity[consent].type = http://hl7.org/fhir/resource-types#Consent // "Consent"
 * entity[consent].what.identifier 0..1 MS // consent identifier
 * entity[consent].what.identifier ^short = "BPPC Patient Privacy Policy Acknowledgement Document unique id" 
@@ -264,9 +261,11 @@ The following table uses a short-hand for the SAML fields and FHIR AuditEvent el
 * entity[consent].detail contains 
 	acp 0..1 and
 	patient-id 0..1
+* entity[consent].detail[acp].type 1..1
 * entity[consent].detail[acp].type = "urn:ihe:iti:xua:2012:acp"
 * entity[consent].detail[acp] ^short = "Home Community ID where the Consent is."
 * entity[consent].detail[acp].value[x] only string
+* entity[consent].detail[patient-id].type 1..1
 * entity[consent].detail[patient-id].type = "urn:oasis:names:tc:xacml:2.0:resource:resource-id"
 * entity[consent].detail[patient-id] ^short = "The Patient Identity where the Consent is."
 * entity[consent].detail[patient-id].value[x] only string
@@ -387,11 +386,10 @@ assurance | authenticated AAL 4
 * agent[user].type.coding[+] = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP "information recipient"
 * agent[user].who.identifier.value = "05086900124"
 * agent[user].who.identifier.system = "https://sts.sykehuspartner.no"
+* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
 * agent[user].requestor = true
 * agent[user].policy = "XC4WdYS0W5bjsMGc5Ue6tClD_5U"
 * agent[user].purposeOfUse = http://terminology.hl7.org/CodeSystem/v3-ActReason#PATRQT
-* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = http://terminology.hl7.org/CodeSystem/v3-ObservationValue#LOAAP4
-//TODO This throws an error in validation that I can't figure out https://chat.fhir.org/#narrow/stream/215610-shorthand/topic/slicing.20an.20extension.20on.20a.20slice
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][subject-id].valueIdentifier.value = "JohnDoe"
 * agent[user].extension[otherId][npi].valueIdentifier.type = http://terminology.hl7.org/CodeSystem/v2-0203#NPI
@@ -518,10 +516,10 @@ AuthnContextClassRef | urn:oasis:names:tc:SAML:2.0:ac:classes:X509
 // given that there is no known LDAP hostname, we use the ldap:/// form
 // the string must also be url escaped. 
 * agent[user].who.identifier.system = "ldap:///CN%3DSAML%20User%2COU%3DHarris%2CO%3DHITS%2CL%3DMelbourne%2CST%3DFL%2CC%3DUS"
+* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
 * agent[user].policy = "_d87f8adf-711a-4545-bf77-ff8517b498e4"
 * agent[user].role = urn:oid:2.16.840.1.113883.6.96#307969004 "Public health officier"
 * agent[user].purposeOfUse = urn:oid:2.16.840.1.113883.3.18.7.1#PUBLICHEALTH "Uses and disclosures for public health activities."
-* agent[user].extension[assuranceLevel].valueCodeableConcept.coding = urn:oasis:names:tc:SAML:2.0:ac:classes#X509
 * agent[user].extension[otherId][subject-id].valueIdentifier.type = OtherIdentifierTypes#SAML-subject-id
 * agent[user].extension[otherId][subject-id].valueIdentifier.value = "Karl S Skagerberg"
 

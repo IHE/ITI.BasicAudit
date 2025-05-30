@@ -1,13 +1,12 @@
 == Suppressed Messages ==
 
-# codesystems the build validation doesn't understand
+# codesystems the build validation doesn't understand, they are all good.
 A definition for CodeSystem 'urn:ihe:event-type-code' could not be found, so the code cannot be validated
 A definition for CodeSystem 'urn:oid:2.16.840.1.113883.6.96' could not be found, so the code cannot be validated
 A definition for CodeSystem 'urn:oid:2.16.840.1.113883.3.18.7.1' could not be found, so the code cannot be validated
 A definition for CodeSystem 'urn:oasis:names:tc:SAML:2.0:ac:classes' could not be found, so the code cannot be validated
 Error from https://tx.fhir.org/r4: Unable to provide support for code system urn:ihe:iti:xca:2010
 A definition for CodeSystem 'urn:ihe:iti:xca:2010' could not be found, so the code cannot be validated
-Unknown System 'urn:ihe:iti:xca:2010' specified, so Concepts and Filters can't be checked (Details: A definition for CodeSystem 'urn:ihe:iti:xca:2010' could not be found, so the code cannot be validated)
 
 # dummy example uses dummy data
 The Measure 'http://example.org/fhir/uv/saner/Measure/FEMADailyHospitalCOVID19Reporting' could not be resolved, so no validation can be performed against the Measure

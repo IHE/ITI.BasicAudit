@@ -82,7 +82,7 @@ Title:          "Audit Event for Privacy Disclosure at Source"
 Description:    """
 Defines constraints on the AuditEvent Resource to record when a Privacy Disclosure happens at the Source.
 
-- Import event
+- Export event
 - shall have source of itself
 - shall have a source agent
 - shall have a recipient agent

@@ -44,7 +44,7 @@ parameters:  # see https://confluence.hl7.org/display/FHIR/Implementation+Guide+
 #    - input/pagecontent
 #    - fsh-generated/includes
   show-inherited-invariants: 'false'
-  usage-stats-opt-out: 'false'
+#  usage-stats-opt-out: 'false'
   logging: progress
   shownav: 'true'
   active-tables: 'false'

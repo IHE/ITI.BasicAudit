@@ -100,7 +100,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Query action happens successfully, and where there is an identifiable Patient subject associated with the read Resource(s).
 
 - Given a RESTful Query is requested
-- And the request is for a Patient subject indicated
+- And the request is for a [Patient subject](volume-1.html#152416-patient-as-a-subject) indicated
   - The requestor includes a Patient id or identifier as a query parameter
   - The requestor security context is limited to a given Patient identity
 - And the request is authorized

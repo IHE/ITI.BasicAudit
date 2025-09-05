@@ -78,7 +78,7 @@ Description:    """
 A basic AuditEvent profile for when a RESTful Delete action happens successfully, and where there is an identifiable Patient subject associated with the Resource being deleted.
 
 - Given a Resource Delete is requested 
-- And that resource has a Patient subject or is otherwise associated with a Patient
+- And that resource has a [Patient subject](volume-1.html#152416-patient-as-a-subject) or is otherwise associated with a Patient
 - And the request is authorized
   - Authorization failures should follow [FHIR core Access Denied](http://hl7.org/fhir/security.html#AccessDenied)
 - When successful

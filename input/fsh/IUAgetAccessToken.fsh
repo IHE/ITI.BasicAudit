@@ -34,14 +34,17 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
     auth-server 1..1 and 
     user 0..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110150 // "Application"
+* agent[client].type 1..1
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
 * agent[client].media 0..0 
 * agent[auth-server].type = UserAgentTypes#AuthzOauthService
+* agent[auth-server].type 1..1
 * agent[auth-server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
 * agent[auth-server].network 1..1 // as known by TCP connection information
 * agent[auth-server].media 0..0 
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
+* agent[user].type 1..1
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
 * agent[user].role MS // if the OAuth token includes any roles, they are recorded here
@@ -59,6 +62,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
     token-request 1..1 and
     token-response 0..1	
 * entity[token-request].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+* entity[token-request].type 1..1
 * entity[token-request].role = http://terminology.hl7.org/CodeSystem/object-role#24 // "Query"
 * entity[token-request].role 1..
 * entity[token-request].what 0..0
@@ -67,6 +71,7 @@ This AuditEvent is recorded by Authorization Client and/or Authorization Server 
 
 
 * entity[token-response].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+* entity[token-response].type 1..1
 * entity[token-response].role = http://terminology.hl7.org/CodeSystem/object-role#13 // "Security Resource"
 * entity[token-response].role 1..
 * entity[token-response].what 1..1

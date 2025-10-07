@@ -55,14 +55,17 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
     server 1..1 and 
     user 0..1
 * agent[client].type = http://dicom.nema.org/resources/ontology/DCM#110153 // "Source Role ID"
+* agent[client].type 1..1
 * agent[client].who 1..1 // client identifier, May be an Device Resource, but more likely an identifier given the App identified in the OAuth token 
 * agent[client].network 1..1 // as known by TCP connection information
 * agent[client].media 0..0 
 * agent[server].type = http://dicom.nema.org/resources/ontology/DCM#110152 // "Destination Role ID"
+* agent[server].type 1..1
 * agent[server].who 1..1 // server identifier. May be a Device Resource, but likely just an identifier of the domain name
 * agent[server].network 1..1 // as known by TCP connection information
 * agent[server].media 0..0 
 * agent[user].type = http://terminology.hl7.org/CodeSystem/v3-ParticipationType#IRCP // "information recipient"
+* agent[user].type 1..1
 * agent[user].who 1..1 // May be a Resource, but likely just an identifier from the OAuth token
 * agent[user].requestor = true
 * agent[user].role MS // if the OAuth token includes any roles, they are recorded here
@@ -79,9 +82,11 @@ Note: the pattern defined in DICOM and IHE have the client is identified as the 
 	transaction 0..1 and
     query 1..1
 * entity[transaction].type = BasicAuditEntityType#XrequestId
+* entity[transaction].type 1..1
 * entity[transaction].what.identifier.value 1..1
 * entity[transaction].what.identifier.value ^short = "the value of X-Request-Id"
 * entity[query].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#2 // "System Object"
+* entity[query].type 1..1
 * entity[query].role = http://terminology.hl7.org/CodeSystem/object-role#24 // "Query"
 * entity[query].role 1..
 * entity[query].what 0..0
@@ -122,6 +127,7 @@ Note: the pattern defined in DICOM and IHE have that the client is identified as
 * entity contains 
     patient 1..1 
 * entity[patient].type = http://terminology.hl7.org/CodeSystem/audit-entity-type#1 // "Person"
+* entity[patient].type 1..1
 * entity[patient].role = http://terminology.hl7.org/CodeSystem/object-role#1 // "Patient"
 * entity[patient].role 1..
 * entity[patient].what 1..1

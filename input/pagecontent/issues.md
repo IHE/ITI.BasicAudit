@@ -2,6 +2,18 @@ Comments and questions are welcome as GitHub issues, FHIR chat [stream for the t
 
 # Significant Changes
 
+## Changes in 1.1.4 release
+
+- fix slicing pattern warnings
+- force agent.type
+- improvements to SAML audit profile
+- CP Integration
+- CP-ITI-1306-03
+- fix missing definition of 'request' - https://github.com/IHE/ITI.BasicAudit/issues/88
+- fix missing definition of 'subject indicated' - https://github.com/IHE/ITI.BasicAudit/issues/89
+- correct disclosure audit to an export
+- fix don't escape resource-id when cx type in balp for json - https://github.com/IHE/ITI.BasicAudit/issues/101
+
 ## Changes in 1.1.3 release
 
 - tighten constraints on .type
